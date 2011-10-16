@@ -1,0 +1,8 @@
+label{
+	display: block;
+}
+
+.error{
+	color: red;
+	font-size: 12px;
+}
