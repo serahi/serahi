@@ -25,17 +25,17 @@
 									<?php echo $this->session->userdata('first_name')." " . $this->session->userdata('last_name'); ?>
 								</span>
 								<span>
-									<?php echo anchor('user/login/logout', 'خروج' ); ?>
+									<?php echo anchor(base_url().'user/login/logout', 'خروج' ); ?>
 									<a href="#" > تنظیمات </a>
 								</span>
 							<?php else: ?>
-								<a href="login"> ورود </a>
+								<?php echo anchor(base_url().'user/login', 'ورود'); ?>
 							<?php endif ?>
 						</span>
 					</span>
 					<span class="block">
 						<?php if( $this->session->userdata('is_logged_in') != TRUE ): ?>
-						<?php echo anchor('user/login/sign_up', 'ثبت‌نام'); ?>
+						<?php echo anchor(base_url().'/user/login/sign_up', 'ثبت‌نام'); ?>
 						<?php endif ?>
 					</span>
 					

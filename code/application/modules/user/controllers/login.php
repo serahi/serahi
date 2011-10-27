@@ -25,6 +25,7 @@ class Login extends MY_Controller{
                 'username' => $this->input->post('username'),
                 'first_name' => $name['first_name'],
                 'last_name' => $name['last_name'],
+                'user_type' => $name['user_type'],
                 'is_logged_in' => TRUE
             );
             $this->session->set_userdata($user_dt);

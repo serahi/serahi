@@ -8,7 +8,7 @@ class FirstTest extends WebTestCase
 {
     function testText()
     {
-        $this->get('http://localhost/ci_test/index.php/first/');
+        $this->get('http://localhost/serahi/vsample/');
         $this->assertText('hi');
 		$this->assertTitle('first page');
     }
