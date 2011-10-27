@@ -36,3 +36,4 @@ class MY_Controller extends UnitTestCase
 		    exit($result ? 0 : 1);
 		}
 	}
+}
