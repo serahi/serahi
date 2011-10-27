@@ -6,6 +6,7 @@
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/style/960/text_rtl.css" />
 <!--		<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/style/960/960_rtl.css" /> -->
 		{block name=css}{/block}
+		{block name=title}{/block}
 		
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/style/site.css" />
 		<script type="text/javascript" src="<?php echo base_url();?>assets/scripts/jquery-1.6.2.js"></script>
@@ -35,7 +36,7 @@
 					</span>
 					<span class="block">
 						<?php if( $this->session->userdata('is_logged_in') != TRUE ): ?>
-						<?php echo anchor(base_url().'/user/login/sign_up', 'ثبت‌نام'); ?>
+						<?php echo anchor(base_url().'user/login/sign_up', 'ثبت‌نام'); ?>
 						<?php endif ?>
 					</span>
 					

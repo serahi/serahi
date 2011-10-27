@@ -1,6 +1,6 @@
 <?php
 
-class mtests extends MY_Controller{
+class Mtests extends MY_Controller{
 	
 	function test_get_prodocut(){
 		$this->load->model('home_model');
@@ -8,7 +8,7 @@ class mtests extends MY_Controller{
 		$test_data = array(
 			'product_name' => 'shalgham',
 			'seller_id' => '1',
-			'lower_limig' => '5',
+			'lower_limit' => '5',
 			'description' => "amoo sabzi frush bale!",
 			'image' => 'shalgham.jpeg',
 			'base_discount' => '50'
@@ -16,8 +16,9 @@ class mtests extends MY_Controller{
 		);
 		$this->db->insert('products', $test_data);
 		
-		$result = $this->home_model->getlist();
-		$test_data['id'] = $result['id'];
-		$this->assertEquals( $result, $test_data);
+		$result = $this->home_model->getall();
+		$this->assertEqual(count($result),1);
+		$test_data['id'] = $result[0]['id'];
+		$this->assertEqual( $result[0], $test_data);
 	}
 }

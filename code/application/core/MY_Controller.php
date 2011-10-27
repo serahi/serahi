@@ -27,7 +27,7 @@ class MY_Controller extends UnitTestCase
 		return CI::$APP->$class;
 	}
 	public function setUp() {
-		echo 'eh';
+		echo 'e';
 		//require "/var/www/ci_test/system/core/CodeIgniter.php";
 	}
 	public function index() {
