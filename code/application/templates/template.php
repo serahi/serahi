@@ -9,6 +9,7 @@
 		
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/style/site.css" />
 		<script type="text/javascript" src="<?php echo base_url();?>assets/scripts/jquery-1.6.2.js"></script>
+		<script type="text/javascript" src="<?php echo base_url();?>assets/scripts/jquery.validate.js"></script>
 		<script type="text/javascript" src="<?php echo base_url();?>assets/scripts/my_script.js"></script>
 		{block name=script}{/block}
 		
@@ -24,7 +25,7 @@
 									<?php echo $this->session->userdata('first_name')." " . $this->session->userdata('last_name'); ?>
 								</span>
 								<span>
-									<?php echo anchor('login/logout', 'خروج' ); ?>
+									<?php echo anchor('user/login/logout', 'خروج' ); ?>
 									<a href="#" > تنظیمات </a>
 								</span>
 							<?php else: ?>
@@ -34,7 +35,7 @@
 					</span>
 					<span class="block">
 						<?php if( $this->session->userdata('is_logged_in') != TRUE ): ?>
-						<?php echo anchor('login/sign_up', 'ثبت‌نام'); ?>
+						<?php echo anchor('user/login/sign_up', 'ثبت‌نام'); ?>
 						<?php endif ?>
 					</span>
 					

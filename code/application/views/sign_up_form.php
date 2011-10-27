@@ -1,4 +1,4 @@
-
+{block name=main_content}
 
 <div id="sign_up_form">
     <?php
@@ -47,3 +47,4 @@
     ?>
     
 </div>
+{/block}

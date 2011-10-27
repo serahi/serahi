@@ -36,6 +36,8 @@ CREATE TABLE users (
     id integer NOT NULL,
     username character varying NOT NULL,
     password character varying NOT NULL,
+    first_name character varying NOT NULL,
+    last_name character varying NOT NULL,
     user_type character varying DEFAULT 'customer'::character varying NOT NULL,
     email character varying,
     creation_time timestamp with time zone
@@ -69,7 +71,7 @@ ALTER SEQUENCE users_id_seq OWNED BY users.id;
 -- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('users_id_seq', 1, false);
+SELECT pg_catalog.setval('users_id_seq', 4, true);
 
 
 --
@@ -77,7 +79,6 @@ SELECT pg_catalog.setval('users_id_seq', 1, false);
 --
 
 CREATE TABLE customers (
-    fullname character varying,
     address character varying,
     postal_code character varying,
     phone character varying,
@@ -217,7 +218,7 @@ ALTER TABLE users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
 -- Data for Name: customers; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY customers (id, username, password, user_type, fullname, address, postal_code, phone, birth_date, email, creation_time) FROM stdin;
+COPY customers (id, username, password, user_type, email, creation_time, address, postal_code, phone, birth_date, first_name, last_name) FROM stdin;
 \.
 
 
@@ -233,7 +234,7 @@ COPY products (id, product_name, seller_id, lower_limit, description, image, bas
 -- Data for Name: sellers; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY sellers (id, username, password, user_type, display_name, address, phone, approved, email, creation_time) FROM stdin;
+COPY sellers (id, username, password, user_type, email, creation_time, display_name, address, phone, approved, first_name, last_name) FROM stdin;
 \.
 
 
@@ -249,7 +250,8 @@ COPY transactions (id, user_id, product_id, count, transaction_time) FROM stdin;
 -- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY users (id, username, password, user_type, email, creation_time) FROM stdin;
+COPY users (id, username, password, user_type, email, creation_time, first_name, last_name) FROM stdin;
+4	frls	e807f1fcf82d132f9bb018ca6738a19f	customer	sadegh.kazemy@gmail.com	\N	sadegh	kazemy
 \.
 
 

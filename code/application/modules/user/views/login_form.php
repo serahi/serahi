@@ -16,11 +16,11 @@
         </div>
         <?php
         if( !isset($entered_username)){
-            echo form_input('username', 'نام کاربری','id="username"' );
+            echo form_input('username', 'نام کاربری','id="username" class="check"' );
         }else{
-            echo form_input('username', $entered_username,'id="username"' );
+            echo form_input('username', $entered_username,'id="username" class="check"' );
         }
-        echo form_password('password', 'password', 'id="password"');
+        echo form_input('password', 'رمز عبور', 'id="password" class="pass check"');
         echo form_submit('submit', 'ورود');
         echo "<br/>";
         echo '<div id="register_msg">'. "اگر تاکنون در سایت ثبت نام ننموده‌اید از اینجا ثبت نام کنید". anchor('login/sign_up', 'ثبت نام در سایت','id="register_btm"') . "</div>";

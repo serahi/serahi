@@ -47,8 +47,7 @@ class Login extends MY_Controller{
             redirect('site');
         }
         else{
-            $data['main_content'] = 'sign_up_form';
-            $this->load->view('include/template', $data);
+            $this->load->view('sign_up_form');
         }
     }
     
@@ -76,47 +75,24 @@ class Login extends MY_Controller{
             'rules' => 'required|min_length[9]|max_length[31]'
             ),
           array(
-            'field' => 'c_password',
+            'field' => 'passconf',
             'label' => 'تکرار رمز عبور',
             'rules' => 'required|min_length[9]|max_length[31]'
             ),
-          array(
-            'field' => 'mobile',
-            'label' => 'شماره تلفن همراه',
-            'rules' => 'required|min_length[3]|max_length[31]'
-            ),
-          array(
-            'field' => 'state',
-            'label' => 'استان',
-            'rules' => 'required|min_length[3]|max_length[31]'
-            ),
-          array(
-            'field' => 'city',
-            'label' => 'شهر',
-            'rules' => 'required|min_length[3]|max_length[31]'
-            ),
-          array(
-            'field' => 'address',
-            'label' => 'آدرس',
-            'rules' => 'required|min_length[3]|max_length[127]'
-            ),
+          
           array(
             'field' => 'email',
             'label' => 'پست الکترونیکی',
             'rules' => 'trim|valid_email|required|min_length[3]|max_length[31]'
             ),
-          array(
-            'field' => 'postal_code',
-            'label' => 'کد پستی',
-            'rules' => 'required|min_length[3]|max_length[31]'
-            )
+          
           
         );
         
         
         $this->form_validation->set_rules($config);
         $this->form_validation->set_message('required', '<hr/>وارد کردن %s لازم است.');
-        $this->form_validation->set_message('valid_email', '<hr/>آدرس پست‌الکترونیک وارد شده معتبر نمی‌باشد.');
+        $this->form_validation->set_message('valid_email', '<hr/>آدرس پست‌الکترونیک وارد شده معتبر نیست.');
         //$this->form_validation->set_message('valid_email', '%s باید حداقل ۳ حرف داشته باشد.' );
         //$this->form_validation->set_message();
         //$this->form_validation->set_message();
@@ -128,8 +104,8 @@ class Login extends MY_Controller{
         }else{
             $this->load->model('membership_model');
             if($this->membership_model->insert_member()){
-                $data['main_content'] = 'welcome_new_user';
-                $this->load->view('include/template', $data);
+                
+                $this->load->view('welcome_new_user');
             }else{
                 echo "failed";
             }
@@ -138,6 +114,6 @@ class Login extends MY_Controller{
     
     function logout(){
         $this->session->sess_destroy();
-        redirect('site');
+        redirect('home');
     }
 }
