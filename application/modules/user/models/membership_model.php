@@ -13,9 +13,13 @@ class Membership_model extends CI_Model{
             foreach($q->result() as $row){
                 $name['first_name'] = $row->first_name;
                 $name['last_name'] = $row->last_name;
+				$name['id'] = $row->id;
             }
             
-            return  array('first_name'=> $name['first_name'],'last_name'=> $name['last_name']);
+            return  array(
+	    		      	'first_name'=> $name['first_name'],
+    	        		'last_name'=> $name['last_name'],
+						'id' => $name['id']);
         }
         
     }

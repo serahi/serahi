@@ -9,10 +9,21 @@ class Home extends MY_Controller {
 	function index() {
 		if ($this->is_logged_in()) {
 			$this -> load -> model('home_model');
-			$array['products'] = $this -> home_model -> getall();
+			$array['products'] = $this -> home_model -> get_list();
 			$this -> load -> view('home_view', $array);
 		}else{
+			
 			$this -> load -> view('home_view');
+		}
+		
+	}
+	
+	function buy(){
+		if($this->is_logged_in()){
+			$this->load->model('home_model');
+			$this->home_model->add_transaction();
+		}else{
+			$this->index();
 		}
 		
 	}

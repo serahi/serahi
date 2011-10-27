@@ -16,7 +16,7 @@ class Mtests extends MY_Controller{
 		);
 		$this->db->insert('products', $test_data);
 		
-		$result = $this->home_model->getall();
+		$result = $this->home_model->get_list();
 		$this->assertEqual(count($result),1);
 		$test_data['id'] = $result[0]['id'];
 		$this->assertEqual( $result[0], $test_data);

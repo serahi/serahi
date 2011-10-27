@@ -7,7 +7,12 @@ SimpleTest::prefer(new TextReporter());
 class Vtests extends WebTestCase{
 	
 	function testTitle(){
-		$this->get('http://localhost/serahi/code/home/');
+		$this->get('http://localhost/serahi/home/');
 		$this->assertTitle('خانه');
 	}
+}
+
+$result = run_local_tests();
+if (SimpleReporter::inCli()) {
+    exit($result ? 0 : 1);
 }

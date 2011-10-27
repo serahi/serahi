@@ -21,14 +21,15 @@ class Login extends MY_Controller{
         $name = $this->membership_model->validate_user();
         //echo $name['last_name']; die();
         if( $name != NULL ){
-            $user_dt = array(
+            $user_session_data = array(
                 'username' => $this->input->post('username'),
                 'first_name' => $name['first_name'],
                 'last_name' => $name['last_name'],
+                'user_id' => $name['id'],
                 'user_type' => $name['user_type'],
                 'is_logged_in' => TRUE
             );
-            $this->session->set_userdata($user_dt);
+            $this->session->set_userdata($user_session_data);
             redirect('home');
         }
         else{
@@ -67,18 +68,18 @@ class Login extends MY_Controller{
             ),
           array(
             'field' => 'username',
-            'label' => 'نام‌کاربری',
-            'rules' => 'required|min_length[3]|max_length[31]'
+            'label' => 'نام کاربری',
+            'rules' => 'required|min_length[6]|max_length[31]'
             ),
           array(
             'field' => 'password',
             'label' => 'رمز عبور',
-            'rules' => 'required|min_length[9]|max_length[31]'
+            'rules' => 'required|min_length[6]|max_length[31]'
             ),
           array(
             'field' => 'passconf',
             'label' => 'تکرار رمز عبور',
-            'rules' => 'required|min_length[9]|max_length[31]'
+            'rules' => 'required|min_length[6]|max_length[31]'
             ),
           
           array(
@@ -93,10 +94,10 @@ class Login extends MY_Controller{
         
         $this->form_validation->set_rules($config);
         $this->form_validation->set_message('required', '<hr/>وارد کردن %s لازم است.');
+		$this->form_validation->set_message('min_length', '<hr/>%s باید حداقل ۶ حرفی باشد.');
+		$this->form_validation->set_message('max_length', '<hr/>%s باید حداکثر، ۳۱ حرفی باشد');
         $this->form_validation->set_message('valid_email', '<hr/>آدرس پست‌الکترونیک وارد شده معتبر نیست.');
-        //$this->form_validation->set_message('valid_email', '%s باید حداقل ۳ حرف داشته باشد.' );
-        //$this->form_validation->set_message();
-        //$this->form_validation->set_message();
+        
         $this->form_validation->set_error_delimiters('<div class="error_msg">', '</div>');
     
         if( $this->form_validation->run() == FALSE ){

@@ -49,3 +49,6 @@
 		#topbar li:hover a{
 			color: orange;
 		}
+		.product{
+			border: 1px black solid;
+		}

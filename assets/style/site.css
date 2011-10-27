@@ -136,3 +136,11 @@ input[type=submit]:hover {
 	text-align:center;
 	color: #f86923;
 }
+
+.product{
+			border: 1px black solid;
+		}
+		
+.product table td{
+	border: 1px black solid;
+}
