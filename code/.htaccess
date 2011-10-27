@@ -1,3 +1,0 @@
-RewriteEngine on
-RewriteCond $1 !^(index\.php|images|robots\.txt|assets|user_guide|webtests)
-RewriteRule ^(.*)$ /serahi/code/index.php/$1 [L]
