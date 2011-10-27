@@ -9,7 +9,9 @@ class Mtests extends MY_Controller {
 			'user_type' => 'seller',
 			'email' => 'miladbashiri@comp.iust.ac.ir',
 			'creation_time' => date('m-d-Y H:i:s'),
-			'display_name' => 'milad'
+			'display_name' => 'milad',
+			'first_name' => 'milad',
+			'last_name' => 'bashiri'
 		));
 		$this->load->model('seller_model');
 		$data = $this->seller_model->get_seller_names();
