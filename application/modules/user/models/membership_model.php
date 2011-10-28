@@ -6,7 +6,7 @@ class Membership_model extends CI_Model{
         $this->db->where('username', $this->input->post('username'));
         $this->db->where('password', md5($this->input->post('password')));
         
-        $q = $this->db->get('users');
+        $q = $this->db->get('customers');
         
         if($q->num_rows == 1){
           
@@ -33,7 +33,7 @@ class Membership_model extends CI_Model{
           'email' => $this->input->post('email'),
         );
         
-        $insert_result = $this->db->insert('users', $user_data);
+        $insert_result = $this->db->insert('customers', $user_data);
         return $insert_result;
     }
 }
