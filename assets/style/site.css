@@ -69,7 +69,6 @@ input[type=text]:focus, input[type=password]:focus{
 
 input[type=text], input[type=password] {
 	display: block;
-	margin: 1em auto;
 	width: 270px;
 	border: 5px;
 	-moz-border-radius: 1px;
@@ -82,8 +81,6 @@ direction:ltr;
 
 input[type=submit] {
 	border: none;
-	/*margin-right: 2.5em ;
-	margin-bottom: 1.7em;*/
 	padding: 6px;
 	min-width: 90px;
 	text-decoration: none;
@@ -96,8 +93,12 @@ input[type=submit] {
 	-webkit-box-shadow: 0 1px 0 white;
 }
 
-.forms input{
+.forms input[type=text], input[type=password]{
 	margin: 1em auto;
+}
+.forms input[type=submit]{
+	margin-right: 2.5em ;
+	margin-bottom: 1.7em;
 }
 
 #register_msg{

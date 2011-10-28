@@ -4,8 +4,8 @@
     <?php
     
         echo validation_errors('<div class="error_msg">' , '</div>');
-    
-        echo form_open('user/login/register');
+		$attributes = array('class' => 'forms');
+        echo form_open('user/login/register', $attributes);
 		
 		echo form_input('username', 'نام کاربری' , 'id="username" class="check"');
         echo '<div class="error_msg" id="username_error"> </div>';
