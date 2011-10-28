@@ -3,7 +3,7 @@
 
 {block name=main_content}
 <table class="product">
-	<th><td>نام‌محصول</td><td>قیمت</td><td>تصویر</td><td></td></th>
+	<tr><th>نام محصول</th><th>قیمت</th><th>تصویر</th><th></th></tr>
 	<tbody>
 		<?php
 		if (isset($products)) {
@@ -12,9 +12,9 @@
 				echo "<td>" . $row['price'] . "</td>";
 				echo "<td>" . $row['image'] . "</td>";
 				if (!$row['is_bought']) {
-					echo '<td> <form method="post" action="home/buy" > <input type="hidden" value="' . $row['id'] . '" name="product_id"> <input type="submit" value="خرید"> </form> </td> </tr>';
+					echo '<td> <form method="post" action="home/buy" > <input type="submit" value="خرید">  <input type="hidden" value="' . $row['id'] . '" name="product_id"></form> </td> </tr>';
 				} else {
-					echo '<td>' . 'خریداری شده است' . '</td>';
+					echo '<td>' . 'خریداری شده است' . '</td> </tr>';
 				}
 			}
 		}

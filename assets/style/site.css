@@ -23,7 +23,7 @@ a{
 }
 .top a{
 	padding:5px;
-	margin:0hpx auto 10px 0px;
+	margin:0px auto 10px 0px;
 }
 
 .top a:hover{
@@ -82,8 +82,8 @@ direction:ltr;
 
 input[type=submit] {
 	border: none;
-	margin-right: 2.5em ;
-	margin-bottom: 1.7em;
+	/*margin-right: 2.5em ;
+	margin-bottom: 1.7em;*/
 	padding: 6px;
 	min-width: 90px;
 	text-decoration: none;
@@ -95,6 +95,11 @@ input[type=submit] {
 	-moz-box-shadow: 0 1px 0 white;
 	-webkit-box-shadow: 0 1px 0 white;
 }
+
+.forms input{
+	margin: 1em auto;
+}
+
 #register_msg{
 	border: none;
 	margin-right: 2.5em ;
@@ -139,8 +144,14 @@ input[type=submit]:hover {
 
 .product{
 			border: 1px black solid;
+			margin:3em auto;
+			
 		}
-		
-.product table td{
+.product tr th{
+	background-color: gray;
+}
+.product td,th,input{
 	border: 1px black solid;
+	padding: 4px 9px;
+	text-align: center;	
 }

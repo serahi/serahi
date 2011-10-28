@@ -4,8 +4,8 @@
     <h2>  ورود </h2>
     <?php
     
-    
-        echo form_open('login/login_check');
+    	$attributes = array('class' => 'forms');
+        echo form_open('login/login_check', $attributes);
         ?>
         <div class='error_msg'>
             <?php
