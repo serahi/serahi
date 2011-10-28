@@ -40,7 +40,7 @@ CREATE TABLE users (
     last_name character varying NOT NULL,
     user_type character varying DEFAULT 'customer'::character varying NOT NULL,
     email character varying,
-    creation_time timestamp with time zone
+    creation_time timestamp without time zone
 );
 
 
