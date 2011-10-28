@@ -28,8 +28,13 @@ class Membership_model extends CI_Model{
           'password' => md5($this->input->post('password')),
           'email' => $this->input->post('email'),
         );
-        
-        $insert_result = $this->db->insert('customers', $user_data);
-        return $insert_result;
+		$this->db->where('username', $this->input->post('username'));
+		$q = $this->db->get('users');
+		if ($q->num_rows >= 1){
+			return "NOT UNIQUE";
+		}else{
+        	$insert_result = $this->db->insert('customers', $user_data);
+        	return $insert_result;
+		}
     }
 }
