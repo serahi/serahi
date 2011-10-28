@@ -1,9 +1,18 @@
 <?php
-
 class Userlist_mtests extends MY_Controller {
-	function testGetUsersWithSingleUser () {
+	var $users;
+	function setUp () {
 		$this->db->query('truncate users;');
-		$new_user = array(
+		$this->users[0] = array(
+			'username' => 'admin',
+			'password' => md5('admin'),
+			'user_type' => 'admin',
+			'email' => 'admin@serahi.ir',
+			'creation_time' => date('Y-m-d H:i:s'),
+			'first_name' => 'مدیر',
+			'last_name' => 'سایت'
+		);
+		$this->users[1] = array(
 			'username' => 'milad',
 			'password' => md5('milad'),
 			'user_type' => 'seller',
@@ -12,27 +21,7 @@ class Userlist_mtests extends MY_Controller {
 			'first_name' => 'milad',
 			'last_name' => 'bashiri'
 		);
-		$this->db->insert('users', $new_user);
-		$this->load->model('user_model');
-		$data = $this->user_model->get_users();
-		$this->assertEqual(count($data), 1);
-		unset($new_user['password']);
-		$new_user['id'] = $data[0]['id'];
-		$this->assertEqual($new_user, $data[0]);
-	}
-	function testGetUsersWithMultipleUsers () {
-		$this->db->query('truncate users;');
-		
-		$new_users[0] = array(
-			'username' => 'milad',
-			'password' => 'milad',
-			'user_type' => 'seller',
-			'email' => 'miladbashiri@comp.iust.ac.ir',
-			'creation_time' => date('Y-m-d H:i:s'),
-			'first_name' => 'milad',
-			'last_name' => 'bashiri'
-		);
-		$new_users[1] = array(
+		$this->users[2] = array(
 			'username' => 'hamed',
 			'password' => md5('hamed'),
 			'user_type' => 'admin',
@@ -41,15 +30,41 @@ class Userlist_mtests extends MY_Controller {
 			'first_name' => 'hamed',
 			'last_name' => 'gholizadeh'
 		);
-		$count = count($new_users);
-		for($i = 0; $i < $count; $i++) {
-			$this->db->insert('users', $new_users[$i]);
-			unset($new_users[$i]['password']);
-			$new_users[$i]['id'] = $this->db->insert_id();
-		}
+	}
+	function testGetUsersWithSingleUser () {
+		$new_user = $this->insert_users(1);
 		$this->load->model('user_model');
 		$data = $this->user_model->get_users();
-		$this->assertEqual(count($data), 2);
+		$this->assertEqual(count($data), 1);
+		unset($new_user['password']);
+		$new_user['id'] = $data[0]['id'];
+		$this->assertEqual($new_user, $data[0]);
+	}
+	function testGetUsersWithMultipleUsers () {
+		$new_users = $this->insert_users();
+		$count = count($new_users);
+		$this->load->model('user_model');
+		$data = $this->user_model->get_users();
+		$this->assertEqual(count($data), $count);
 		$this->assertEqual($new_users, $data);
+	}
+	function testDeleteUser () {
+		$user = $this->insert_users(1);
+		$this->load->model('user_model');
+		$this->user_model->delete_user($user['id']);
+		$this->db->where('id', $user['id']);
+		$query = $this->db->get('users');
+		$this->assertEqual($query->num_rows, 0);
+	}	
+	function insert_users ($count = -1) {
+		if ($count == -1) $count = count($this->users);
+		for($i = 0; $i < $count; $i++) {
+			$this->db->insert('users', $this->users[$i]);
+			unset($this->users[$i]['password']);
+			$this->users[$i]['id'] = $this->db->insert_id();
+			$result[] = $this->users[$i];
+		}
+		if ($count == 1) return $result[0];
+		else return $result;
 	}
 }

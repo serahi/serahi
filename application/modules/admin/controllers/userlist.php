@@ -10,4 +10,9 @@ class Userlist extends MY_Controller {
 			$this->load->view('access_denied');
 		}
 	}
+	function delete () {
+		$id = $this->input->post('id');
+		$this->load->model('user_model');
+		$this->user_model->delete_user($id);
+	}
 }
