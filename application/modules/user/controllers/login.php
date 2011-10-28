@@ -3,7 +3,8 @@
 class Login extends MY_Controller{
     
     var $data;
-    
+	
+
     function __construct(){
         parent::__construct();
         $this->lang->load('user', 'farsi');
@@ -74,7 +75,7 @@ class Login extends MY_Controller{
           array(
             'field' => 'password',
             'label' => 'رمز عبور',
-            'rules' => 'required|min_length[6]|max_length[31]'
+            'rules' => 'required|min_length[6]|max_length[31]|matches[passconf]'
             ),
           array(
             'field' => 'passconf',
@@ -96,6 +97,7 @@ class Login extends MY_Controller{
         $this->form_validation->set_message('required', '<hr/>وارد کردن %s لازم است.');
 		$this->form_validation->set_message('min_length', '<hr/>%s باید حداقل ۶ حرفی باشد.');
 		$this->form_validation->set_message('max_length', '<hr/>%s باید حداکثر، ۳۱ حرفی باشد');
+		$this->form_validation->set_message('matches', '<hr/> رمز عبور و تکرار آن یکسان نیستند.');
         $this->form_validation->set_message('valid_email', '<hr/>آدرس پست‌الکترونیک وارد شده معتبر نیست.');
         
         $this->form_validation->set_error_delimiters('<div class="error_msg">', '</div>');
@@ -105,11 +107,16 @@ class Login extends MY_Controller{
             
         }else{
             $this->load->model('membership_model');
-            if($this->membership_model->insert_member()){
+			$insert_query_result = $this->membership_model->insert_member();
+			
+            if($insert_query_result === TRUE){
                 
                 $this->load->view('welcome_new_user');
-            }else{
-                echo "failed";
+            }elseif($insert_query_result == "NOT UNIQUE"){
+            	$form_data = $this->input->post();
+				$error_msg['user_not_unique'] = 'این نام کاربری قبلاً در سیستم ثبت شده است.';
+				
+                $this->load->view('sign_up_form', $error_msg);
             }
         }
     }
