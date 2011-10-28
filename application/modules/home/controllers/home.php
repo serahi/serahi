@@ -22,6 +22,7 @@ class Home extends MY_Controller {
 		if($this->is_logged_in()){
 			$this->load->model('home_model');
 			$this->home_model->add_transaction();
+			$this->index();
 		}else{
 			$this->index();
 		}
