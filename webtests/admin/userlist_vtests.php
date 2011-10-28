@@ -8,13 +8,13 @@ class Userlist_vtests extends WebTestCase {
 	function testUserListViewFilledWithUserNames () {
 		$this->conn = pg_pconnect("host='localhost' dbname='serahi' user='postgres' password='Root3pg'");
 		
-		pg_query('TRUNCATE sellers;');
+		pg_query('TRUNCATE users;');
 		$this->insert_user('milad', md5('milad'), 'admin', 'miladbashiri@comp.iust.ac.ir',
 			date('m-d-Y H:i:s'), 'milad', 'milad', 'bashiri');
 		$this->insert_user('hamed', 'gholizadeh', 'seller', 'hamed.gholizadeh.f@gmail.com',
 			date('m-d-Y H:i:s'), 'hamed', 'hamed', 'gholizadeh');
 		$this->post('http://localhost/serahi/user/login/login_check', array('username'=>'milad','password'=>'milad'));
-		$this->get('http://localhost/serahi/admin/userlist_vtests');
+		$this->get('http://localhost/serahi/admin/userlist');
 		$this->assertText('hamed');
 		$this->assertText('milad');
 	}

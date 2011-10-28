@@ -15,6 +15,9 @@
 		              'user_type', 'creation_time') as $col) {
 			echo '<td>' . $user[$col] . '</td>';
 		}
+		echo '<td><a href = "' . base_url() . 'admin/userlist/edit?id=' .
+		     $user['id'] . '">ویرایش</a>';
+		echo '<';
 		echo '</tr>';
 	}?>
 	</tbody>

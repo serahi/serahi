@@ -6,22 +6,18 @@ class Membership_model extends CI_Model{
         $this->db->where('username', $this->input->post('username'));
         $this->db->where('password', md5($this->input->post('password')));
         
-        $q = $this->db->get('customers');
+        $q = $this->db->get('users');
         
         if($q->num_rows == 1){
-          
-            foreach($q->result() as $row){
-                $name['first_name'] = $row->first_name;
-                $name['last_name'] = $row->last_name;
-				$name['id'] = $row->id;
-            }
-            
-            return  array(
-	    		      	'first_name'=> $name['first_name'],
-    	        		'last_name'=> $name['last_name'],
-						'id' => $name['id']);
+        	$user = $q->row();
+					return array(
+						'first_name' => $user->first_name,
+						'last_name' => $user->last_name,
+						'id' => $user->id,
+						'user_type' => $user->user_type
+					);
         }
-        
+				return NULL;
     }
     
     function insert_member(){
