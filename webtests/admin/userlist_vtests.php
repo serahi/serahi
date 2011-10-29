@@ -10,11 +10,11 @@ class Userlist_vtests extends WebTestCase {
 		
 		pg_query('TRUNCATE users;');
 		$this->insert_user('admin', md5('admin'), 'admin', 'admin@serahi.ir',
-			date('m-d-Y H:i:s'), 'admin', 'مدیر', 'سایت', 'users');
+			date('m-d-Y H:i:s'), 'مدیر', 'سایت', 'users');
 		$this->insert_user('milad', md5('milad'), 'admin', 'miladbashiri@comp.iust.ac.ir',
-			date('m-d-Y H:i:s'), 'milad', 'milad', 'bashiri', 'sellers');
+			date('m-d-Y H:i:s'), 'milad', 'bashiri', 'sellers');
 		$this->insert_user('hamed', 'gholizadeh', 'seller', 'hamed.gholizadeh.f@gmail.com',
-			date('m-d-Y H:i:s'), 'hamed', 'hamed', 'gholizadeh', 'sellers');
+			date('m-d-Y H:i:s'), 'hamed', 'gholizadeh', 'sellers');
 		$this->post('http://localhost/serahi/user/login/login_check', array('username'=>'admin','password'=>'admin'));
 		$this->get('http://localhost/serahi/admin/userlist');
 		$this->assertText('hamed');
@@ -22,12 +22,12 @@ class Userlist_vtests extends WebTestCase {
 	}
 	
 	function insert_user ($username,$password,$user_type,$email,
-	                      $creation_time,$display_name,$first_name,
+	                      $creation_time,$first_name,
 	                      $last_name, $table_name) {
 		pg_query($this->conn, "INSERT INTO $table_name (username," .
-			"password,user_type,email,creation_time,display_name," .
+			"password,user_type,email,creation_time," .
 			"first_name,last_name) VALUES ('$username','$password'," . 
-			"'$user_type','$email','$creation_time','$display_name',".
+			"'$user_type','$email','$creation_time',".
 			"'$first_name','$last_name');");
 	}
 }

@@ -22,7 +22,6 @@ class Userlist_mtests extends MY_Controller {
 			'first_name' => 'milad',
 			'last_name' => 'bashiri'
 		);
-		$this->user_infos[1] = $this->users[1];
 		$this->user_infos[1] = array_merge($this->users[1], array(
 			'display_name' => 'میلاد',
 			'address' => 'iran, tehran',
