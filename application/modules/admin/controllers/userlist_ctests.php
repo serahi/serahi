@@ -81,7 +81,6 @@ class Userlist_ctests extends MY_Controller {
 		$mocked_model = new MockUser_model();
 		$mocked_model->expectOnce('delete_user', array($user['id']));
 		$mocked_loader = new MockCI_Loader();
-		//$mocked_loader->returnsByReference('model', $mocked_model, array('user_model'));
 		$test = new Userlist();
 		$test->load = $mocked_loader;
 		$test->input = $mocked_input;

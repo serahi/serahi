@@ -20,4 +20,21 @@ class User_model extends CI_Model {
 		$this->db->where('id', $id);
 		$this->db->delete('users');
 	}
+	function get_user_info ($id) {
+		$this->db->where('id', $id);
+		$query = $this->db->get('users');
+		$user = $query->row();
+		if ($user->user_type != 'admin') {
+			$this->db->where('id', $id);
+			$query = $this->db->get($user->user_type . 's');
+			$user = $query->row();
+		}
+		$data = array();
+		foreach (get_object_vars($user) as $key => $value) {
+			if ($key == 'password') continue;
+			if ($key == 'approved') $value = $value == 't' ? 'TRUE' : 'FALSE';
+			$data[$key] = $value;
+		}
+		return $data;
+	}
 }
