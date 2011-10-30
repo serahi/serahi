@@ -14,7 +14,7 @@ a {
 	width: 100%;
 	background-color: black;
 	color: white;
-	height: 29px;
+	height: 24px;
 	font-size: 13px;
 }
 .top * {
@@ -25,16 +25,26 @@ a {
 	margin: 0px auto 10px 0px;
 }
 .top a:hover {
-	background-color: gray;
-	color: orange;
+	/*background-color: #414152;*/
+	background-color: #303030;
+	color: #ebebe0;
+	
 }
 .block {
 	margin: 0 10px;
 	height: 100%;
 }
+
 .bblock {
 	margin: auto 0;
 }
+#serahi{
+	float: left;
+}
+#serahi:hover{
+	font-weight: 600;
+}
+
 #login_form {
 	width: 330px;
 	background: #f0f0f0 url(../img/login_bg.jpg) repeat-x 0 0;

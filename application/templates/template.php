@@ -40,6 +40,9 @@
 						<?php echo anchor(base_url().'user/login/seller_sign_up', 'ثبت نام فروشندگان'); ?>
 						<?php endif ?>
 					</span>
+					<span class="block center" id="serahi">
+						<a href="<?php echo base_url().'home/'?>">سه راهــــــی</a>
+					</span>
 					
 				</span>
 			</div>  
