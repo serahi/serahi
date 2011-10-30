@@ -43,7 +43,7 @@
         
 		echo form_hidden('ut','s');        
         
-        echo '<div id="register_msg">' . 'لطفاً پیش از ثبت‌نام قوانین سایت را مطالعه بفرمایید.' . '<br/>' . anchor('site/rules', 'قوانین سایت', 'id="register_btm"') . '<br/> <br/>' . form_checkbox('confirmation', '') . 'قوانین سایت را مطالعه کرده و قبول می‌کنم' . '</div>';
+        echo '<div id="register_msg">' . 'لطفاً پیش از ثبت‌نام قوانین سایت را مطالعه بفرمایید.' . '<br/>' . anchor('site/rules', 'قوانین سایت', 'id="register_btm"') . '<br/> <br/>' . form_checkbox('confirmation', '' , FALSE ,'class="confirmation"') . '<label for="confirmation">قوانین سایت را مطالعه کرده و قبول می‌کنم</label>' . '</div>';
         
         echo form_submit('submit','ثبت‌نام', 'id="reg_btm"');
         

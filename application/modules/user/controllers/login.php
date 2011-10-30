@@ -20,7 +20,6 @@ class Login extends MY_Controller{
         
         $this->load->model('membership_model');
         $name = $this->membership_model->validate_user();
-        //echo $name['last_name']; die();
         if( $name != NULL ){
             $user_session_data = array(
                 'username' => $this->input->post('username'),
@@ -30,8 +29,12 @@ class Login extends MY_Controller{
                 'user_type' => $name['user_type'],
                 'is_logged_in' => TRUE
             );
-            $this->session->set_userdata($user_session_data);
-            redirect('home');
+			$this->session->set_userdata($user_session_data);
+			if( $name['user_type'] === 'costumer'){
+    	        redirect('home');
+			}elseif( $name['user_type'] === 'seller'){
+				redirect('seller');
+			}
         }
         else{
             $data['error_msg'] = lang('wrong_user_or_pass');
