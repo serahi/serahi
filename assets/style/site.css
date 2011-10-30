@@ -69,7 +69,7 @@ input[type=text], input[type=password] {
 	text-align: center;
 	direction: ltr;
 }
-input[type=submit] {
+.forms input[type=submit] {
 	border: none;
 	padding: 6px;
 	min-width: 90px;
@@ -81,14 +81,13 @@ input[type=submit] {
 	box-shadow: 0 1px 0 white;
 	-moz-box-shadow: 0 1px 0 white;
 	-webkit-box-shadow: 0 1px 0 white;
+	margin-right: 2.5em;
+	margin-bottom: 1.7em;
 }
 .forms input[type=text], input[type=password] {
 	margin: 1em auto;
 }
-.forms input[type=submit] {
-	margin-right: 2.5em;
-	margin-bottom: 1.7em;
-}
+
 #register_msg {
 	border: none;
 	margin-right: 2.5em;
@@ -116,7 +115,7 @@ input[type=submit] {
 	-moz-box-shadow: 0 1px 0 gray;
 	-webkit-box-shadow: 0 1px 0 gray;
 }
-input[type=submit]:hover {
+.forms input[type=submit]:hover {
 	background: #818170;
 	cursor: pointer;
 }
