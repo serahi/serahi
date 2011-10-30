@@ -8,6 +8,9 @@ class Home_model extends CI_Model {
 		$this -> db -> select('product_id');
 		$user_bought = $this -> db -> get('transactions');
 		$user_bought_array = array();
+		
+		
+		
 		foreach ($user_bought->result() as $row) {
 			$user_bought_array[] = $row -> product_id;
 		}
@@ -16,8 +19,12 @@ class Home_model extends CI_Model {
 
 		$product_array = array();
 		foreach ($products->result() as $row) {
-			$is_bought = FALSE;
 			
+			$this -> db -> where('product_id', $row->id) ;
+			$sell = $this -> db -> get('transactions');
+			$sell_count = $sell->num_rows;
+			
+			$is_bought = FALSE;
 			if ( in_array($row->id, $user_bought_array) ){
 				$is_bought = TRUE;
 				
@@ -31,7 +38,8 @@ class Home_model extends CI_Model {
 				'image' => $row -> image,
 				'base_discount' => $row -> base_discount,
 				'price' => $row -> price,
-				'is_bought' => $is_bought);
+				'is_bought' => $is_bought,
+				'sell_count' => $sell_count);
 		}
 		
 		return $product_array;
