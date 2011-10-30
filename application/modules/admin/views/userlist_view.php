@@ -1,3 +1,6 @@
+{block name=css}
+<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/style/admin.css" />
+{/block}
 {block name=main_content}
 <table>
 	<thead>
@@ -8,6 +11,7 @@
 			<th>نام خانوادگی</th>
 			<th>نوع کاربر</th>
 			<th>زمان ایجاد حساب</th>
+			<th colspan="2">عملیات</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -17,14 +21,20 @@
 		              'user_type', 'creation_time') as $col) {
 			echo '<td>' . $user[$col] . '</td>';
 		}
-		echo '<td><a href = "' . base_url() . 'admin/userlist/edit?id=' .
-		     $user['id'] . '">ویرایش</a></td>';
-		echo '<td><form method = "post" action = "'.base_url().
-		     '/admin/userlist/delete"><input name = "id" value = "' . 
-		     $user['id'] . '" type = "hidden"><input type = "submit" '.
-		     'value = "حذف"></form></td>';
-		echo '</tr>';
-	}?>
+	?>
+			<td>
+				<a href = "<?php echo base_url();?>admin/userlist/edit?id=<?php echo $user['id'];?>">
+					ویرایش
+				</a>
+			</td>
+			<td>
+				<form class = "table_form" method = "post" action = "<?php echo base_url();?>/admin/userlist/delete">
+					<input name = "id" value = "<?php echo $user['id'];?>" type = "hidden">
+					<input type = "submit" value = "حذف">
+				</form>
+			</td>
+		</tr>
+	<?php } ?>
 	</tbody>
 </table>
 {/block}

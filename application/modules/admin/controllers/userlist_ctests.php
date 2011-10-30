@@ -7,6 +7,7 @@ Mock::generate('CI_Session');
 Mock::generate('CI_Loader');
 Mock::generate('CI_Input');
 Mock::generate('User_model');
+
 class Userlist_ctests extends MY_Controller {
 	var $users, $user_infos;
 	function setUp () {
@@ -14,21 +15,21 @@ class Userlist_ctests extends MY_Controller {
 		$this->users[0] = array(
 			'username' => 'admin',
 			'password' => md5('admin'),
+			'first_name' => 'مدیر',
+			'last_name' => 'سایت',
 			'user_type' => 'admin',
 			'email' => 'admin@serahi.ir',
-			'creation_time' => date('Y-m-d H:i:s'),
-			'first_name' => 'مدیر',
-			'last_name' => 'سایت'
+			'creation_time' => date('Y-m-d H:i:s')
 		);
 		$this->user_infos[0] = $this->users[0];
 		$this->users[1] = array(
 			'username' => 'milad',
 			'password' => md5('milad'),
+			'first_name' => 'milad',
+			'last_name' => 'bashiri',
 			'user_type' => 'seller',
 			'email' => 'miladbashiri@comp.iust.ac.ir',
-			'creation_time' => date('Y-m-d H:i:s'),
-			'first_name' => 'milad',
-			'last_name' => 'bashiri'
+			'creation_time' => date('Y-m-d H:i:s')
 		);
 		$this->user_infos[1] = array_merge($this->users[1], array(
 			'display_name' => 'میلاد',
@@ -129,6 +130,20 @@ class Userlist_ctests extends MY_Controller {
 			$test->edit();
 		}
 	}
+	function testShowUserListWiewOnRequestEditUserViewWithNoIDInGet () {
+		$mocked_session = $this->get_mocked_session('admin');
+		$mocked_input = new MockCI_Input();
+		$mocked_input->returns('get', FALSE, array('id'));
+		$mocked_model = new MockUser_model();
+		$mocked_model->expectNever('get_user_info', array('*'));
+		$mocked_loader = new MockCI_Loader();
+		$test = new Userlist();
+		$test->load = $mocked_loader;
+		$test->input = $mocked_input;
+		$test->session = $mocked_session;
+		$test->user_model = $mocked_model;
+		@$test->edit();
+	}
 	function testAccessDeniedOnEditUserViewWithoutSessionOrNotAdmin () {
 		$session_users = array('guest', 'seller', 'customer');
 		$first = true;
@@ -151,6 +166,29 @@ class Userlist_ctests extends MY_Controller {
 			$test->edit();
 		}
 	}
+	function testEditUserActionWithAdminSession () {
+		$mocked_session = $this->get_mocked_session('admin');
+		$user = $this->insert_user_infos(1);
+		$user['password'] = $this->user_infos[0]['password'];
+		$mocked_input = new MockCI_Input();
+		foreach ($user as $field => $value) {
+			$mocked_input->returns('post', $value, array($field));
+		}
+		$mocked_model = new MockUser_model();
+		$sorted_user = array();
+		foreach (array('id', 'username', 'password', 'first_name', 'last_name',
+		               'user_type', 'email', 'creation_time') as $key) {
+			$sorted_user[$key] = $user[$key];
+		}
+		$mocked_model->expectOnce('edit_user_info', array($sorted_user));
+		$mocked_loader = new MockCI_Loader();
+		$test = new Userlist();
+		$test->load = $mocked_loader;
+		$test->input = $mocked_input;
+		$test->session = $mocked_session;
+		$test->user_model = $mocked_model;
+		@$test->save_edit();
+	}
 	function insert_users ($count = -1) {
 		$users = $this->users;
 		if ($count == -1) $count = count(users);
@@ -164,16 +202,17 @@ class Userlist_ctests extends MY_Controller {
 		else return $result;
 	}
 	function insert_user_infos ($count = -1) {
-		if ($count == -1) $count = count($this->user_infos);
+		$user_infos = $this->user_infos;
+		if ($count == -1) $count = count($user_infos);
 		for($i = 0; $i < $count; $i++) {
 			$table = 'users';
-			if ($this->user_infos[$i]['user_type'] != 'admin') {
-				$table = $this->user_infos[$i]['user_type'] . 's';
+			if ($user_infos[$i]['user_type'] != 'admin') {
+				$table = $user_infos[$i]['user_type'] . 's';
 			}
-			$this->db->insert($table, $this->user_infos[$i]);
-			unset($this->user_infos[$i]['password']);
-			$this->user_infos[$i]['id'] = $this->db->insert_id();
-			$result[] = $this->user_infos[$i];
+			$this->db->insert($table, $user_infos[$i]);
+			unset($user_infos[$i]['password']);
+			$user_infos[$i]['id'] = $this->db->insert_id();
+			$result[] = $user_infos[$i];
 		}
 		if ($count == 1) return $result[0];
 		else return $result;

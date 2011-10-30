@@ -23,6 +23,8 @@ class User_model extends CI_Model {
 	function get_user_info ($id) {
 		$this->db->where('id', $id);
 		$query = $this->db->get('users');
+		if ($query->num_rows != 1)
+			return FALSE;
 		$user = $query->row();
 		if ($user->user_type != 'admin') {
 			$this->db->where('id', $id);
@@ -36,5 +38,20 @@ class User_model extends CI_Model {
 			$data[$key] = $value;
 		}
 		return $data;
+	}
+	function edit_user_info ($user) {
+		$this->db->where('id', $user['id']);
+		if ($user['user_type'] == '' || !in_array($user['user_type'], array('admin', 'seller', 'customer'))){
+			return;
+		}
+		if (isset($user['password']) && $user['password'] == '')
+			unset($user['password']);
+		if (isset($user['creation_time']))
+			unset($user['creation_time']);
+		if ($user['user_type'] == 'admin') {
+			$this->db->update('users', $user);
+		} else {
+			$this->db->update($user['user_type'] . 's', $user);
+		}
 	}
 }

@@ -1,0 +1,58 @@
+.submit_form{
+    border: 1px solid black;
+    border-radius: 5px;
+    display: block;
+    margin: 5% auto;
+    padding: 10px;
+    width: 250px;
+}
+.submit_form label {
+    display: block;
+    float: right;
+    margin: 0 auto;
+    padding: 2px 5px;
+    width: 90%;
+}
+.submit_form input {
+    border: 1px solid black;
+    margin: 0 auto 10px;
+    padding: 4px 9px;
+    text-align: center;
+    width: 90%;
+}
+.submit_form .row div, .submit_form .row label {
+	display: inline;
+	float: none;
+}
+.submit_form .row {
+	margin-bottom: 10px;
+}
+.submit_form input[type="submit"] {
+	width: auto;
+	float:left;
+}
+/********************************************/
+.table_form {
+	border: none;
+}
+.table_form input[type="submit"], .table_form input[type="submit"]:hover {
+	text-decoration: none;
+	background-color: inherit;
+	color: blue;
+}
+td a:visited{
+	color: blue;
+}
+td a, .table_form input[type="submit"] {
+	padding: 2px;
+	margin: 2px;
+	font-size: 11px;
+}
+/*********************************************/
+table {
+	margin: 2% auto;
+}
+table td, table th {
+	min-width: 80px;
+	text-align: center;
+}
