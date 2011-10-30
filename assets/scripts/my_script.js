@@ -6,7 +6,7 @@ $(document).ready(function() {
 		'passconf' : 'تکرار رمز عبور',
 		'email' : 'آدرس پست‌الکترنیکی',
 		'first_name' : 'نام',
-		'last_name' : 'نام‌خانوادگی'
+		'last_name' : 'نام خانوادگی'
 
 	};
 
