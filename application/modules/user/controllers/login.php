@@ -50,7 +50,7 @@ class Login extends MY_Controller{
     
     function sign_up(){
         if( $this->is_logged_in() ){
-            redirect('site');
+            redirect('home');
         }
         else{
             $this->load->view('sign_up_form');
@@ -59,7 +59,7 @@ class Login extends MY_Controller{
 	
 	 function seller_sign_up(){
         if( $this->is_logged_in() ){
-            redirect('site');
+            redirect('home');
         }
         else{
             $this->load->view('seller_sign_up_form');
