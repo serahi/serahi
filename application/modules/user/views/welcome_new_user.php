@@ -1,3 +1,5 @@
-{block name=main}
-Welcome U !
+{block name=main_content}
+ثبت نام شما تکمیل شد!
+<br/>
+
 {/block}

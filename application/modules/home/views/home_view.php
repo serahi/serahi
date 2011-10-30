@@ -1,5 +1,5 @@
 {block name=title}
-<title>سه‌راهـــــی</title>
+سه‌راهـــــی
 {/block}
 
 {block name=main_content}
@@ -30,7 +30,7 @@
 						echo '<div class="description"><pre>'.$item['description'].'</pre></div>';
 						echo '<div class="buy">';
 							if (!$item['is_bought']) {
-								echo ' <form method="post" action="home/buy" > <input type="submit" value="خرید">  <input type="hidden" value="' . $item['id'] . '" name="product_id"></form> ';
+								echo ' <form method="post" action="home/buy" class="forms" > <input type="submit" value="خرید">  <input type="hidden" value="' . $item['id'] . '" name="product_id"></form> ';
 							} else {
 								echo '<div class="not_found_item">'. 'این کالا قبلاً توسط شما خریداری شده است!'. '</div>' ;
 							}

@@ -1,5 +1,5 @@
 {block name=title}
-<title>فرم ثبت‌ نام مشتریان‌</title>
+فرم ثبت‌ نام مشتریان‌
 {/block}
 
 {block name=main_content}
@@ -15,21 +15,21 @@
         echo form_open('user/login/register', $attributes);
 		
 		echo form_input('username',set_value('username','نام کاربری'), 'id="username" class="check"');
-        echo '<div class="error_msg" id="username_error"> </div>';
+        //echo '<div class="error_msg" id="username_error"> </div>';
 		
 		echo form_input('password','رمز عبور', 'id="password" class="check pass"');
-        echo '<div id="password_error"> </div>';
+        //echo '<div id="password_error"> </div>';
         echo form_input('passconf', 'تکرار رمز عبور', 'id="c_password"  class="check pass"');
-        echo '<div id="c_password_error"> </div>';
+        //echo '<div id="c_password_error"> </div>';
 		
 		echo form_input('first_name',set_value('first_name','نام') , 'id="first_name" class="check"');
-        echo '<div class="error_msg" id="first_name_error"> </div>';
+        //echo '<div class="error_msg" id="first_name_error"> </div>';
          
         echo form_input('last_name', set_value('last_name','نام خانوادگی') ,'id="last_name" class="check"');
-        echo '<div class="error_msg" id="last_name_error"> </div>';
+        //echo '<div class="error_msg" id="last_name_error"> </div>';
 		
 		echo form_input('email', set_value('email', 'آدرس پست‌الکترنیکی'), 'id="email"  class="check"');
-        echo '<div id="email_error"> </div>';
+        //echo '<div id="email_error"> </div>';
         
         echo form_hidden('ut','c');
         

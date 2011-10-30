@@ -1,5 +1,5 @@
 {block name=title}
-<title>ورود به سیستم‌</title>
+ورود به سیستم‌
 {/block}
 
 {block name=main_content}

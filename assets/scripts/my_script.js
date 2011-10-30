@@ -42,9 +42,9 @@ $(document).ready(function() {
 	
 	var check_values = function(){
 		$( "#reg_btm" ).click(function(){
-			
-			alert('boom');
-			return false;
+			$('.check').each()
+			//alert('boom');
+			//return false;
 		});
 			
 	}();

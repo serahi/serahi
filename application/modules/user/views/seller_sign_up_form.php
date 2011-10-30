@@ -1,5 +1,5 @@
 {block name=title}
-<title>فرم ثبت‌ نام فروشنده‌</title>
+فرم ثبت‌ نام فروشنده‌
 {/block}
 {block name=main_content}
 

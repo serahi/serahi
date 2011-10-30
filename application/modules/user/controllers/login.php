@@ -131,7 +131,11 @@ class Login extends MY_Controller{
         $this->form_validation->set_error_delimiters('<div class="error_msg">', '</div>');
     
         if( $this->form_validation->run() == FALSE ){
-            $this->sign_up();
+        	if($this->input->post('ut') === 'c'){
+            	$this->sign_up();
+			}elseif($this->input->post('ut') === 's') {
+				$this->seller_sign_up();
+			}
             
         }else{
             $this->load->model('membership_model');
