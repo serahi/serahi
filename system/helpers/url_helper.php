@@ -543,7 +543,7 @@ if ( ! function_exists('redirect'))
 			default			: header("Location: ".$uri, TRUE, $http_response_code);
 				break;
 		}
-		exit;
+		//exit;
 	}
 }
 

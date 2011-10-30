@@ -22,7 +22,6 @@ class MY_Controller extends UnitTestCase
 		/* autoload module items */
 		$this->load->_autoloader($this->autoload);
 	}
-	
 	public function __get($class) {
 		return CI::$APP->$class;
 	}
