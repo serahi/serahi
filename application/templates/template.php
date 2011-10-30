@@ -6,7 +6,7 @@
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/style/960/text_rtl.css" />
 <!--		<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/style/960/960_rtl.css" /> -->
 		{block name=css}{/block}
-		{block name=title}{/block}
+		<title>{block name=title}{/block}</title>
 		
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/style/site.css" />
 		<script type="text/javascript" src="<?php echo base_url();?>assets/scripts/jquery-1.6.2.js"></script>
