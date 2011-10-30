@@ -40,14 +40,17 @@ $(document).ready(function() {
 			$(this).prop('type', 'text');
 	})
 	
-	var check_values = function(){
+	var check_confirmation = function(){
 		$( "#reg_btm" ).click(function(){
-			$('.check').each()
-			//alert('boom');
-			//return false;
+			if( $(".confirmation").attr('checked') != 'checked' ){
+				alert("پیش از ثبت نام شما باید قوانین سایت را مطالعه کرده و پذیرفته باشید");
+				return false;
+			}
 		});
 			
 	}();
+	
+	
 
 	
 
