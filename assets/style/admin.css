@@ -44,15 +44,35 @@ td a:visited{
 	color: blue;
 }
 td a, .table_form input[type="submit"] {
-	padding: 2px;
-	margin: 2px;
 	font-size: 11px;
+	margin: 0px;
+	padding: 0px;
+	height: 14px;
 }
 /*********************************************/
+
+thead tr {
+	border-bottom: 3px solid black;
+}
+table tr {
+	padding: 2px;
+}
 table {
 	margin: 2% auto;
 }
 table td, table th {
 	min-width: 80px;
 	text-align: center;
+}
+table td {
+	padding: 5px 3px;
+}
+table th {
+	padding: 8px 3px;
+}
+.table_form {
+	display: inline-block;
+}
+table tbody .odd {
+	background-color: #d0d0d0;
 }
