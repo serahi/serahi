@@ -37,4 +37,30 @@ class Membership_model extends CI_Model{
         	return $insert_result;
 		}
     }
+	
+	function insert_seller($user_type){
+		$user_data = array(
+		'first_name' => $this->input->post('first_name'),
+          'last_name' => $this->input->post('last_name'),
+          'username' => $this->input->post('username'),
+          'password' => md5($this->input->post('password')),
+          'email' => $this->input->post('email'),
+          'display_name' => $this->input->post('seller_display_name'),
+          'address' => $this->input->post('address'),
+          'phone' => $this->input->post('phone'),
+          'user_type' => $user_type,
+          'creation_time' => date("Y-m-d H:i:s")
+          
+		);
+		
+		$this->db->where('username', $this->input->post('username'));
+		$q = $this->db->get('users');
+		if ($q->num_rows >= 1){
+			return "NOT UNIQUE";
+		}else{
+        	$insert_result = $this->db->insert('sellers', $user_data);
+        	return $insert_result;
+		}
+		
+	}
 }

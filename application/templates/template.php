@@ -36,7 +36,8 @@
 					</span>
 					<span class="block">
 						<?php if( $this->session->userdata('is_logged_in') != TRUE ): ?>
-						<?php echo anchor(base_url().'user/login/sign_up', 'ثبت‌نام'); ?>
+						<?php echo anchor(base_url().'user/login/sign_up', 'ثبت نام'); ?>
+						<?php echo anchor(base_url().'user/login/seller_sign_up', 'ثبت نام فروشندگان'); ?>
 						<?php endif ?>
 					</span>
 					

@@ -6,7 +6,10 @@ $(document).ready(function() {
 		'passconf' : 'تکرار رمز عبور',
 		'email' : 'آدرس پست‌الکترنیکی',
 		'first_name' : 'نام',
-		'last_name' : 'نام خانوادگی'
+		'last_name' : 'نام خانوادگی',
+		'address' : 'آدرس دقیق',
+		'phone': 'شماره‌ی تماس',
+		'seller_display_name': 'نام شرکت یا فروشگاه شما'
 
 	};
 
@@ -30,17 +33,21 @@ $(document).ready(function() {
 	}();
 
 	$(".pass").focus(function() {
-		var name = $(this).attr('name');
 		$(this).prop('type', 'password');
 	});
-	
 	$(".pass").blur(function(){
-		var name = $(this).attr('name');
-		
 		if ( $(this).val() == '' || $(this).val() == inputs[name] )
 			$(this).prop('type', 'text');
 	})
-
+	
+	var check_values = function(){
+		$( "#reg_btm" ).click(function(){
+			
+			alert('boom');
+			return false;
+		});
+			
+	}();
 
 	
 

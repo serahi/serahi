@@ -1,3 +1,7 @@
+{block name=title}
+<title>ورود به سیستم‌</title>
+{/block}
+
 {block name=main_content}
 
 <div id="login_form">

@@ -53,6 +53,16 @@ class Login extends MY_Controller{
             $this->load->view('sign_up_form');
         }
     }
+	
+	 function seller_sign_up(){
+        if( $this->is_logged_in() ){
+            redirect('site');
+        }
+        else{
+            $this->load->view('seller_sign_up_form');
+        }
+    }
+	
     
     function register(){
         $this->load->library('form_validation');
@@ -88,7 +98,25 @@ class Login extends MY_Controller{
             'label' => 'پست الکترونیکی',
             'rules' => 'trim|valid_email|required|min_length[3]|max_length[31]'
             ),
-          
+            /*
+			array(
+            'field' => 'phone',
+            'label' => 'شماره‌ی تماس',
+            'rules' => 'trim|required|min_length[3]|max_length[31]'
+            ),
+            
+			array(
+            'field' => 'address',
+            'label' => 'آدرس',
+            'rules' => 'trim|required|min_length[3]|max_length[511]'
+            ),
+            
+			array(
+            'field' => 'seller_display_name',
+            'label' => 'نام شرکت یا فروشگاه',
+            'rules' => 'trim|required|min_length[3]|max_length[63]'
+            ),
+          */
           
         );
         
@@ -107,7 +135,14 @@ class Login extends MY_Controller{
             
         }else{
             $this->load->model('membership_model');
-			$insert_query_result = $this->membership_model->insert_member();
+			if($this->input->post('ut') === 'c'){
+				$user_type = 'customer';
+				$insert_query_result = $this->membership_model->insert_member($user_type);
+			}elseif($this->input->post('ut') === 's' ){
+				$user_type = 'seller';
+				$insert_query_result = $this->membership_model->insert_seller($user_type);
+				
+			}
 			
             if($insert_query_result === TRUE){
                 

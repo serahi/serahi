@@ -1,3 +1,7 @@
+{block name=title}
+<title>فرم ثبت‌ نام مشتریان‌</title>
+{/block}
+
 {block name=main_content}
 
 <div id="sign_up_form">
@@ -27,23 +31,8 @@
 		echo form_input('email', set_value('email', 'آدرس پست‌الکترنیکی'), 'id="email"  class="check"');
         echo '<div id="email_error"> </div>';
         
+        echo form_hidden('ut','c');
         
-        /*
-        echo form_input('mobile', 'شماره تلفن همراه', 'id="mobile" class="check"');
-        echo '<div id="mobile_error"> </div>';
-  
-        echo form_input('state' , 'استان محل سکونت', 'id="state" class="check"');
-        echo '<div id="state_error"> </div>';
-        
-        echo form_input('city' , 'شهر محل سکونت', 'id="city" class="check"');
-        echo '<div id="city_error"> </div>';
-        
-        echo form_input('address' , 'آدرس دقیق محل سکونت', 'id="address" class="check"');
-        echo '<div id="address_error"> </div>';
-        
-        echo form_input('postal_code','کدپستی', 'id="postal_code"');
-        echo '<div id="postal_code_error"> </div>';
-        */
         echo '<div id="register_msg">' . 'لطفاً پیش از ثبت‌نام قوانین سایت را مطالعه بفرمایید.' . '<br/>' . anchor('site/rules', 'قوانین سایت', 'id="register_btm"') . '<br/> <br/>' . form_checkbox('confirmation', '') . 'قوانین سایت را مطالعه کرده و قبول می‌کنم' . '</div>';
         
         echo form_submit('submit','ثبت‌نام', 'id="reg_btm"');
