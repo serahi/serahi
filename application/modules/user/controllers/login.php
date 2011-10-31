@@ -65,11 +65,7 @@ class Login extends MY_Controller{
             redirect('home');
         }
         else{
-<<<<<<< Updated upstream
             $this->load->view('seller_sign_up_form');
-=======
-            $this->load->view('sign_up_form');
->>>>>>> Stashed changes
         }
     }
 	
