@@ -71,7 +71,7 @@ ALTER SEQUENCE users_id_seq OWNED BY users.id;
 -- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('users_id_seq', 20, true);
+SELECT pg_catalog.setval('users_id_seq', 51, true);
 
 
 --
@@ -133,7 +133,7 @@ ALTER SEQUENCE products_id_seq OWNED BY products.id;
 -- Name: products_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('products_id_seq', 22, true);
+SELECT pg_catalog.setval('products_id_seq', 23, true);
 
 
 --
@@ -220,7 +220,8 @@ ALTER TABLE users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
 --
 
 COPY customers (id, username, password, first_name, last_name, user_type, email, creation_time, address, postal_code, phone, birth_date) FROM stdin;
-19	sadegh	a7393f772e34ca16a5854e80d9ec6704	صادق	کاظمی	customer	sadegh.kazemy@gmail.com	\N	\N	\N	\N	\N
+32	hamed.gh	0088f5f91b8a5515227bc85a853a6873	حامد	قلی زاده	customer	hamed.gholizadeh.f@gmail.com	\N	\N	\N	\N	\N
+33	sadegh	81d117fec85703f2c3db637eee47474f	صادق	کاظمی	customer	sadegh.kazemy@gmail.com	\N	\N	\N	\N	\N
 \.
 
 
@@ -230,7 +231,7 @@ COPY customers (id, username, password, first_name, last_name, user_type, email,
 
 COPY products (id, product_name, seller_id, lower_limit, description, image, base_discount, price) FROM stdin;
 21	موبایل	3	5	گوشی همراه نوکیا مدل N95 8GB گوشی کارآمد دیگری از سری مدل‌های نوکیا است که بر اساس گوشی نوکیا N95 طراحی و ساخته شده است. نوکیا N95 8GB با قابلیت‌های خوبی ارائه شده است. ابعادی برابر با 21×53×99 میلی‌متر دارد. وزن آن نیز تنها 128 گرم است.\nاز ویژگی‌های نوکیا N95 8GB می‌توان به صفحه کلید QWERTY آن اشاره کرد. صفحه نمایش آن نیز یک صفحه نمایش 2.8 اینچی 16 میلیون رنگی TFT با رزولوشن QVGA است. این صفحه نمایش از آن‌چه در مدل نوکیا N95 می‌بینید بزرگ‌تر است. کیفیت بسیار خوبی نیز دارد. به نظر می‌رسد که کیفیت این صفحه نمایش از مدل قبلی تا اندازه‌ای هم به‌تر شده باشد. همان طوری که از اسم این گوشی پیداست، چیزی برابر با 8 گیگابایت حافظه در اختیار شما قرار می‌دهد. حالا آیا با این مقدار حافظه هنوز هم به کارت حافظه فکر می‌کنید؟ نوکیا N95 8GB به شیار مخصوص کارت حافظه مجهز نیست.	n95_1.jpeg	35	300000
-22	پراید	2	10	\N	peraid.jpeg	12	8300000
+22	پراید	2	10	پراید خودرویی است که تولید آن در ایران از سال ۷۲ در شرکت سایپا آغاز شد. این خودرو به دلیل قیمت ارزان و مصرف پایین سوخت، بزودی به عنوان خودرو مورد علاقه طبقه متوسط در ایران قرار گرفت و در جایگاه پرفروشترین خودرو در ایران قرار دارد.	peraid.jpg	12	8300000
 \.
 
 
@@ -239,7 +240,8 @@ COPY products (id, product_name, seller_id, lower_limit, description, image, bas
 --
 
 COPY sellers (id, username, password, first_name, last_name, user_type, email, creation_time, display_name, address, phone, approved) FROM stdin;
-20	forooshande	e0e27458f10aa22552d591d55d910470	اسم	فامیل	seller	man@to.com	2011-10-31 02:12:28	فروشگاه من! 	آدرس	12345	f
+49	milad.b	03765deb96723cd8be96e0cd4080e58c	میلاد	بشیری	seller	miladbashiri@yahoo.com	\N	میلاد	تهران	09357289273	t
+51	hessam	3d579595cb191ab55a02e5787d38695e	حسام	محمدیان	seller	hessam.mohammadian@gmail.com	\N	حسام	تهران	09123178234	t
 \.
 
 
@@ -278,6 +280,7 @@ COPY transactions (id, user_id, product_id, count, transaction_time) FROM stdin;
 --
 
 COPY users (id, username, password, first_name, last_name, user_type, email, creation_time) FROM stdin;
+39	admin	21232f297a57a5a743894a0e4a801fc3	مدیر	سایت	admin	admin@serahi.ir	\N
 \.
 
 
