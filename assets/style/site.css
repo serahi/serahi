@@ -50,7 +50,7 @@ a {
 	background: #f0f0f0 url(../img/login_bg.jpg) repeat-x 0 0;
 	border: 1px solid white;
 	margin: 150px auto 150px;
-	padding: 1em;
+	padding: 2em 1em;
 	-moz-border-radius: 3px;
 }
 #sign_up_form {
@@ -67,7 +67,6 @@ h1, h2, h3, h4, h5 {
 }
 .forms input[type=text]:focus, .forms input[type=password]:focus {
 	outline: 2px solid purple;
-	direction: rtl;
 }
 .forms input[type=text], input[type=password] {
 	direction: rtl;
@@ -79,8 +78,10 @@ h1, h2, h3, h4, h5 {
 	padding: 1em;
 	background: white;
 	text-align: center;
+	margin: 1em auto;
 }
 .forms input[type=submit] {
+	direction: rtl;
 	border: none;
 	padding: 6px;
 	min-width: 90px;
@@ -95,9 +96,7 @@ h1, h2, h3, h4, h5 {
 	margin-right: 2.5em;
 	margin-bottom: 1.7em;
 }
-.forms input[type=text], .forms input[type=password] {
-	margin: 1em auto;
-}
+
 
 #register_msg {
 	border: none;

@@ -5,7 +5,7 @@
 {block name=main_content}
 
 <div id="login_form">
-    <h2>  ورود </h2>
+   
     <?php
     
     	$attributes = array('class' => 'forms');

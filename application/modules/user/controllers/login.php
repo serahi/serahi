@@ -34,7 +34,7 @@ class Login extends MY_Controller{
     	        redirect('home');
 			}elseif( $name['user_type'] === 'seller'){
 				redirect('seller');
-			}elseif($name['user_type'] === 'seller') {
+			}elseif($name['user_type'] === 'admin') {
 				redirect('admin');
 			}
         }
