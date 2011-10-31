@@ -28,7 +28,7 @@
         echo form_input('last_name', set_value('last_name','نام خانوادگی') ,'id="last_name" class="check"');
         //echo '<div class="error_msg" id="last_name_error"> </div>';
 		
-		echo form_input('email', set_value('email', 'آدرس پست‌الکترنیکی'), 'id="email"  class="check"');
+		echo form_input('email', set_value('email', 'آدرس پست‌الکترونیکی'), 'id="email"  class="check"');
         //echo '<div id="email_error"> </div>';
         
         echo form_hidden('ut','c');

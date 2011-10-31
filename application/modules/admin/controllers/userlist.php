@@ -14,6 +14,7 @@ class Userlist extends MY_Controller {
 			$id = $this->input->post('id');
 			$this->load->model('user_model');
 			$this->user_model->delete_user($id);
+			redirect('admin/userlist');
 		} else {
 			$this->load->view('access_denied');
 		}

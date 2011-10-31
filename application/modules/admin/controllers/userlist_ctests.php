@@ -11,6 +11,7 @@ Mock::generate('User_model');
 class Userlist_ctests extends MY_Controller {
 	var $users, $user_infos;
 	function setUp () {
+		parent::setUp();
 		$this->db->query('truncate users;');
 		$this->users[0] = array(
 			'username' => 'admin',

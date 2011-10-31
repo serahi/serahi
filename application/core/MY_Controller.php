@@ -25,7 +25,19 @@ class MY_Controller extends UnitTestCase
 	public function __get($class) {
 		return CI::$APP->$class;
 	}
-	public function setUp() {
+	var $users_data;
+	var $customers_data;
+	var $products_data;
+	var $sellers_data;
+	var $transactions_data;
+	function convert ($input) {
+		$data = array();
+		foreach (get_object_vars($input) as $key => $value) {
+			if ($key == 'password') continue;
+			if ($key == 'approved') $value = $value == 't' ? 'TRUE' : 'FALSE';
+			$data[$key] = $value;
+		}
+		return $data;
 	}
 	public function index() {
 		$result = run_local_tests();
