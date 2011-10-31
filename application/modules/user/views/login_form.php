@@ -5,7 +5,7 @@
 {block name=main_content}
 
 <div id="login_form">
-    <h2>  ورود </h2>
+   
     <?php
     
     	$attributes = array('class' => 'forms');
@@ -27,7 +27,7 @@
         echo form_input('password', 'رمز عبور', 'id="password" class="pass check"');
         echo form_submit('submit', 'ورود');
         echo "<br/>";
-        echo '<div id="register_msg">'. "اگر تاکنون در سایت ثبت نام ننموده‌اید از اینجا ثبت نام کنید". anchor('login/sign_up', 'ثبت نام در سایت','id="register_btm"') . "</div>";
+        echo '<div id="register_msg">'. "اگر تاکنون در سایت ثبت نام ننموده‌اید از اینجا ثبت نام کنید". '<br/>' . anchor('login/sign_up', 'ثبت نام در سایت','id="register_btm"') . "</div>";
         ?>
         
            

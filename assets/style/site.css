@@ -50,7 +50,7 @@ a {
 	background: #f0f0f0 url(../img/login_bg.jpg) repeat-x 0 0;
 	border: 1px solid white;
 	margin: 150px auto 150px;
-	padding: 1em;
+	padding: 2em 1em;
 	-moz-border-radius: 3px;
 }
 #sign_up_form {
@@ -65,11 +65,10 @@ h1, h2, h3, h4, h5 {
 	margin: -1.5em 1.2em 1.5em 1em;
 	font-family: arial black, arial;
 }
-input[type=text]:focus, input[type=password]:focus {
+.forms input[type=text]:focus, .forms input[type=password]:focus {
 	outline: 2px solid purple;
-	direction: rtl;
 }
-input[type=text], input[type=password] {
+.forms input[type=text], input[type=password] {
 	direction: rtl;
 	display: block;
 	width: 270px;
@@ -79,9 +78,10 @@ input[type=text], input[type=password] {
 	padding: 1em;
 	background: white;
 	text-align: center;
-	direction: ltr;
+	margin: 1em auto;
 }
 .forms input[type=submit] {
+	direction: rtl;
 	border: none;
 	padding: 6px;
 	min-width: 90px;
@@ -96,9 +96,7 @@ input[type=text], input[type=password] {
 	margin-right: 2.5em;
 	margin-bottom: 1.7em;
 }
-.forms input[type=text], input[type=password] {
-	margin: 1em auto;
-}
+
 
 #register_msg {
 	border: none;
@@ -154,13 +152,12 @@ input[type=text], input[type=password] {
 	width: 720px;
 	min-height: 400px;
 	padding: 2em;
-	
-	-webkit-box-shadow: 0px 1px 2px 1px #a3a3cc;
-	-moz-box-shadow: 0px 1px 2px 1px #a3a3cc;
-	box-shadow: 0px 1px 2px 1px #a3a3cc; 
-	
-	
+	border-bottom: 2px solid gray; 
 }
+.item:last-child{
+	border: none;
+}
+
 .item  > div  {
 	
 	/*
@@ -193,8 +190,8 @@ input[type=text], input[type=password] {
 		 
 }
 .not_found_item{
-	background-color: #C6C6AA;
-	color: #ffffcc;
+	background-color: #a9a9a6;
+	color: white;
 	padding: 6px;
 	-moz-border-radius: 3px;
 }

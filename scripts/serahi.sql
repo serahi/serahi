@@ -71,7 +71,7 @@ ALTER SEQUENCE users_id_seq OWNED BY users.id;
 -- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('users_id_seq', 7, true);
+SELECT pg_catalog.setval('users_id_seq', 20, true);
 
 
 --
@@ -101,7 +101,7 @@ CREATE TABLE products (
     description character varying,
     image character varying,
     base_discount integer,
-    price money,
+    price numeric(15,0),
     CONSTRAINT check_base_discount_range CHECK (((base_discount >= 0) AND (base_discount <= 100)))
 );
 
@@ -133,7 +133,7 @@ ALTER SEQUENCE products_id_seq OWNED BY products.id;
 -- Name: products_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('products_id_seq', 19, true);
+SELECT pg_catalog.setval('products_id_seq', 22, true);
 
 
 --
@@ -191,7 +191,7 @@ ALTER SEQUENCE transactions_id_seq OWNED BY transactions.id;
 -- Name: transactions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('transactions_id_seq', 25, true);
+SELECT pg_catalog.setval('transactions_id_seq', 71, true);
 
 
 --
@@ -220,6 +220,7 @@ ALTER TABLE users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
 --
 
 COPY customers (id, username, password, first_name, last_name, user_type, email, creation_time, address, postal_code, phone, birth_date) FROM stdin;
+19	sadegh	a7393f772e34ca16a5854e80d9ec6704	صادق	کاظمی	customer	sadegh.kazemy@gmail.com	\N	\N	\N	\N	\N
 \.
 
 
@@ -228,8 +229,8 @@ COPY customers (id, username, password, first_name, last_name, user_type, email,
 --
 
 COPY products (id, product_name, seller_id, lower_limit, description, image, base_discount, price) FROM stdin;
-18	shalgham	1	5	amoo sabzi frush bale!	shalgham.jpeg	50	$300.00
-19	مسواک	4	23	داروخانه	مسواک.jpeg	24	$1,200.00
+21	موبایل	3	5	گوشی همراه نوکیا مدل N95 8GB گوشی کارآمد دیگری از سری مدل‌های نوکیا است که بر اساس گوشی نوکیا N95 طراحی و ساخته شده است. نوکیا N95 8GB با قابلیت‌های خوبی ارائه شده است. ابعادی برابر با 21×53×99 میلی‌متر دارد. وزن آن نیز تنها 128 گرم است.\nاز ویژگی‌های نوکیا N95 8GB می‌توان به صفحه کلید QWERTY آن اشاره کرد. صفحه نمایش آن نیز یک صفحه نمایش 2.8 اینچی 16 میلیون رنگی TFT با رزولوشن QVGA است. این صفحه نمایش از آن‌چه در مدل نوکیا N95 می‌بینید بزرگ‌تر است. کیفیت بسیار خوبی نیز دارد. به نظر می‌رسد که کیفیت این صفحه نمایش از مدل قبلی تا اندازه‌ای هم به‌تر شده باشد. همان طوری که از اسم این گوشی پیداست، چیزی برابر با 8 گیگابایت حافظه در اختیار شما قرار می‌دهد. حالا آیا با این مقدار حافظه هنوز هم به کارت حافظه فکر می‌کنید؟ نوکیا N95 8GB به شیار مخصوص کارت حافظه مجهز نیست.	n95_1.jpeg	35	300000
+22	پراید	2	10	\N	peraid.jpeg	12	8300000
 \.
 
 
@@ -238,6 +239,7 @@ COPY products (id, product_name, seller_id, lower_limit, description, image, bas
 --
 
 COPY sellers (id, username, password, first_name, last_name, user_type, email, creation_time, display_name, address, phone, approved) FROM stdin;
+20	forooshande	e0e27458f10aa22552d591d55d910470	اسم	فامیل	seller	man@to.com	2011-10-31 02:12:28	فروشگاه من! 	آدرس	12345	f
 \.
 
 
@@ -246,7 +248,28 @@ COPY sellers (id, username, password, first_name, last_name, user_type, email, c
 --
 
 COPY transactions (id, user_id, product_id, count, transaction_time) FROM stdin;
-24	7	18	1	2011-10-28 09:29:13+03:30
+50	7	21	1	2011-10-30 02:42:07+03:30
+51	7	0	1	2011-10-30 02:42:29+03:30
+52	10	22	1	2011-10-30 15:58:59+03:30
+53	10	22	1	2011-10-30 15:59:02+03:30
+54	10	22	1	2011-10-30 15:59:05+03:30
+55	10	22	1	2011-10-30 15:59:15+03:30
+56	7	22	1	2011-10-30 15:59:51+03:30
+57	10	22	1	2011-10-30 20:28:35+03:30
+58	10	22	1	2011-10-30 20:28:37+03:30
+59	10	22	1	2011-10-30 20:29:20+03:30
+60	10	22	1	2011-10-30 20:29:21+03:30
+61	10	22	1	2011-10-30 20:30:09+03:30
+62	10	22	1	2011-10-30 20:30:13+03:30
+63	13	22	1	2011-10-30 23:12:12+03:30
+64	13	22	1	2011-10-30 23:12:18+03:30
+65	13	22	1	2011-10-30 23:12:44+03:30
+66	13	22	1	2011-10-30 23:12:58+03:30
+67	13	22	1	2011-10-30 23:19:55+03:30
+68	13	22	1	2011-10-30 23:20:45+03:30
+69	13	22	1	2011-10-30 23:21:01+03:30
+70	13	21	1	2011-10-30 23:23:57+03:30
+71	19	21	1	2011-10-31 01:27:23+03:30
 \.
 
 
@@ -255,9 +278,6 @@ COPY transactions (id, user_id, product_id, count, transaction_time) FROM stdin;
 --
 
 COPY users (id, username, password, first_name, last_name, user_type, email, creation_time) FROM stdin;
-4	frls	e807f1fcf82d132f9bb018ca6738a19f	sadegh	kazemy	customer	sadegh.kazemy@gmail.com	\N
-5	hesam	e807f1fcf82d132f9bb018ca6738a19f	hesam	mohammadian	customer	hesam@hesam.com	\N
-7	sadegh	3e27c49484920d5d5c5149e0a97e6dfd	sadegh	کاظمی	customer	sadegh.ka@gdd.com	\N
 \.
 
 
