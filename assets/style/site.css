@@ -65,11 +65,11 @@ h1, h2, h3, h4, h5 {
 	margin: -1.5em 1.2em 1.5em 1em;
 	font-family: arial black, arial;
 }
-input[type=text]:focus, input[type=password]:focus {
+.forms input[type=text]:focus, .forms input[type=password]:focus {
 	outline: 2px solid purple;
 	direction: rtl;
 }
-input[type=text], input[type=password] {
+.forms input[type=text], input[type=password] {
 	direction: rtl;
 	display: block;
 	width: 270px;
@@ -79,7 +79,6 @@ input[type=text], input[type=password] {
 	padding: 1em;
 	background: white;
 	text-align: center;
-	direction: ltr;
 }
 .forms input[type=submit] {
 	border: none;
@@ -96,7 +95,7 @@ input[type=text], input[type=password] {
 	margin-right: 2.5em;
 	margin-bottom: 1.7em;
 }
-.forms input[type=text], input[type=password] {
+.forms input[type=text], .forms input[type=password] {
 	margin: 1em auto;
 }
 
