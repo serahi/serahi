@@ -20,6 +20,7 @@ class Login extends MY_Controller{
         
         $this->load->model('membership_model');
         $name = $this->membership_model->validate_user();
+        //echo $name['last_name']; die();
         if( $name != NULL ){
             $user_session_data = array(
                 'username' => $this->input->post('username'),
