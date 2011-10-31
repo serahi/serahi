@@ -40,6 +40,7 @@ a {
 }
 #serahi{
 	float: left;
+	text-align: center;
 }
 #serahi:hover{
 	font-weight: 600;

@@ -1,8 +1,8 @@
-.submit_form{
-    border: 1px solid black;
+.submit_form {
+    border: 1px solid gray;
     border-radius: 5px;
     display: block;
-    margin: 5% auto;
+    margin: 5% auto 0 auto;
     padding: 10px;
     width: 250px;
 }
@@ -12,13 +12,35 @@
     margin: 0 auto;
     padding: 2px 5px;
     width: 90%;
+    max-width: 250px;
+    clear: right;
+    float: right;
+}
+.submit_form input[type="file"] {
+    border:-moz-workspace;
+    text-align:inherit;
+    width: auto;
+}
+textarea {
+	margin-bottom: 10px;
+}
+.submit_form select {
+	display: block;
+	float: right;
+	clear: right;
+}
+.product_form {
+	width: 580px;
+	margin-top: 2%;
 }
 .submit_form input {
-    border: 1px solid black;
     margin: 0 auto 10px;
     padding: 4px 9px;
     text-align: center;
     width: 90%;
+    float: right;
+    clear: right;
+    max-width: 250px;
 }
 .submit_form .row div, .submit_form .row label {
 	display: inline;
