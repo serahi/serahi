@@ -27,7 +27,6 @@
 								</span>
 								<span>
 									<?php echo anchor(base_url().'user/login/logout', 'خروج' ); ?>
-									<a href="#" > تنظیمات </a>
 								</span>
 							<?php else: ?>
 								<?php echo anchor(base_url().'user/login', 'ورود'); ?>
