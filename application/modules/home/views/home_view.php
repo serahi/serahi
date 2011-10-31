@@ -25,7 +25,7 @@
 						echo '<div class="lower_limit"> <b> حد نصاب: </b>' .$item['lower_limit'];
 						
 						echo '</div>';
-						echo '<div class="sell_count"> <b> تعداد فروخته شده: </b>' .$item['sell_count'];
+						echo '<div class="sell_count"> <b> تعداد فروخته شده تا الان: </b>' .$item['sell_count'];
 						echo '</div>';
 						echo '<div class="description"><pre>'.$item['description'].'</pre></div>';
 						echo '<div class="buy">';
