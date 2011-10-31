@@ -30,10 +30,12 @@ class Login extends MY_Controller{
                 'is_logged_in' => TRUE
             );
 			$this->session->set_userdata($user_session_data);
-			if( $name['user_type'] === 'costumer'){
+			if( $name['user_type'] === 'customer'){
     	        redirect('home');
 			}elseif( $name['user_type'] === 'seller'){
 				redirect('seller');
+			}elseif($name['user_type'] === 'seller') {
+				redirect('admin');
 			}
         }
         else{
