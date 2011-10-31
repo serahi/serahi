@@ -16,7 +16,7 @@
 						echo '<div class="item_name"> <b> نام کالا: </b>'. $item['product_name'];
 							
 						echo '</div>';
-						echo '<div class="item_price"> <b>  قیمت کالا: </b>' . $item['price'];
+						echo '<div class="item_price"> <b>  قیمت کالا: </b>' . $item['price']. ' تومان';
 						
 						echo '</div>';
 						echo '<div class="base_discount"> <b> تخفیف پایه: </b>' . $item['base_discount'].' درصد';
