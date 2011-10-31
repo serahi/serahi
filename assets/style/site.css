@@ -152,13 +152,12 @@ h1, h2, h3, h4, h5 {
 	width: 720px;
 	min-height: 400px;
 	padding: 2em;
-	
-	-webkit-box-shadow: 0px 1px 2px 1px #a3a3cc;
-	-moz-box-shadow: 0px 1px 2px 1px #a3a3cc;
-	box-shadow: 0px 1px 2px 1px #a3a3cc; 
-	
-	
+	border-bottom: 2px solid gray; 
 }
+.item:last-child{
+	border: none;
+}
+
 .item  > div  {
 	
 	/*
@@ -191,8 +190,8 @@ h1, h2, h3, h4, h5 {
 		 
 }
 .not_found_item{
-	background-color: #C6C6AA;
-	color: #ffffcc;
+	background-color: #a9a9a6;
+	color: white;
 	padding: 6px;
 	-moz-border-radius: 3px;
 }
