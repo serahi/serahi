@@ -45,8 +45,13 @@ class User_model extends CI_Model {
 		if ($user['user_type'] == '' || !in_array($user['user_type'], array('admin', 'seller', 'customer'))){
 			return;
 		}
-		if (isset($user['password']) && $user['password'] == '')
-			unset($user['password']);
+		if (isset($user['password'])) {
+			if ($user['password'] == '') {
+				unset($user['password']);
+			} else {
+				$user['password'] = md5($user['password']);
+			}
+		}
 		if (isset($user['creation_time']))
 			unset($user['creation_time']);
 		if ($user['user_type'] == 'admin') {

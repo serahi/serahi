@@ -12,7 +12,7 @@
 	<label for = "username">نام کاربری</label>
 	<input name = "username" value = "{$username}">
 	<label for = "password">رمز عبور جدید</label>
-	<input name = "password" value = "">
+	<input name = "password" value = "" type = "password">
 	<label for = "first_name">نام</label>
 	<input name = "first_name" value = "{$first_name}">
 	<label for = "last_name">نام خانوادگی</label>

@@ -80,20 +80,22 @@ class Userlist_mtests extends MY_Controller {
 		$users = $this->insert_user_infos(2);
 		$users[0]['username'] = 'oldadmin';
 		$users[0]['email'] = 'oldadmin@serahi.ir';
-		$users[0]['password'] = md5('oldadmin');
+		$users[0]['password'] = 'oldadmin';
 		$users[0]['first_name'] = 'site';
 		$users[0]['last_name'] = 'admin';
 		$this->load->model('user_model');
 		$this->user_model->edit_user_info($users[0]);
+		$users[0]['password'] = md5('oldadmin');
 		$db_user = $this->getByID($users[0]['id'], 'users');
 		$this->assertEqual($users[0], $db_user);
 		$users[1]['username'] = 'miladb';
-		$users[1]['password'] = md5('miladb');
+		$users[1]['password'] = 'miladb';
 		$users[1]['first_name'] = 'm';
 		$users[1]['last_name'] = 'b';
 		$users[1]['phone'] = '0918';
 		$users[1]['approved'] = 't';
 		$this->user_model->edit_user_info($users[1]);
+		$users[1]['password'] = md5('miladb');
 		$db_user = $this->getByID($users[1]['id'], 'sellers');
 		$this->assertEqual($users[1], $db_user);
 	}

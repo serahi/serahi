@@ -1,6 +1,8 @@
 .submit_form {
-    border: 1px solid gray;
-    border-radius: 5px;
+/*    border: 1px solid gray;
+    border-radius: 5px;*/
+    border-radius: 8px 8px 8px 8px;
+    box-shadow: 4px 2px 13px 5px #CCCCB2;
     display: block;
     margin: 5% auto 0 auto;
     padding: 10px;
@@ -17,12 +19,14 @@
     float: right;
 }
 .submit_form input[type="file"] {
-    border:-moz-workspace;
-    text-align:inherit;
-    width: auto;
+	direction: ltr;
+	margin-right: 25px;
+	border:-moz-workspace;
+	text-align:inherit;
+	width: auto;
 }
 textarea {
-	margin-bottom: 10px;
+	margin-bottom: 8px;
 }
 .submit_form select {
 	display: block;
@@ -34,7 +38,7 @@ textarea {
 	margin-top: 2%;
 }
 .submit_form input {
-    margin: 0 auto 10px;
+    margin: 0 auto 8px;
     padding: 4px 9px;
     text-align: center;
     width: 90%;
@@ -49,7 +53,7 @@ textarea {
 .submit_form .row {
 	margin-bottom: 10px;
 }
-.submit_form input[type=submit]:hover {
+.submit_form input[type="submit"]:hover {
 	background-color: #818170;
 }
 .submit_form input[type="submit"] {

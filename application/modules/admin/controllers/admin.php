@@ -2,7 +2,7 @@
 class Admin extends MY_Controller {
 
 	function index() {
-		if ($this->session->userdata('is_logged_in') === TRUE && $this->session->userdata('user_type') === 'admin') {
+		if ($this->_is_admin()) {
 			$this->load->model('seller_model');
 			$view_data['sellers'] = $this->seller_model->get_seller_names();
 			$this->load->view('index_view', $view_data);
@@ -12,7 +12,7 @@ class Admin extends MY_Controller {
 	}
 
 	function add_product() {
-		if ($this->session->userdata('is_logged_in') === TRUE && $this->session->userdata('user_type') === 'admin') {
+		if ($this->_is_admin()) {
 			$product_name = $this->input->post('product_name');
 			$seller_id = $this->input->post('seller');
 			$description = $this->input->post('product_desc');
@@ -41,5 +41,9 @@ class Admin extends MY_Controller {
 			//not logged in or admin
 			$this->load->view('access_denied');
 		}
+	}
+	function _is_admin () {
+		return ($this->session->userdata('is_logged_in') === TRUE &&
+		        $this->session->userdata('user_type') === 'admin');
 	}
 }

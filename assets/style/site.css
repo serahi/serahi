@@ -68,7 +68,7 @@ h1, h2, h3, h4, h5 {
 .forms input[type=text]:focus, .forms input[type=password]:focus {
 	outline: 2px solid purple;
 }
-.forms input[type=text], input[type=password] {
+.forms input[type=text], .forms input[type=password] {
 	direction: rtl;
 	display: block;
 	width: 270px;

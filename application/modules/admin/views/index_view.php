@@ -15,16 +15,16 @@
     <label for = "lower_limit">حد نصاب</label>
     <input name = "lower_limit" value = "<?php echo set_value('lower_limit');?>">
     <label for = "file">انتخاب تصویر</label>
-    <input type="file" name="userfile" size="15" />
+    <input type="file" name="userfile" size="18" />
     <label for = "seller">فروشنده</label>
     <select name = "seller">
     <?php
-	    foreach ($sellers as $sellers) {
-      	echo '<option value="' . $sellers[id] . '">' . $sellers[display_name] . '</option>';
+	    foreach ($sellers as $seller) {
+      	echo '<option value="' . $seller['id'] . '">' . $seller['display_name'] . '</option>';
     	}?>
     </select>
     <label for = "product_desc">شرح محصول</label>
-    <textarea name = "product_desc" rows = "12" cols = "80"><?php echo set_value('product_name');?></textarea>
+    <textarea name = "product_desc" rows = "9" cols = "80"><?php echo set_value('product_name');?></textarea>
     <input type="submit" value="اضافه کردن محصول" name="submit">
 	</form>
 </div>

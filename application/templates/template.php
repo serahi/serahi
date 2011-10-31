@@ -26,6 +26,14 @@
 									<?php echo $this->session->userdata('first_name')." " . $this->session->userdata('last_name'); ?>
 								</span>
 								<span>
+									<?php if ($this->session->userdata('user_type') == 'admin'):?>
+										<a href = "<?php echo base_url() . 'admin/';?>">پنل مدیریت</a>
+										<a href = "<?php echo base_url() . 'admin/userlist';?>">مدیریت کاربران</a>
+									<?php elseif ($this->session->userdata('user_type') == 'Seller'):?>
+										<a href = "<?php echo base_url() . 'seller/';?>">پنل فروشنده</a>
+									<?php endif?>
+								</span>
+								<span>
 									<?php echo anchor(base_url().'user/login/logout', 'خروج' ); ?>
 								</span>
 							<?php endif ?>

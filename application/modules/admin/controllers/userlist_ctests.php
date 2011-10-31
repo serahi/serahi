@@ -110,7 +110,7 @@ class Userlist_ctests extends MY_Controller {
 			$test->user_model = $mocked_model;
 			$test->delete();
 		}
-	}
+	}/* */
 	function testShowEditUserViewWithDataWithAdminSession () {
 		$mocked_session = $this->get_mocked_session('admin');
 		$users = $this->insert_user_infos(2);
@@ -143,7 +143,7 @@ class Userlist_ctests extends MY_Controller {
 		$test->session = $mocked_session;
 		$test->user_model = $mocked_model;
 		@$test->edit();
-	}
+	}/* */
 	function testAccessDeniedOnEditUserViewWithoutSessionOrNotAdmin () {
 		$session_users = array('guest', 'seller', 'customer');
 		$first = true;
@@ -169,7 +169,7 @@ class Userlist_ctests extends MY_Controller {
 	function testEditUserActionWithAdminSession () {
 		$mocked_session = $this->get_mocked_session('admin');
 		$user = $this->insert_user_infos(1);
-		$user['password'] = $this->user_infos[0]['password'];
+		$user['password'] = 'admin';
 		$mocked_input = new MockCI_Input();
 		foreach ($user as $field => $value) {
 			$mocked_input->returns('post', $value, array($field));
