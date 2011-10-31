@@ -8,7 +8,7 @@ class Vtests extends WebTestCase{
 	
 	function testTitle(){
 		$this->get('http://localhost/serahi/home/');
-		$this->assertTitle('خانه');
+		$this->assertTitle('سه‌راهـــــی');
 	}
 }
 

@@ -6,15 +6,20 @@ class Mtests extends MY_Controller{
 		$this->load->model('home_model');
 		$this->db->query('truncate products;');
 		$test_data = array(
-			'product_name' => 'shalgham',
-			'seller_id' => '1',
+			'id' => '7',
+			'product_name' => 'لپ تاپ',
 			'lower_limit' => '5',
-			'description' => "amoo sabzi frush bale!",
-			'image' => 'shalgham.jpeg',
-			'base_discount' => '50'
-			
-		);
+			'description' => "ایران رهجو",
+			'image' => 'laptop.jpeg',
+			'base_discount' => '2',
+			'price' => '13500000',
+			);
 		$this->db->insert('products', $test_data);
+		
+		$test_data['is_bought'] = FALSE;
+		$test_data['sell_count'] = '0' ;
+			
+		
 		
 		$result = $this->home_model->get_list();
 		$this->assertEqual(count($result),1);

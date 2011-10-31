@@ -15,5 +15,6 @@ class Seller_model extends CI_Model {
 				'sell_count' => $count
 			);
 		}
+		return $results;
 	}
 }
