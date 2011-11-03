@@ -20,7 +20,7 @@ class Vtests extends WebTestCase {
 		$this->get('http://localhost/serahi/admin/');
 		$this->assertText('hamed');
 		$this->assertText('milad');
-	}/*
+	}
 	function testUserListViewFilledWithUserNames () {
 		$this->conn = pg_pconnect("host='localhost' dbname='serahi' user='postgres' password='Root3pg'");
 		
@@ -37,7 +37,7 @@ class Vtests extends WebTestCase {
 		$this->assertText('admin');
 		$this->assertText('hamed');
 		$this->assertText('milad');
-	}*/
+	}
 	
 	function insert_user ($username,$password,$user_type,$email,
 	                      $creation_time,$first_name,

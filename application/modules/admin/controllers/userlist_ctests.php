@@ -88,7 +88,7 @@ class Userlist_ctests extends MY_Controller {
 		$test->input = $mocked_input;
 		$test->session = $mocked_session;
 		$test->user_model = $mocked_model;
-		$test->delete();
+		@$test->delete();
 	}
 	function testAccessDeniedOnDeleteActionInUserListWithoutSessionOrNotAdmin () {
 		$session_users = array('guest', 'seller', 'customer');
