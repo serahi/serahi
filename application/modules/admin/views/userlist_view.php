@@ -4,9 +4,10 @@
 {/block}
 {block name=script}
 <script language="javascript">
-$(document).ready(function (){
-	$("tr:nth-child(odd)").addClass("odd");
-});
+	$(document).ready(function() {
+		$("tr:nth-child(odd)").addClass("odd");
+	});
+
 </script>
 {/block}
 {block name=main_content}
@@ -23,24 +24,27 @@ $(document).ready(function (){
 		</tr>
 	</thead>
 	<tbody>
-	<?php foreach($users as $user) {
-		echo '<tr>';
-		foreach(array('username', 'email', 'first_name', 'last_name',
-		              'user_type', 'creation_time') as $col) {
-			echo '<td>' . $user[$col] . '</td>';
-		}
-	?>
-			<td>
-				<a href = "<?php echo base_url();?>admin/userlist/edit?id=<?php echo $user['id'];?>">
-					ویرایش
-				</a>
-				<form class = "table_form" method = "post" action = "<?php echo base_url();?>/admin/userlist/delete">
-					<input name = "id" value = "<?php echo $user['id'];?>" type = "hidden">
-					<input type = "submit" value = "حذف">
-				</form>
-			</td>
-		</tr>
-	<?php } ?>
+		<?php
+		foreach($users as $user) {
+			echo '<tr>';
+			$cols = array(
+					'username',
+					'email',
+					'first_name',
+					'last_name',
+					'user_type',
+					'creation_time'
+			);
+			foreach($cols as $col) {
+				echo '<td>' . $user[$col] . '</td>';
+			}
+		?>
+		<td><a href = "<?php echo base_url();?>admin/userlist/edit?id=<?php echo $user['id'];?>"> ویرایش </a>
+		<form class = "table_form" method = "post" action = "<?php echo base_url();?>/admin/userlist/delete">
+			<input name = "id" value = "<?php echo $user['id'];?>" type = "hidden">
+			<input type = "submit" value = "حذف">
+		</form></td>
+		</tr> <?php }?>
 	</tbody>
 </table>
-{/block}
+{/block} 

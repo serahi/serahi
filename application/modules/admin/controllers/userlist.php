@@ -1,15 +1,19 @@
 <?php
-class Userlist extends MY_Controller {
-	function index () {
+class Userlist extends MY_Controller
+{
+	function index ()
+	{
 		if ($this->_is_admin()) {
-		  $this->load->model('user_model');
+			$this->load->model('user_model');
 			$view_data['users'] = $this->user_model->get_users();
 			$this->load->view('userlist_view', $view_data);
 		} else {
 			$this->load->view('access_denied');
 		}
 	}
-	function delete () {
+
+	function delete ()
+	{
 		if ($this->_is_admin()) {
 			$id = $this->input->post('id');
 			$this->load->model('user_model');
@@ -19,7 +23,9 @@ class Userlist extends MY_Controller {
 			$this->load->view('access_denied');
 		}
 	}
-	function edit () {
+
+	function edit ()
+	{
 		if ($this->_is_admin()) {
 			$id = $this->input->get('id');
 			if ($id) {
@@ -36,18 +42,33 @@ class Userlist extends MY_Controller {
 			$this->load->view('access_denied');
 		}
 	}
-	function save_edit () {
+
+	function save_edit ()
+	{
 		if ($this->_is_admin()) {
 			$user = $this->_post_values(array(
-				'id', 'username', 'password','first_name', 'last_name',
-				'user_type', 'email', 'creation_time'));
+					'id',
+					'username',
+					'password',
+					'first_name',
+					'last_name',
+					'user_type',
+					'email',
+					'creation_time'
+			));
 			if ($user['user_type'] == 'seller') {
 				$user = array_merge($user, $this->_post_values(array(
-					'address', 'phone', 'display_name', 'approved'
+						'address',
+						'phone',
+						'display_name',
+						'approved'
 				)));
 			} else if ($user['user_type'] == 'customer') {
 				$user = array_merge($user, $this->_post_values(array(
-					'address', 'postal_code', 'phone', 'birth_date'
+						'address',
+						'postal_code',
+						'phone',
+						'birth_date'
 				)));
 			}
 			$this->load->model('user_model');
@@ -57,7 +78,9 @@ class Userlist extends MY_Controller {
 			$this->load->view('access_denied');
 		}
 	}
-	function _post_values($array) {
+
+	function _post_values ($array)
+	{
 		$values = array();
 		foreach ($array as $field) {
 			$value = $this->input->post($field);
@@ -67,8 +90,10 @@ class Userlist extends MY_Controller {
 		}
 		return $values;
 	}
-	function _is_admin () {
-		return ($this->session->userdata('is_logged_in') === TRUE &&
-		        $this->session->userdata('user_type') === 'admin');
+
+	function _is_admin ()
+	{
+		return ($this->session->userdata('is_logged_in') === TRUE && $this->session->userdata('user_type') === 'admin');
 	}
+
 }

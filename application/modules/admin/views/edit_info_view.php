@@ -6,7 +6,9 @@
 <form method = "post" class = "submit_form" action = "<?php echo base_url() . "admin/userlist/save_edit";?>">
 	<div class = "row">
 		<label>شماره:</label>
-		<div id = "user_id">{$id}</div>
+		<div id = "user_id">
+			{$id}
+		</div>
 	</div>
 	<input type = "hidden" name = "id" value = "{$id}">
 	<label for = "username">نام کاربری</label>
@@ -40,7 +42,9 @@
 	{/if}
 	<div class = "row">
 		<label>زمان ایجاد حساب:</label>
-		<div id = "creation_time">{$creation_time}</div>
+		<div id = "creation_time">
+			{$creation_time}
+		</div>
 	</div>
 	<input type = "submit" value = "ثبت تغییرات">
 </form>

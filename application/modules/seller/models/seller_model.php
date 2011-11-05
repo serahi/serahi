@@ -1,6 +1,8 @@
 <?php
-class Seller_model extends CI_Model {
-	function get_transaction_summary ($id) {
+class Seller_model extends CI_Model
+{
+	function get_transaction_summary ($id)
+	{
 		$this->db->where('seller_id', $id);
 		$query = $this->db->get('products');
 		$results = array();
@@ -10,11 +12,12 @@ class Seller_model extends CI_Model {
 			$this->db->from('transactions');
 			$count = $this->db->count_all_results();
 			$results[] = array(
-				'product_name' => $product->product_name,
-				'lower_limit' => $product->lower_limit,
-				'sell_count' => $count
+					'product_name' => $product->product_name,
+					'lower_limit' => $product->lower_limit,
+					'sell_count' => $count
 			);
 		}
 		return $results;
 	}
+
 }
