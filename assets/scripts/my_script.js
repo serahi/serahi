@@ -4,7 +4,7 @@ $(document).ready(function() {
 		'username' : 'نام کاربری',
 		'password' : 'رمز عبور',
 		'passconf' : 'تکرار رمز عبور',
-		'email' : 'آدرس پست‌الکترنیکی',
+		'email' : 'آدرس پست‌الکترونیکی',
 		'first_name' : 'نام',
 		'last_name' : 'نام خانوادگی',
 		'address' : 'آدرس دقیق',
