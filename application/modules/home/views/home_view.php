@@ -31,6 +31,7 @@ if (isset($products)) {
 			echo ' <form method="post" action="home/buy" class="forms" > <input type="submit" value="خرید">  <input type="hidden" value="' . $item['id'] . '" name="product_id"></form> ';
 		} else {
 			echo '<div class="not_found_item">' . 'این کالا قبلاً توسط شما خریداری شده است!' . '</div>';
+			echo ' <form method="post" action="home/buy" class="forms" > <input type="submit" value="لغو خرید">  <input type="hidden" value="' . $item['id'] . '" name="product_id"></form> ';
 		}
 		echo '</div>';
 
