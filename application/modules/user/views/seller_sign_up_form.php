@@ -17,7 +17,7 @@
 		<input id="c_password" type="text" class="check pass" name="passconf" value="تکرار رمز عبور"/>
 		<input id="first_name" type="text" class="check" name="first_name" value="<?php echo  set_value('first_name', 'نام');?>"/>
 		<input id="last_name" type="text" class="check" name="last_name" value="<?php echo set_value('last_name', 'نام خانوادگی');?>"/>
-		<input id="email" type="text" class="check" name="email" value="<?php echo  set_value('email', 'آدرس پست‌الکترونیکی');?>"/>
+		<input id="email" type="text" class="check" name="email" value="<?php echo  set_value('email', 'آدرس پست‌الکترونیکی' );?>"/>
 		<input id="phone" type="text" class="check" name="phone" value="شماره‌ی تماس"/>
 		<input id="address" type="text" class="check" name="address" value="آدرس دقیق"/>
 		<input id="seller_display_name" type="text" class="check" name="seller_display_name" value="نام شرکت یا فروشگاه شما"/>
