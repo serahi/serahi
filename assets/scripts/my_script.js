@@ -36,6 +36,7 @@ $(document).ready(function() {
 		$(this).prop('type', 'password');
 	});
 	$(".pass").blur(function(){
+		var name = $(this).attr('name');
 		if ( $(this).val() == '' || $(this).val() == inputs[name] )
 			$(this).prop('type', 'text');
 	})

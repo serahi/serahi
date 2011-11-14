@@ -1,6 +1,5 @@
 body {
-	font-family: "lucida grande", tahoma, verdana, arial, sans-serif;
-	
+	font-family:  tahoma , sans-serif;
 	direction: rtl;
 	overflow-y: scroll;
 	width: 100%;
@@ -194,6 +193,10 @@ h1, h2, h3, h4, h5 {
 	color: white;
 	padding: 6px;
 	-moz-border-radius: 3px;
+	display: inline-block;
+}
+.cancel_buying{
+	display: inline-block;
 }
 .post_seprator{
 	border: 1px solid black;

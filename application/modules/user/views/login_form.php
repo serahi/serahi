@@ -4,7 +4,7 @@
 
 {block name=main_content}
 <div id="login_form">
-	<form action="login/login_check" class="forms" method="post">
+	<form action="<?php echo base_url()?>user/login/login_check" class="forms" method="post">
 	<div class='error_msg'>
 		<?php
 		if (isset($error_msg)) {
