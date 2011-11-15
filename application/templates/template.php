@@ -45,7 +45,7 @@
 					<?php if( $this->session->userdata('is_logged_in') != TRUE ):?>
 						<a href = "<?php echo base_url();?>user/login">ورود</a>
 						<a href = "<?php echo base_url();?>user/login/signup">ثبت نام</a>
-						<a href = "<?php echo base_url();?>user/lgoin/seller_sign_up">ثبت نام فروشندگان</a>
+						<a href = "<?php echo base_url();?>user/lgoin/seller_signup">ثبت نام فروشندگان</a>
 					<?php endif?>
 					</span>
 					<span class="block center" id="serahi">

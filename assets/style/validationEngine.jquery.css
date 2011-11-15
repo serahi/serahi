@@ -1,6 +1,6 @@
 .inputContainer {
 	position: relative;
-	float: left;
+	float: right;
 }
 
 .formError {
@@ -49,10 +49,10 @@
 
 .formError .formErrorArrow {
 	width: 15px;
-	margin: -2px 0 0 13px;
+	margin: -2px 10px 0 13px;
   position:relative;
   z-index: 5006;
-  float: left;
+  float: right;
 }
 
 .formError .formErrorArrowBottom {

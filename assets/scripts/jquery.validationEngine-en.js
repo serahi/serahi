@@ -6,7 +6,7 @@
             $.validationEngineLanguage.allRules = {
                 "required": { // Add your regex rules here, you can take telephone as an example
                     "regex": "none",
-                    "alertText": "* This field is required",
+                    "alertText": "این فیلد الزامی است. *",
                     "alertTextCheckboxMultiple": "* Please select an option",
                     "alertTextCheckboxe": "* This checkbox is required",
                     "alertTextDateRange": "* Both date range fields are required"
@@ -77,7 +77,7 @@
                 },
                 "integer": {
                     "regex": /^[\-\+]?\d+$/,
-                    "alertText": "* Not a valid integer"
+                    "alertText": " عدد وارد شده معتبر نیست. *"
                 },
                 "number": {
                     // Number, including positive, negative, and floating decimal. credit: orefalo

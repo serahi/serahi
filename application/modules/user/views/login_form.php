@@ -13,9 +13,9 @@
 		?>
 	</div>
 	<?php if (!isset($entered_username)) { ?>
-		<input type="text" id="username" class="check" name="username" value="نام کاربری">
+		<input type="text" id="username" class="check validate[required]" name="username" value="نام کاربری">
 	<?php } else { ?>
-		<input type="text" username" class="check" name="username" value="<?php echo $entered_username; ?>"/>
+		<input type="text" id ="username" class="check validate[required]" name="username" value="<?php echo $entered_username; ?>"/>
 	<?php } ?>
 	<input type="text" id="password" class="pass check" name="password" value="رمز عبور"/>
 	<input type="submit" name="submit" value="ورود"/><br/>

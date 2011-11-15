@@ -47,6 +47,8 @@ $(document).ready(function() {
 				alert("پیش از ثبت نام شما باید قوانین سایت را مطالعه کرده و پذیرفته باشید");
 				return false;
 			}
+			
+			for in
 		});
 			
 	}();

@@ -54,7 +54,7 @@ class Login extends MY_Controller
 		return $this->session->userdata('is_logged_in');
 	}
 
-	function sign_up ()
+	function signup ()
 	{
 		if ($this->is_logged_in()) {
 			redirect('home');
@@ -63,7 +63,7 @@ class Login extends MY_Controller
 		}
 	}
 
-	function seller_sign_up ()
+	function seller_signup ()
 	{
 		if ($this->is_logged_in()) {
 			redirect('home');
@@ -140,9 +140,9 @@ class Login extends MY_Controller
 
 		if ($this->form_validation->run() == FALSE) {
 			if ($this->input->post('ut') === 'c') {
-				$this->sign_up();
+				$this->signup();
 			} elseif ($this->input->post('ut') === 's') {
-				$this->seller_sign_up();
+				$this->seller_signup();
 			}
 
 		} else {

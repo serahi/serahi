@@ -55,24 +55,28 @@ class Home_model extends CI_Model {
 		$this -> db -> where('user_id', $this -> session -> userdata('user_id'));
 		$this -> db -> where('product_id' , $this -> input -> post('product_id'));
 		$query_result = $this -> db -> get('transactions');
-		if( $query_result -> num_rows() == 1 )
-		{
-			$row = $query_result-> row_array();
-			if( $row['buying_state'] == 2){
-				$transaction_data = array('user_id' => $this -> session -> userdata('user_id'), 'product_id' => $this -> input -> post('product_id'),
-				'count' => '1', 'transaction_time' => date("Y-m-d H:i:s"), 'buying_state' => 3 );
-				$insert_result = $this -> db -> insert('transactions', $transaction_data);
-				return $insert_result;
-			}else{
-				return "failed";
-			}
-			
-		}elseif ($query_result -> num_rows() == 0)
+		if( $query_result -> num_rows() == 0 )
 		{
 			$transaction_data = array('user_id' => $this -> session -> userdata('user_id'), 'product_id' => $this -> input -> post('product_id'),
 			'count' => '1', 'transaction_time' => date("Y-m-d H:i:s"), 'buying_state' => 1 );
 			$insert_result = $this -> db -> insert('transactions', $transaction_data);
 			return $insert_result;
+			
+			
+		}elseif ($query_result -> num_rows() == 1 )
+		{
+			$row = $query_result-> row_array();
+			if( $row['buying_state'] == 2){
+				$transaction_data = array('user_id' => $this -> session -> userdata('user_id'), 'product_id' => $this -> input -> post('product_id'),
+						'count' => '1', 'transaction_time' => date("Y-m-d H:i:s"), 'buying_state' => 3 );
+				$this -> db -> where ('user_id' , $this -> session -> userdata('user_id'),
+								'product_id', $this -> input -> post('product_id') );
+				$this -> db -> set ('buying_state', 3);
+				$this -> db -> update ('transactions');
+				return ;
+			}else{
+				return "failed";
+			}
 		}
 		
 		
@@ -91,9 +95,13 @@ class Home_model extends CI_Model {
 				$this -> db -> where ('id' , $row['id']);
 				$this -> db -> set('buying_state', 2 );
 				$this -> db -> update('transactions');
+				echo 'inja';
 				return 0;				
 			}elseif( $row['buying_state'] === 2 ){
+				echo 'oonja';
 				return 2;
+			}else{
+				echo 'hoo';
 			}
 			
 		} else{
