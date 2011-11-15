@@ -48,7 +48,7 @@ a {
 	width: 330px;
 	background: #f0f0f0 url(../img/login_bg.jpg) repeat-x 0 0;
 	border: 1px solid white;
-	margin: 150px auto 150px;
+	margin: 150px auto 100px;
 	padding: 2em 1em;
 	-moz-border-radius: 3px;
 }
@@ -56,7 +56,7 @@ a {
 	width: 330px;
 	background: #f0f0f0 url(../img/login_bg.jpg) repeat-x 0 0;
 	border: 1px solid white;
-	margin: 50px auto 150px;
+	margin: 50px auto 10px;
 	padding: 1em;
 	-moz-border-radius: 3px;
 }

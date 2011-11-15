@@ -11,7 +11,7 @@
 		echo '<div class="error_msg">' . $user_not_unique . '</div>';
 	
 	?>
-	<form action="user/login/register" class="forms" method="post">
+	<form action="<?php echo base_url()?>user/login/register" class="forms" method="post">
 		<input id="username" type="text"  class="check" name="username" value="<?php  echo set_value('username', 'نام کاربری');?>"/>
 		<input id="password" type="text" class="check pass" name="password" value="رمز عبور"/>
 		<input id="c_password" type="text" class="check pass" name="passconf" value="تکرار رمز عبور"/>

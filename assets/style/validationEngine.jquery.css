@@ -52,6 +52,7 @@
 	margin: -2px 0 0 13px;
   position:relative;
   z-index: 5006;
+  float: left;
 }
 
 .formError .formErrorArrowBottom {
