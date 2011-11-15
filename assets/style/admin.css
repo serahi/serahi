@@ -1,6 +1,4 @@
 .submit_form {
-/*    border: 1px solid gray;
-    border-radius: 5px;*/
     border-radius: 8px 8px 8px 8px;
     box-shadow: 4px 2px 13px 5px #CCCCB2;
     display: block;
@@ -46,12 +44,16 @@ textarea {
     clear: right;
     max-width: 250px;
 }
+.submit_form .row input {
+	margin: 3px;
+}
 .submit_form .row div, .submit_form .row label {
 	display: inline;
 	float: none;
 }
 .submit_form .row {
 	margin-bottom: 10px;
+	clear: right;
 }
 .submit_form input[type="submit"]:hover {
 	background-color: #818170;
@@ -76,12 +78,8 @@ textarea {
 /********************************************/
 .table_form {
 	border: none;
-}/*
-.table_form input[type="submit"], .table_form input[type="submit"]:hover {
-	text-decoration: none;
-	background-color: inherit;
-	color: blue;
-}*/
+	display: inline-block;
+}
 td a:visited{
 	color: blue;
 }
@@ -91,7 +89,8 @@ td a, .table_form input[type="submit"] {
 	padding: 0px;
 	height: 14px;
 }
-.table_form input[type="submit"], .table_form input[type="submit"]:hover{
+.table_form input[type="submit"],
+.table_form input[type="submit"]:hover{
 	text-decoration: none;
 	border: none;
 	background-color: inherit;
@@ -102,25 +101,20 @@ td a, .table_form input[type="submit"] {
 
 thead tr {
 	border-bottom: 3px solid black;
-}
-table tr {
 	padding: 2px;
 }
 table {
 	margin: 2% auto;
 }
-table td, table th {
+td, th {
 	min-width: 80px;
 	text-align: center;
 }
-table td {
+td {
 	padding: 5px 3px;
 }
-table th {
+th {
 	padding: 8px 3px;
-}
-.table_form {
-	display: inline-block;
 }
 table tbody .odd {
 	background-color: #d0d0d0;

@@ -61,7 +61,7 @@ class Userlist extends MY_Controller
 						'address',
 						'phone',
 						'display_name',
-						'approved'
+						'approved:b'
 				)));
 			} else if ($user['user_type'] == 'customer') {
 				$user = array_merge($user, $this->_post_values(array(
@@ -83,9 +83,19 @@ class Userlist extends MY_Controller
 	{
 		$values = array();
 		foreach ($array as $field) {
-			$value = $this->input->post($field);
-			if ($value !== FALSE) {
-				$values[$field] = $value;
+			$parts = explode(':', $field, 2);
+			if (count($parts) > 1) {
+				$field_name = $parts[0];
+				$field_type = $parts[1];
+				if ($field_type === 'b') {
+					$value = $this->input->post($field_name) ? 't' : 'f';
+					$values[$field_name] = $value;
+				}
+			} else {
+				$value = $this->input->post($field);
+				if ($value !== FALSE) {
+					$values[$field] = $value;
+				}
 			}
 		}
 		return $values;

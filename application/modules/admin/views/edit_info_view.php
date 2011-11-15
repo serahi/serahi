@@ -30,8 +30,14 @@
 		<input name = "address" value = "{$address}">
 		<label for = "phone">تلفن</label>
 		<input name = "phone" value = "{$phone}">
+		<div class = "row">
+		{if $approved eq 'TRUE'}
+			<input type = "checkbox" name = "approved" id = "approved" checked = "checked">
+		{else}
+			<input type = "checkbox" name = "approved" id = "approved">
+		{/if}
 		<label for = "approved">تایید شده</label>
-		<input name = "approved" value = "{$approved}">
+		</div>
 	{elseif $user_type eq 'customer'}
 		<label for = "address">آدرس</label>
 		<input name = "address" value = "{$address}">
