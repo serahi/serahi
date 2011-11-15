@@ -84,9 +84,10 @@ td a:visited{
 	color: blue;
 }
 td a, .table_form input[type="submit"] {
+	font-family: tahoma,sans-serif;
 	font-size: 11px;
-	margin: 0px;
-	padding: 0px;
+	margin: 0 2px;
+	padding: 0;
 	height: 14px;
 }
 .table_form input[type="submit"],
