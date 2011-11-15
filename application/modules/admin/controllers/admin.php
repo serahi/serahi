@@ -62,14 +62,6 @@ class Admin extends MY_Controller
 					 'product_name', 'seller', 'product_desc',
 					 'baes_discount', 'product_price', 'lower_limit'
 				));
-				/* */
-				$product_name = $this->input->post('product_name');
-				$seller_id = $this->input->post('seller');
-				$description = $this->input->post('product_desc');
-				$base_discount = $this->input->post('base_discount');
-				$price = $this->input->post('product_price');
-				$lower_limit = $this->input->post('lower_limit');
-				/* */
 				
 				//TODO: validate inputs
 				$config['upload_path'] = './images/products';
