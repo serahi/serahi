@@ -2,12 +2,26 @@
 {block name=css}
 <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/style/admin.css" />
 {/block}
+
+{block name=script}
+<script type="text/javascript">
+{literal}
+	$(document).ready(function(){
+		$(".submit_form").validationEngine({
+			'validationEventTrigger' : 'submit',
+			'promptPosition' : 'topLeft'
+		});
+	});
+{/literal}
+</script>
+{/block}
+
 {block name=main_content}
 <div id="add_product_form">
 	<form class = "submit_form product_form" enctype = "multipart/form-data" method = "post" action = "<?php echo base_url() . 'admin/add_product';?>">
 		<?php  echo validation_errors('<div class="error_msg">', '</div>');?>
 		<label for = "product_name">نام محصول</label>
-		<input name = "product_name" value = "<?php echo set_value('product_name');?>">
+		<input name = "product_name" id = "product_name" class = "validate[required]" value = "<?php echo set_value('product_name');?>">
 		<label for = "product_price">قیمت واقعی</label>
 		<input name = "product_price" value = "<?php echo set_value('product_price');?>">
 		<label for = "base_discount">تخفیف پایه</label>

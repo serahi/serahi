@@ -62,7 +62,7 @@ class Userlist_ctests extends MY_Controller
 		));
 		$mocked_user_model = new MockUser_model ();
 		$mocked_user_model->expectOnce('get_users');
-		$test->session = $mocked_session;
+		CI_Controller::$instance->session = $mocked_session;
 		$test->load = $mocked_loader;
 		$test->user_model = $mocked_user_model;
 		$test->index();
@@ -85,7 +85,9 @@ class Userlist_ctests extends MY_Controller
 			$mocked_loader = new MockCI_Loader ();
 			$test = new Userlist ();
 			$mocked_loader->expectOnce('view', array('access_denied'));
-			$test->session = $mocked_session;
+			$mocked_loader->returns('model', $this->load->model('user_model'), array('user_model'));
+			
+		CI_Controller::$instance->session = $mocked_session;
 			$test->load = $mocked_loader;
 			$test->index();
 		}
@@ -103,7 +105,8 @@ class Userlist_ctests extends MY_Controller
 		$test = new Userlist ();
 		$test->load = $mocked_loader;
 		$test->input = $mocked_input;
-		$test->session = $mocked_session;
+		
+		CI_Controller::$instance->session = $mocked_session;
 		$test->user_model = $mocked_model;
 		@$test->delete();
 	}
@@ -132,7 +135,8 @@ class Userlist_ctests extends MY_Controller
 			$test = new Userlist ();
 			$test->load = $mocked_loader;
 			$test->input = $mocked_input;
-			$test->session = $mocked_session;
+			
+		CI_Controller::$instance->session = $mocked_session;
 			$test->user_model = $mocked_model;
 			$test->delete();
 		}
@@ -156,7 +160,8 @@ class Userlist_ctests extends MY_Controller
 			$test = new Userlist ();
 			$test->load = $mocked_loader;
 			$test->input = $mocked_input;
-			$test->session = $mocked_session;
+			
+		CI_Controller::$instance->session = $mocked_session;
 			$test->user_model = $mocked_model;
 			$test->edit();
 		}
@@ -173,7 +178,8 @@ class Userlist_ctests extends MY_Controller
 		$test = new Userlist ();
 		$test->load = $mocked_loader;
 		$test->input = $mocked_input;
-		$test->session = $mocked_session;
+		
+		CI_Controller::$instance->session = $mocked_session;
 		$test->user_model = $mocked_model;
 		@$test->edit();
 	}/* */
@@ -202,7 +208,8 @@ class Userlist_ctests extends MY_Controller
 			$test = new Userlist ();
 			$test->load = $mocked_loader;
 			$test->input = $mocked_input;
-			$test->session = $mocked_session;
+			
+		CI_Controller::$instance->session = $mocked_session;
 			$test->user_model = $mocked_model;
 			$test->edit();
 		}
@@ -228,7 +235,8 @@ class Userlist_ctests extends MY_Controller
 		$test = new Userlist ();
 		$test->load = $mocked_loader;
 		$test->input = $mocked_input;
-		$test->session = $mocked_session;
+		CI_Controller::$instance->input = $mocked_input;
+		CI_Controller::$instance->session = $mocked_session;
 		$test->user_model = $mocked_model;
 		@$test->save_edit();
 	}
