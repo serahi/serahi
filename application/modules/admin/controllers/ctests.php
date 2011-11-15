@@ -19,7 +19,7 @@ class CTests extends MY_Controller
 				'index_view',
 				'*'
 		));
-		$test->session = $mocked_session;
+		CI_Controller::$instance->session = $mocked_session;
 		$test->load = $mocked_loader;
 		$test->index();
 	}
@@ -31,7 +31,7 @@ class CTests extends MY_Controller
 		$test = new Admin ();
 		$mocked_session->returns('userdata', FALSE, array('is_logged_in'));
 		$mocked_loader->expectOnce('view', array('access_denied'));
-		$test->session = $mocked_session;
+		CI_Controller::$instance->session = $mocked_session;
 		$test->load = $mocked_loader;
 		$test->index();
 	}
@@ -44,7 +44,7 @@ class CTests extends MY_Controller
 		$mocked_session->returns('userdata', TRUE, array('is_logged_in'));
 		$mocked_session->returns('userdata', 'seller', array('user_type'));
 		$mocked_loader->expectOnce('view', array('access_denied'));
-		$test->session = $mocked_session;
+		CI_Controller::$instance->session = $mocked_session;
 		$test->load = $mocked_loader;
 		$test->index();
 	}
