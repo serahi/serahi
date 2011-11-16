@@ -22,7 +22,7 @@ class Membership_model extends CI_Model
 		return NULL;
 	}
 
-	function insert_member ()
+	function insert_member ($random_string)
 	{
 		$user_data = array(
 				'first_name' => $this->input->post('first_name'),
@@ -30,6 +30,7 @@ class Membership_model extends CI_Model
 				'username' => $this->input->post('username'),
 				'password' => md5($this->input->post('password')),
 				'email' => $this->input->post('email'),
+                                'random_string' =>  $random_string
 		);
 		$this->db->where('username', $this->input->post('username'));
 		$q = $this->db->get('users');
