@@ -12,14 +12,14 @@
 	
 	?>
 	<form action="<?php echo base_url()?>user/login/register" class="forms" method="post">
-		<input id="username" type="text"  class="check" name="username" value="<?php  echo set_value('username', 'نام کاربری');?>"/>
-		<input id="password" type="text" class="check pass" name="password" value="رمز عبور"/>
-		<input id="c_password" type="text" class="check pass" name="passconf" value="تکرار رمز عبور"/>
-		<input id="first_name" type="text" class="check" name="first_name" value="<?php echo  set_value('first_name', 'نام');?>"/>
-		<input id="last_name" type="text" class="check" name="last_name" value="<?php echo set_value('last_name', 'نام خانوادگی');?>"/>
-		<input id="email" type="text" class="check" name="email" value="<?php echo  set_value('email', 'آدرس پست‌الکترونیکی' );?>"/>
-		<input id="phone" type="text" class="check" name="phone" value="شماره‌ی تماس"/>
-		<input id="address" type="text" class="check" name="address" value="آدرس دقیق"/>
+		<input id="username" type="text"  class="check validate[required]" name="username" value="<?php  echo set_value('username', 'نام کاربری');?>"/>
+		<input id="password" type="text" class="check pass validate[required]" name="password" value="رمز عبور"/>
+		<input id="c_password" type="text" class="check pass validate[required,equals[password]]" name="passconf" value="تکرار رمز عبور"/>
+		<input id="first_name" type="text" class="check validate[required]" name="first_name" value="<?php echo  set_value('first_name', 'نام');?>"/>
+		<input id="last_name" type="text" class="check validate[required]" name="last_name" value="<?php echo set_value('last_name', 'نام خانوادگی');?>"/>
+		<input id="email" type="text" class="check validate[required,custom[email]]" name="email" value="<?php echo  set_value('email', 'آدرس پست‌الکترونیکی' );?>"/>
+		<input id="phone" type="text" class="check validate[required]" name="phone" value="شماره‌ی تماس"/>
+		<input id="address" type="text" class="check validate[required]" name="address" value="آدرس دقیق"/>
 		<input id="seller_display_name" type="text" class="check" name="seller_display_name" value="نام شرکت یا فروشگاه شما"/>
 		<input type="hidden" value="s" name="ut">
 		<div id="register_msg">لطفاً پیش از ثبت‌نام قوانین سایت را مطالعه بفرمایید.<br/>
