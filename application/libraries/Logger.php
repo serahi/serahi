@@ -69,7 +69,6 @@ class Logger
 	 * @throws Exception if the provided value for $level does not match one
 	 * one of the permitted levels, an exception is raised.
 	 * @see do_log()
-	 * @see rand_gen()
 	 */
 	public function log ($level, $action, $log_string = '',
 	                     $unique_id = NULL, $timestamp = NULL)
@@ -93,7 +92,7 @@ class Logger
 		}
 		
 		if ($unique_id === NULL) {
-			$unique_id = $this->rand_gen(8);
+			$unique_id = rand_gen(8);
 		}
 		
 		$this->do_log($timestamp, $unique_id, $this->user_id, $level,
@@ -165,37 +164,6 @@ class Logger
 		$fp = fopen($full_name, 'w');
 		fwrite($fp, $header_str . "\n");
 		fclose($fp);
-	}
-	/**
-	 * @brief Generate a random string of length $len
-	 * 
-	 * Generates a random string consisting of lowercase characters and 
-	 * numbers, using linux's native random generator /dev/urandom.
-	 * The string generated is not guaranteed to be unique, nor uniformly-
-	 * distributed, and is less random than /dev/urandom output itself.
-	 * Speed was the main concern while implementing this function.
-	 * 
-	 * @author Milad Bashiri
-	 * @param $len length of the random string generated
-	 * @return a random string of length $len
-	 */
-	private function rand_gen($len)
-	{	
-		$chars = 'abcdefghijklmnopqrstuvwxyz0123456789';
-		$random_string = '';
-		/* courtesy of php.net community */
-		$fp = fopen('/dev/urandom','rb');
-		$random_bytes = array();
-		if ($fp !== FALSE) {
-			$random_bytes = fread($fp,$len);
-			fclose($fp);
-		}
-		/*********************************/
-		for ($i = 0; $i < $len; $i++) {
-			$random_string .= $chars[ord($random_bytes[$i]) % 36];
-		}
-		
-		return $random_string;
 	}
 }
 

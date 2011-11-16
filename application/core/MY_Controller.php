@@ -28,18 +28,6 @@ class MY_Controller extends UnitTestCase
 		return CI::$APP->$class;
 	}
 
-	function convert ($input)
-	{
-		$data = array();
-		foreach (get_object_vars($input) as $key => $value) {
-			if ($key == 'password')
-				continue;
-			if ($key == 'approved')
-				$value = $value == 't' ? 'TRUE' : 'FALSE';
-			$data[$key] = $value;
-		}
-		return $data;
-	}
 
 	public function index ()
 	{
