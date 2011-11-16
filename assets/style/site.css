@@ -46,7 +46,7 @@ a {
 
 #login_form {
 	width: 330px;
-	background: #f0f0f0 url(../img/login_bg.jpg) repeat-x 0 0;
+	background: #f0f0f0 repeat-x 0 0;
 	border: 1px solid white;
 	margin: 150px auto 100px;
 	padding: 2em 1em;
@@ -54,7 +54,7 @@ a {
 }
 #sign_up_form {
 	width: 330px;
-	background: #f0f0f0 url(../img/login_bg.jpg) repeat-x 0 0;
+	background: #f0f0f0 repeat-x 0 0;
 	border: 1px solid white;
 	margin: 50px auto 10px;
 	padding: 1em;
