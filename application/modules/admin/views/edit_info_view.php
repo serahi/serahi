@@ -20,12 +20,14 @@
 {assign var=required_3 value='validate[minSize[3]]'}
 {assign var=required_6 value='validate[minSize[6]]'}
 <form method = "post" class = "submit_form" action = "<?php echo base_url() . "admin/userlist/save_edit";?>">
+	
 	<div class = "row">
 		<label>شماره:</label>
 		<div id = "user_id">
 			{$id}
 		</div>
 	</div>
+	<?php echo validation_errors('<div class="error_msg">', '</div>'); ?>
 	<input type = "hidden" name = "id" value = "{$id}">
 	<label for = "username">نام کاربری</label>
 	<input name = "username" id = "username" class = "{$required_6}" value = "{$username}">
