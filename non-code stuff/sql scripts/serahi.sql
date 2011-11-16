@@ -82,7 +82,9 @@ CREATE TABLE customers (
     address character varying,
     postal_code character varying,
     phone character varying,
-    birth_date date
+    birth_date date,
+    activated boolean DEFAULT false NOT NULL,
+    random_string character varying(15)
 )
 INHERITS (users);
 
@@ -220,9 +222,9 @@ ALTER TABLE users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
 -- Data for Name: customers; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY customers (id, username, password, first_name, last_name, user_type, email, creation_time, address, postal_code, phone, birth_date) FROM stdin;
-32	hamed.gh	0088f5f91b8a5515227bc85a853a6873	حامد	قلی زاده	customer	hamed.gholizadeh.f@gmail.com	\N	\N	\N	\N	\N
-33	sadegh	81d117fec85703f2c3db637eee47474f	صادق	کاظمی	customer	sadegh.kazemy@gmail.com	\N	\N	\N	\N	\N
+COPY customers (id, username, password, first_name, last_name, user_type, email, creation_time, address, postal_code, phone, birth_date, activated, random_string) FROM stdin;
+32	hamed.gh	0088f5f91b8a5515227bc85a853a6873	حامد	قلی زاده	customer	hamed.gholizadeh.f@gmail.com	\N	\N	\N	\N	\N	f	\N
+33	sadegh	81d117fec85703f2c3db637eee47474f	صادق	کاظمی	customer	sadegh.kazemy@gmail.com	\N	\N	\N	\N	\N	f	\N
 \.
 
 
