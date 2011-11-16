@@ -160,7 +160,8 @@ CREATE TABLE transactions (
     user_id integer NOT NULL,
     product_id integer NOT NULL,
     count integer NOT NULL,
-    transaction_time timestamp with time zone NOT NULL
+    transaction_time timestamp with time zone NOT NULL,
+    buying_state integer DEFAULT 1 NOT NULL
 );
 
 
@@ -191,7 +192,7 @@ ALTER SEQUENCE transactions_id_seq OWNED BY transactions.id;
 -- Name: transactions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('transactions_id_seq', 71, true);
+SELECT pg_catalog.setval('transactions_id_seq', 111, true);
 
 
 --
@@ -230,8 +231,7 @@ COPY customers (id, username, password, first_name, last_name, user_type, email,
 --
 
 COPY products (id, product_name, seller_id, lower_limit, description, image, base_discount, price) FROM stdin;
-21	موبایل	3	5	گوشی همراه نوکیا مدل N95 8GB گوشی کارآمد دیگری از سری مدل‌های نوکیا است که بر اساس گوشی نوکیا N95 طراحی و ساخته شده است. نوکیا N95 8GB با قابلیت‌های خوبی ارائه شده است. ابعادی برابر با 21×53×99 میلی‌متر دارد. وزن آن نیز تنها 128 گرم است.\nاز ویژگی‌های نوکیا N95 8GB می‌توان به صفحه کلید QWERTY آن اشاره کرد. صفحه نمایش آن نیز یک صفحه نمایش 2.8 اینچی 16 میلیون رنگی TFT با رزولوشن QVGA است. این صفحه نمایش از آن‌چه در مدل نوکیا N95 می‌بینید بزرگ‌تر است. کیفیت بسیار خوبی نیز دارد. به نظر می‌رسد که کیفیت این صفحه نمایش از مدل قبلی تا اندازه‌ای هم به‌تر شده باشد. همان طوری که از اسم این گوشی پیداست، چیزی برابر با 8 گیگابایت حافظه در اختیار شما قرار می‌دهد. حالا آیا با این مقدار حافظه هنوز هم به کارت حافظه فکر می‌کنید؟ نوکیا N95 8GB به شیار مخصوص کارت حافظه مجهز نیست.	n95_1.jpeg	35	300000
-22	پراید	2	10	پراید خودرویی است که تولید آن در ایران از سال ۷۲ در شرکت سایپا آغاز شد. این خودرو به دلیل قیمت ارزان و مصرف پایین سوخت، بزودی به عنوان خودرو مورد علاقه طبقه متوسط در ایران قرار گرفت و در جایگاه پرفروشترین خودرو در ایران قرار دارد.	peraid.jpg	12	8300000
+7	لپ تاپ	\N	5	ایران رهجو	laptop.jpeg	2	13500000
 \.
 
 
@@ -243,6 +243,15 @@ COPY sellers (id, username, password, first_name, last_name, user_type, email, c
 49	milad.b	03765deb96723cd8be96e0cd4080e58c	میلاد	بشیری	seller	miladbashiri@yahoo.com	\N	میلاد	تهران	09357289273	t
 51	hessam	3d579595cb191ab55a02e5787d38695e	حسام	محمدیان	seller	hessam.mohammadian@gmail.com	\N	حسام	تهران	09123178234	t
 \.
+
+
+--
+-- Data for Name: transactions; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY transactions (id, user_id, product_id, count, transaction_time, buying_state) FROM stdin;
+\.
+
 
 --
 -- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: postgres

@@ -4,16 +4,7 @@
 {/block}
 
 {block name=script}
-<script type="text/javascript">
-{literal}
-	$(document).ready(function(){
-		$(".submit_form").validationEngine({
-			'validationEventTrigger' : 'submit',
-			'promptPosition' : 'topLeft'
-		});
-	});
-{/literal}
-</script>
+
 {/block}
 {block name=main_content}
 {assign var=int value='required,custom[integer],min[0]'}

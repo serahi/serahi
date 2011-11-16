@@ -3,8 +3,10 @@
 {/block}
 
 {block name=main_content}
+{assign var=int value='required,custom[integer],min[0]'}
+{assign var=required value='validate[required]'}
 <div id="login_form">
-	<form action="<?php echo base_url()?>user/login/login_check" class="forms" method="post">
+	<form action="<?php echo base_url()?>user/login/login_check" class="forms submit_form" method="post">
 	<div class='error_msg'>
 		<?php
 		if (isset($error_msg)) {
