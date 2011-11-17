@@ -17,12 +17,8 @@
 		<script type="text/javascript" src="<?php echo base_url();?>assets/scripts/my_script.js"></script>
 		<script type="text/javascript">
 		{literal}
-			$(document).ready(function(){
-				$(".submit_form").validationEngine({
-					'validationEventTrigger' : 'submit',
-					'promptPosition' : 'topLeft'
-				});
-			});
+			
+		
 		{/literal}
 		</script>
 		
@@ -47,7 +43,7 @@
 							<?php endif?>
 							</span>
 							<span>
-								<?php echo anchor(base_url() . 'user/login/logout', 'خروج');?>
+								<?php echo anchor(base_url() . 'user/logout', 'خروج');?>
 							</span>
 						</span>
 					</span>
@@ -55,8 +51,8 @@
 					<span class="block">
 					<?php if( $this->session->userdata('is_logged_in') != TRUE ):?>
 						<a href = "<?php echo base_url();?>user/login">ورود</a>
-						<a href = "<?php echo base_url();?>user/login/signup">ثبت نام</a>
-						<a href = "<?php echo base_url();?>user/login/seller_signup">ثبت نام فروشندگان</a>
+						<a href = "<?php echo base_url();?>user/signup">ثبت نام</a>
+						<a href = "<?php echo base_url();?>user/seller_signup">ثبت نام فروشندگان</a>
 					<?php endif?>
 					</span>
 					<span class="block center" id="serahi">

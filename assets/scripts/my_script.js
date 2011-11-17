@@ -1,6 +1,4 @@
-$(document).ready(function() {
-
-	var inputs = {
+var inputs = {
 		'username' : 'نام کاربری',
 		'password' : 'رمز عبور',
 		'passconf' : 'تکرار رمز عبور',
@@ -13,6 +11,60 @@ $(document).ready(function() {
 
 	};
 
+$(document).ready(function() {
+	
+	var check_confirmation = function(){
+		$( "#reg_btm" ).click(function(){
+			if( $(".confirmation").attr('checked') != 'checked' ){
+				alert("پیش از ثبت نام شما باید قوانین سایت را مطالعه کرده و پذیرفته باشید");
+				return false;
+			}
+		});
+			
+	}();
+		
+//checking default values of submit and make inputs empty
+	 var make_empty = function(){
+		$(".forms").submit( function(){
+			$(".check").each(function(){
+				var name = $(this).attr('name');
+				if ( $(this).val() == inputs[name] )
+				{
+					$(this).val('');
+				}
+			});	
+		});
+	};
+	
+
+	make_empty();
+	var x = function(){
+		var name = $(this).attr('name');
+
+		if($(this).val() == "") {
+			$(this).val(inputs[name]);
+		}
+	};
+	var make_default = function(){
+			$(".check").each(function(){
+				var name = $(this).attr('name');
+				if ( $(this).val() == '' )
+				{
+					$(this).val(inputs[name]) ;
+				}
+		});
+		/*
+		$(".check").unbind('blur');
+		$(".check").blur();
+		document.getElementById('password').blur();
+		$(".check").blur(x);*/
+	};
+		$(".submit_form").validationEngine({
+			'validationEventTrigger' : 'submit',
+			'promptPosition' : 'topLeft'
+			//onFailure : make_default
+		});
+	
 	
 	var check = function() {
 		$(".check").focus(function() {
@@ -21,13 +73,7 @@ $(document).ready(function() {
 				$(this).val("");
 			}
 		});
-		$(".check").blur(function() {
-			var name = $(this).attr('name');
-
-			if($(this).val() == "") {
-				$(this).val(inputs[name]);
-			}
-		});
+		$(".check").blur(x);
 	}();
 
 	$(".pass").focus(function() {
@@ -37,23 +83,11 @@ $(document).ready(function() {
 		var name = $(this).attr('name');
 		if ( $(this).val() == '' || $(this).val() == inputs[name] )
 			$(this).prop('type', 'text');
-	})
+	});
 	
-	var check_confirmation = function(){
-		$( "#reg_btm" ).click(function(){
-			if( $(".confirmation").attr('checked') != 'checked' ){
-				alert("پیش از ثبت نام شما باید قوانین سایت را مطالعه کرده و پذیرفته باشید");
-				return false;
-			}
-			$(".check").each(function(){
-				var name = $(this).attr('name');
-				if ( $(this).val() == inputs[name] )
-				{
-					$(this).val('');
-				}
-			});
-		});
-			
-	}();
 	
 });
+
+
+
+

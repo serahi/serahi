@@ -106,6 +106,7 @@ h1, h2, h3, h4, h5 {
 	-moz-border-radius: 4px;
 	color: black;
 }
+
 #register_btm {
 	border: none;
 	margin: 1.5em .5em;
@@ -124,6 +125,7 @@ h1, h2, h3, h4, h5 {
 	-moz-box-shadow: 0 1px 0 gray;
 	-webkit-box-shadow: 0 1px 0 gray;
 }
+
 .forms input[type=submit]:hover {
 	background: #818170;
 	cursor: pointer;
