@@ -94,14 +94,13 @@ class Home_model extends CI_Model {
 			if ( $row['buying_state'] == 1){
 				$this -> db -> where ('id' , $row['id']);
 				$this -> db -> set('buying_state', 2 );
-				$this -> db -> update('transactions');
-				echo 'inja';
+				$this -> db -> update('transactions');	
 				return 0;				
 			}elseif( $row['buying_state'] === 2 ){
-				echo 'oonja';
+				
 				return 2;
 			}else{
-				echo 'hoo';
+				return "buying_state_is_not_valide";			
 			}
 			
 		} else{
