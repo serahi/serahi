@@ -5,6 +5,8 @@
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/style/960/reset_rtl.css" />
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/style/960/text_rtl.css" />
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/style/validationEngine.jquery.css" />
+		<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/style/blitzer/jquery-ui-1.8.7.custom.css" />
+		<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/style/confirm_fa.css" />
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/style/site.css" />
 		{block name=css}{/block}
 		
