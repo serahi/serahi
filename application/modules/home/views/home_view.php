@@ -2,6 +2,23 @@
 سه‌راهـــــی
 {/block}
 
+{block name=script}
+{literal}
+<script>
+ 
+var buy_confirm = function(){
+		if ( !confirm("salam") )
+		{
+			return false;
+		}
+		
+};
+
+
+</script>
+{/literal}
+{/block}
+
 {block name=main_content}
 <?php
 if (isset($products)) {
@@ -28,11 +45,14 @@ if (isset($products)) {
 		echo '<div class="description"><pre>' . $item['description'] . '</pre></div>';
 		echo '<div class="buy">';
 		
-		if ( $item['buying_state'] == 0 || $item['buying_state'] == 2 ) {
-			echo ' <form method="post" action="'. base_url() .'home/buy" class="forms" > <input type="submit" value="خرید">  <input type="hidden" value="' . $item['id'] . '" name="product_id"></form> ';
-		} elseif ($item['buying_state'] == 1 ) {
+		if ( $item['buying_state'] == 0  ) {
+			echo ' <form method="post"   action="'. base_url() .'home/buy" class="forms buying_form" > <input type="submit" value="خرید">  <input type="hidden" value="' . $item['id'] . '" name="product_id"></form> ';
+		} elseif( $item['buying_state'] == 2){
+			echo ' <form method="post" onsubmit="return buy_confirm()"  action="'. base_url() .'home/buy" class="forms buying_form" > <input type="submit" value="خرید">  <input type="hidden" value="' . $item['id'] . '" name="product_id"></form> ';
+		}
+		 elseif ($item['buying_state'] == 1 ) {
 			echo '<div class="not_found_item">' . 'این کالا قبلاً توسط شما خریداری شده است!' . '</div>';
-			echo ' <form method="post" action="'. base_url() .'home/cancel_transaction" class="forms cancel_buying" > <input type="submit" value="لغو خرید">  <input type="hidden" value=""' . $item['id'] . '" name="product_id"></form> ';
+			echo ' <form method="post"  action="'. base_url() .'home/cancel_transaction" class="forms cancel_buying" > <input type="submit" value="لغو خرید">  <input type="hidden" value="' . $item['id'] . '" name="product_id"></form> ';
 		} elseif ($item['buying_state'] == 3 )
 		{
 			echo '<div class="not_found_item">' . 'این کالا قبلاً توسط شما خریداری شده است!' . '</div>';
