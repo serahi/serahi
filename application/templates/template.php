@@ -16,6 +16,7 @@
 		<script type="text/javascript" src="<?php echo base_url();?>assets/scripts/jquery.validate.js"></script>
 		<script type="text/javascript" src="<?php echo base_url();?>assets/scripts/jquery.validationEngine.js"></script>
 		<script type="text/javascript" src="<?php echo base_url();?>assets/scripts/jquery.validationEngine-en.js"></script>
+		<script type="text/javascript" src="<?php echo base_url();?>assets/scripts/jquery.easy-confirm-dialog.js"></script>
 		<script type="text/javascript" src="<?php echo base_url();?>assets/scripts/my_script.js"></script>
 		<script type="text/javascript">
 		
