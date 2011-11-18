@@ -74,7 +74,7 @@ class Home_model extends CI_Model
 						'transaction_time' => date("Y-m-d H:i:s"),
 						'buying_state' => 3
 				);
-				$this->db->where('user_id', $this->session->userdata('user_id'), 'product_id', $this->input->post('product_id'));
+				$this->db->where('user_id', $this->session->userdata('user_id'))->where( 'product_id', $this->input->post('product_id'));
 				$this->db->set('buying_state', 3);
 				$this->db->update('transactions');
 				return;
@@ -90,7 +90,7 @@ class Home_model extends CI_Model
 				'user_id' => $this->session->userdata('user_id'),
 				'product_id' => $this->input->post('product_id')
 		);
-		$this->db->where('user_id', $this->session->userdata('user_id'), 'product_id', $this->input->post('product_id'));
+		$this->db->where('user_id', $this->session->userdata('user_id'))->where('product_id', $this->input->post('product_id'));
 		$result = $this->db->get('transactions');
 		if ($result->num_rows == 1) {
 			$row = $result->row_array();
@@ -107,6 +107,7 @@ class Home_model extends CI_Model
 			}
 
 		} else {
+			echo $result->num_rows ;
 			echo "there are more than one item with the same product_id and user_id";
 			echo "user_id= " . $this->session->userdata('user_id') . "<br/>";
 			echo "product_id= " . $this->input->post('product_id');

@@ -5,9 +5,17 @@
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/style/960/reset_rtl.css" />
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/style/960/text_rtl.css" />
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/style/validationEngine.jquery.css" />
-		<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/style/blitzer/jquery-ui-1.8.7.custom.css" />
-		<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/style/confirm_fa.css" />
+		<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/style/blitzer/jquery-ui-1.8.16.custom.css" />
+		<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/style/confirm_fa.css" /> 
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/style/site.css" />
+		
+		<!-- Including the Cuprum font with @font-face from Google's webfont API  -->
+
+		<!-- <link href='http://fonts.googleapis.com/css?family=Cuprum&subset=latin' rel='stylesheet' type='text/css'> 
+		<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/confirm/css/styles.css" /> -->
+		<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/confirm/jquery.confirm/jquery.confirm.css" />
+		
+		
 		{block name=css}{/block}
 		
 		<title>{block name=title}{/block}</title>
@@ -16,10 +24,15 @@
 		<script type="text/javascript" src="<?php echo base_url();?>assets/scripts/jquery.validate.js"></script>
 		<script type="text/javascript" src="<?php echo base_url();?>assets/scripts/jquery.validationEngine.js"></script>
 		<script type="text/javascript" src="<?php echo base_url();?>assets/scripts/jquery.validationEngine-en.js"></script>
+		<script type="text/javascript" src="<?php echo base_url();?>assets/scripts/jquery-ui-1.8.16.custom.min.js"></script>
 		<script type="text/javascript" src="<?php echo base_url();?>assets/scripts/jquery.easy-confirm-dialog.js"></script>
 		<script type="text/javascript" src="<?php echo base_url();?>assets/scripts/my_script.js"></script>
+		<script src="<?php echo base_url();?>assets/confirm/jquery.confirm/jquery.confirm.js"></script>
+		<script src="<?php echo base_url();?>assets/confirm/js/script.js"></script>
+		
 		<script type="text/javascript">
-		$(".confirm").easyconfirm({ locale: {title: "هشدار", button: ["انصراف", "تأیید"]} });
+		
+		
 		</script>
 		
 		{block name=script}{/block}
@@ -56,7 +69,7 @@
 					<?php endif?>
 					</span>
 					<span class="block center" id="serahi">
-						<a href="<?php echo base_url();?>home/">سه راهــــــی</a>
+						<a href="<?php echo base_url();?>home/" class = "bconfirm">سه راهــــــی</a>
 					</span>
 				</span>
 			</div>
