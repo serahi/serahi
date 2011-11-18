@@ -5,10 +5,17 @@ class Admin extends MY_Controller
 
 	function index ()
 	{
+		$this->load->model('product_model');
+		$this->product_model->get_products();
+		$this->load->view('index_view');
+	}
+	
+	function product_form ()
+	{
 		if (_is_admin()) {
 			$this->load->model('seller_model');
 			$view_data['sellers'] = $this->seller_model->get_seller_names();
-			$this->load->view('index_view', $view_data);
+			$this->load->view('add_product_view', $view_data);
 		} else {
 			$this->load->view('access_denied');
 		}
@@ -53,14 +60,16 @@ class Admin extends MY_Controller
 				//invalid input form
 				$this->load->model('seller_model');
 				$view_data['sellers'] = $this->seller_model->get_seller_names();
-				$this->load->view('index_view', $view_data);
+				$this->load->view('add_product_view', $view_data);
 			} else {
 				//valid input form
 				list($product_name,  $seller_id, $description,
-				     $base_discount, $price,     $lower_limit
+				     $base_discount, $price, $lower_limit,
+				     $start_schedule, $start_time, $duration
 				) = _post_values(array(
 					 'product_name', 'seller', 'product_desc',
-					 'baes_discount', 'product_price', 'lower_limit'
+					 'baes_discount', 'product_price', 'lower_limit',
+					 'start_schedule', 'start_time', 'duration'
 				));
 				
 				//TODO: validate inputs
@@ -78,14 +87,11 @@ class Admin extends MY_Controller
 				                                                      $base_discount,
 				                                                      $price,
 				                                                      $upload_data['file_name'],
-				                                                      $lower_limit);
-				if ($insert_result == TRUE) {
-					// redirect to success place
-					redirect('/admin/');
-				} else {
-					//add error
-					$this->load->view('product_error');
-				}
+				                                                      $lower_limit,
+																	  $start_schedule,
+																	  $start_time,
+																	  $duration);
+				redirect('/admin/');
 			}
 		} else {
 			//not logged in or admin

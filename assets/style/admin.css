@@ -75,6 +75,32 @@ textarea {
 	margin-right: 2.5em;
 	margin-bottom: 1.7em;
 }
+.submit_form .hrow label{
+	width: 30%;
+	display: inline-block;
+	clear: none;
+}
+.submit_form .hrow {
+	clear: both;
+}
+.submit_form .hrow input {
+	width: 15%;
+}
+.submit_form .hrow select, .submit_form .hrow option {
+	clear: none;
+	margin-right: 15%;
+}
+.submit_form .hrow .dblock {
+	width: 30%;
+	display: block;
+	float: right;
+}
+.submit_form button {
+	float: right;
+}
+.submit_form .hrow input.date {
+	width: 40%;
+}
 /********************************************/
 .table_form {
 	border: none;

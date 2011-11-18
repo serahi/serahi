@@ -12,6 +12,7 @@ class Home extends MY_Controller
 		if ($this->is_logged_in()) {
 			$this->load->model('home_model');
 			$array['products'] = $this->home_model->get_list();
+			
 			$this->load->view('home_view', $array);
 		} else {
 			$this->load->view('home_view');
