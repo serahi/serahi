@@ -1,6 +1,6 @@
 <?php
 
-class Login extends MY_Controller {
+class User extends MY_Controller {
 
     var $data;
 
@@ -9,7 +9,7 @@ class Login extends MY_Controller {
         $this->lang->load('user', 'farsi');
     }
 
-    function index() {
+    function login() {
         if ($this->is_logged_in())
             redirect('home');
         $this->load->view('login_form');

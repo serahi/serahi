@@ -14,5 +14,10 @@ class Seller_model extends CI_Model
 		}
 		return $data;
 	}
+	function get_unapproved_sellers () {
+		$this->db->where('approved', 't');
+		$query = $this->db->get('sellers');
+		//$this->convert()
+	}
 
 }

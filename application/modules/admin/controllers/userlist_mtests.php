@@ -39,6 +39,22 @@ class Userlist_mtests extends MY_Controller
 				'first_name' => 'hamed',
 				'last_name' => 'gholizadeh'
 		);
+		$this->user_infos[2] = $this->users[2];
+		$this->users[3] = array(
+				'username' => 'sadegh',
+				'password' => md5('sadegh'),
+				'user_type' => 'seller',
+				'email' => 'sadegh.kazemy@gmail.com',
+				'creation_time' => date('Y-m-d H:i:s'),
+				'first_name' => 'صادق',
+				'last_name' => 'کاظمی'
+		);
+		$this->user_infos[3] = array_merge($this->users[3], array(
+				'display_name' => 'صادق کاظمی',
+				'address' => 'iran, isfahan',
+				'phone' => '0936',
+				'approved' => 'f'
+		));
 	}
 
 	function testGetUsersWithSingleUser ()
@@ -159,6 +175,33 @@ class Userlist_mtests extends MY_Controller
 		unset($db_user['password']);
 		$this->assertEqual($temp, $db_user);
 	}
+	
+	function testGetUnapprovedSellers ()
+	{
+		$this->load->model('seller_model');
+		$this->insert_user_infos(3);
+		$u_sellers = $this->seller_model->get_unapproved_sellers();
+		$this->assertEqual(count($u_sellers), 0);
+		$this->setUp();
+		$this->insert_user_infos(4);
+		$u_sellers = $this->seller_model->get_unapproved_sellers();
+		$this->assertEqual(count($u_sellers), 1);
+		$this->db->insert('sellers', array(
+				'username' => 'new_seller',
+				'password' => md5('new_seller'),
+				'user_type' => 'seller',
+				'email' => 'new_seller@sellers.com',
+				'creation_time' => date('Y-m-d H:i:s'),
+				'first_name' => 'new',
+				'last_name' => 'seller',
+				'display_name' => 'new seller',
+				'address' => 'new place',
+				'phone' => '0123',
+				'approved' => 'f'
+		));
+		$u_sellers = $this->seller_model->get_unapproved_sellers();
+		$this->assertEqual(count($u_sellers), 2);
+	}
 
 	function getByID ($id, $table)
 	{
@@ -207,5 +250,4 @@ class Userlist_mtests extends MY_Controller
 		else
 			return $result;
 	}
-
 }

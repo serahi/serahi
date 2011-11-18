@@ -13,7 +13,7 @@
 	if (isset($user_not_unique))
 		echo '<div class="error_msg">' . $user_not_unique . '</div>';
 	?>
-	<form class="forms submit_form" action="<?php echo base_url()?>user/login/register" method="post">
+	<form class="forms submit_form" action="<?php echo base_url()?>user/register" method="post">
 		<input id="username" type="text"  class="check validate[required]" name="username" value="<?php  echo set_value('username', 'نام کاربری');?>"/>
 		<input id="password" type="text" class="check pass validate[required]" name="password" value="رمز عبور"/>
 		<input id="c_password" type="text" class="check pass validate[required,equals[password]]" name="passconf" value="تکرار رمز عبور"/>
@@ -26,7 +26,7 @@
 			<br/><input class="confirmation" type="checkbox" value="" name="confirmation">
 			<label for="confirmation">قوانین سایت را مطالعه کرده و قبول می&zwnj;کنم</label>
 		</div>
-		<input id="reg_btm" type="submit" value="ثبت‌نام" name="submit">
+		<input id="reg_btm" class="submit_btm" type="submit" value="ثبت‌نام" name="submit">
 	</form>
 	<?php
 

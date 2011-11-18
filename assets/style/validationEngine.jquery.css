@@ -21,11 +21,14 @@
 
 .formError .formErrorContent {
 	width: 100%;
-	background: #ee0101;
+	/*background: #ee0101;*/
+	color: #ee0101;
+	background: white;
 	position:relative;
 	z-index:5001;
-	color: #fff;
-	width: 150px;
+	/*color: #fff;*/
+	width: 185px;
+	text-align:center;
 	font-family: tahoma;
 	font-size: 11px;
 	border: 2px solid #ddd;
@@ -96,6 +99,7 @@
 .formError .formErrorArrow .line10 {
 	width: 15px;
 	border: none;
+	none repeat scroll 0 0 white;
 }
 
 .formError .formErrorArrow .line9 {

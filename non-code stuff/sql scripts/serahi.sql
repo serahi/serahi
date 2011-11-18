@@ -82,9 +82,7 @@ CREATE TABLE customers (
     address character varying,
     postal_code character varying,
     phone character varying,
-    birth_date date,
-    activated boolean DEFAULT false NOT NULL,
-    random_string character varying(15)
+    birth_date date
 )
 INHERITS (users);
 
@@ -135,7 +133,7 @@ ALTER SEQUENCE products_id_seq OWNED BY products.id;
 -- Name: products_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('products_id_seq', 23, true);
+SELECT pg_catalog.setval('products_id_seq', 24, true);
 
 
 --
@@ -163,7 +161,8 @@ CREATE TABLE transactions (
     product_id integer NOT NULL,
     count integer NOT NULL,
     transaction_time timestamp with time zone NOT NULL,
-    buying_state integer DEFAULT 1 NOT NULL
+    buying_state integer DEFAULT 1 NOT NULL,
+    pursuit_code character varying
 );
 
 
@@ -194,7 +193,7 @@ ALTER SEQUENCE transactions_id_seq OWNED BY transactions.id;
 -- Name: transactions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('transactions_id_seq', 111, true);
+SELECT pg_catalog.setval('transactions_id_seq', 151, true);
 
 
 --
@@ -222,9 +221,9 @@ ALTER TABLE users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
 -- Data for Name: customers; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY customers (id, username, password, first_name, last_name, user_type, email, creation_time, address, postal_code, phone, birth_date, activated, random_string) FROM stdin;
-32	hamed.gh	0088f5f91b8a5515227bc85a853a6873	حامد	قلی زاده	customer	hamed.gholizadeh.f@gmail.com	\N	\N	\N	\N	\N	f	\N
-33	sadegh	81d117fec85703f2c3db637eee47474f	صادق	کاظمی	customer	sadegh.kazemy@gmail.com	\N	\N	\N	\N	\N	f	\N
+COPY customers (id, username, password, first_name, last_name, user_type, email, creation_time, address, postal_code, phone, birth_date) FROM stdin;
+32	hamed.gh	0088f5f91b8a5515227bc85a853a6873	حامد	قلی زاده	customer	hamed.gholizadeh.f@gmail.com	\N	\N	\N	\N	\N
+33	sadegh	81d117fec85703f2c3db637eee47474f	صادق	کاظمی	customer	sadegh.kazemy@gmail.com	\N	a			\N
 \.
 
 
@@ -234,6 +233,7 @@ COPY customers (id, username, password, first_name, last_name, user_type, email,
 
 COPY products (id, product_name, seller_id, lower_limit, description, image, base_discount, price) FROM stdin;
 7	لپ تاپ	\N	5	ایران رهجو	laptop.jpeg	2	13500000
+24	موبایل \ndefy	\N	\N	\N	\N	\N	\N
 \.
 
 
@@ -251,7 +251,9 @@ COPY sellers (id, username, password, first_name, last_name, user_type, email, c
 -- Data for Name: transactions; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY transactions (id, user_id, product_id, count, transaction_time, buying_state) FROM stdin;
+COPY transactions (id, user_id, product_id, count, transaction_time, buying_state, pursuit_code) FROM stdin;
+151	33	24	1	2011-11-18 03:51:45+03:30	2	\N
+150	33	7	1	2011-11-18 03:51:43+03:30	3	\N
 \.
 
 
@@ -260,7 +262,7 @@ COPY transactions (id, user_id, product_id, count, transaction_time, buying_stat
 --
 
 COPY users (id, username, password, first_name, last_name, user_type, email, creation_time) FROM stdin;
-39	admin	21232f297a57a5a743894a0e4a801fc3	مدیر	سایت	admin	admin@serahi.ir	\N
+39	admin	21232f297a57a5a743894a0e4a801fc3	مدیر	سایت	admin	admin@serahi.ir	2011-03-07 00:00:00
 \.
 
 

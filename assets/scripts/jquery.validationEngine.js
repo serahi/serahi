@@ -1488,7 +1488,7 @@
         // Automatically scroll viewport to the first error
         scroll: true,
 		// Focus on the first input
-		focusFirstField:true,
+		focusFirstField:false,
         // Opening box position, possible locations are: topLeft,
         // topRight, bottomLeft, centerRight, bottomRight
         promptPosition: "topRight",
