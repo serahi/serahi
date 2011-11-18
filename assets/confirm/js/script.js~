@@ -1,0 +1,24 @@
+$(document).ready(function(){
+	
+	$('.bconfirm').click(function(){
+		
+		var elem = $(this).closest('.item');
+		
+		$.confirm({
+			'title'		: 'تائید خرید',
+			'message'	: 'شما بیش از یک‌بار نمی‌توانید از خرید خود انصراف دهید <br/> آیا مایل به ادامه‌ی خرید هستید؟',
+			'buttons'	: {
+				'بله'	: {
+					'class'	: 'blue',
+					'action': function(){return true;}
+				},
+				'خیر'	: {
+					'class'	: 'gray',
+					'action': function(){ return false;}	// Nothing to do in this case. You can as well omit the action property.
+				}
+			}
+		});
+		
+	});
+});	
+};
