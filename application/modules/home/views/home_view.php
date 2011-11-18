@@ -49,6 +49,7 @@ if (isset($products)) {
 		}
 		 elseif ($item['buying_state'] == 1 ) {
 			echo '<div class="not_found_item">' . 'این کالا قبلاً توسط شما خریداری شده است!' . '</div>';
+                        echo '<div class="pursuit_code" > کدرهگیری شما:'. $item['pursuit_code']. '</div>' ;
 			echo ' <form method="post"  action="'. base_url() .'home/cancel_transaction" class="forms cancel_buying" > <input type="submit" value="لغو خرید">  <input type="hidden" value="' . $item['id'] . '" name="product_id"></form> ';
 		} elseif ($item['buying_state'] == 3 )
 		{
