@@ -12,4 +12,10 @@ class Seller_model extends CI_Model
 		$query = $this->db->get('sellers');
 		return $query->result_array();
 	}
+        function approve()
+        {
+            $this->db->where('id', $this->input->post('seller_id') )->
+                    set('approved', 'TRUE');
+            $this->db->update('sellers');
+        }
 }
