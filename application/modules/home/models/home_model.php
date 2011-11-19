@@ -21,8 +21,8 @@ class Home_model extends CI_Model {
 		$product_array = array();
 		foreach ($products->result_array() as $row) {
 			$then = strtotime($row['start_schedule'] . ' ' . $row['start_time'] . ':00');
-			if (($then > now()) ||
-			    (now() - $then > $row['duration']))
+			if (($then > time()) ||
+			    (time() - $then > $row['duration']))
 				continue;
 			$this->db->where('product_id', $row['id']);
 			$sell = $this->db->get('transactions');
@@ -37,34 +37,6 @@ class Home_model extends CI_Model {
 			$product_array[] = $row;
 		}
 		return $product_array;
-	}
-
-            $this->db->where('product_id', $row->id);
-            $sell = $this->db->get('transactions');
-            $sell_count = $sell->num_rows;
-            $is_bought = FALSE;
-            $buying_state = 0;
-            $pursuit_code = '';
-            if (isset($user_bought_array[$row->id])) {
-                $buying_state = $user_bought_array[$row->id]['buying_state'];
-                $pursuit_code = $user_bought_array[$row->id]['pursuit_code'];
-                
-            }
-
-            $product_array[] = array(
-                'id' => $row->id,
-                'product_name' => $row->product_name,
-                'lower_limit' => $row->lower_limit,
-                'description' => $row->description,
-                'image' => $row->image,
-                'base_discount' => $row->base_discount,
-                'price' => $row->price,
-                'sell_count' => $sell_count,
-                'buying_state' => $buying_state,
-                'pursuit_code' => $pursuit_code
-            );
-        }
-        return $product_array;
     }
 
     function add_transaction() {
