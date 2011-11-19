@@ -25,7 +25,7 @@ class Product_model extends CI_Model
 	}
 	function get_products ()
 	{
-		$this->db->select('products.id, product_name, display_name, price, lower_limit, start_schedule, start_time, duration');
+		$this->db->select('products.id, product_name, display_name, price, base_discount, lower_limit, start_schedule, start_time, duration');
 		$this->db->where('sellers.id = products.seller_id');
 		$query = $this->db->get('products,sellers');
 		return $query->result_array();
