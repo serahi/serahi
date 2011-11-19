@@ -6,8 +6,8 @@ class Admin extends MY_Controller
 	function index ()
 	{
 		$this->load->model('product_model');
-		$this->product_model->get_products();
-		$this->load->view('index_view');
+		$view_data['products'] = $this->product_model->get_products();
+		$this->load->view('index_view', $view_data);
 	}
 	
 	function product_form ()
