@@ -1,7 +1,6 @@
 <?php
 
-class Admin extends MY_Controller
-{
+class Admin extends MY_Controller {
 
 	function index ()
 	{
@@ -21,39 +20,38 @@ class Admin extends MY_Controller
 		}
 	}
 
-	function add_product ()
-	{
-		if (_is_admin()) {
-			$this->load->library('form_validation');
-			$config = array(
-					array(
-							'field' => 'product_name',
-							'label' => 'نام محصول',
-							'rules' => 'required'
-					),
-					array(
-							'field' => 'product_price',
-							'label' => 'قیمت واقعی',
-							'rules' => 'required|greater_than[0]'
-					),
-					array(
-							'field' => 'base_discount',
-							'label' => 'میزان تخفیف',
-							'rules' => 'required|less_than[100]'
-					),
-					array(
-							'field' => 'lower_limit',
-							'label' => 'حد نصاب',
-							'rules' => 'required|is_natural_no_zero'
-					),
-			);
-			$this->form_validation->set_rules($config);
-			$this->form_validation->set_message('required', '<hr/>وارد کردن %s لازم است.');
-			//$this->form_validation->set_message('min_length', '<hr/>%s باید حداقل، ۳ حرفی باشد.');
-			//$this->form_validation->set_message('max_length', '<hr/>%s باید حداکثر، ۳۱ حرفی باشد');
-			$this->form_validation->set_message('less_than', '<hr/>%s باید بین ۰ تا ۱۰۰ باشد.');
-			$this->form_validation->set_message('greater_than', '<hr/>%s باید بزرگتر از ۰ باشد.');
-			$this->form_validation->set_message('is_natural_no_zero', '<hr/>%s باید عدد صحیح بزرگتر از ۰ باشد.');
+    function add_product() {
+        if (_is_admin()) {
+            $this->load->library('form_validation');
+            $config = array(
+                array(
+                    'field' => 'product_name',
+                    'label' => 'نام محصول',
+                    'rules' => 'required'
+                ),
+                array(
+                    'field' => 'product_price',
+                    'label' => 'قیمت واقعی',
+                    'rules' => 'required|greater_than[0]'
+                ),
+                array(
+                    'field' => 'base_discount',
+                    'label' => 'میزان تخفیف',
+                    'rules' => 'required|less_than[100]'
+                ),
+                array(
+                    'field' => 'lower_limit',
+                    'label' => 'حد نصاب',
+                    'rules' => 'required|is_natural_no_zero'
+                ),
+            );
+            $this->form_validation->set_rules($config);
+            $this->form_validation->set_message('required', '<hr/>وارد کردن %s لازم است.');
+            //$this->form_validation->set_message('min_length', '<hr/>%s باید حداقل، ۳ حرفی باشد.');
+            //$this->form_validation->set_message('max_length', '<hr/>%s باید حداکثر، ۳۱ حرفی باشد');
+            $this->form_validation->set_message('less_than', '<hr/>%s باید بین ۰ تا ۱۰۰ باشد.');
+            $this->form_validation->set_message('greater_than', '<hr/>%s باید بزرگتر از ۰ باشد.');
+            $this->form_validation->set_message('is_natural_no_zero', '<hr/>%s باید عدد صحیح بزرگتر از ۰ باشد.');
 
 			$this->form_validation->set_error_delimiters('<div class="error_msg">', '</div>');
 			if ($this->form_validation->run() == FALSE) {
