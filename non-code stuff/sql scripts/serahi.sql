@@ -83,7 +83,8 @@ CREATE TABLE customers (
     address character varying,
     postal_code character varying,
     phone character varying,
-    birth_date date
+    birth_date date,
+    activated boolean DEFAULT false NOT NULL
 )
 INHERITS (users);
 
@@ -225,9 +226,9 @@ ALTER TABLE users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
 -- Data for Name: customers; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY customers (id, username, password, first_name, last_name, user_type, email, creation_time, address, postal_code, phone, birth_date, random_string) FROM stdin;
-32	hamed.gh	0088f5f91b8a5515227bc85a853a6873	حامد	قلی زاده	customer	hamed.gholizadeh.f@gmail.com	\N	\N	\N	\N	\N	\N
-33	sadegh	81d117fec85703f2c3db637eee47474f	صادق	کاظمی	customer	sadegh.kazemy@gmail.com	\N	a			\N	\N
+COPY customers (id, username, password, first_name, last_name, user_type, email, creation_time, random_string, address, postal_code, phone, birth_date, activated) FROM stdin;
+32	hamed.gh	0088f5f91b8a5515227bc85a853a6873	حامد	قلی زاده	customer	hamed.gholizadeh.f@gmail.com	\N	\N	\N	\N	\N	\N	t
+33	sadegh	81d117fec85703f2c3db637eee47474f	صادق	کاظمی	customer	sadegh.kazemy@gmail.com	\N	\N	a			\N	t
 \.
 
 
@@ -245,9 +246,9 @@ COPY products (id, product_name, seller_id, lower_limit, description, image, bas
 -- Data for Name: sellers; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY sellers (id, username, password, first_name, last_name, user_type, email, creation_time, display_name, address, phone, approved, random_string) FROM stdin;
-49	milad.b	03765deb96723cd8be96e0cd4080e58c	میلاد	بشیری	seller	miladbashiri@yahoo.com	\N	میلاد	تهران	09357289273	t	\N
-51	hessam	3d579595cb191ab55a02e5787d38695e	حسام	محمدیان	seller	hessam.mohammadian@gmail.com	\N	حسام	تهران	09123178234	t	\N
+COPY sellers (id, username, password, first_name, last_name, user_type, email, creation_time, random_string, display_name, address, phone, approved) FROM stdin;
+49	milad.b	03765deb96723cd8be96e0cd4080e58c	میلاد	بشیری	seller	miladbashiri@yahoo.com	\N	\N	میلاد	تهران	09357289273	t
+51	hessam	3d579595cb191ab55a02e5787d38695e	حسام	محمدیان	seller	hessam.mohammadian@gmail.com	\N	\N	حسام	تهران	09123178234	t
 \.
 
 
