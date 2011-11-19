@@ -168,9 +168,95 @@ class User extends MY_Controller {
         }
     }
 
+    function activate() {
+        if ($this->is_logged_in()) {
+            redirect('home');
+        } else {
+            $code = $_GET["t"];
+            $this->load->model('membership_model');
+            $query_result = $this->membership_model->validate_activation_code($code);
+            if ($query_result === NULL) {
+                $this->load->view('access_denied');
+            } else {
+                $data = array(
+                    'user_id' => $query_result
+                );
+                $this->load->view('sign_up_part2', $data);
+            }
+        }
+    }
+
+    function complete_registration() {
+        $choice = $this->input->post("submit");
+        $this->load->model('membership_model');
+        $user_id = $this->input->post('user_id');
+        if ($choice == "گذر") {
+            $this->membership_model->activate($user_id);
+
+            $name = $this->membership_model->auto_login($user_id);
+            $user_session_data = array(
+                'username' => $this->input->post('username'),
+                'first_name' => $name['first_name'],
+                'last_name' => $name['last_name'],
+                'user_id' => $name['id'],
+                'user_type' => $name['user_type'],
+                'is_logged_in' => TRUE
+            );
+            $this->session->set_userdata($user_session_data);
+
+            redirect('home');
+        } else if ($choice == "ارسال") {
+            /* $this->load->library('form_validation');
+              $config = array(
+              array(
+              'field' => 'tel',
+              'label' => 'تلفن',
+              'rules' => 'required|min_length[7]|max_length[20]'
+              ),
+              array(
+              'field' => 'postal_code',
+              'label' => 'کد پستی',
+              'rules' => 'required|min_length[6]|max_length[20]'
+              ),
+              array(
+              'field' => 'address',
+              'label' => 'آدرس',
+              'rules' => 'required|min_length[3]|max_length[511]'
+              ),
+              );
+
+              $this->form_validation->set_rules($config);
+              $this->form_validation->set_message('required', '<hr/>وارد کردن %s لازم است.');
+              $this->form_validation->set_message('min_length', '<hr/>%s باید حداقل ۶ حرفی باشد.');
+              $this->form_validation->set_message('max_length', '<hr/>%s باید حداکثر، ۳۱ حرفی باشد');
+
+              $this->form_validation->set_error_delimiters('<div class="error_msg">', '</div>');
+
+              if ($this->form_validation->run() == FALSE) {
+              $this->activate();
+              } else { */
+            $this->membership_model->update_on_activation($user_id);
+
+            $name = $this->membership_model->auto_login($user_id);
+            $user_session_data = array(
+                'username' => $this->input->post('username'),
+                'first_name' => $name['first_name'],
+                'last_name' => $name['last_name'],
+                'user_id' => $name['id'],
+                'user_type' => $name['user_type'],
+                'is_logged_in' => TRUE
+            );
+            $this->session->set_userdata($user_session_data);
+
+            redirect('home');
+            //}
+        }
+    }
+
     function logout() {
         $this->session->sess_destroy();
         redirect('home');
     }
 
 }
+
