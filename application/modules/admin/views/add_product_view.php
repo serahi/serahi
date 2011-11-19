@@ -4,7 +4,15 @@
 {/block}
 
 {block name=script}
-
+<script type = "text/javascript">
+{literal}
+function datePickerClosed (dateField) {
+	if (dateField.name == "start_schedule") {
+		document.getElementById('start_decoy').value = dateField.value;
+	}
+}
+{/literal}
+</script>
 {/block}
 {block name=main_content}
 {assign var=int value='required,custom[integer],min[0]'}
@@ -31,6 +39,33 @@
 			}
 			?>
 		</select>
+		<div class = "hrow">
+			<label for = "start_schedule">تاریخ آغاز نمایش</label>
+			<label for = "start_time">ساعت آغاز نمایش</label>
+			<label for = "duration">مدت زمان نمایش</label>
+		</div>
+		<div class = "hrow">
+			<div class = "dblock">
+				<input name = "start_schedule" type="hidden">
+				<input name = "start_decoy" id = "start_decoy" class = "date" disabled = "disabled">
+				<button type = "button" onclick = "displayDatePicker('start_schedule', this);" >انتخاب</button>
+			</div>
+			<div class = "dblock">
+				<select name = "start_time">
+					<?php for ($i=0; $i < 24; $i++) {
+						echo "<option value = '$i:00'>$i:00</option>";
+						echo "<option value = '$i:30'>$i:30</option>";
+					}?>
+				</select>
+			</div>
+			<div class = "dblock">
+				<select name = "duration">
+					<?php for ($i=12; $i <= 48; $i+=12) {
+						echo "<option value = '".($i*3600)."'>$i ساعت</option>";
+					}?>
+				</select>
+			</div>
+		</div>
 		<label for = "product_desc">شرح محصول</label>
 		<textarea name = "product_desc" rows = "9" cols = "80"><?php echo set_value('product_desc');?></textarea>
 		<input type="submit" value="اضافه کردن محصول" name="submit">
