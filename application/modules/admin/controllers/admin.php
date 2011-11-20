@@ -5,7 +5,9 @@ class Admin extends MY_Controller {
 	function index ()
 	{
 		$this->load->model('product_model');
+                $this->load->model('seller_model');
 		$view_data['products'] = $this->product_model->get_products();
+                $view_data['sellers'] = $this->seller_model->get_unapproved_sellers();
 		$this->load->view('index_view', $view_data);
 	}
 	
@@ -97,4 +99,11 @@ class Admin extends MY_Controller {
 			$this->load->view('access_denied');
 		}
 	}
+        
+        function approving_seller()
+        {
+            $this->load->model('seller_model');
+            $this->seller_model->approve();
+            $this->index();
+        }
 }

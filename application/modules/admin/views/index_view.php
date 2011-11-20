@@ -31,4 +31,24 @@
 	{/foreach}
 	</tbody>
 </table>
+<table>
+    <thead>
+        <tr>
+            <th>نام فروشنده</th>
+            <th>نام خانوادگی فروشنده</th>
+            <th>تایید</th>
+        </tr>
+    </thead>
+    <tbody>
+        {foreach $sellers as $seller}
+        <tr>
+            <td>{$seller.first_name}</td>
+            <td>{$seller.last_name}</td>
+            <td><form method="post" action="<?php echo base_url(); ?>admin/approving_seller">
+                    <input type="hidden" value="{$seller.id}" name="seller_id"/>
+                    <input type="submit" value="تایید" />
+                </form></td>
+        </tr>
+        {/foreach}
+    </tbody>
 {/block}
