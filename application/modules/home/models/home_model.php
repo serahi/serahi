@@ -22,19 +22,23 @@ class Home_model extends CI_Model {
 		foreach ($products->result_array() as $row) {
 			$time_str = $row['start_schedule'] . ' ' . $row['start_time'];
 			$then = strtotime($row['start_schedule'] . ' ' . $row['start_time']);
-			if (($then > time()) ||
-			    (time() - $then > $row['duration']))
+			$remain = time() - $then;
+			if (($remain <= 0) ||
+			    ($remain > $row['duration']))
 				continue;
 			$this->db->where('product_id', $row['id']);
 			$sell = $this->db->get('transactions');
 			$sell_count = $sell->num_rows;
-			$is_bought = FALSE;
 			$buying_state = 0;
+			$pursuit_code = '';
 			if (isset($user_bought_array[$row['id']])) {
-				$buying_state = $user_bought_array[$row['id']];
+				$buying_state = $user_bought_array[$row['id']]['buying_state'];
+				$pursuit_code = $user_bought_array[$row['id']]['pursuit_code'];
 			}
+			$row['pursuit_code'] = $pursuit_code;
 			$row['sell_count'] = $sell_count;
 			$row['buying_state'] = $buying_state;
+			$row['remaining'] = $remain; 
 			$product_array[] = $row;
 		}
 		return $product_array;
