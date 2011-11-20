@@ -6,7 +6,6 @@
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/style/960/text_rtl.css" />
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/style/validationEngine.jquery.css" />	 
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/style/site.css" />
-		<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/style/calendar.css" />
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/confirm/jquery.confirm/jquery.confirm.css" />
 		
 		{block name=css}{/block}
@@ -18,16 +17,7 @@
 		<script type="text/javascript" src="<?php echo base_url();?>assets/scripts/jquery.validationEngine-en.js"></script>
 		<script type="text/javascript" src="<?php echo base_url();?>assets/scripts/my_script.js"></script>
 		<script src="<?php echo base_url();?>assets/confirm/jquery.confirm/jquery.confirm.js"></script>
-		
 		<script src="<?php echo base_url();?>assets/confirm/js/script.js"></script>
-		
-		<script type="text/javascript" src="<?php echo base_url();?>assets/scripts/amin.js"></script>
-		<script type="text/javascript" src="<?php echo base_url();?>assets/scripts/calendar.js"></script>
-		
-		<script type="text/javascript">
-		
-		
-		</script>
 		
 		{block name=script}{/block}
 	</head>

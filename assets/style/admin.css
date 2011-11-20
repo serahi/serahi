@@ -42,7 +42,7 @@ textarea {
     width: 90%;
     float: right;
     clear: right;
-    max-width: 250px;
+    max-width: 280px;
 }
 .submit_form .row input {
 	margin: 3px;
@@ -100,6 +100,7 @@ textarea {
 }
 .submit_form .hrow input.date {
 	width: 40%;
+        height: 12px;
 }
 /********************************************/
 .table_form {

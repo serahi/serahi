@@ -1,9 +1,12 @@
 {block name=title}پنل مدیر{/block}
 {block name=css}
 <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/style/admin.css" />
+<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/style/calendar.css" />
 {/block}
 
 {block name=script}
+<script type="text/javascript" src="<?php echo base_url();?>assets/scripts/amin.js"></script>
+<script type="text/javascript" src="<?php echo base_url();?>assets/scripts/calendar.js"></script>
 <script type = "text/javascript">
 {literal}
 function datePickerClosed (dateField) {
