@@ -13,10 +13,14 @@ function datePickerClosed (dateField) {
 }
 $(document).ready(function (){
 	$("#product_form").submit(function () {
-		var date_str = $("#start_schedule").val();
-		var vals = date_str.split("/");
-		var jd = persian_to_jd(parseInt(vals[0]), parseInt(vals[1]), parseInt(vals[2]));
-		$("#start_schedule").attr('value', jd);
+		if (isNaN($("#start_schedule").val())) {
+			var date_str = $("#start_schedule").val();
+			var vals = date_str.split("/");
+			vals[1] = vals[1].replace(new RegExp("^[0]+", "g"), "");
+			vals[2] = vals[2].replace(new RegExp("^[0]+", "g"), "");
+			var jd = persian_to_jd(parseInt(vals[0]), parseInt(vals[1]), parseInt(vals[2]));
+			$("#start_schedule").attr('value', jd);
+		}
 	});
 });
 {/literal}

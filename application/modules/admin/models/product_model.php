@@ -8,7 +8,7 @@ class Product_model extends CI_Model
 	                         $lower_limit,$start_schedule, $start_time,
 							 $duration)
 	{
-		$calendar = cal_from_jd($start_schedule, CAL_JULIAN);
+		$calendar = cal_from_jd($start_schedule + 0.5, CAL_GREGORIAN);
 		$start_schedule = $calendar['date'];
 		$product_data = array(
 				'product_name' => $product_name,

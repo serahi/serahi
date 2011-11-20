@@ -20,7 +20,8 @@ class Home_model extends CI_Model {
 
 		$product_array = array();
 		foreach ($products->result_array() as $row) {
-			$then = strtotime($row['start_schedule'] . ' ' . $row['start_time'] . ':00');
+			$time_str = $row['start_schedule'] . ' ' . $row['start_time'];
+			$then = strtotime($row['start_schedule'] . ' ' . $row['start_time']);
 			if (($then > time()) ||
 			    (time() - $then > $row['duration']))
 				continue;

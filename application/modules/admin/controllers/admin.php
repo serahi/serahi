@@ -71,7 +71,6 @@ class Admin extends MY_Controller {
 					 'base_discount', 'product_price', 'lower_limit',
 					 'start_schedule', 'start_time', 'duration'
 				), true);
-				
 				//TODO: validate inputs
 				$config['upload_path'] = './images/products';
 				$config['allowed_types'] = 'gif|jpg|png';
