@@ -44,10 +44,12 @@
         <tr>
             <td>{$seller.first_name}</td>
             <td>{$seller.last_name}</td>
-            <td><form method="post" action="<?php echo base_url(); ?>admin/approving_seller">
+            <td>
+            	<form method="post" action="<?php echo base_url(); ?>admin/approving_seller">
                     <input type="hidden" value="{$seller.id}" name="seller_id"/>
                     <input type="submit" value="تایید" />
-                </form></td>
+                </form>
+            </td>
         </tr>
         {/foreach}
     </tbody>
