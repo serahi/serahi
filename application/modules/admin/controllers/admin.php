@@ -66,9 +66,9 @@ class Admin extends MY_Controller {
 				     $start_schedule, $start_time, $duration
 				) = _post_values(array(
 					 'product_name', 'seller', 'product_desc',
-					 'baes_discount', 'product_price', 'lower_limit',
+					 'base_discount', 'product_price', 'lower_limit',
 					 'start_schedule', 'start_time', 'duration'
-				));
+				), true);
 				
 				//TODO: validate inputs
 				$config['upload_path'] = './images/products';
@@ -78,6 +78,7 @@ class Admin extends MY_Controller {
 				$this->load->library('upload', $config);
 				$this->upload->do_upload();
 				$upload_data = $this->upload->data();
+				
 				$this->load->model('product_model');
 				$insert_result = $this->product_model->insert_product($product_name,
 				                                                      $seller_id,

@@ -1,6 +1,6 @@
 <?php
 
-function _post_values ($array)
+function _post_values ($array, $numbered = false)
 {
 	$CI = &get_instance();
 	$values = array();
@@ -16,7 +16,10 @@ function _post_values ($array)
 		} else {
 			$value = $CI->input->post($field);
 			if ($value !== FALSE) {
-				$values[$field] = $value;
+				if ($numbered)
+					$values[] = $value;
+				else
+					$values[$field] = $value;
 			}
 		}
 	}

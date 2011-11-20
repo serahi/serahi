@@ -11,6 +11,14 @@ function datePickerClosed (dateField) {
 		document.getElementById('start_decoy').value = dateField.value;
 	}
 }
+$(document).ready(function (){
+	$("#product_form").submit(function () {
+		var date_str = $("#start_schedule").val();
+		var vals = date_str.split("/");
+		var jd = persian_to_jd(parseInt(vals[0]), parseInt(vals[1]), parseInt(vals[2]));
+		$("#start_schedule").attr('value', jd);
+	});
+});
 {/literal}
 </script>
 {/block}
@@ -18,7 +26,7 @@ function datePickerClosed (dateField) {
 {assign var=int value='required,custom[integer],min[0]'}
 {assign var=required value='validate[required]'}
 <div id="add_product_form">
-	<form class = "submit_form product_form" enctype = "multipart/form-data" method = "post" action = "<?php echo base_url() . 'admin/add_product';?>">
+	<form id = "product_form" class = "submit_form product_form" enctype = "multipart/form-data" method = "post" action = "<?php echo base_url() . 'admin/add_product';?>">
 		<?php  echo validation_errors('<div class="error_msg">', '</div>');?>
 		<label for = "product_name">نام محصول</label>
 		<input name = "product_name" id = "product_name" class = "{$required}" value = "<?php echo set_value('product_name');?>">
@@ -46,7 +54,7 @@ function datePickerClosed (dateField) {
 		</div>
 		<div class = "hrow">
 			<div class = "dblock">
-				<input name = "start_schedule" type="hidden">
+				<input name = "start_schedule" type="hidden" id = "start_schedule">
 				<input name = "start_decoy" id = "start_decoy" class = "date" disabled = "disabled">
 				<button type = "button" onclick = "displayDatePicker('start_schedule', this);" >انتخاب</button>
 			</div>

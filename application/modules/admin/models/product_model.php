@@ -8,6 +8,8 @@ class Product_model extends CI_Model
 	                         $lower_limit,$start_schedule, $start_time,
 							 $duration)
 	{
+		$calendar = cal_from_jd($start_schedule, CAL_JULIAN);
+		$start_schedule = $calendar['date'];
 		$product_data = array(
 				'product_name' => $product_name,
 				'seller_id' => $seller_id,
@@ -28,7 +30,10 @@ class Product_model extends CI_Model
 		$this->db->select('products.id, product_name, display_name, price, base_discount, lower_limit, start_schedule, start_time, duration');
 		$this->db->where('sellers.id = products.seller_id');
 		$query = $this->db->get('products,sellers');
-		return $query->result_array();
+		$result = $query->result_array();
+		for ($i = 0; $i < count($result); $i++)
+			$result[$i]['duration'] = ($result[$i]['duration'] / 3600) . ' ساعت';
+		return $result;
 	}
 
 }
