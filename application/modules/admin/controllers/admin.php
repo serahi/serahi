@@ -4,11 +4,15 @@ class Admin extends MY_Controller {
 
 	function index ()
 	{
-		$this->load->model('product_model');
-                $this->load->model('seller_model');
-		$view_data['products'] = $this->product_model->get_products();
-                $view_data['sellers'] = $this->seller_model->get_unapproved_sellers();
-		$this->load->view('index_view', $view_data);
+		if (_is_admin()) {
+			$this->load->model('product_model');
+	        $this->load->model('seller_model');
+			$view_data['products'] = $this->product_model->get_products();
+	        $view_data['sellers'] = $this->seller_model->get_unapproved_sellers();
+			$this->load->view('index_view', $view_data);
+		} else {
+			$this->load->view('access_denied');
+		}
 	}
 	
 	function product_form ()
@@ -71,7 +75,6 @@ class Admin extends MY_Controller {
 					 'base_discount', 'product_price', 'lower_limit',
 					 'start_schedule', 'start_time', 'duration'
 				), true);
-				//TODO: validate inputs
 				$config['upload_path'] = './images/products';
 				$config['allowed_types'] = 'gif|jpg|png';
 				$config['max_size'] = '2048';
@@ -99,10 +102,25 @@ class Admin extends MY_Controller {
 		}
 	}
         
-        function approving_seller()
-        {
-            $this->load->model('seller_model');
-            $this->seller_model->approve();
-            redirect('admin');
-        }
+	function approving_seller()
+	{
+		if (_is_admin()) {
+	    	$this->load->model('seller_model');
+	    	$this->seller_model->approve();
+	    	redirect('admin');
+		} else {
+			$this->load->view('access_denied');
+		}
+	}
+	
+	function delete_product () {
+		if (_is_admin()) {
+			$id = $this->input->post('id');
+			$this->load->model('product_model');
+			$this->product_model->delete_product($id);
+			redirect('admin');
+		} else {
+			$this->load->view('access_denied');
+		}
+	}
 }

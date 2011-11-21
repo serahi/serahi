@@ -41,7 +41,7 @@
 			}
 		?>
 		<td><a href = "<?php echo base_url();?>admin/userlist/edit?id=<?php echo $user['id'];?>"> ویرایش </a>
-		<form class = "table_form" method = "post" action = "<?php echo base_url();?>/admin/userlist/delete">
+		<form class = "table_form" method = "post" action = "<?php echo base_url();?>admin/userlist/delete">
 			<input name = "id" value = "<?php echo $user['id'];?>" type = "hidden">
 			<input type = "submit" value = "حذف">
 		</form></td>
