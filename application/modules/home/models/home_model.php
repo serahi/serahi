@@ -22,9 +22,9 @@ class Home_model extends CI_Model {
 		foreach ($products->result_array() as $row) {
 			$time_str = $row['start_schedule'] . ' ' . $row['start_time'];
 			$then = strtotime($row['start_schedule'] . ' ' . $row['start_time']);
-			$remain = time() - $then;
-			if (($remain <= 0) ||
-			    ($remain > $row['duration']))
+			$passed = time() - $then;
+			if (($passed <= 0) ||
+			    ($passed > $row['duration']))
 				continue;
 			$this->db->where('product_id', $row['id'])->where('pursuit_code != NULL OR "pursuit_code" != \'canceled\' ');
 			$sell = $this->db->get('transactions');
@@ -38,7 +38,7 @@ class Home_model extends CI_Model {
 			$row['pursuit_code'] = $pursuit_code;
 			$row['sell_count'] = $sell_count;
 			$row['buying_state'] = $buying_state;
-			$row['remaining'] = $remain; 
+			$row['remaining'] = $row['duration'] - $passed; 
 			$product_array[] = $row;
 		}
 		return $product_array;
@@ -118,6 +118,11 @@ class Home_model extends CI_Model {
         $result = $this->db->get('transactions');
         if ($result->num_rows == 1) {
             $row = $result->row_array();
+			$this->db->where('product_id', $row['id'])->where('pursuit_code != NULL OR "pursuit_code" != \'canceled\' ');
+			$sell = $this->db->get('transactions');
+			$sell_count = $sell->num_rows;
+			if ($sell_count > $row['lower_limit'])
+				return FALSE;
             if ($row['buying_state'] == 1) {
                 $this->db->where('id', $row['id']);
                 $this->db->set('buying_state', 2)->set('pursuit_code', 'canceled');

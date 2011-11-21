@@ -19,7 +19,7 @@
 		<input id="c_password" type="text" class="check pass validate[required,equals[password]]" name="passconf" value="تکرار رمز عبور"/>
 		<input id="first_name" type="text" class="check validate[required]" name="first_name" value="<?php echo  set_value('first_name', 'نام');?>"/>
 		<input id="last_name" type="text" class="check validate[required]" name="last_name" value="<?php echo set_value('last_name', 'نام خانوادگی');?>"/>
-		<input id="email" type="text" class="check validate[custom[email]]" name="email" value="<?php echo  set_value('email', 'آدرس پست‌الکترونیکی');?>"/>
+		<input id="email" type="text" class="check validate[required,custom[email]]" name="email" value="<?php echo  set_value('email', 'آدرس پست‌الکترونیکی');?>"/>
 		<input type="hidden" value="c" name="ut">
 		<div id="register_msg">لطفاً پیش از ثبت‌نام قوانین سایت را مطالعه بفرمایید.<br/>
 			<a href="site/rules" id="register_btm">قوانین سایت</a><br/>

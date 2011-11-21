@@ -75,7 +75,11 @@
 			<td>{$product.display_name}</td>
 			<td class = "farsi_date">{$product.start_schedule} {$product.start_time}</td>
 			<td>{$product.duration}</td>
-			<td>delete or edit</td>
+			<td><a href = "<?php echo base_url();?>admin/edit_product?id={$product.id}"> ویرایش </a>
+			<form class = "table_form" method = "post" action = "<?php echo base_url();?>admin/delete_product">
+				<input name = "id" value = "{$product.id}" type = "hidden">
+				<input type = "submit" value = "حذف">
+			</form></td>
 		</tr>
 	{/foreach}
 	</tbody>
