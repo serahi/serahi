@@ -26,7 +26,7 @@ class Home_model extends CI_Model {
 			if (($remain <= 0) ||
 			    ($remain > $row['duration']))
 				continue;
-			$this->db->where('product_id', $row['id']);
+			$this->db->where('product_id', $row['id'])->where('pursuit_code != NULL OR "pursuit_code" != \'canceled\' ');
 			$sell = $this->db->get('transactions');
 			$sell_count = $sell->num_rows;
 			$buying_state = 0;
@@ -44,10 +44,10 @@ class Home_model extends CI_Model {
 		return $product_array;
     }
 
-    function add_transaction() {
+    function add_transaction($pursuit_code) {
         $this->db->where('user_id', $this->session->userdata('user_id'));
         $this->db->where('product_id', $this->input->post('product_id'));
-        $pursuit_code = rand_gen(30);
+       
         $query_result = $this->db->get('transactions');
         if ($query_result->num_rows() == 0) {
             $transaction_data = array(
@@ -59,15 +59,34 @@ class Home_model extends CI_Model {
                 'pursuit_code ' => $pursuit_code
             );
             $insert_result = $this->db->insert('transactions', $transaction_data);
-            return $insert_result;
+            
+     
+            
+            if ($insert_result == 1)
+                    return 1;
         } elseif ($query_result->num_rows() == 1) {
             $row = $query_result->row_array();
             if ($row['buying_state'] == 2) {
 
                 $this->db->where('user_id', $this->session->userdata('user_id'))->where('product_id', $this->input->post('product_id'));
                 $this->db->set('buying_state', 3)->set('pursuit_code', $pursuit_code);
-                $this->db->update('transactions');
-                return;
+                $insert_result = $this->db->update('transactions');
+                
+                $this->db->where('id', $this->input->post('product_id'))->
+                select('lower_limit');
+                $q = $thi->db->get('products');
+                $lower_limit = $q.lower_limit;
+                $this->db->where('pruduct_id', $this->input->post('product_id'))->
+                        where('pursuit_code != NULL OR "pursuit_code" != \'canceled\' ');
+                $this->db->select('id');
+                $q = $this->db->get('transitions');
+
+                if( $q->num_rows >= $lower_limit )
+                {
+                    return 'sell_actived';
+                }
+                if ($insert_result == 1)
+                    return 2;
             } else {
                 return "failed";
             }

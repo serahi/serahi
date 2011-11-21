@@ -41,6 +41,10 @@
                             <?php elseif ($this->session->userdata('user_type') == 'customer'):?>
 								<a href = "<?php echo base_url() . 'admin/userlist/edit?id='.$this->session->userdata('user_id');?>">ویرایش اطلاعات</a>
 							<?php endif?>
+                                                                
+                                                        <?php if($this->session->userdata('user_type') == 'customer'):?>
+                                                                <a href ="<?php echo base_url().'admin/userlist/edit';?>"> تنظیمات </a>
+                                                        <?php endif?>
 							</span>
 							<span>
 								<?php echo anchor(base_url() . 'user/logout', 'خروج');?>

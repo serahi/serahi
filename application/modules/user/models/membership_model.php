@@ -10,27 +10,52 @@ class Membership_model extends CI_Model {
 
         if ($q->num_rows == 1) {
             $user = $q->row();
-            return array(
-                'first_name' => $user->first_name,
-                'last_name' => $user->last_name,
-                'id' => $user->id,
-                'user_type' => $user->user_type
-            );
+            if ($user->user_type == 'seller') {
+                
+                $this->db->where('username', $this->input->post('username'));
+                $this->db->where('password', md5($this->input->post('password')));
+                $q = $this->db->get('sellers');
+                $user = $q->row();
+                if ($user->approved == 't' ) {
+                    
+                    return array(
+                        'first_name' => $user->first_name,
+                        'last_name' => $user->last_name,
+                        'id' => $user->id,
+                        'user_type' => $user->user_type,
+                        'email' => $user->email
+                    );
+                } else {
+
+                    return 'not_approved';
+                }
+            } else {
+                return array(
+                    'first_name' => $user->first_name,
+                    'last_name' => $user->last_name,
+                    'id' => $user->id,
+                    'user_type' => $user->user_type,
+                    'email' => $user->email
+                );
+            }
         }
+        echo "nabood";
+        die();
         return NULL;
     }
-    
-    function auto_login($user_id){
+
+    function auto_login($user_id) {
         $this->db->where('id', $user_id);
         $q = $this->db->get('users');
-        
+
         if ($q->num_rows == 1) {
             $user = $q->row();
             return array(
                 'first_name' => $user->first_name,
                 'last_name' => $user->last_name,
                 'id' => $user->id,
-                'user_type' => $user->user_type
+                'user_type' => $user->user_type,
+                'email' => $user->email
             );
         }
         return NULL;
@@ -78,16 +103,16 @@ class Membership_model extends CI_Model {
         $this->db->where('id', $user_id);
         $this->db->update('customers', $data);
     }
-    
+
     function activate($user_id) {
         $data = array(
             'activated' => 't',
             'random_string' => NULL
         );
         $this->db->where('id', $user_id);
-        $this->db->update('customers',$data );
+        $this->db->update('customers', $data);
     }
-    
+
     function insert_seller($user_type) {
         $user_data = array(
             'first_name' => $this->input->post('first_name'),

@@ -22,8 +22,8 @@
 .formError .formErrorContent {
 	width: 100%;
 	/*background: #ee0101;*/
-	color: #ee0101;
-	background: white;
+	color: white;
+	background: #ee0101;
 	position:relative;
 	z-index:5001;
 	/*color: #fff;*/

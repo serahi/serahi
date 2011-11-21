@@ -19,14 +19,20 @@ class User extends MY_Controller {
 
         $this->load->model('membership_model');
         $name = $this->membership_model->validate_user();
-        //echo $name['last_name']; die();
         if ($name != NULL) {
+            if ($name == 'not_approved')
+            {
+                $message['not_approved_msg'] = array('msg' =>"عضویت شما هنوز توسط مدیر سایت تائید نشده است.");
+                $this->load->view('login_form', $message);
+                return;
+            }
             $user_session_data = array(
                 'username' => $this->input->post('username'),
                 'first_name' => $name['first_name'],
                 'last_name' => $name['last_name'],
                 'user_id' => $name['id'],
                 'user_type' => $name['user_type'],
+                'email' => $name['email'],
                 'is_logged_in' => TRUE
             );
             $this->session->set_userdata($user_session_data);
@@ -185,6 +191,7 @@ class User extends MY_Controller {
                 'last_name' => $name['last_name'],
                 'user_id' => $name['id'],
                 'user_type' => $name['user_type'],
+                'email' => $name['email'],
                 'is_logged_in' => TRUE
             );
             $this->session->set_userdata($user_session_data);
@@ -229,6 +236,7 @@ class User extends MY_Controller {
                 'last_name' => $name['last_name'],
                 'user_id' => $name['id'],
                 'user_type' => $name['user_type'],
+                'email' => $name['email'],
                 'is_logged_in' => TRUE
             );
             $this->session->set_userdata($user_session_data);

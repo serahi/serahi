@@ -103,6 +103,6 @@ class Admin extends MY_Controller {
         {
             $this->load->model('seller_model');
             $this->seller_model->approve();
-            redirect("admin");
+            redirect('admin');
         }
 }
