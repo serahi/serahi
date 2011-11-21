@@ -1,3 +1,4 @@
 timestamp,unique_id,user_id,level,module_name,action,log_string
 "2011-10-05 20:39:38.031",jumcfh11,"",DEBUG,"",test_log,"First Log Test"
 "2011-10-05 20:40:28.717",ajtgc1az,"",DEBUG,"",test_log,"First Log Test"
+"2011-11-22 01:43:24.860",6nvvymu8,"",ERROR,"",send_mail,"mail send failed."

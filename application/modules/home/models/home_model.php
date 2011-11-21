@@ -60,7 +60,21 @@ class Home_model extends CI_Model {
             );
             $insert_result = $this->db->insert('transactions', $transaction_data);
             
-     
+             $this->db->where('id', $this->input->post('product_id'))->
+                select('lower_limit')->limit(1);
+                $q = $this->db->get('products');
+                $row = $q->row();
+                $lower_limit = $row->lower_limit;
+                $this->db->where('product_id', $this->input->post('product_id'))->
+                        where('pursuit_code != NULL OR "pursuit_code" != \'canceled\' ');
+                $this->db->select('id');
+                $q = $this->db->get('transactions');
+
+                if( $q->num_rows >= $lower_limit )
+                {
+                    
+                    return 'sell_actived';
+                }
             
             if ($insert_result == 1)
                     return 1;
@@ -73,16 +87,18 @@ class Home_model extends CI_Model {
                 $insert_result = $this->db->update('transactions');
                 
                 $this->db->where('id', $this->input->post('product_id'))->
-                select('lower_limit');
+                select('lower_limit')->limit(1);
                 $q = $this->db->get('products');
-                $lower_limit = $q.lower_limit;
-                $this->db->where('pruduct_id', $this->input->post('product_id'))->
+                $row = $q->row();
+                $lower_limit = $row->lower_limit;
+                $this->db->where('product_id', $this->input->post('product_id'))->
                         where('pursuit_code != NULL OR "pursuit_code" != \'canceled\' ');
                 $this->db->select('id');
-                $q = $this->db->get('transitions');
+                $q = $this->db->get('transactions');
 
                 if( $q->num_rows >= $lower_limit )
                 {
+                    
                     return 'sell_actived';
                 }
                 if ($insert_result == 1)
@@ -120,6 +136,24 @@ class Home_model extends CI_Model {
             echo "product_id= " . $this->input->post('product_id');
             return 'failed';
         }
+    }
+    
+    function get_user_trans_info($product_id)
+    {
+        $this->db->select('pursuit_code, user_id , email')->
+                where('product_id', $product_id)->
+                    from('transactions');
+        $this->db->join('customers', 'customers.id = user_id');
+        $q = $this->db->get();
+        
+        foreach( $q->result() as $row )
+        {
+            $message_info[] = array(
+                'email' => $row->email,
+                'pursuit_code' => $row->pursuit_code
+            );
+        }
+        return $message_info;
     }
 
 }
