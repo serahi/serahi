@@ -20,21 +20,26 @@ class Home extends MY_Controller
             $this->load->model('home_model');
             $pursuit_code = rand_gen(10);
             $insert_result = $this->home_model->add_transaction($pursuit_code);
-            if ($insert_result == 1)
+//            if ($insert_result == 1)
+//            {
+//                $email_to = $this->session->userdata('email');
+//                $email_subj = 'کد رهگیری خرید شما';
+//                $email_text = 'خرید شما با موفقیت انجام شد.  کد رهگیری خرید شما ' .  $pursuit_code . ' است.';
+//                $this->load->library('Email_agent');
+//                $this->email_agent->send($email_to, $email_subj, $email_text);
+//            }elseif( $insert_result == 2)
+//            {
+//                $email_to = $this->session->userdata('email');
+//                $email_to = 'sadegh.kazemy@gmail.com';
+//                $email_subj = 'کد رهگیری خرید شما';
+//                $email_text = 'خرید شما با موفقیت انجام شد.  کد جدید رهگیری خرید شما ' .  $pursuit_code . ' است.';
+//                $this->load->library('Email_agent');
+//                $this->email_agent->send($email_to, $email_subj, $email_text);
+//            }
+            if($insert_result == 'sell_actived')
             {
-                $email_to = $this->session->userdata('email');
-                $email_subj = 'کد رهگیری خرید شما';
-                $email_text = 'خرید شما با موفقیت انجام شد.  کد رهگیری خرید شما ' .  $pursuit_code . ' است.';
                 $this->load->library('Email_agent');
-                $this->email_agent->send($email_to, $email_subj, $email_text);
-            }elseif( $insert_result == 2)
-            {
-                $email_to = $this->session->userdata('email');
-                $email_to = 'sadegh.kazemy@gmail.com';
-                $email_subj = 'کد رهگیری خرید شما';
-                $email_text = 'خرید شما با موفقیت انجام شد.  کد جدید رهگیری خرید شما ' .  $pursuit_code . ' است.';
-                $this->load->library('Email_agent');
-                $this->email_agent->send($email_to, $email_subj, $email_text);
+                $this->Email_agent->sell_active($this->input->post('product_id'));
             }
             redirect('home');
         } else {

@@ -60,6 +60,8 @@ class Home_model extends CI_Model {
             );
             $insert_result = $this->db->insert('transactions', $transaction_data);
             
+     
+            
             if ($insert_result == 1)
                     return 1;
         } elseif ($query_result->num_rows() == 1) {
@@ -69,6 +71,20 @@ class Home_model extends CI_Model {
                 $this->db->where('user_id', $this->session->userdata('user_id'))->where('product_id', $this->input->post('product_id'));
                 $this->db->set('buying_state', 3)->set('pursuit_code', $pursuit_code);
                 $insert_result = $this->db->update('transactions');
+                
+                $this->db->where('id', $this->input->post('product_id'))->
+                select('lower_limit');
+                $q = $thi->db->get('products');
+                $lower_limit = $q.lower_limit;
+                $this->db->where('pruduct_id', $this->input->post('product_id'))->
+                        where('pursuit_code != NULL OR "pursuit_code" != \'canceled\' ');
+                $this->db->select('id');
+                $q = $this->db->get('transitions');
+
+                if( $q->num_rows >= $lower_limit )
+                {
+                    return 'sell_actived';
+                }
                 if ($insert_result == 1)
                     return 2;
             } else {

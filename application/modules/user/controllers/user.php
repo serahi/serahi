@@ -19,8 +19,13 @@ class User extends MY_Controller {
 
         $this->load->model('membership_model');
         $name = $this->membership_model->validate_user();
-        //echo $name['last_name']; die();
         if ($name != NULL) {
+            if ($name == 'not_approved')
+            {
+                $message['not_approved_msg'] = array('msg' =>"عضویت شما هنوز توسط مدیر سایت تائید نشده است.");
+                $this->load->view('login_form', $message);
+                return;
+            }
             $user_session_data = array(
                 'username' => $this->input->post('username'),
                 'first_name' => $name['first_name'],

@@ -1,12 +1,33 @@
 {block name=title}
 سه‌راهـــــی
 {/block}
+{block name=script}
+<script>
+    
+</script>
+{/block}
 
 {block name=main_content}
 {if isset($products)}
 <div class="product">
 	{foreach from=$products item=item name=props}
 	<div class="item">
+            <script>
+                $remaing_minutes = {$item.remaining} / 60;
+                $(document).ready(function(){
+                    $('#remain_time').value("mmm");
+                });
+                
+            </script>
+            <div class="remaining">
+                <b>
+                    زمان باقیمانده برای خرید این کالا
+                </b>
+                <div id="">
+                    <input id="remain_time" value="ss" >
+                </div>
+                
+            </div>
 		<div class="item_pic">
 			<img src="<?php echo base_url();?>images/products/{$item.image}" />
 		</div>

@@ -12,7 +12,12 @@
 		if (isset($error_msg)) {
 			echo "<div> $error_msg </div>";
 		}
+                if (isset ($not_approved_msg))
+                {
+                    echo '<div>' . $not_approved_msg['msg'] . '</div>';
+                }
 		?>
+            
 	</div>
 	<?php if (!isset($entered_username)) { ?>
 		<input type="text" id="username" class="check validate[required]" name="username" value="نام کاربری">
