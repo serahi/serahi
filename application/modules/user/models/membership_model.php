@@ -14,7 +14,8 @@ class Membership_model extends CI_Model {
                 'first_name' => $user->first_name,
                 'last_name' => $user->last_name,
                 'id' => $user->id,
-                'user_type' => $user->user_type
+                'user_type' => $user->user_type,
+                'email' =>$user->email                    
             );
         }
         return NULL;
@@ -30,7 +31,8 @@ class Membership_model extends CI_Model {
                 'first_name' => $user->first_name,
                 'last_name' => $user->last_name,
                 'id' => $user->id,
-                'user_type' => $user->user_type
+                'user_type' => $user->user_type,
+                'email' =>$user->email
             );
         }
         return NULL;

@@ -43,18 +43,18 @@
 			<div class="not_found_item">
 				این کالا قبلاً توسط شما خریداری شده است!
 			</div>
-			<div class="pursuit_code">
+<!--			<div class="pursuit_code">
 				کدرهگیری شما: {$item.pursuit_code}
-			</div>
+			</div>-->
 			<form method="post" action="<?php echo base_url() . 'home/cancel_transaction'?>" class="forms cancel_buying" >
 				<input type="submit" value="لغو خرید">
 				<input type="hidden" value="{$item.id}" name="product_id">
 			</form>
 			{elseif $item.buying_state eq 3}
 			<div class="not_found_item">این کالا قبلاً توسط شما خریداری شده است!</div> 
-			<div class="pursuit_code">
+<!--			<div class="pursuit_code">
 				کدرهگیری شما: {$item.pursuit_code}
-			</div>
+			</div>-->
 			{/if}
 		</div>
 	</div>

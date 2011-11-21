@@ -27,6 +27,7 @@ class User extends MY_Controller {
                 'last_name' => $name['last_name'],
                 'user_id' => $name['id'],
                 'user_type' => $name['user_type'],
+                'email' => $name['email'],
                 'is_logged_in' => TRUE
             );
             $this->session->set_userdata($user_session_data);
@@ -200,6 +201,7 @@ class User extends MY_Controller {
                 'last_name' => $name['last_name'],
                 'user_id' => $name['id'],
                 'user_type' => $name['user_type'],
+                'email' => $name['email'],
                 'is_logged_in' => TRUE
             );
             $this->session->set_userdata($user_session_data);
@@ -244,6 +246,7 @@ class User extends MY_Controller {
                 'last_name' => $name['last_name'],
                 'user_id' => $name['id'],
                 'user_type' => $name['user_type'],
+                'email' => $name['email'],
                 'is_logged_in' => TRUE
             );
             $this->session->set_userdata($user_session_data);
