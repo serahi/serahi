@@ -9,24 +9,19 @@ class Home extends MY_Controller
 
 	function index ()
 	{
-		if ($this->is_logged_in()) {
-			$this->load->model('home_model');
-			$array['products'] = $this->home_model->get_list();
-			
-			$this->load->view('home_view', $array);
-		} else {
-			$this->load->view('home_view');
-		}
+		$this->load->model('home_model');
+		$array['products'] = $this->home_model->get_list();
+		
+		$this->load->view('home_view', $array);
 	}
-
 
     function buy() {
         if ($this->is_logged_in()) {
             $this->load->model('home_model');
             $this->home_model->add_transaction();
-            $this->index();
+            redirect(base_url() . 'home/');
         } else {
-            $this->index();
+        	redirect('user/login');
         }
     }
 
@@ -34,14 +29,13 @@ class Home extends MY_Controller
         if ($this->is_logged_in()) {
             $this->load->model('home_model');
             $this->home_model->cancel_transaction();
-            $this->index();
+            redirect('home/');
         } else {
-            $this->index();
+        	redirect('home/');
         }
     }
 
     function is_logged_in() {
         return $this->session->userdata('is_logged_in');
     }
-
 }
