@@ -97,32 +97,13 @@ class User extends MY_Controller {
                 'field' => 'email',
                 'label' => 'پست الکترونیکی',
                 'rules' => 'trim|valid_email|required|min_length[3]|max_length[31]'
-            ),
-                /*
-                  array(
-                  'field' => 'phone',
-                  'label' => 'شماره‌ی تماس',
-                  'rules' => 'trim|required|min_length[3]|max_length[31]'
-                  ),
-
-                  array(
-                  'field' => 'address',
-                  'label' => 'آدرس',
-                  'rules' => 'trim|required|min_length[3]|max_length[511]'
-                  ),
-
-                  array(
-                  'field' => 'seller_display_name',
-                  'label' => 'نام شرکت یا فروشگاه',
-                  'rules' => 'trim|required|min_length[3]|max_length[63]'
-                  ),
-                 */
+            )
         );
 
         $this->form_validation->set_rules($config);
         $this->form_validation->set_message('required', '<hr/>وارد کردن %s لازم است.');
-        $this->form_validation->set_message('min_length', '<hr/>%s باید حداقل ۶ حرفی باشد.');
-        $this->form_validation->set_message('max_length', '<hr/>%s باید حداکثر، ۳۱ حرفی باشد');
+        $this->form_validation->set_message('min_length', '<hr/>%s باید حداقل %d حرفی باشد.');
+        $this->form_validation->set_message('max_length', '<hr/>%s باید حداکثر، %d حرفی باشد');
         $this->form_validation->set_message('matches', '<hr/> رمز عبور و تکرار آن یکسان نیستند.');
         $this->form_validation->set_message('valid_email', '<hr/>آدرس پست‌الکترونیک وارد شده معتبر نیست.');
 
@@ -153,13 +134,17 @@ class User extends MY_Controller {
             }
 
             if ($insert_query_result === TRUE) {
-                $activation_link = base_url() . 'user/activate?t=' . $random_string;
-                $this->load->library('Email_agent');
-                $email_to = $this->input->post('email');
-                $email_subj = 'Serahi Activation';
-                $email_text = $pre_text . $activation_link . $end_text;
-                $this->email_agent->send($email_to, $email_subj, $email_text);
-                $this->load->view('welcome_new_user');
+				if ($this->input->post('ut') === 'c') {
+	                $activation_link = base_url() . 'user/activate?t=' . $random_string;
+	                $this->load->library('Email_agent');
+	                $email_to = $this->input->post('email');
+	                $email_subj = 'Serahi Activation';
+	                $email_text = $pre_text . $activation_link . $end_text;
+	                $this->email_agent->send($email_to, $email_subj, $email_text);
+	                $this->load->view('welcome_new_user');
+				} elseif ($this->input->post('ut') === 's') {
+					$this->load->view('welcome_seller');
+				}
             } elseif ($insert_query_result == "NOT UNIQUE") {
                 $form_data = $this->input->post();
                 $error_msg['user_not_unique'] = 'این نام کاربری قبلاً در سیستم ثبت شده است.';

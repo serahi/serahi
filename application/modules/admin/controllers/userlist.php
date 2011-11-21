@@ -91,12 +91,17 @@ class Userlist extends MY_Controller {
                 array(
                     'field' => 'username',
                     'label' => 'نام کاربری',
-                    'rules' => 'required|min_length[6]|max_length[31]'
+                    'rules' => 'required|min_length[5]|max_length[31]'
                 ),
                 array(
                     'field' => 'password',
                     'label' => 'رمز عبور',
-                    'rules' => 'required|min_length[6]|max_length[31]'
+                    'rules' => 'min_length[6]|max_length[31]'
+                ),
+                array(
+                    'field' => 'passconf',
+                    'label' => 'رمز عبور',
+                    'rules' => 'min_length[6]|max_length[31]'
                 ),
                 array(
                     'field' => 'user_type',
@@ -117,7 +122,7 @@ class Userlist extends MY_Controller {
 
             $this->form_validation->set_rules($config);
             $this->form_validation->set_message('required', '<hr/>وارد کردن %s لازم است.');
-            $this->form_validation->set_message('min_length', '<hr/>%s باید حداقل ۶ حرفی باشد.');
+            $this->form_validation->set_message('min_length', '<hr/>%s باید حداقل ۵ حرفی باشد.');
             $this->form_validation->set_message('max_length', '<hr/>%s باید حداکثر، ۳۱ حرفی باشد');
             $this->form_validation->set_message('matches', '<hr/> رمز عبور و تکرار آن یکسان نیستند.');
             $this->form_validation->set_message('valid_email', '<hr/>آدرس پست‌الکترونیک وارد شده معتبر نیست.');
