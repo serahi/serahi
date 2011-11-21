@@ -35,8 +35,11 @@
 							<?php if ($this->session->userdata('user_type') == 'admin'):?>
 								<a href = "<?php echo base_url() . 'admin/';?>">پنل مدیریت</a>
 								<a href = "<?php echo base_url() . 'admin/userlist';?>">مدیریت کاربران</a>
-							<?php elseif ($this->session->userdata('user_type') == 'Seller'):?>
+							<?php elseif ($this->session->userdata('user_type') == 'seller'):?>
 								<a href = "<?php echo base_url() . 'seller/';?>">پنل فروشنده</a>
+                                                                <a href = "<?php echo base_url() . 'admin/userlist/edit?id='.$this->session->userdata('user_id');?>">ویرایش اطلاعات</a>
+                                                                <?php elseif ($this->session->userdata('user_type') == 'customer'):?>
+								<a href = "<?php echo base_url() . 'admin/userlist/edit?id='.$this->session->userdata('user_id');?>">ویرایش اطلاعات</a>
 							<?php endif?>
                                                                 
                                                         <?php if($this->session->userdata('user_type') == 'customer'):?>
