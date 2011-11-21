@@ -31,8 +31,11 @@ class Product_model extends CI_Model
 		$this->db->where('sellers.id = products.seller_id');
 		$query = $this->db->get('products,sellers');
 		$result = $query->result_array();
-		for ($i = 0; $i < count($result); $i++)
+		for ($i = 0; $i < count($result); $i++) {
+			list($year, $month, $day) = explode('-', $result[$i]['start_schedule']);
+			$result[$i]['start_schedule'] = gregoriantojd($month, $day, $year);
 			$result[$i]['duration'] = ($result[$i]['duration'] / 3600) . ' ساعت';
+		}
 		return $result;
 	}
 

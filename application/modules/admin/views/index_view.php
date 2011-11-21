@@ -2,46 +2,24 @@
 <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/style/admin.css" />
 <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/style/tables.css" />
 {/block}
+
 {block name=script}
+<script type="text/javascript" src="<?php echo base_url();?>assets/scripts/amin.js"></script>
 <script language="javascript">
 	$(document).ready(function() {
 		$("tr:nth-child(odd)").addClass("odd");
+		$(".farsi_date").each(function(){
+			var parts = $(this).text().split(' ');
+			var date = jd_to_persian(parseInt(parts[0]));
+			$(this).text(date[0] + '-' + date[1] + '-' + date[2] + ' ' + parts[1]);
+		});
 	});
 
 </script>
 {/block}
 {block name=main_content}
 <a href = "<?php echo base_url();?>admin/product_form">افزودن محصول جدید</a>
-<!--{if count($sellers) > 0}
-<form method="post" action="<?php echo base_url(); ?>admin/approving_seller">
-<br/>
-لیست فروشنده های تایید نشده
-<br/>
-<table>
-    <thead>
-        <tr>
-            <th>نام فروشنده</th>
-            <th>نام خانوادگی فروشنده</th>
-            <th>شماره تلفن</th>
-        </tr>
-    </thead>
-    <tbody>
-        {foreach $sellers as $seller}
-        <tr>
-            <td>{$seller.first_name}</td>
-            <td>{$seller.last_name}</td>
-            <td>{$seller.phone}</td>
-            <td>
-                <input type="hidden" value="{$seller.id}" name="seller_id"/>
-                <input type="checkbox" name="{$seller.id}" value="true" />
-            </td>
-        </tr>
-        {/foreach}
-    </tbody>
-</table>
-<input type="submit" value="تایید">
-</form>
-{/if}-->
+
 {if count($sellers) > 0}
 <br/>
 لیست فروشنده های تایید نشده
@@ -95,7 +73,7 @@
 			<td>{$product.base_discount}</td>
 			<td>{$product.lower_limit}</td>
 			<td>{$product.display_name}</td>
-			<td>{$product.start_schedule} {$product.start_time}</td>
+			<td class = "farsi_date">{$product.start_schedule} {$product.start_time}</td>
 			<td>{$product.duration}</td>
 			<td>delete or edit</td>
 		</tr>
