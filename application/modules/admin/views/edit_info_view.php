@@ -18,7 +18,9 @@
 {assign var=int value='required,custom[integer],min[0]'}
 {assign var=required value='validate[required]'}
 {assign var=required_3 value='validate[minSize[3]]'}
+{assign var=required_5 value='validate[minSize[5]]'}
 {assign var=required_6 value='validate[minSize[6]]'}
+
 <form method = "post" class = "submit_form" action = "<?php echo base_url() . "admin/userlist/save_edit"; ?>">
 
     <div class = "row">
@@ -30,9 +32,11 @@
     <?php echo validation_errors('<div class="error_msg">', '</div>'); ?>
     <input type = "hidden" name = "id" value = "{$id}">
     <label for = "username">نام کاربری</label>
-    <input name = "username" id = "username" class = "{$required_6}" value = "{$username}">
+    <input name = "username" id = "username" class = "{$required_5}" value = "{$username}">
     <label for = "password">رمز عبور جدید</label>
-    <input name = "password" id = "password" class = "{$required_6}" value = "" type = "password">
+    <input name = "password" id = "password" class = "" value = "" type = "password">
+    <label for = "passconf">تکرار رمز جدید</label>
+    <input name = "passconf" id = "passconf" class = "validate[equals[password]]" value = "" type = "password">
     <label for = "first_name">نام</label>
     <input name = "first_name" id = "first_name" class = "{$required_3}" value = "{$first_name}">
     <label for = "last_name">نام خانوادگی</label>
@@ -41,11 +45,16 @@
         <label for = "user_type">نوع کاربر</label>
         <input name = "user_type" value = "{$user_type}">
     <?php } ?>
+    <?php if ($this->session->userdata('user_type') == 'seller') { ?>
+        <input type="hidden" value="seller" name="user_type">
+    <?php } else if ($this->session->userdata('user_type') == 'customer') { ?> 
+        <input type="hidden" value="customer" name="user_type">
+    <?php } ?> 
     <label for = "email">پست الکترونیکی</label>
     <input name = "email" id = "email" class = "validate[custom[email]]" value = "{$email}">
     {if $user_type eq 'seller'}
     <label for = "display_name">نام فروشگاه</label>
-    <input name = "display_name" id = "display_name" class = "{$required}" value = "{$display_name}">
+    <input name = "display_name" id = "display_name" class = "{$required}" value = "{$display_name}"> 
     <label for = "address">آدرس</label>
     <input name = "address" id = "address" value = "{$address}" class = "{$required}">
     <label for = "phone">تلفن</label>
