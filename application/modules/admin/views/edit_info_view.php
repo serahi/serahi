@@ -32,7 +32,7 @@
 	<label for = "username">نام کاربری</label>
 	<input name = "username" id = "username" class = "{$required_6}" value = "{$username}">
 	<label for = "password">رمز عبور جدید</label>
-	<input name = "password" id = "password" class = "{$required_6}" value = "" type = "password">
+	<input name = "password" id = "password" class = "" value = "" type = "password">
 	<label for = "first_name">نام</label>
 	<input name = "first_name" id = "first_name" class = "{$required_3}" value = "{$first_name}">
 	<label for = "last_name">نام خانوادگی</label>

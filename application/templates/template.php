@@ -38,6 +38,10 @@
 							<?php elseif ($this->session->userdata('user_type') == 'Seller'):?>
 								<a href = "<?php echo base_url() . 'seller/';?>">پنل فروشنده</a>
 							<?php endif?>
+                                                                
+                                                        <?php if($this->session->userdata('user_type') == 'customer'):?>
+                                                                <a href ="<?php echo base_url().'admin/userlist/edit';?>"> تنظیمات </a>
+                                                        <?php endif?>
 							</span>
 							<span>
 								<?php echo anchor(base_url() . 'user/logout', 'خروج');?>

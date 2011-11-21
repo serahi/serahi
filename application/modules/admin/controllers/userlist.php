@@ -26,7 +26,7 @@ class Userlist extends MY_Controller
 
 	function edit ()
 	{
-		if (_is_admin()) {
+		if (_is_admin() ) {
 			$id = $this->input->get('id');
 			if ($id) {
 				$this->load->model('user_model');
@@ -86,11 +86,6 @@ class Userlist extends MY_Controller
 				array(
 						'field' => 'username',
 						'label' => 'نام کاربری',
-						'rules' => 'required|min_length[6]|max_length[31]'
-				),
-				array(
-						'field' => 'password',
-						'label' => 'رمز عبور',
 						'rules' => 'required|min_length[6]|max_length[31]'
 				),
 				array(
