@@ -19,12 +19,14 @@
 		<div class="base_discount">
 			<b> تخفیف پایه: </b>{$item.base_discount} درصد
 		</div>
-		<div class="lower_limit">
+		<!--<div class="lower_limit">
 			<b> حد نصاب: </b>{$item.lower_limit}
 		</div>
 		<div class="sell_count">
 			<b> تعداد فروخته شده تا الان: </b>{$item.sell_count}
-		</div>
+		</div>-->
+                وضعیت فروش
+                <progress value="{$item.sell_count}" max="{$item.lower_limit}"></progress>
 		<div class="description">
 			<pre>{$item.description}</pre>
 		</div>
