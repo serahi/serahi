@@ -102,48 +102,4 @@ textarea {
 	width: 40%;
         height: 12px;
 }
-/********************************************/
-.table_form {
-	border: none;
-	display: inline-block;
-}
-td a:visited{
-	color: blue;
-}
-td a, .table_form input[type="submit"] {
-	font-family: tahoma,sans-serif;
-	font-size: 11px;
-	margin: 0 2px;
-	padding: 0;
-	height: 14px;
-}
-.table_form input[type="submit"],
-.table_form input[type="submit"]:hover{
-	text-decoration: none;
-	border: none;
-	background-color: inherit;
-	color: blue;
-	cursor: pointer;
-}
-/*********************************************/
 
-thead tr {
-	border-bottom: 3px solid black;
-	padding: 2px;
-}
-table {
-	margin: 2% auto;
-}
-td, th {
-	min-width: 80px;
-	text-align: center;
-}
-td {
-	padding: 5px 3px;
-}
-th {
-	padding: 8px 3px;
-}
-table tbody .odd {
-	background-color: #d0d0d0;
-}
