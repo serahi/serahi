@@ -102,6 +102,11 @@ class Home_model extends CI_Model {
         $result = $this->db->get('transactions');
         if ($result->num_rows == 1) {
             $row = $result->row_array();
+			$this->db->where('product_id', $row['id'])->where('pursuit_code != NULL OR "pursuit_code" != \'canceled\' ');
+			$sell = $this->db->get('transactions');
+			$sell_count = $sell->num_rows;
+			if ($sell_count > $row['lower_limit'])
+				return FALSE;
             if ($row['buying_state'] == 1) {
                 $this->db->where('id', $row['id']);
                 $this->db->set('buying_state', 2)->set('pursuit_code', 'canceled');

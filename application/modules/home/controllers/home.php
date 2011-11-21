@@ -50,8 +50,9 @@ class Home extends MY_Controller
     function cancel_transaction() {
         if ($this->is_logged_in()) {
             $this->load->model('home_model');
-            $this->home_model->cancel_transaction();
-            
+            $ret = $this->home_model->cancel_transaction();
+            if ($ret === FALSE)
+				redirect('home');
             $email_to = $this->session->userdata('email');
             $email_subj = 'خرید شما لغو شد.';
             $email_text = 'خرید شما لغو شد. کد رهگیری شما دیگر قابل استفاده نیست. ';
