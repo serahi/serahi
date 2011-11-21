@@ -74,7 +74,7 @@ class Home_model extends CI_Model {
                 
                 $this->db->where('id', $this->input->post('product_id'))->
                 select('lower_limit');
-                $q = $thi->db->get('products');
+                $q = $this->db->get('products');
                 $lower_limit = $q.lower_limit;
                 $this->db->where('pruduct_id', $this->input->post('product_id'))->
                         where('pursuit_code != NULL OR "pursuit_code" != \'canceled\' ');
