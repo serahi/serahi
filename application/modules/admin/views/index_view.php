@@ -1,5 +1,35 @@
 {block name=main_content}
 <a href = "<?php echo base_url();?>admin/product_form">افزودن محصول جدید</a>
+{if count($sellers) > 0}
+<form method="post" action="<?php echo base_url(); ?>admin/approving_seller">
+<br/>
+لیست فروشنده های تایید نشده
+<br/>
+<table>
+    <thead>
+        <tr>
+            <th>نام فروشنده</th>
+            <th>نام خانوادگی فروشنده</th>
+            <th>شماره تلفن</th>
+        </tr>
+    </thead>
+    <tbody>
+        {foreach $sellers as $seller}
+        <tr>
+            <td>{$seller.first_name}</td>
+            <td>{$seller.last_name}</td>
+            <td>{$seller.phone}</td>
+            <td>
+                <input type="hidden" value="{$seller.id}" name="seller_id"/>
+                <input type="checkbox" name="{$seller.id}" value="true" />
+            </td>
+        </tr>
+        {/foreach}
+    </tbody>
+</table>
+<input type="submit" value="تایید">
+</form>
+{/if}
 <br />
 لیست محصولات فعلی
 <br>
@@ -31,26 +61,4 @@
 	{/foreach}
 	</tbody>
 </table>
-<table>
-    <thead>
-        <tr>
-            <th>نام فروشنده</th>
-            <th>نام خانوادگی فروشنده</th>
-            <th>تایید</th>
-        </tr>
-    </thead>
-    <tbody>
-        {foreach $sellers as $seller}
-        <tr>
-            <td>{$seller.first_name}</td>
-            <td>{$seller.last_name}</td>
-            <td>
-            	<form method="post" action="<?php echo base_url(); ?>admin/approving_seller">
-                    <input type="hidden" value="{$seller.id}" name="seller_id"/>
-                    <input type="submit" value="تایید" />
-                </form>
-            </td>
-        </tr>
-        {/foreach}
-    </tbody>
 {/block}

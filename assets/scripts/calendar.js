@@ -45,8 +45,8 @@ function displayDatePicker(dateFieldName, displayBelowThisObject, dtFormat, dtSe
   else
     dateFormat = defaultDateFormat;
  
-  var x = displayBelowThisObject.offsetLeft;
-  var y = displayBelowThisObject.offsetTop + displayBelowThisObject.offsetHeight ;
+  var x = displayBelowThisObject.offsetLeft + 170 ;
+  var y = displayBelowThisObject.offsetTop + displayBelowThisObject.offsetHeight - 140 ;
  
   // deal with elements inside tables and such
   var parent = displayBelowThisObject;
