@@ -13,18 +13,38 @@
 	{foreach from=$products item=item name=props}
 	<div class="item">
             <script>
-                $remaing_minutes = {$item.remaining} / 60;
-                $(document).ready(function(){
-                    $('#remain_time').value("mmm");
-                });
-                
+            	{counter assign=count}
+            	var remaining = {$item.remaining};
+            	var callback_{$count} = function () {
+            		var txt = $("#remain_hidden_{$count}").text();
+            		var num = parseInt(txt);
+            		var remaining = num - 1;
+            		if (remaining < 0) remaining = 0;
+            		$("#remain_hidden_{$count}").text(remaining);
+	            	var mins = remaining / 60;
+	            	var hours = mins / 60;
+	            	var days = hours / 24;
+	            	days = days - days % 1;
+	            	hours = hours % 24 - hours % 1;
+	            	mins = mins % 60 - mins % 1;
+	            	var secs = remaining % 60;
+	            	var result = '';
+	            	if (days > 0) result = result + days + ' روز ';
+	            	if (hours > 0)result = result + hours+ ' ساعت ';
+	            	if (mins > 0) result = result + mins + ' دقیقه ';
+	            	if (secs > 0) result = result + secs + ' ثانیه';
+	            	$("#remain_time_{$count}").text(result);
+            	};
+            	window.setInterval(callback_{$count}, 1000);
             </script>
             <div class="remaining">
                 <b>
                     زمان باقیمانده برای خرید این کالا
                 </b>
-                <div id="">
-                    <input id="remain_time" value="ss" >
+                <div id = "remain_hidden_{$count}" style="display:none">
+                	{$item.remaining}
+                </div>
+                <div id="remain_time_{$count}">
                 </div>
                 
             </div>
