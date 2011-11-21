@@ -1,6 +1,7 @@
 {block name=title}مدیریت کاربران{/block}
 {block name=css}
 <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/style/admin.css" />
+<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/style/tables.css" />
 {/block}
 {block name=script}
 <script language="javascript">

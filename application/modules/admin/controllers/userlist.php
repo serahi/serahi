@@ -53,7 +53,10 @@ class Userlist extends MY_Controller {
                 'last_name',
                 'user_type',
                 'email'
-                    ));
+            ));
+			if (!_is_admin()) {
+				$user['user_type'] = $this->session->userdata('user_type');
+			}
             if ($user['user_type'] == 'seller' && _is_admin()) {
                 $user = array_merge($user, _post_values(array(
                             'address',

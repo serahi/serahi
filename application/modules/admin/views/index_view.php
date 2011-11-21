@@ -1,3 +1,15 @@
+{block name=css}
+<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/style/admin.css" />
+<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/style/tables.css" />
+{/block}
+{block name=script}
+<script language="javascript">
+	$(document).ready(function() {
+		$("tr:nth-child(odd)").addClass("odd");
+	});
+
+</script>
+{/block}
 {block name=main_content}
 <a href = "<?php echo base_url();?>admin/product_form">افزودن محصول جدید</a>
 <!--{if count($sellers) > 0}
