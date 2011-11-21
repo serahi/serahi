@@ -27,6 +27,9 @@
 		</div>-->
                 وضعیت فروش
                 <progress value="{$item.sell_count}" max="{$item.lower_limit}"></progress>
+                <div class="progress value">
+                    {$item.sell_count}/{$item.lower_limit}
+                </div>
 		<div class="description">
 			<pre>{$item.description}</pre>
 		</div>
@@ -48,10 +51,12 @@
 			<div class="pursuit_code">
 				کدرهگیری شما: {$item.pursuit_code}
 			</div>
+                        {if $item.sell_count < $item.lower_limit}
 			<form method="post" action="<?php echo base_url() . 'home/cancel_transaction'?>" class="forms cancel_buying" >
 				<input type="submit" value="لغو خرید">
 				<input type="hidden" value="{$item.id}" name="product_id">
 			</form>
+                        {/if}
 			{elseif $item.buying_state eq 3}
 			<div class="not_found_item">این کالا قبلاً توسط شما خریداری شده است!</div> 
 			<div class="pursuit_code">
