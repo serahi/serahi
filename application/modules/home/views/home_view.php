@@ -98,9 +98,7 @@
                         {/if}
 			{elseif $item.buying_state eq 3}
 			<div class="not_found_item">این کالا قبلاً توسط شما خریداری شده است!</div> 
-			<div class="pursuit_code">
-				کدرهگیری شما: {$item.pursuit_code}
-			</div>-->
+			
 			{/if}
 		</div>
 	</div>
