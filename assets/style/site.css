@@ -60,6 +60,15 @@ a {
 	padding: 1em;
 	-moz-border-radius: 3px;
 }
+.g_form{
+        width: 330px;
+	background: #f0f0f0 repeat-x 0 0;
+	border: 1px solid white;
+	margin: 150px auto 100px;
+	padding: 2em 1em;
+	-moz-border-radius: 3px;
+}
+
 h1, h2, h3, h4, h5 {
 	margin: -1.5em 1.2em 1.5em 1em;
 	font-family: arial black, arial;
@@ -134,6 +143,11 @@ h1, h2, h3, h4, h5 {
 	margin: .1em 1.5em;
 	text-align: center;
 	color: #f86923;
+}
+.ok_msg {
+	margin: .1em 1.5em;
+	text-align: center;
+	color: green;
 }
 .product {
 	

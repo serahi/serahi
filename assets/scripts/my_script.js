@@ -6,6 +6,7 @@ var inputs = {
 		'first_name' : 'نام',
 		'last_name' : 'نام خانوادگی',
 		'address' : 'آدرس دقیق',
+                'pursuit_code': 'کد رهگیری',
 		'phone': 'شماره‌ی تماس',
 		'seller_display_name': 'نام شرکت یا فروشگاه شما'
 
