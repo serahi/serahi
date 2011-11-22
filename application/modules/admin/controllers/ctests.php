@@ -14,6 +14,7 @@ class CTests extends MY_Controller
 		$test = new Admin ();
 		$mocked_session->returns('userdata', TRUE, array('is_logged_in'));
 		$mocked_session->returns('userdata', 'admin', array('user_type'));
+		$mocked_loader->returns('model', $this->load->model('product_model'), array('product_model'));
 		$mocked_loader->returns('model', $this->load->model('seller_model'), array('seller_model'));
 		$mocked_loader->expectOnce('view', array(
 				'index_view',

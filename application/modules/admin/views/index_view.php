@@ -11,7 +11,7 @@
 		$(".farsi_date").each(function(){
 			var parts = $(this).text().split(' ');
 			var date = jd_to_persian(parseInt(parts[0]));
-			$(this).text(date[0] + '-' + date[1] + '-' + date[2] + ' ' + parts[1]);
+			$(this).text(date[0] + '/' + date[1] + '/' + date[2] + ' ' + parts[1]);
 		});
 	});
 

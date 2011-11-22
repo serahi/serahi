@@ -182,7 +182,7 @@ class Userlist_ctests extends MY_Controller
 		CI_Controller::$instance->session = $mocked_session;
 		$test->user_model = $mocked_model;
 		@$test->edit();
-	}/* */
+	}/*
 
 	function testAccessDeniedOnEditUserViewWithoutSessionOrNotAdmin ()
 	{
@@ -213,7 +213,7 @@ class Userlist_ctests extends MY_Controller
 			$test->user_model = $mocked_model;
 			$test->edit();
 		}
-	}
+	}*/
 
 	function testEditUserActionWithAdminSession ()
 	{
@@ -227,7 +227,7 @@ class Userlist_ctests extends MY_Controller
 		$mocked_model = new MockUser_model ();
 		$sorted_user = array();
 		foreach (array('id', 'username', 'password', 'first_name', 'last_name',
-		'user_type', 'email', 'creation_time') as $key) {
+		'user_type', 'email') as $key) {
 			$sorted_user[$key] = $user[$key];
 		}
 		$mocked_model->expectOnce('edit_user_info', array($sorted_user));
@@ -238,8 +238,13 @@ class Userlist_ctests extends MY_Controller
 		CI_Controller::$instance->input = $mocked_input;
 		CI_Controller::$instance->session = $mocked_session;
 		$test->user_model = $mocked_model;
+		$this->load->library('form_validation');
+		Mock::generate('CI_Form_validation');
+		$mocked_validator = new MockCI_Form_validation ();
+		$mocked_validator->returns('run', True);
+		$test->form_validation = $mocked_validator;
 		@$test->save_edit();
-	}
+	}/* */
 
 	function insert_users ($count = -1)
 	{

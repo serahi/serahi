@@ -65,6 +65,7 @@ class Userlist_mtests extends MY_Controller
 		$this->assertEqual(count($data), 1);
 		unset($new_user['password']);
 		$new_user['id'] = $data[0]['id'];
+		unset($data[0]['random_string']);
 		$this->assertEqual($new_user, $data[0]);
 	}
 
@@ -93,8 +94,10 @@ class Userlist_mtests extends MY_Controller
 		$users = $this->insert_user_infos(2);
 		$this->load->model('user_model');
 		$user_info = $this->user_model->get_user_info($users[0]['id']);
+		unset($user_info['random_string']);
 		$this->assertEqual($users[0], $user_info);
 		$seller_info = $this->user_model->get_user_info($users[1]['id']);
+		unset($seller_info['random_string']);
 		$this->assertEqual($users[1], $seller_info);
 	}
 
@@ -118,6 +121,7 @@ class Userlist_mtests extends MY_Controller
 		$this->user_model->edit_user_info($users[0]);
 		$users[0]['password'] = md5('oldadmin');
 		$db_user = $this->getByID($users[0]['id'], 'users');
+		unset($db_user['random_string']);
 		$this->assertEqual($users[0], $db_user);
 		$users[1]['username'] = 'miladb';
 		$users[1]['password'] = 'miladb';
@@ -128,6 +132,7 @@ class Userlist_mtests extends MY_Controller
 		$this->user_model->edit_user_info($users[1]);
 		$users[1]['password'] = md5('miladb');
 		$db_user = $this->getByID($users[1]['id'], 'sellers');
+		unset($db_user['random_string']);
 		$this->assertEqual($users[1], $db_user);
 	}
 
@@ -143,6 +148,7 @@ class Userlist_mtests extends MY_Controller
 		$this->user_model->edit_user_info($user);
 		$user['password'] = md5('admin');
 		$db_user = $this->getByID($user['id'], 'users');
+		unset($db_user['random_string']);
 		$this->assertEqual($user, $db_user);
 	}
 
@@ -156,6 +162,7 @@ class Userlist_mtests extends MY_Controller
 		$user['creation_time'] = $temp;
 		$db_user = $this->getByID($user['id'], 'users');
 		unset($db_user['password']);
+		unset($db_user['random_string']);
 		$this->assertEqual($user, $db_user);
 	}
 
@@ -167,11 +174,13 @@ class Userlist_mtests extends MY_Controller
 		$this->load->model('user_model');
 		$this->user_model->edit_user_info($user);
 		$db_user = $this->getByID($user['id'], 'users');
+		unset($db_user['random_string']);
 		unset($db_user['password']);
 		$this->assertEqual($temp, $db_user);
 		$user['user_type'] = 'books';
 		$this->user_model->edit_user_info($user);
 		$db_user = $this->getByID($user['id'], 'users');
+		unset($db_user['random_string']);
 		unset($db_user['password']);
 		$this->assertEqual($temp, $db_user);
 	}

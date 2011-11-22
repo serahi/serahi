@@ -76,3 +76,7 @@ function rand_gen($len)
 	
 	return $random_string;
 }
+
+function ends_with( $str, $sub ) {
+   return ( substr( $str, strlen( $str ) - strlen( $sub ) ) === $sub );
+}
