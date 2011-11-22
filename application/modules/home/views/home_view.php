@@ -8,7 +8,7 @@
 {/block}
 
 {block name=main_content}
-{if isset($products)}
+{if isset($products) && count($products) > 0}
 <div class="product">
 	{foreach from=$products item=item name=props}
 	<div class="item">

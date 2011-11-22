@@ -3,7 +3,7 @@
 {/block}
 
 {block name=main_content} <?php
-if (isset($products)) {
+if (isset($products) && count($products) > 0) {
 	echo '<div class="product">';
 	foreach ($products as $item) {
 		echo '<div class="item">';
