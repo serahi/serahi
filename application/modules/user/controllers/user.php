@@ -19,7 +19,7 @@ class User extends MY_Controller {
 
         $this->load->model('membership_model');
         $name = $this->membership_model->validate_user();
-        if ($name != NULL) {
+        if ($name !== FALSE) {
             if ($name == 'not_approved')
             {
                 $message['not_approved_msg'] = array('msg' =>"عضویت شما هنوز توسط مدیر سایت تائید نشده است.");

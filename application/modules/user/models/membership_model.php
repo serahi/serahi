@@ -12,36 +12,29 @@ class Membership_model extends CI_Model {
             $user = $q->row();
             if ($user->user_type == 'seller') {
                 
-                $this->db->where('username', $this->input->post('username'));
-                $this->db->where('password', md5($this->input->post('password')));
+                $this->db->where('id', $user->id);
                 $q = $this->db->get('sellers');
                 $user = $q->row();
-                if ($user->approved == 't' ) {
-                    
-                    return array(
-                        'first_name' => $user->first_name,
-                        'last_name' => $user->last_name,
-                        'id' => $user->id,
-                        'user_type' => $user->user_type,
-                        'email' => $user->email
-                    );
-                } else {
-
+                if ($user->approved == 'f' ) {
                     return 'not_approved';
                 }
-            } else {
-                return array(
-                    'first_name' => $user->first_name,
-                    'last_name' => $user->last_name,
-                    'id' => $user->id,
-                    'user_type' => $user->user_type,
-                    'email' => $user->email
-                );
+			} else if ($user->user_type == 'customer') {
+				$this->db->where('id', $user->id);
+				$q = $this->db->get('customers');
+				$user = $q->row();
+				if ($user->activated == 'f') {
+					return FALSE;
+				}
             }
+            return array(
+                'first_name' => $user->first_name,
+                'last_name' => $user->last_name,
+                'id' => $user->id,
+                'user_type' => $user->user_type,
+                'email' => $user->email
+            );
         }
-        echo "nabood";
-        die();
-        return NULL;
+        return FALSE;
     }
 
     function auto_login($user_id) {
