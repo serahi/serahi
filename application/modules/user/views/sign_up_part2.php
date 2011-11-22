@@ -10,7 +10,7 @@
 	//echo validation_errors('<div class="error_msg">', '</div>');
 	?>
 	<form class="forms submit_form" action="<?php echo base_url()?>user/complete_registration" method="post">
-		<input id="tel" type="text" class="check validate[required]" name="tel" value="<?php echo  set_value('tel', 'تلفن');?>"/>
+		<input id="phone" type="text" class="check validate[required]" name="phone" value="<?php echo  set_value('tel', 'شماره‌ی تماس');?>"/>
                 <input id="postal_code" type="text" class="check validate[required]" name="postal_code" value="<?php echo set_value('postal_code', 'کد پستی');?>"/>
 		<input id="address" type="text" class="check validate[required]" name="address" value="<?php echo  set_value('address', 'آدرس');?>"/>
                 <input type="hidden" value="<?php echo $user_id?>" name="user_id">
