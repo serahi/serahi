@@ -8,6 +8,8 @@ var inputs = {
 		'address' : 'آدرس دقیق',
                 'pursuit_code': 'کد رهگیری',
 		'phone': 'شماره‌ی تماس',
+                'postal_code' : 'کد پستی',
+                'address': 'آدرس',
 		'seller_display_name': 'نام شرکت یا فروشگاه شما'
 
 	};

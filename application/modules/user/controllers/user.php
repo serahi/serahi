@@ -20,9 +20,8 @@ class User extends MY_Controller {
         $this->load->model('membership_model');
         $name = $this->membership_model->validate_user();
         if ($name !== FALSE) {
-            if ($name == 'not_approved')
-            {
-                $message['not_approved_msg'] = array('msg' =>"عضویت شما هنوز توسط مدیر سایت تائید نشده است.");
+            if ($name == 'not_approved') {
+                $message['not_approved_msg'] = array('msg' => "عضویت شما هنوز توسط مدیر سایت تائید نشده است.");
                 $this->load->view('login_form', $message);
                 return;
             }
@@ -139,17 +138,18 @@ class User extends MY_Controller {
             }
 
             if ($insert_query_result === TRUE) {
-				if ($this->input->post('ut') === 'c') {
-	                $activation_link = base_url() . 'user/activate?t=' . $random_string;
-	                $this->load->library('Email_agent');
-	                $email_to = $this->input->post('email');
-	                $email_subj = 'Serahi Activation';
-	                $email_text = $pre_text . $activation_link . $end_text;
-	                $this->email_agent->send($email_to, $email_subj, $email_text);
-	                $this->load->view('welcome_new_user');
-				} elseif ($this->input->post('ut') === 's') {
-					$this->load->view('welcome_seller');
-				}
+                if ($this->input->post('ut') === 'c') {
+                    $activation_link = base_url() . 'user/activate?t=' . $random_string;
+                    $this->load->library('Email_agent');
+                    $email_to = $this->input->post('email');
+                    $email_subj = 'Serahi Activation';
+                    $email_text = $pre_text . $activation_link . $end_text;
+                    @$this->email_agent->send($email_to, $email_subj, $email_text);
+                    //exec("/usr/bin/php5 /var/www/serahi/send_mail.php")
+                    $this->load->view('welcome_new_user', array('activation_link' => $activation_link));
+                } elseif ($this->input->post('ut') === 's') {
+                    $this->load->view('welcome_seller');
+                }
             } elseif ($insert_query_result == "NOT UNIQUE") {
                 $form_data = $this->input->post();
                 $error_msg['user_not_unique'] = 'این نام کاربری قبلاً در سیستم ثبت شده است.';

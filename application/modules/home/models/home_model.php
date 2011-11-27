@@ -26,9 +26,11 @@ class Home_model extends CI_Model
 			$passed = time() - $then;
 			if (($passed <= 0) || ($passed > $row['duration']))
 				continue;
-			$this->db->where('product_id', $row['id'])->where('pursuit_code != NULL OR "pursuit_code" != \'canceled\' ');
-			$sell = $this->db->get('transactions');
-			$sell_count = $sell->num_rows;
+                        $sell = $this->db->query('select * from transactions where product_id = '.$row['id'] .
+                                ' and (pursuit_code != NULL OR "pursuit_code" != \'canceled\');');
+			
+                            $sell_count = $sell->num_rows;
+                        
 			$buying_state = 0;
 			$pursuit_code = '';
 			if (isset($user_bought_array[$row['id']])) {

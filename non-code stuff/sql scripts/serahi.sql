@@ -72,7 +72,7 @@ ALTER SEQUENCE users_id_seq OWNED BY users.id;
 -- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('users_id_seq', 51, true);
+SELECT pg_catalog.setval('users_id_seq', 54, true);
 
 
 --
@@ -138,7 +138,7 @@ ALTER SEQUENCE products_id_seq OWNED BY products.id;
 -- Name: products_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('products_id_seq', 24, true);
+SELECT pg_catalog.setval('products_id_seq', 29, true);
 
 
 --
@@ -198,7 +198,7 @@ ALTER SEQUENCE transactions_id_seq OWNED BY transactions.id;
 -- Name: transactions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('transactions_id_seq', 151, true);
+SELECT pg_catalog.setval('transactions_id_seq', 167, true);
 
 
 --
@@ -239,6 +239,11 @@ COPY customers (id, username, password, first_name, last_name, user_type, email,
 COPY products (id, product_name, seller_id, lower_limit, description, image, base_discount, price, start_schedule, start_time, duration) FROM stdin;
 7	لپ تاپ	\N	5	ایران رهجو	laptop.jpeg	2	13500000	\N	\N	\N
 24	موبایل \ndefy	\N	\N	\N	\N	\N	\N	\N	\N	\N
+28	ساعت Rolex Daytona	51	20	دستان شما در اختيار جذابيت ...\nرولکس اتوماتیک دی تونا\nمكمل زيبايي و جذابيت شما 	hytrlwx_597765763203874291.jpg	60	550000	2011-11-21	09:00:00	172800
+25	  کرم اتوبرنزه گارنی 	51	25	طریقه مصرف:\n2 الی سه ساعت پس از استحمام صورت و بدن خود را کاملا خشک کنید و محصول را به شکل یکنواخت بر روی سطح پوست مالیده ، سپس با کف دست ها با حرکت چرخشی دایره وار کرم را جذب پوست کنید. (جهت رسیدن به رنگ مطلوب و دلخواه پس از استحمام از لوسیون ، کرم، مام و ... استفاده نشود)\nلازم به ذکر است که در صورت استفاده از کرم آن را به تمام بدن بمالید.پشت گوشها و گردن را فراموش نکنید، همچنین از هیچ وسیله ای برای تسریع در جذب کرم استفاده نکنید.\nبعد ازاینکه پوست خود را بطور کامل با کرم پوشاندید کافیست ۲ تا ۴ ساعت صبر کنید.\nتوجه : قبل از جذب کامل اتوبرنز از پوشیدن لباس خودداری کنید. این عمل را سه بار به فواصل یک ساعت تکرار کنید . بعد از آخرین مرتبه استفاده 4 الی 6 ساعت زمان نیاز است تا فرایند برنزاسیون و رنگ دهی نهایی آغاز گردد. تذکر : به دلیل رنگ پذیری سریع کف دست توصیه می گردد فورا با دستمال مرطوب کف دست ها پاک گردد.\n\nبرخی از امکانات و قابلیتها:\n\nبرنزکننده بدون نیاز به آفتاب\nمحافظی قوی در برابر اشعه های مضر UVA, UVBنورخورشید\nبرنزکننده،ضدآفتاب، محافظ و التیام بخش پوست\nبرنزکننده بین 20 تا 40 دقیقه به رو و 20 تا 40 دقیقه\nنرم کننده پوست و ضد خشکی\nالتیام بخش پوست و محتوی ویتامینهای گروه A و....	satcoiran_3190_11.jpg	50	260000	2011-11-22	12:00:00	172800
+26	    ۹,۰۰۰ تومان برای انتخاب از منوی باز و متنوع کافه آلبالو 	51	10	 هر فرد حداکثر ۲ نت برگ\n\n- ساعات مراجعه از ۱۱ الی ۱۶ و از ساعت ۱۶ به بعد با هماهنگی قبلی با تلفن ۰۹۱۲۱۵۸۲۲۷۳\n\n- زمان استفاده از ۹ آذرماه ۹۰ به مدت ۲ماه	albaloo_1.jpg	50	90000	2011-11-22	03:00:00	129600
+27	اپل آیفون 4s مشکی 16 گیگابایت	49	15	برند \tاپل\nمحصول کشور \tساخته شده در چین تحت لیسانس کالیفرنیا(آمریکا)\nرنگ \tمشکی\nوزن (گرم) \t140.0000\nابعاد \t11.52x5.86x0.93 cm\nنوع صفحه نمايش \tLED-backlit IPS TFT, capacitive touchscreen\nقطر صفحه نمایش \t3.5inch\nعمق رنگ \t16M colors\nبی سیم \tWi-Fi 802.11 b/g/n, Wi-Fi hotspot\nپردازنده \t1GHz dual-core ARM Cortex-A9 processor, PowerVR SGX543MP2 GPU, Apple A5 chipset\nحافظه داخلی \t16GB storage, 512 MB RAM\nکارت حافظه \tNo\nسیستم عامل \tiOS 5\nنامه الکترونیک \tYes\nجی پی آر اس \tYes\n3جی \tHSDPA, 14.4 Mbps; HSUPA, 5.8 Mbps\nجی پی اس \tYes, with A-GPS support\nبلوتوث \tYes, v4.0 with A2DP\nمرورگر اینترنت \tHTML (Safari).\nجاوا \tNo\nرزولوشن سنسور دوربین \t8MP\nفوکوس \tAutofocus\nنور دوربین \tLED flash\nظرفیت \tStandard battery, Li-Po 1432 mAh\nزمان مکالمه \tUp to 14 h (2G) / Up to 8 h (3G).\nاستند بای \tUp to 200 h (2G) / Up to 200 h (3G).	01-apple-iphone-4s-16gb-cellphone.jpg	10	12500000	2011-11-22	04:00:00	86400
+29	هارد ۱ ترابایت mozarbi	49	10	هارد ۱ ترابایت\nusb 3	e771_usb_it.jpg	20	210000	2011-11-21	23:00:00	129600
 \.
 
 
@@ -249,6 +254,9 @@ COPY products (id, product_name, seller_id, lower_limit, description, image, bas
 COPY sellers (id, username, password, first_name, last_name, user_type, email, creation_time, random_string, display_name, address, phone, approved) FROM stdin;
 49	milad.b	03765deb96723cd8be96e0cd4080e58c	میلاد	بشیری	seller	miladbashiri@yahoo.com	\N	\N	میلاد	تهران	09357289273	t
 51	hessam	3d579595cb191ab55a02e5787d38695e	حسام	محمدیان	seller	hessam.mohammadian@gmail.com	\N	\N	حسام	تهران	09123178234	t
+52	vahid.h	acc1be7b3277ea5930080e54c448c62b	وحید	عظیمی	seller	vahid@yahoo.com	2011-11-22 16:22:44	\N	پلنگ چال پیتزا	پلنگ چال	09125674328	f
+53	mohsen	80393af8b3d99736c8b0d49d9a9da4ff	محسن	عباسی	seller	mohsen@yahoo.com	2011-11-22 16:23:48	\N	محسن کده	uni	09127654182	f
+54	hamid.b	ee75de62e9f99a818b72d2cbb78db06b	حمید	بیدار	seller	bdtirp@yahoo.com	2011-11-22 16:24:56	\N	بیدار فروش	دانشکده کامپیوتر	09124563219	f
 \.
 
 
@@ -257,8 +265,19 @@ COPY sellers (id, username, password, first_name, last_name, user_type, email, c
 --
 
 COPY transactions (id, user_id, product_id, count, transaction_time, buying_state, pursuit_code) FROM stdin;
-151	33	24	1	2011-11-18 03:51:45+03:30	2	\N
-150	33	7	1	2011-11-18 03:51:43+03:30	3	\N
+155	33	28	1	2011-11-22 16:04:15+03:30	1	0urfh0ytix
+156	33	25	1	2011-11-22 16:04:18+03:30	1	7wxsa9za84
+157	33	29	1	2011-11-22 16:04:24+03:30	1	bixxdkn3n8
+158	32	27	1	2011-11-22 16:04:42+03:30	1	8f85cy07bi
+159	32	29	1	2011-11-22 16:04:46+03:30	1	oc2lp3p961
+160	51	25	1	2011-11-22 16:05:13+03:30	1	0zh9raoo1i
+161	51	28	1	2011-11-22 16:05:16+03:30	1	68j83hcj6b
+162	51	26	1	2011-11-22 16:05:19+03:30	1	1df8o8fy2a
+163	51	27	1	2011-11-22 16:05:24+03:30	1	ehsfqvg4v1
+164	51	29	1	2011-11-22 16:05:28+03:30	1	alsgsbt0yc
+165	49	28	1	2011-11-22 16:06:03+03:30	1	tm2ebnic2f
+166	49	26	1	2011-11-22 16:06:08+03:30	1	aahbqhsyvo
+167	49	29	1	2011-11-22 16:06:12+03:30	1	fhk1bbz47k
 \.
 
 
