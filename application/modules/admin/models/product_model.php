@@ -71,8 +71,9 @@ class Product_model extends CI_Model
 		$this->db->where('id', $id);
 		$query = $this->db->get('products');
 		$result = $query->row_array();
-			list($year, $month, $day) = explode('-', $result['start_schedule']);
-			$result['start_schedule'] = gregoriantojd($month, $day, $year);
+		list($year, $month, $day) = explode('-', $result['start_schedule']);
+		$result['start_schedule'] = gregoriantojd($month, $day, $year);
+		//$result['start_time'] = ltrim($result['start_time'])
 		return $result;
 	}
 }

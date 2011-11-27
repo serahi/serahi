@@ -1,12 +1,12 @@
 {block name=title}پنل مدیر{/block}
 {block name=css}
-<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/style/admin.css" />
-<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/style/calendar.css" />
+<link rel="stylesheet" type="text/css" href="{$base_url}assets/style/admin.css" />
+<link rel="stylesheet" type="text/css" href="{$base_url}assets/style/calendar.css" />
 {/block}
 
 {block name=script}
-<script type="text/javascript" src="<?php echo base_url();?>assets/scripts/amin.js"></script>
-<script type="text/javascript" src="<?php echo base_url();?>assets/scripts/calendar.js"></script>
+<script type="text/javascript" src="{$base_url}assets/scripts/amin.js"></script>
+<script type="text/javascript" src="{$base_url}assets/scripts/calendar.js"></script>
 <script type = "text/javascript">
 {literal}
 function datePickerClosed (dateField) {
@@ -33,10 +33,8 @@ $(document).ready(function (){
 </script>
 {/block}
 {block name=main_content}
-{assign var=int value='required,custom[integer],min[0]'}
-{assign var=required value='validate[required]'}
 <div id="add_product_form">
-	<form id = "product_form" class = "submit_form product_form" enctype = "multipart/form-data" method = "post" action = "<?php echo base_url() . 'admin/save_product';?>">
+	<form id = "product_form" class = "submit_form product_form" enctype = "multipart/form-data" method = "post" action = "{$base_url}admin/save_product">
 		<?php  echo validation_errors('<div class="error_msg">', '</div>');?>
 		<input name = "id" type = "hidden" value = "{$id}">
 		<label for = "product_name">نام محصول</label>
@@ -52,14 +50,9 @@ $(document).ready(function (){
 		<label for = "seller">فروشنده</label>
 		<select name = "seller" id = "seller" class="{$required}">
 			<option value = ''>انتخاب نمایید</option>
-			<?php
-			foreach ($sellers as $seller) {
-				echo '<option value="' . $seller['id'] . '"';
-				if ($seller['id'] == $seller_id)
-					echo ' selected = "selected"';
-				echo '>' . $seller['display_name'] . '</option>';
-			}
-			?>
+			{foreach $sellers as $seller}
+				<option value="{$seller.id}" {if $seller.id == $seller_id} selected = "selected" {/if} >{$seller.display_name}</option>
+			{/foreach}
 		</select>
 		<div class = "hrow">
 			<label for = "start_schedule">تاریخ آغاز نمایش</label>
@@ -88,13 +81,9 @@ $(document).ready(function (){
 			</div>
 			<div class = "dblock">
 				<select name = "duration">
-					<?php for ($i=12; $i <= 48; $i+=12) {
-						echo "<option value = '".($i*3600)."'";
-						if ($i * 3600 == $duration) {
-							echo 'selected = "selected"';
-						}
-						echo ">$i ساعت</option>";
-					}?>
+					{for $i=12; $i <= 48; $i = $i + 12}
+						<option value = "{$i*3600}" {if $i * 3600 == $duration} selected = "selected" {/if} >{$i} ساعت</option>
+					{/for}
 				</select>
 			</div>
 		</div>

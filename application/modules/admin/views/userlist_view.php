@@ -1,16 +1,18 @@
 {block name=title}مدیریت کاربران{/block}
+
 {block name=css}
-<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/style/admin.css" />
-<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/style/tables.css" />
+<link rel="stylesheet" type="text/css" href="{$base_url}assets/style/admin.css" />
+<link rel="stylesheet" type="text/css" href="{$base_url}assets/style/tables.css" />
 {/block}
+
 {block name=script}
 <script language="javascript">
 	$(document).ready(function() {
 		$("tr:nth-child(odd)").addClass("odd");
 	});
-
 </script>
 {/block}
+
 {block name=main_content}
 <table>
 	<thead>
@@ -25,27 +27,26 @@
 		</tr>
 	</thead>
 	<tbody>
-		<?php
-		foreach($users as $user) {
-			echo '<tr>';
-			$cols = array(
+		{assign var=cols value=array(
 					'username',
 					'email',
 					'first_name',
 					'last_name',
 					'user_type',
 					'creation_time'
-			);
-			foreach($cols as $col) {
-				echo '<td>' . $user[$col] . '</td>';
-			}
-		?>
-		<td><a href = "<?php echo base_url();?>admin/userlist/edit?id=<?php echo $user['id'];?>"> ویرایش </a>
-		<form class = "table_form" method = "post" action = "<?php echo base_url();?>admin/userlist/delete">
-			<input name = "id" value = "<?php echo $user['id'];?>" type = "hidden">
-			<input type = "submit" value = "حذف">
-		</form></td>
-		</tr> <?php }?>
+		)}
+		{foreach $users as $user}
+		<tr> 
+			{foreach $cols as $col}
+				<td>{$user.$col}</td>
+			{/foreach}
+			<td><a href = "{$base_url}admin/userlist/edit?id={$user.id}">ویرایش</a>
+			<form class = "table_form" method = "post" action = "{$base_url}admin/userlist/delete">
+				<input name = "id" value = "{$user.id}" type = "hidden">
+				<input type = "submit" value = "حذف">
+			</form></td>
+		</tr>
+		{/foreach}
 	</tbody>
 </table>
 {/block} 

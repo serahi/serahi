@@ -1,6 +1,6 @@
 {block name=title}ویرایش اطلاعات کاربری{/block}
 {block name=css}
-<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/style/admin.css" />
+<link rel="stylesheet" type="text/css" href="{$base_url}assets/style/admin.css" />
 {/block}
 {block name=script}
 <script type="text/javascript">
@@ -15,14 +15,11 @@
 </script>
 {/block}
 {block name=main_content}
-{assign var=int value='required,custom[integer],min[0]'}
-{assign var=required value='validate[required]'}
 {assign var=required_3 value='validate[minSize[3]]'}
 {assign var=required_5 value='validate[minSize[5]]'}
 {assign var=required_6 value='validate[minSize[6]]'}
 
-<form method = "post" class = "submit_form" action = "<?php echo base_url() . "admin/userlist/save_edit"; ?>">
-
+<form method = "post" class = "submit_form" action = "{$base_url}admin/userlist/save_edit">
     <div class = "row">
         <label>شماره:</label>
         <div id = "user_id">

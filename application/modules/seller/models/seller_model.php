@@ -19,29 +19,27 @@ class Seller_model extends CI_Model
 		}
 		return $results;
 	}
-        
-        function check_pursuit_code()
-        {
-            $this->db->where('pursuit_code', $this->input->post('pursuit_code'));
-            $q = $this->db->get('transactions');
-            if ($q->num_rows == 0)
-            {
-               return False;
-            }
-            $row = $q->row();
-            $product_id = $row->product_id;
-            
-            $this->db->where('id', $product_id);
-            $this->db->select('seller_id');
-            $this->db->limit(1);
-            $q = $this->db->get('products');
-            $row = $q->row();
-            
-            if ($row->seller_id == $this->session->userdata('user_id'))
-            {
-                return True;
-            }
-            
-        }
+
+	function check_pursuit_code ()
+	{
+		$this->db->where('pursuit_code', $this->input->post('pursuit_code'));
+		$q = $this->db->get('transactions');
+		if ($q->num_rows == 0) {
+			return False;
+		}
+		$row = $q->row();
+		$product_id = $row->product_id;
+
+		$this->db->where('id', $product_id);
+		$this->db->select('seller_id');
+		$this->db->limit(1);
+		$q = $this->db->get('products');
+		$row = $q->row();
+
+		if ($row->seller_id == $this->session->userdata('user_id')) {
+			return True;
+		}
+
+	}
 
 }
