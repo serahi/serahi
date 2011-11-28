@@ -168,7 +168,8 @@ CREATE TABLE transactions (
     count integer NOT NULL,
     transaction_time timestamp with time zone NOT NULL,
     buying_state integer DEFAULT 1 NOT NULL,
-    pursuit_code character varying
+    pursuit_code character varying,
+    delivered boolean DEFAULT false NOT NULL
 );
 
 
@@ -265,20 +266,20 @@ COPY sellers (id, username, password, first_name, last_name, user_type, email, c
 -- Data for Name: transactions; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY transactions (id, user_id, product_id, count, transaction_time, buying_state, pursuit_code) FROM stdin;
-155	33	28	1	2011-11-22 16:04:15+03:30	1	0urfh0ytix
-156	33	25	1	2011-11-22 16:04:18+03:30	1	7wxsa9za84
-157	33	29	1	2011-11-22 16:04:24+03:30	1	bixxdkn3n8
-158	32	27	1	2011-11-22 16:04:42+03:30	1	8f85cy07bi
-159	32	29	1	2011-11-22 16:04:46+03:30	1	oc2lp3p961
-160	51	25	1	2011-11-22 16:05:13+03:30	1	0zh9raoo1i
-161	51	28	1	2011-11-22 16:05:16+03:30	1	68j83hcj6b
-162	51	26	1	2011-11-22 16:05:19+03:30	1	1df8o8fy2a
-163	51	27	1	2011-11-22 16:05:24+03:30	1	ehsfqvg4v1
-164	51	29	1	2011-11-22 16:05:28+03:30	1	alsgsbt0yc
-165	49	28	1	2011-11-22 16:06:03+03:30	1	tm2ebnic2f
-166	49	26	1	2011-11-22 16:06:08+03:30	1	aahbqhsyvo
-167	49	29	1	2011-11-22 16:06:12+03:30	1	fhk1bbz47k
+COPY transactions (id, user_id, product_id, count, transaction_time, buying_state, pursuit_code, delivered) FROM stdin;
+155	33	28	1	2011-11-22 16:04:15+03:30	1	0urfh0ytix	f
+156	33	25	1	2011-11-22 16:04:18+03:30	1	7wxsa9za84	f
+157	33	29	1	2011-11-22 16:04:24+03:30	1	bixxdkn3n8	f
+158	32	27	1	2011-11-22 16:04:42+03:30	1	8f85cy07bi	f
+159	32	29	1	2011-11-22 16:04:46+03:30	1	oc2lp3p961	f
+160	51	25	1	2011-11-22 16:05:13+03:30	1	0zh9raoo1i	f
+161	51	28	1	2011-11-22 16:05:16+03:30	1	68j83hcj6b	f
+162	51	26	1	2011-11-22 16:05:19+03:30	1	1df8o8fy2a	f
+163	51	27	1	2011-11-22 16:05:24+03:30	1	ehsfqvg4v1	f
+164	51	29	1	2011-11-22 16:05:28+03:30	1	alsgsbt0yc	f
+165	49	28	1	2011-11-22 16:06:03+03:30	1	tm2ebnic2f	f
+166	49	26	1	2011-11-22 16:06:08+03:30	1	aahbqhsyvo	f
+167	49	29	1	2011-11-22 16:06:12+03:30	1	fhk1bbz47k	f
 \.
 
 
