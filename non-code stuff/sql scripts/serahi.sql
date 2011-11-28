@@ -149,7 +149,8 @@ CREATE TABLE sellers (
     display_name character varying,
     address character varying,
     phone character varying,
-    approved boolean DEFAULT false NOT NULL
+    approved boolean DEFAULT false NOT NULL,
+    map_location character varying
 )
 INHERITS (users);
 
@@ -251,12 +252,12 @@ COPY products (id, product_name, seller_id, lower_limit, description, image, bas
 -- Data for Name: sellers; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY sellers (id, username, password, first_name, last_name, user_type, email, creation_time, random_string, display_name, address, phone, approved) FROM stdin;
-49	milad.b	03765deb96723cd8be96e0cd4080e58c	میلاد	بشیری	seller	miladbashiri@yahoo.com	\N	\N	میلاد	تهران	09357289273	t
-51	hessam	3d579595cb191ab55a02e5787d38695e	حسام	محمدیان	seller	hessam.mohammadian@gmail.com	\N	\N	حسام	تهران	09123178234	t
-52	vahid.h	acc1be7b3277ea5930080e54c448c62b	وحید	عظیمی	seller	vahid@yahoo.com	2011-11-22 16:22:44	\N	پلنگ چال پیتزا	پلنگ چال	09125674328	f
-53	mohsen	80393af8b3d99736c8b0d49d9a9da4ff	محسن	عباسی	seller	mohsen@yahoo.com	2011-11-22 16:23:48	\N	محسن کده	uni	09127654182	f
-54	hamid.b	ee75de62e9f99a818b72d2cbb78db06b	حمید	بیدار	seller	bdtirp@yahoo.com	2011-11-22 16:24:56	\N	بیدار فروش	دانشکده کامپیوتر	09124563219	f
+COPY sellers (id, username, password, first_name, last_name, user_type, email, creation_time, random_string, display_name, address, phone, approved, map_location) FROM stdin;
+49	milad.b	03765deb96723cd8be96e0cd4080e58c	میلاد	بشیری	seller	miladbashiri@yahoo.com	\N	\N	میلاد	تهران	09357289273	t	\N
+51	hessam	3d579595cb191ab55a02e5787d38695e	حسام	محمدیان	seller	hessam.mohammadian@gmail.com	\N	\N	حسام	تهران	09123178234	t	\N
+52	vahid.h	acc1be7b3277ea5930080e54c448c62b	وحید	عظیمی	seller	vahid@yahoo.com	2011-11-22 16:22:44	\N	پلنگ چال پیتزا	پلنگ چال	09125674328	f	\N
+53	mohsen	80393af8b3d99736c8b0d49d9a9da4ff	محسن	عباسی	seller	mohsen@yahoo.com	2011-11-22 16:23:48	\N	محسن کده	uni	09127654182	f	\N
+54	hamid.b	ee75de62e9f99a818b72d2cbb78db06b	حمید	بیدار	seller	bdtirp@yahoo.com	2011-11-22 16:24:56	\N	بیدار فروش	دانشکده کامپیوتر	09124563219	f	\N
 \.
 
 
