@@ -151,10 +151,15 @@ class User extends MY_Controller {
                     $this->load->view('welcome_seller');
                 }
             } elseif ($insert_query_result == "NOT UNIQUE") {
-                $form_data = $this->input->post();
-                $error_msg['user_not_unique'] = 'این نام کاربری قبلاً در سیستم ثبت شده است.';
-
-                $this->load->view('sign_up_form', $error_msg);
+                if($this->input->post('ut') === 'c'){
+                    $form_data = $this->input->post();
+                    $error_msg['user_not_unique'] = 'این نام کاربری قبلاً در سیستم ثبت شده است.';
+                    $this->load->view('sign_up_form', $error_msg);
+                }elseif($this->input->post('ut') === 's'){
+                    $form_data = $this->input->post();
+                    $error_msg['user_not_unique'] = 'این نام کاربری قبلاً در سیستم ثبت شده است.';
+                    $this->load->view('seller_sign_up_form', $error_msg);
+                }
             }
         }
     }
