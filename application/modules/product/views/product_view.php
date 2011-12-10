@@ -3,19 +3,16 @@
 {/block}
 
 {block name=main_content}
-{if isset($products) && count($products) > 0}
 <div class="product">
-	{foreach from=$products item=item name=props}
 	<div class="item">
 		<script>
-			{counter assign=count}
 			var remaining = {$item.remaining};
-			var callback_{$count} = function () {
-				var txt = $("#remain_hidden_{$count}").text();
+			var callback = function () {
+				var txt = $("#remain_hidden").text();
 				var num = parseInt(txt);
 				var remaining = num - 1;
 				if (remaining < 0) remaining = 0;
-				$("#remain_hidden_{$count}").text(remaining);
+				$("#remain_hidden").text(remaining);
 		    	var mins = remaining / 60;
 		    	var hours = mins / 60;
 		    	var days = hours / 24;
@@ -28,21 +25,20 @@
 		    	if (hours > 0)result = result + hours+ ' ساعت ';
 		    	if (mins > 0) result = result + mins + ' دقیقه ';
 		    	if (secs > 0) result = result + secs + ' ثانیه';
-		    	$("#remain_time_{$count}").text(result);
+		    	$("#remain_time").text(result);
 			};
-			window.setInterval(callback_{$count}, 1000);
+			window.setInterval(callback, 1000);
 		</script>
 		<div class = "item_title"><a href = "{$base_url}product/view?id={$item.id}">{$item.product_name}</a></div>
 		<div class="remaining">
 		    <b>
 		        زمان باقیمانده برای خرید این کالا
 		    </b>
-		    <div id = "remain_hidden_{$count}" style="display:none">
+		    <div id = "remain_hidden" style="display:none">
 		    	{$item.remaining}
 		    </div>
-		    <div id="remain_time_{$count}">
+		    <div id="remain_time">
 		    </div>
-		    
 		</div>
 		<div class="item_pic">
 			<img src="{$base_url}images/products/{$item.image}" />
@@ -77,7 +73,7 @@
 				<input type="hidden" value="{$item.id}" name="product_id">
 			</form>
 			{elseif $item.buying_state eq 2}
-			<form method="post" action="{$base_url}home/buy" class="forms buy_form" name="buying_form{$smarty.foreach.props.index}">
+			<form method="post" action="{$base_url}home/buy" class="forms buy_form" name="buying_form">
 				<input type="submit" class="bconfirm" value="خرید">
 				<input type="hidden" value="{$item.id}" name="product_id">
 			</form>
@@ -95,26 +91,6 @@
 			<div class="not_found_item">این کالا قبلاً توسط شما خریداری شده است!</div> 
 			{/if}
 		</div>
-		<a href="https://twitter.com/share" class="twitter-share-button"
-		   data-url="{$base_url}product/view?id={$item.id}" data-lang="en"
-		   data-text="{$item.product_name} با {$item.base_discount} درصد تخفیف، فقط برای امروز @ {$base_url}product/view?id={$item.id}">Tweet</a>
-  	<script>{literal}!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");{/literal}</script>
-		<div class="g-plusone" data-href="http://serahi.com/product/view?id={$item.id}"></div>
-		<iframe src="//www.facebook.com/plugins/like.php?href={$base_url}product/view?id={$item.id}&amp;send=false&amp;layout=button_count&amp;width=450&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font=tahoma&amp;height=35" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:35px;" allowTransparency="true"></iframe>
-
 	</div>
-	{/foreach}
-	<script type="text/javascript">
-	{literal}
-	  (function() {
-	    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-	    po.src = 'https://apis.google.com/js/plusone.js';
-	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-	  })();
-	{/literal}
-	</script>
 </div>
-{elseif $this->session->userdata('is_logged_in')}
-	کالایی یافت نشد
-{/if}
 {/block}

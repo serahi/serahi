@@ -1,3 +1,25 @@
+{block name=script}
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBr6OmZbDrrQqCSxyNGQz8NLxU7XHewT_k&sensor=false">
+</script>
+<script type="text/javascript">
+	{literal}
+	$(document).ready(function(){
+		var myLatlng = new google.maps.LatLng(35.742, 51.506);
+		var myOptions = {
+		  zoom: 15,
+		  center: myLatlng,
+		  mapTypeId: google.maps.MapTypeId.ROADMAP
+		};
+		var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+		google.maps.event.addListener(map, 'bounds_changed', function() {
+    	alert(map.getCenter());
+  	});
+  });
+	{/literal}
+</script>
+{/block}
+
 {block name=title}
 فرم ثبت‌ نام فروشنده‌
 {/block}
@@ -19,12 +41,11 @@
 		<input id="email" type="text" class="check validate[required,custom[email]]" name="email" value="<?php echo set_value('email', 'آدرس پست‌الکترونیکی' );?>"/>
 		<input id="phone" type="text" class="check validate[required]" name="phone" value="شماره‌ی تماس"/>
 		<input id="address" type="text" class="check validate[required]" name="address" value="آدرس دقیق"/>
-                <div id="map">    
-                    <iframe width="325" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com/?ie=UTF8&amp;hq=&amp;hnear=Tehran,+Iran&amp;ll=35.74228,51.506674&amp;spn=0.009614,0.013797&amp;t=m&amp;z=16&amp;vpsrc=6&amp;output=embed">
-                    </iframe><br />
-                </div>
-                <input id="location" type="hidden" name="location"/>
-                <input id="seller_display_name" type="text" class="check" name="seller_display_name" value="نام شرکت یا فروشگاه شما"/>
+		<div style="height:275px">
+		<div id="map_canvas" style="width: 100%; height: 100%"></div>
+		</div>
+    <input id="location" type="hidden" name="location"/>
+    <input id="seller_display_name" type="text" class="check" name="seller_display_name" value="نام شرکت یا فروشگاه شما"/>
 		<input type="hidden" value="s" name="ut">
 		<div id="register_msg">لطفاً پیش از ثبت‌نام قوانین سایت را مطالعه بفرمایید.<br/>
 			<a href="site/rules" id="register_btm">قوانین سایت</a><br/>
