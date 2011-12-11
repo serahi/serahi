@@ -78,7 +78,7 @@ $(document).ready(function (){
 			</div>
 		</div>
 		<label for = "product_desc">شرح محصول</label>
-		<textarea name = "product_desc" rows = "9" cols = "80"><?php echo set_value('product_desc');?></textarea>
+		<textarea name = "product_desc" rows = "9" cols = "70"><?php echo set_value('product_desc');?></textarea>
 		<input type="submit" value="اضافه کردن محصول" name="submit">
 	</form>
 </div>

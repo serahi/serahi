@@ -68,12 +68,14 @@ class Userlist extends MY_Controller
 						'address',
 						'phone',
 						'display_name',
+						'map_location',
 						'approved:b'
 				)));
 			} else if ($user['user_type'] == 'seller') {
 				$user = array_merge($user, _post_values(array(
 						'address',
 						'phone',
+						'map_location',
 						'display_name'
 				)));
 			} else if ($user['user_type'] == 'customer') {

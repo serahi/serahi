@@ -4,16 +4,26 @@
 </script>
 <script type="text/javascript">
 	{literal}
+	var marker = undefined;
 	$(document).ready(function(){
 		var myLatlng = new google.maps.LatLng(35.742, 51.506);
 		var myOptions = {
 		  zoom: 15,
 		  center: myLatlng,
-		  mapTypeId: google.maps.MapTypeId.ROADMAP
+		  mapTypeId: google.maps.MapTypeId.ROADMAP,
+		  disableDoubleClickZoom: true
 		};
 		var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
-		google.maps.event.addListener(map, 'bounds_changed', function() {
-    	alert(map.getCenter());
+		marker = new google.maps.Marker({map: map, position: myLatLng});
+  	$("#map_location").val(map.getCenter().lat() + ' ' + map.getCenter().lng());
+  	google.maps.event.addListener(map, 'dblclick', function(event) {
+  		if (marker == undefined){
+  			marker = new google.maps.Marker({map: map, position: event.latLng});
+  		} else {
+  			marker.setPosition(event.latLng);
+  		}
+  		map.setCenter(event.latLng);
+  		$("#map_location").val(map.getCenter().lat() + ' ' + map.getCenter().lng());
   	});
   });
 	{/literal}
@@ -44,7 +54,7 @@
 		<div style="height:275px">
 		<div id="map_canvas" style="width: 100%; height: 100%"></div>
 		</div>
-    <input id="location" type="hidden" name="location"/>
+    <input id="map_location" type="hidden" name="map_location"/>
     <input id="seller_display_name" type="text" class="check" name="seller_display_name" value="نام شرکت یا فروشگاه شما"/>
 		<input type="hidden" value="s" name="ut">
 		<div id="register_msg">لطفاً پیش از ثبت‌نام قوانین سایت را مطالعه بفرمایید.<br/>

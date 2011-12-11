@@ -1,3 +1,28 @@
+{block name=script}
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBr6OmZbDrrQqCSxyNGQz8NLxU7XHewT_k&sensor=false">
+</script>
+<script type="text/javascript">
+	<?php list($map_lat, $map_lng) = explode(' ', $map_location);
+	      echo "var lat = $map_lat;";
+				echo "var lang = $map_lng;";
+	?>
+	var marker_title = {$seller_display_name|default:'\'\''};
+	{literal}
+	$(document).ready(function(){
+		var myLatlng = new google.maps.LatLng(lat, lang);
+		var myOptions = {
+		  zoom: 15,
+		  center: myLatlng,
+		  mapTypeId: google.maps.MapTypeId.ROADMAP
+		};
+		var g_map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+		var marker = new google.maps.Marker({position: myLatlng, map: g_map, title: marker_title});
+  });
+	{/literal}
+</script>
+{/block}
+
 {block name=title}
 سه‌راهـــــی
 {/block}
@@ -6,7 +31,7 @@
 <div class="product">
 	<div class="item">
 		<script>
-			var remaining = {$item.remaining};
+			var remaining = {$remaining};
 			var callback = function () {
 				var txt = $("#remain_hidden").text();
 				var num = parseInt(txt);
@@ -29,62 +54,65 @@
 			};
 			window.setInterval(callback, 1000);
 		</script>
-		<div class = "item_title"><a href = "{$base_url}product/view?id={$item.id}">{$item.product_name}</a></div>
+		<div class = "item_title"><a href = "{$base_url}product/view?id={$id}">{$product_name}</a></div>
 		<div class="remaining">
 		    <b>
 		        زمان باقیمانده برای خرید این کالا
 		    </b>
 		    <div id = "remain_hidden" style="display:none">
-		    	{$item.remaining}
+		    	{$remaining}
 		    </div>
 		    <div id="remain_time">
 		    </div>
 		</div>
 		<div class="item_pic">
-			<img src="{$base_url}images/products/{$item.image}" />
+			<img src="{$base_url}images/products/{$image}" />
 		</div>
 		<div class="item_name">
-			<b> نام کالا: </b>{$item.product_name}
+			<b> نام کالا: </b>{$product_name}
 		</div>
 		<div class="item_price">
-			<b>  قیمت کالا: </b>{$item.price} تومان
+			<b>  قیمت کالا: </b>{$price} تومان
 		</div>
 		<div class="base_discount">
-			<b> تخفیف پایه: </b>{$item.base_discount} درصد
+			<b> تخفیف پایه: </b>{$base_discount} درصد
 		</div>
 		<div class="lower_limit">
-			<b> حد نصاب: </b>{$item.lower_limit}
+			<b> حد نصاب: </b>{$lower_limit}
 		</div>
 		<div class="sell_count">
-			<b> تعداد فروخته شده تا الان: </b>{$item.sell_count}
+			<b> تعداد فروخته شده تا الان: </b>{$sell_count}
 		</div>
     وضعیت فروش
-    <progress value="{$item.sell_count}" max="{$item.lower_limit}"></progress>
+    <progress value="{$sell_count}" max="{$lower_limit}"></progress>
     <div class="progress value">
-        {$item.sell_count}/{$item.lower_limit}
+        {$sell_count}/{$lower_limit}
     </div>
 		<div class="description">
-			<pre>{$item.description}</pre>
+			<pre>{$description}</pre>
+		</div>
+		<div style="height:275px;width:275px;">
+			<div id="map_canvas" style="width: 100%; height: 100%"></div>
 		</div>
 		<div class="buy">
-			{if $item.buying_state eq 0}
+			{if $buying_state eq 0}
 			<form method="post"   action="{$base_url}home/buy" class="forms">
 				<input type="submit" value="خرید">
-				<input type="hidden" value="{$item.id}" name="product_id">
+				<input type="hidden" value="{$id}" name="product_id">
 			</form>
-			{elseif $item.buying_state eq 2}
+			{elseif $buying_state eq 2}
 			<form method="post" action="{$base_url}home/buy" class="forms buy_form" name="buying_form">
 				<input type="submit" class="bconfirm" value="خرید">
-				<input type="hidden" value="{$item.id}" name="product_id">
+				<input type="hidden" value="{$id}" name="product_id">
 			</form>
-			{elseif $item.buying_state eq 1}
+			{elseif $buying_state eq 1}
 			<div class="not_found_item">
 				این کالا قبلاً توسط شما خریداری شده است!
 			</div>
-			{if $item.sell_count < $item.lower_limit}
+			{if $sell_count < $item.lower_limit}
 			<form method="post" action="{$base_url}home/cancel_transaction" class="forms cancel_buying" >
 				<input type="submit" value="لغو خرید">
-				<input type="hidden" value="{$item.id}" name="product_id">
+				<input type="hidden" value="{$id}" name="product_id">
 			</form>
 			{/if}
 			{elseif $item.buying_state eq 3}

@@ -23,7 +23,7 @@ class Admin extends MY_Controller
 			return;
 		}
 		$this->load->model('seller_model');
-		$view_data['sellers'] = $this->seller_model->get_seller_names();
+		$view_data['sellers'] = $this->seller_model->get_approved_sellers();
 		$this->load->view('add_product_view', $view_data);
 	}
 

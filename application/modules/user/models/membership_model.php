@@ -116,6 +116,7 @@ class Membership_model extends CI_Model {
             'display_name' => $this->input->post('seller_display_name'),
             'address' => $this->input->post('address'),
             'phone' => $this->input->post('phone'),
+            'map_location' => $this->input->post('map_location'),
             'user_type' => $user_type,
             'creation_time' => date("Y-m-d H:i:s")
         );
