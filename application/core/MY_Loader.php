@@ -48,8 +48,10 @@ class MY_Loader extends MX_Loader
 				$CI->smarty->assign($key, $val);
 			}
 		}
-
-		$str = $CI->smarty->fetch('extends:templates/template.php|' . $_ci_relative);
+                if ($_ci_relative !== 'modules/feed/views/feed.php')
+                    $str = $CI->smarty->fetch('extends:templates/template.php|' . $_ci_relative);
+                else
+                    $str = $CI->smarty->fetch( $_ci_relative );
 
 		extract($this->_ci_cached_vars);
 

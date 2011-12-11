@@ -90,7 +90,10 @@ class Admin extends MY_Controller
 			$upload_data = $this->upload->data();
 
 			$this->load->model('product_model');
-			$insert_result = $this->product_model->insert_product($product_name, $seller_id, $description, $base_discount, $price, $upload_data['file_name'], $lower_limit, $start_schedule, $start_time, $duration);
+			$insert_result = $this->product_model->insert_product($product_name, $seller_id,
+                                $description,$base_discount, $price, $upload_data['file_name'],
+                                $lower_limit, $start_schedule, $start_time, $duration);
+                        
 			redirect('/admin/');
 		}
 	}
@@ -200,5 +203,25 @@ class Admin extends MY_Controller
 		$view_data['sellers'] = $this->seller_model->get_seller_names();
 		$this->load->view('edit_product_view', $view_data);
 	}
+        
+        function  add_to_feed($product_name, $description)
+        {
+            $xml_file = fopen("./feed", "a");
+            //fseek($xml_file, -18 , SEEK_END);
+            
+            $title_tag = "\r\n<title>" . $product_name . "</title>\r\n";
+            $link_tag = "<link>" . "http://serahi.ir/" . "</link>\r\n";
+            $pubDate_tag = "<pubDate>" .  date("Y-m-d") . "</pubDate> \r\n";
+            $creator_tag = "<dc:creator>" . "serahi.ir" . "</dc:creator>\r\n";
+            $description_tag = "<decription>" . $description . "</description>\r\n";
+            
+            fwrite($xml_file, "<item>\r\n");
+            fwrite($xml_file, $title_tag );
+            fwrite($xml_file, $link_tag );
+            fwrite($xml_file, $pubDate_tag);
+            fwrite($xml_file, $creator_tag);
+            fwrite($xml_file, $description_tag);
+            fwrite($xml_file, "</item>\r\n\r\n");
+        }
 
 }
