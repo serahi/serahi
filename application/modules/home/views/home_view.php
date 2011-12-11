@@ -67,9 +67,6 @@
     <div class="progress value">
         {$item.sell_count}/{$item.lower_limit}
     </div>
-		<div class="description">
-			<pre>{$item.description}</pre>
-		</div>
 		<div class="buy">
 			{if $item.buying_state eq 0}
 			<form method="post"   action="{$base_url}home/buy" class="forms">
@@ -95,11 +92,16 @@
 			<div class="not_found_item">این کالا قبلاً توسط شما خریداری شده است!</div> 
 			{/if}
 		</div>
+		<div>
+			برای مشاهده‌ی شرح محصول و محل فروشگاه 
+			<a href = "{$base_url}product/view?id={$item.id}">اینجا</a>
+			را کلیک کنید.
+		</div>
 		<a href="https://twitter.com/share" class="twitter-share-button"
 		   data-url="{$base_url}product/view?id={$item.id}" data-lang="en"
 		   data-text="{$item.product_name} با {$item.base_discount} درصد تخفیف، فقط برای امروز @ {$base_url}product/view?id={$item.id}">Tweet</a>
   	<script>{literal}!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");{/literal}</script>
-		<div class="g-plusone" data-href="http://serahi.com/product/view?id={$item.id}"></div>
+		<div class="g-plusone" data-href="{$base_url}product/view?id={$item.id}"></div>
 		<iframe src="//www.facebook.com/plugins/like.php?href={$base_url}product/view?id={$item.id}&amp;send=false&amp;layout=button_count&amp;width=450&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font=tahoma&amp;height=35" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:35px;" allowTransparency="true"></iframe>
 
 	</div>

@@ -6,7 +6,10 @@ class Product_model extends CI_Model
 	{
 		$query = $this->db->where('id', $id)->get('products');
 		$data = $query->row_array();
-		
+		$query = $this->db->where('id', $data['seller_id'])->get('sellers');
+		$seller = $query->row_array();
+		$data['map_location'] = $seller['map_location'];
+		$data['seller_display_name'] = $seller['display_name'];
 		$query = $this->db->select('buying_state, pursuit_code')
 		                   ->where('product_id', $id)->where('user_id', $user_id)->get('transactions');
 		if ($query->num_rows > 0) {
