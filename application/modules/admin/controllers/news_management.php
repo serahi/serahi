@@ -38,8 +38,8 @@ class News_management extends MY_Controller{
     }
     
     function remove_news(){
-        //$this->news_model->remove();
-        //redirect('admin/news_management');
-        
+        $this->load->model('news_model');
+        $this->news_model->remove();
+        $this->index();
     }
 }

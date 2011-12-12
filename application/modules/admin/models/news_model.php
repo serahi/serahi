@@ -32,5 +32,7 @@ class News_model extends CI_Model{
     }
     
     function remove(){
+        $this->db->where('id' , $this->input->post('news_id'));
+        $this->db->delete('news');
     }
 }

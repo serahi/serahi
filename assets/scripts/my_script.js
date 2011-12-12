@@ -37,7 +37,14 @@ $(document).ready(function() {
 				{
 					$(this).val('');
 				}
-			});	
+			});
+                        $("textarea.check").each(function(){
+				var name = $(this).attr('name');
+				if ( $(this).innerHTML == inputs[name] )
+				{
+					$(this).innerHTML = inputs[name];
+				}
+			});
 		});
 	};
 	

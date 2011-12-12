@@ -22,14 +22,12 @@
 {/block}
 
 {block name=main_content}
-
-<form id="target" method="post" action="<?php echo base_url() . 'admin/news_management/remove_news'; ?> ">
     <table class="news_table">
         <thead>
             <tr>
                 <th>عنوان خبر</th>
                 <th>متن خبر</th>
-                <th><input type="submit" value="حذف"/></th>
+                <!--<th><input type="submit" value="حذف"/></th>-->
                 <th><button id="add_news" onclick="add_news();">افزودن خبر</button></th>
             </tr>
         </thead>
@@ -39,17 +37,22 @@
                 <tr>
                     <td><?php echo $new['title']; ?></td>
                     <td><?php echo $new['content']; ?></td>
-                    <td><input type="checkbox" name="<?php echo $new['id']; ?>" /></td>
+                    <!--<td><input type="checkbox" name="<?php echo $new['id']; ?>" /></td>-->
                     <td><a href="<?php echo base_url().'admin/news_management/edit?id=' . $new['id'] ; ?>" > 
                             ویرایش                      
                         </a>
                     </td>
-
+                    
+                    <td>
+                        <form id="target" method="post" action="<?php echo base_url() . 'admin/news_management/remove_news'; ?> ">
+                        <input type="hidden" value="<?php echo $new['id']; ?>" name="news_id"/>
+                        <input type="submit" value="حذف"/>
+                        </form>
+                    </td>
                 </tr>
             <?php endforeach; ?>
         </tbody>
     </table>
-</form>
 
 {/block}
 
