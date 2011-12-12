@@ -38,6 +38,7 @@
 							<?php if ($this->session->userdata('user_type') == 'admin'):?>
 								<a href = "{$base_url}admin/">پنل مدیریت</a>
 								<a href = "{$base_url}admin/userlist">مدیریت کاربران</a>
+                                                                <a href = "{$base_url}admin/news_management">مدیریت اخبار</a>
 							<?php elseif ($this->session->userdata('user_type') == 'seller'):?>
 								<a href = "{$base_url}seller/">پنل فروشنده</a>
 								<a href = "{$base_url}seller/check_pc" > کنترل کدرهگیری </a>
