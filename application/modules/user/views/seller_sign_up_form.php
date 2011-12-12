@@ -51,8 +51,9 @@
 		<input id="email" type="text" class="check validate[required,custom[email]]" name="email" value="<?php echo set_value('email', 'آدرس پست‌الکترونیکی' );?>"/>
 		<input id="phone" type="text" class="check validate[required]" name="phone" value="شماره‌ی تماس"/>
 		<input id="address" type="text" class="check validate[required]" name="address" value="آدرس دقیق"/>
+		برای انتخاب موقعیت خود روی نقشه دوبار کلیک کنید.
 		<div style="height:275px">
-		<div id="map_canvas" style="width: 100%; height: 100%"></div>
+			<div id="map_canvas" style="width: 100%; height: 100%"></div>
 		</div>
     <input id="map_location" type="hidden" name="map_location"/>
     <input id="seller_display_name" type="text" class="check" name="seller_display_name" value="نام شرکت یا فروشگاه شما"/>
