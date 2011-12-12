@@ -14,9 +14,6 @@ class Transactions extends MY_Controller {
         $view_data['total_money'] = 0;
         $view_data['discount'] = 0;
         foreach ($view_data['transactions'] as $row) {
-            /* $view_data['total_money'] +=$row['price'];
-              $view_data['discount'] += ($row['price'] * $row['base_discount']) / 100;
-             */
             if ($row['status'] == 'delivered') {
                 $view_data['total_money'] +=$row['price'];
                 $view_data['discount'] += ($row['price'] * $row['base_discount']) / 100;
