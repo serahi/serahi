@@ -92,6 +92,48 @@ INHERITS (users);
 ALTER TABLE public.customers OWNER TO postgres;
 
 --
+-- Name: news; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE news (
+    id bigint NOT NULL,
+    title character varying NOT NULL,
+    content character varying,
+    date timestamp without time zone
+);
+
+
+ALTER TABLE public.news OWNER TO postgres;
+
+--
+-- Name: news_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE news_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.news_id_seq OWNER TO postgres;
+
+--
+-- Name: news_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE news_id_seq OWNED BY news.id;
+
+
+--
+-- Name: news_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('news_id_seq', 1, false);
+
+
+--
 -- Name: posts_rss; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -221,6 +263,13 @@ SELECT pg_catalog.setval('transactions_id_seq', 167, true);
 -- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
+ALTER TABLE news ALTER COLUMN id SET DEFAULT nextval('news_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
 ALTER TABLE products ALTER COLUMN id SET DEFAULT nextval('products_id_seq'::regclass);
 
 
@@ -245,6 +294,14 @@ ALTER TABLE users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
 COPY customers (id, username, password, first_name, last_name, user_type, email, creation_time, random_string, address, postal_code, phone, birth_date, activated) FROM stdin;
 32	hamed.gh	0088f5f91b8a5515227bc85a853a6873	حامد	قلی زاده	customer	hamed.gholizadeh.f@gmail.com	\N	\N	\N	\N	\N	\N	t
 33	sadegh	81d117fec85703f2c3db637eee47474f	صادق	کاظمی	customer	sadegh.kazemy@gmail.com	\N	\N	a			\N	t
+\.
+
+
+--
+-- Data for Name: news; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY news (id, title, content, date) FROM stdin;
 \.
 
 
@@ -321,6 +378,14 @@ COPY users (id, username, password, first_name, last_name, user_type, email, cre
 
 ALTER TABLE ONLY customers
     ADD CONSTRAINT customers_pk PRIMARY KEY (id);
+
+
+--
+-- Name: news_pk; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY news
+    ADD CONSTRAINT news_pk PRIMARY KEY (id);
 
 
 --

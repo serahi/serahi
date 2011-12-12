@@ -11,6 +11,9 @@ class Seller_model extends CI_Model
 			$this->db->where('product_id', $product['id'])->where('buying_state != 2');
 			$this->db->from('transactions');
 			$count = $this->db->count_all_results();
+			$this->db->where('product_id', $product['id'])->where('buying_state != 2')->where('delivered = \'t\'');
+			$this->db->from('transactions');
+			$delivered_count = $this->db->count_all_results();
 			$timeline_query = $this->db->query('select extract(hour from transaction_time) * 2 + '.
 			                                          'floor(extract(minute from transaction_time) / 30) AS time_id, '.
 			                                          'count(*) from transactions '.
@@ -56,6 +59,7 @@ class Seller_model extends CI_Model
 					'product_name' => $product['product_name'],
 					'lower_limit' => $product['lower_limit'],
 					'sell_count' => $count,
+					'delivered_count' => $delivered_count,
 					'timeline' => $timeline_str,
 					'state' => $state
 			);
