@@ -90,7 +90,10 @@ class Admin extends MY_Controller
 			$upload_data = $this->upload->data();
 
 			$this->load->model('product_model');
-			$insert_result = $this->product_model->insert_product($product_name, $seller_id, $description, $base_discount, $price, $upload_data['file_name'], $lower_limit, $start_schedule, $start_time, $duration);
+			$insert_result = $this->product_model->insert_product($product_name, $seller_id,
+                                $description,$base_discount, $price, $upload_data['file_name'],
+                                $lower_limit, $start_schedule, $start_time, $duration);
+                        
 			redirect('/admin/');
 		}
 	}
@@ -200,5 +203,6 @@ class Admin extends MY_Controller
 		$view_data['sellers'] = $this->seller_model->get_seller_names();
 		$this->load->view('edit_product_view', $view_data);
 	}
+
 
 }

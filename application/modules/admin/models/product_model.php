@@ -23,6 +23,15 @@ class Product_model extends CI_Model
 				'duration' => $duration
 		);
 		$insert_result = $this->db->insert('products', $product_data);
+                if($insert_result)
+                {
+                    $this->db->insert('posts_rss', array(
+                        'id' => $this->db->insert_id(),
+                        'title' => $product_name ,
+                        'text' => $product_desc,
+                        'date' => date('r')
+                    ));
+                }
 		return $insert_result;
 	}
 	function update_product ($id, $product_name, $seller_id, $product_desc,
@@ -46,6 +55,15 @@ class Product_model extends CI_Model
 		);
 		$this->db->where('id', $id);
 		$insert_result = $this->db->update('products', $product_data);
+                if($insert_result)
+                {
+                    $this->db->where('id', $id);
+                    $this->db->update('posts_rss', array(
+                        'title' => $product_name ,
+                        'text' => $product_desc,
+                        'date' => date('r')
+                    ));
+                }
 		return $insert_result;
 	}
 	function get_products ()
@@ -64,7 +82,12 @@ class Product_model extends CI_Model
 	function delete_product ($id)
 	{
 		$this->db->where('id', $id);
-		$this->db->delete('products');
+		if( $this->db->delete('products') )
+                {
+                    $this->db->where('id', $id);
+                    $this->db->delete('posts_rss');
+                }
+                
 	}
 	function get_product ($id)
 	{

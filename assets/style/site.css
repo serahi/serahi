@@ -73,10 +73,10 @@ h1, h2, h3, h4, h5 {
 	margin: -1.5em 1.2em 1.5em 1em;
 	font-family: arial black, arial;
 }
-.forms input[type=text]:focus, .forms input[type=password]:focus {
+.forms input[type=text]:focus, input[type=password]:focus, textarea:focus {
 	outline: 2px solid purple;
 }
-.forms input[type=text], .forms input[type=password] {
+.forms input[type=text], .forms input[type=password] , .forms textarea {
 	direction: rtl;
 	display: block;
 	width: 270px;
@@ -219,4 +219,21 @@ h1, h2, h3, h4, h5 {
 	width: 800px;
 	height: 1px;
 	margin-top:1em; 
+}
+
+.news_table{
+    margin: 5em auto;
+    width: 500px;
+}
+.news_table tr,td, th{
+    border: 1px darkgray solid;
+}
+
+.news_table td, th{
+    padding: 4px 13px;
+    text-align: center;
+}
+
+.news_table th{
+    background: #44A51C;
 }

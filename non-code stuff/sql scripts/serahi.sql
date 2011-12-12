@@ -92,6 +92,20 @@ INHERITS (users);
 ALTER TABLE public.customers OWNER TO postgres;
 
 --
+-- Name: posts_rss; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE posts_rss (
+    id bigint NOT NULL,
+    title character varying NOT NULL,
+    text character varying NOT NULL,
+    date date NOT NULL
+);
+
+
+ALTER TABLE public.posts_rss OWNER TO postgres;
+
+--
 -- Name: products; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -138,7 +152,7 @@ ALTER SEQUENCE products_id_seq OWNED BY products.id;
 -- Name: products_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('products_id_seq', 29, true);
+SELECT pg_catalog.setval('products_id_seq', 53, true);
 
 
 --
@@ -235,6 +249,14 @@ COPY customers (id, username, password, first_name, last_name, user_type, email,
 
 
 --
+-- Data for Name: posts_rss; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY posts_rss (id, title, text, date) FROM stdin;
+\.
+
+
+--
 -- Data for Name: products; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -246,6 +268,7 @@ COPY products (id, product_name, seller_id, lower_limit, description, image, bas
 26	    ۹,۰۰۰ تومان برای انتخاب از منوی باز و متنوع کافه آلبالو 	51	10	 هر فرد حداکثر ۲ نت برگ\n\n- ساعات مراجعه از ۱۱ الی ۱۶ و از ساعت ۱۶ به بعد با هماهنگی قبلی با تلفن ۰۹۱۲۱۵۸۲۲۷۳\n\n- زمان استفاده از ۹ آذرماه ۹۰ به مدت ۲ماه	albaloo_1.jpg	50	90000	2011-11-22	03:00:00	129600
 27	اپل آیفون 4s مشکی 16 گیگابایت	49	15	برند \tاپل\nمحصول کشور \tساخته شده در چین تحت لیسانس کالیفرنیا(آمریکا)\nرنگ \tمشکی\nوزن (گرم) \t140.0000\nابعاد \t11.52x5.86x0.93 cm\nنوع صفحه نمايش \tLED-backlit IPS TFT, capacitive touchscreen\nقطر صفحه نمایش \t3.5inch\nعمق رنگ \t16M colors\nبی سیم \tWi-Fi 802.11 b/g/n, Wi-Fi hotspot\nپردازنده \t1GHz dual-core ARM Cortex-A9 processor, PowerVR SGX543MP2 GPU, Apple A5 chipset\nحافظه داخلی \t16GB storage, 512 MB RAM\nکارت حافظه \tNo\nسیستم عامل \tiOS 5\nنامه الکترونیک \tYes\nجی پی آر اس \tYes\n3جی \tHSDPA, 14.4 Mbps; HSUPA, 5.8 Mbps\nجی پی اس \tYes, with A-GPS support\nبلوتوث \tYes, v4.0 with A2DP\nمرورگر اینترنت \tHTML (Safari).\nجاوا \tNo\nرزولوشن سنسور دوربین \t8MP\nفوکوس \tAutofocus\nنور دوربین \tLED flash\nظرفیت \tStandard battery, Li-Po 1432 mAh\nزمان مکالمه \tUp to 14 h (2G) / Up to 8 h (3G).\nاستند بای \tUp to 200 h (2G) / Up to 200 h (3G).	01-apple-iphone-4s-16gb-cellphone.jpg	10	12500000	2011-11-22	04:00:00	86400
 29	هارد ۱ ترابایت mozarbi	49	10	هارد ۱ ترابایت\nusb 3	e771_usb_it.jpg	20	210000	2011-11-21	23:00:00	129600
+30	لپ‌تاپ	49	1389			15	14000000	2011-12-09	17:00:00	43200
 \.
 
 
@@ -298,6 +321,14 @@ COPY users (id, username, password, first_name, last_name, user_type, email, cre
 
 ALTER TABLE ONLY customers
     ADD CONSTRAINT customers_pk PRIMARY KEY (id);
+
+
+--
+-- Name: posts_rss_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY posts_rss
+    ADD CONSTRAINT posts_rss_pkey PRIMARY KEY (id);
 
 
 --
