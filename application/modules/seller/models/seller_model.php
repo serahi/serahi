@@ -70,5 +70,19 @@ group by time_id;
 		}
 
 	}
-
+        
+        function Deliver()
+        {
+            $this->db->where('pursuit_code', $this->input->post('pursuit_code'));
+            $q = $this->db->update('transactions' , array('delivered'=>'t'));
+        }
+        
+        function Is_Delivered()
+        {
+            $this->db->where('pursuit_code', $this->input->post('pursuit_code'));
+            $this->db->select('delivered');
+            $q = $this->db->get('transactions');
+            $x = $q->row_array();
+            return $x['delivered'];
+        }
 }
