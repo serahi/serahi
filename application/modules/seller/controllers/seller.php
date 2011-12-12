@@ -15,12 +15,12 @@ class Seller extends MY_Controller
 
 	function is_seller ()
 	{
-		return ($this->session->userdata('is_logged_in') === TRUE &&
-		        $this->session->userdata('user_type') === 'seller');
+		return ($this->session->userdata('is_logged_in') === TRUE && $this->session->userdata('user_type') === 'seller');
 	}
-        
-        function check_pc(){
-            if (!$this->is_seller()) {
+
+	function check_pc ()
+	{
+		if (!$this->is_seller()) {
 			$this->load->view('access_denied');
 		} else {
                     $this->load->view('check_pc');
@@ -29,21 +29,41 @@ class Seller extends MY_Controller
         }
         function check_pursuit_code()
         {
-            	if (!$this->is_seller()) {
-			$this->load->view('access_denied');
-		} else {
+            	if(!$this->is_seller())
+                {
+                    $this->load->view('access_denied');
+		} 
+                else
+                {
                     $this->load->model('seller_model');
                     $result = $this->seller_model->check_pursuit_code();
                     if($result == True)
                     {
-                        $message['found_pc'] = array('msg' => 'کد رهگیری وارد شده صحیح می‌باشد.');
-                        $this->load->view('check_pc', $message);
-                        
-                    }elseif ($result == False)
+                        if($this->input->post('submit') == "بررسی کن!")
+                        {
+                            $message['found_pc'] = array('msg' => 'کد رهگیری وارد شده صحیح می‌باشد.');
+                            $this->load->view('check_pc', $message);
+                        }
+                        else
+                        {
+                            if($this->seller_model->Is_Delivered())
+                            {
+                                $message['is_delivered'] = array('msg' => 'کالای مورد نظر قبلا تحویل داده شده است.');
+                                $this->load->view('check_pc', $message);
+                            }
+                            else
+                            {
+                                $this->seller_model->Deliver();
+                                $message['delivered'] = array('msg' => 'کالای مورد نظر تحویل داده شد.');
+                                $this->load->view('check_pc', $message);
+                            }
+                        }
+                    }
+                    elseif($result == False)
                     {
                         $message['not_found_pc'] = array('msg' => 'کد رهگیری وارد شده یافت نشد.');
                         $this->load->view('check_pc', $message);
-                    }
+                    } 
                 }
         }
 
