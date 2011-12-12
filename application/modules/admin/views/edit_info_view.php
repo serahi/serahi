@@ -7,10 +7,8 @@
 <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBr6OmZbDrrQqCSxyNGQz8NLxU7XHewT_k&sensor=false">
 </script>
 <script type="text/javascript">
-		<?php list($map_lat, $map_lng) = explode(' ', $map_location);
-		      echo "var lat = $map_lat;";
-					echo "var lang = $map_lng;";
-		?>
+		var lat = {$map_lat|default:35.742};
+		var lang = {$map_lng|default:51.506};
     {literal}
     var marker = undefined;
     $(document).ready(function(){
@@ -28,7 +26,13 @@
 			  disableDoubleClickZoom: true
 			};
 			var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+		{/literal}
+		{if isset($map_lat)}
+		{literal}
 			marker = new google.maps.Marker({map: map, position: myLatlng});
+		{/literal}
+		{/if}
+		{literal}
 	  	$("#map_location").val(map.getCenter().lat() + ' ' + map.getCenter().lng());
 	  	google.maps.event.addListener(map, 'dblclick', function(event) {
 	  		if (marker == undefined){
@@ -85,11 +89,12 @@
     <input name = "address" id = "address" value = "{$address}" class = "{$required}">
     <label for = "phone">تلفن</label>
     <input name = "phone" id = "phone" class = "validate[custom[phone]]" value = "{$phone}">
-    <?php if ($this->session->userdata('user_type') == 'admin') { ?>
+    برای تغییر موقعیت خود روی نقشه دوبار کلیک کنید.
     <div style="height:275px;width:250px;float:right;">
 			<div id="map_canvas" style="width: 100%; height: 100%"></div>
 		</div>
     <input id="map_location" type="hidden" name="map_location"/>
+    <?php if ($this->session->userdata('user_type') == 'admin') { ?>
         <div class = "row">
             {if $approved eq 'TRUE'}
             <input type = "checkbox" name = "approved" id = "approved" checked = "checked">

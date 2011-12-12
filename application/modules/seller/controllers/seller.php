@@ -15,12 +15,12 @@ class Seller extends MY_Controller
 
 	function is_seller ()
 	{
-		return ($this->session->userdata('is_logged_in') === TRUE &&
-		        $this->session->userdata('user_type') === 'seller');
+		return ($this->session->userdata('is_logged_in') === TRUE && $this->session->userdata('user_type') === 'seller');
 	}
-        
-        function check_pc(){
-            if (!$this->is_seller()) {
+
+	function check_pc ()
+	{
+		if (!$this->is_seller()) {
 			$this->load->view('access_denied');
 		} else {
                     $this->load->view('check_pc');

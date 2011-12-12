@@ -34,6 +34,9 @@ class Userlist extends MY_Controller
 			if ($id) {
 				$this->load->model('user_model');
 				$user_info = $this->user_model->get_user_info($id);
+				if (isset($user_info['map_location']) && $user_info['map_location'] != '') {
+					list($user_info['map_lat'], $user_info['map_lng']) = explode(' ', $user_info['map_location']);
+				}
 				if ($user_info === FALSE) {
 					redirect('admin/userlist');
 					return;

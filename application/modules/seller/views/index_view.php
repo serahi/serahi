@@ -22,8 +22,11 @@
 			<div class="lower_limit">
 				<b> حد نصاب: </b>{$product.lower_limit}
 			</div>
+			<div>
+				وضعیت محصول: {$product.state}
+			</div>
 			<div class="sell_count">
-				<b> تعداد فروخته شده: </b>{$product.sell_count}
+				<b> تعداد سفارش شده: </b>{$product.sell_count}
 			</div>
 			<div class = "timeline_container">
 				نمودار میزان فروش محصولات بر حسب زمان:
