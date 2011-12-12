@@ -97,6 +97,6 @@ class Seller_model extends CI_Model
             $this->db->select('delivered');
             $q = $this->db->get('transactions');
             $x = $q->row_array();
-            return $x['delivered'];
+            return $x['delivered'] == 't';
         }
 }
