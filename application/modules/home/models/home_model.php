@@ -155,4 +155,10 @@ class Home_model extends CI_Model
 		}
 		return $message_info;
 	}
+        
+        function get_news()
+        {
+            $query = $this->db->get('news');
+            return $query->result_array();
+        }
 }

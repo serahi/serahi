@@ -61,6 +61,9 @@
 						<a href = "{$base_url}user/seller_signup">ثبت نام فروشندگان</a>
 					<?php endif?>
 					</span>
+                                    <span class="block">
+                                        <a href="{$base_url}home/news"> اخبار </a>
+                                    </span>
 					<span class="block center" id="serahi">
 						<a href="{$base_url}home/" class = "bconfirm">سه راهــــــی</a>
 					</span>

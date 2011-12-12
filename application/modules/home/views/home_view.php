@@ -3,6 +3,19 @@
 {/block}
 
 {block name=main_content}
+{if isset($news) && count($news) > 0}
+<div class="news">
+    {foreach from=$news item=row}
+    <b>{$row.title}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b>
+    تاریخ خبر:{$row.date}
+    <br/>
+    <div class="news>"
+    {$row.content}
+</div>
+    <br/>
+    {/foreach}
+</div>
+{/if}
 {if isset($products) && count($products) > 0}
 <div class="product">
 	{foreach from=$products item=item name=props}

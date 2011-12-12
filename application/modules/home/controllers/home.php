@@ -11,7 +11,6 @@ class Home extends MY_Controller
 	{
 		$this->load->model('home_model');
 		$array['products'] = $this->home_model->get_list();
-
 		$this->load->view('home_view', $array);
 	}
 
@@ -49,5 +48,11 @@ class Home extends MY_Controller
 	{
 		return $this->session->userdata('is_logged_in');
 	}
+        
+        function news(){
+            $this->load->model('home_model');
+            $array['news'] = $this->home_model->get_news();
+            $this->load->view('news', $array);
+        }
 
 }
