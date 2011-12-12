@@ -187,7 +187,7 @@ h1, h2, h3, h4, h5 {
 	float:left;
 }
 .item .item_pic img{
-	max-height: 180px;
+	max-height: 180 px;
 	max-width: 180px;
 	float: left;
 }
@@ -196,6 +196,13 @@ h1, h2, h3, h4, h5 {
 }
 .item .description{
 	margin: 1em auto;
+        clear:both;
+}
+
+.item .desc{
+    margin: 5em 10px;
+    clear:both;
+    text-align: right;
 }
 .item pre{
 	text-align: justify;
@@ -236,4 +243,12 @@ h1, h2, h3, h4, h5 {
 
 .news_table th{
     background: #44A51C;
+}
+
+.news_date{
+    float:left;
+}
+.item_title{
+    float: right;
+    display: inline-block;
 }
