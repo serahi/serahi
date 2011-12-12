@@ -44,10 +44,8 @@
 								<a href = "{$base_url}seller/check_pc" > کنترل کدرهگیری </a>
 								<a href = "{$base_url}admin/userlist/edit?id=<?php echo $this->session->userdata('user_id');?>">ویرایش اطلاعات</a>
 							<?php elseif ($this->session->userdata('user_type') == 'customer'):?>
-								<a href = "{$base_url}admin/userlist/edit?id=<?php echo $this->session->userdata('user_id');?>">ویرایش اطلاعات</a>
-							<?php endif?>
-							<?php if($this->session->userdata('user_type') == 'customer'):?>
-								<a href ="{$base_url}admin/userlist/edit"> تنظیمات </a>
+                                                                                        <a href ="{$base_url}user/transactions/load_all_transactions">خریدهای من </a>
+								<a href = "{$base_url}admin/userlist/edit?id=<?php echo $this->session->userdata('user_id');?>">ویرایش اطلاعات</a>  
 							<?php endif?>
 							</span>
 							<span>

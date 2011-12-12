@@ -22,7 +22,9 @@
 
 {if count($sellers) > 0}
 <br/>
+<div style="text-align:center">
 لیست فروشنده های تایید نشده
+</div>
 <br/>
 <table>
     <thead>
@@ -50,7 +52,9 @@
 </table>
 {/if}
 <br />
+<div style="text-align:center">
 لیست محصولات فعلی
+</div>
 <br>
 <table>
 	<thead>
