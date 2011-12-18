@@ -72,7 +72,7 @@ ALTER SEQUENCE users_id_seq OWNED BY users.id;
 -- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('users_id_seq', 54, true);
+SELECT pg_catalog.setval('users_id_seq', 66, true);
 
 
 --
@@ -194,7 +194,7 @@ ALTER SEQUENCE products_id_seq OWNED BY products.id;
 -- Name: products_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('products_id_seq', 53, true);
+SELECT pg_catalog.setval('products_id_seq', 55, true);
 
 
 --
@@ -256,7 +256,7 @@ ALTER SEQUENCE transactions_id_seq OWNED BY transactions.id;
 -- Name: transactions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('transactions_id_seq', 167, true);
+SELECT pg_catalog.setval('transactions_id_seq', 177, true);
 
 
 --
@@ -292,8 +292,12 @@ ALTER TABLE users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
 --
 
 COPY customers (id, username, password, first_name, last_name, user_type, email, creation_time, random_string, address, postal_code, phone, birth_date, activated) FROM stdin;
-32	hamed.gh	0088f5f91b8a5515227bc85a853a6873	حامد	قلی زاده	customer	hamed.gholizadeh.f@gmail.com	\N	\N	\N	\N	\N	\N	t
-33	sadegh	81d117fec85703f2c3db637eee47474f	صادق	کاظمی	customer	sadegh.kazemy@gmail.com	\N	\N	a			\N	t
+60	customer_1	91ec1f9324753048c0096d036a694f86	صادق	کاظمی	customer	mail@gmail.com	2011-12-12 14:58:42	\N	تهران، خانه	9384282818	0	\N	t
+61	customer_2	91ec1f9324753048c0096d036a694f86	صادق	کاظمی	customer	mail@gmail.com	2011-12-12 14:58:42	\N	تهران، خانه	9384282818	0	\N	t
+62	customer_3	91ec1f9324753048c0096d036a694f86	صادق	کاظمی	customer	mail@gmail.com	2011-12-12 14:58:42	\N	تهران، خانه	9384282818	0	\N	t
+63	customer_4	91ec1f9324753048c0096d036a694f86	صادق	کاظمی	customer	mail@gmail.com	2011-12-12 14:58:42	\N	تهران، خانه	9384282818	0	\N	t
+65	customer_5	91ec1f9324753048c0096d036a694f86	صادق	کاظمی	customer	mail@gmail.com	2011-12-12 14:58:42	\N	تهران، خانه	9384282818	0	\N	t
+66	customer_6	91ec1f9324753048c0096d036a694f86	صادق	کاظمی	customer	mail@gmail.com	2011-12-12 14:58:42	\N	تهران، خانه	9384282818	0	\N	t
 \.
 
 
@@ -310,6 +314,8 @@ COPY news (id, title, content, date) FROM stdin;
 --
 
 COPY posts_rss (id, title, text, date) FROM stdin;
+54	نوت بوک MacBook Air 11.6	Processor and memory:\n- 1.6GHz dual-core Intel Core i5 with 3MB shared L3 cache\n- 2GB of 1333MHz DDR3 onboard memory\n\nStorage:\n- 64GB flash storage\n\nDisplay:\n- 11.6-inch (diagonal) high-resolution LED-backlit glossy widescreen display with support for millions of colors\n- Supported resolutions: 1366 by 768 (native), 1344 by 756, and 1280 by 720 pixels at 16:9 aspect ratio; 1152 by 720 and 1024 by 640 pixels at 16:10 aspect ratio; 1024 by 768 and 800 by 600 pixels at 4:3 aspect ratio	2011-12-12
+55	تلفن همراه Xperia active	صفحه کلید: صفحه کلید لمسی\nسیستم عامل: Android\nحافظه داخلی: ‏RAM: 512MB\nInternal phone storage: 1GB (up to 320MB free)‎\nنوع کارت حافظه: microSD, up to 32GB\nدوربین: 5 تا 8 مگاپیکسل 	2011-12-12
 \.
 
 
@@ -318,14 +324,8 @@ COPY posts_rss (id, title, text, date) FROM stdin;
 --
 
 COPY products (id, product_name, seller_id, lower_limit, description, image, base_discount, price, start_schedule, start_time, duration) FROM stdin;
-7	لپ تاپ	\N	5	ایران رهجو	laptop.jpeg	2	13500000	\N	\N	\N
-24	موبایل \ndefy	\N	\N	\N	\N	\N	\N	\N	\N	\N
-28	ساعت Rolex Daytona	51	20	دستان شما در اختيار جذابيت ...\nرولکس اتوماتیک دی تونا\nمكمل زيبايي و جذابيت شما 	hytrlwx_597765763203874291.jpg	60	550000	2011-11-21	09:00:00	172800
-25	  کرم اتوبرنزه گارنی 	51	25	طریقه مصرف:\n2 الی سه ساعت پس از استحمام صورت و بدن خود را کاملا خشک کنید و محصول را به شکل یکنواخت بر روی سطح پوست مالیده ، سپس با کف دست ها با حرکت چرخشی دایره وار کرم را جذب پوست کنید. (جهت رسیدن به رنگ مطلوب و دلخواه پس از استحمام از لوسیون ، کرم، مام و ... استفاده نشود)\nلازم به ذکر است که در صورت استفاده از کرم آن را به تمام بدن بمالید.پشت گوشها و گردن را فراموش نکنید، همچنین از هیچ وسیله ای برای تسریع در جذب کرم استفاده نکنید.\nبعد ازاینکه پوست خود را بطور کامل با کرم پوشاندید کافیست ۲ تا ۴ ساعت صبر کنید.\nتوجه : قبل از جذب کامل اتوبرنز از پوشیدن لباس خودداری کنید. این عمل را سه بار به فواصل یک ساعت تکرار کنید . بعد از آخرین مرتبه استفاده 4 الی 6 ساعت زمان نیاز است تا فرایند برنزاسیون و رنگ دهی نهایی آغاز گردد. تذکر : به دلیل رنگ پذیری سریع کف دست توصیه می گردد فورا با دستمال مرطوب کف دست ها پاک گردد.\n\nبرخی از امکانات و قابلیتها:\n\nبرنزکننده بدون نیاز به آفتاب\nمحافظی قوی در برابر اشعه های مضر UVA, UVBنورخورشید\nبرنزکننده،ضدآفتاب، محافظ و التیام بخش پوست\nبرنزکننده بین 20 تا 40 دقیقه به رو و 20 تا 40 دقیقه\nنرم کننده پوست و ضد خشکی\nالتیام بخش پوست و محتوی ویتامینهای گروه A و....	satcoiran_3190_11.jpg	50	260000	2011-11-22	12:00:00	172800
-26	    ۹,۰۰۰ تومان برای انتخاب از منوی باز و متنوع کافه آلبالو 	51	10	 هر فرد حداکثر ۲ نت برگ\n\n- ساعات مراجعه از ۱۱ الی ۱۶ و از ساعت ۱۶ به بعد با هماهنگی قبلی با تلفن ۰۹۱۲۱۵۸۲۲۷۳\n\n- زمان استفاده از ۹ آذرماه ۹۰ به مدت ۲ماه	albaloo_1.jpg	50	90000	2011-11-22	03:00:00	129600
-27	اپل آیفون 4s مشکی 16 گیگابایت	49	15	برند \tاپل\nمحصول کشور \tساخته شده در چین تحت لیسانس کالیفرنیا(آمریکا)\nرنگ \tمشکی\nوزن (گرم) \t140.0000\nابعاد \t11.52x5.86x0.93 cm\nنوع صفحه نمايش \tLED-backlit IPS TFT, capacitive touchscreen\nقطر صفحه نمایش \t3.5inch\nعمق رنگ \t16M colors\nبی سیم \tWi-Fi 802.11 b/g/n, Wi-Fi hotspot\nپردازنده \t1GHz dual-core ARM Cortex-A9 processor, PowerVR SGX543MP2 GPU, Apple A5 chipset\nحافظه داخلی \t16GB storage, 512 MB RAM\nکارت حافظه \tNo\nسیستم عامل \tiOS 5\nنامه الکترونیک \tYes\nجی پی آر اس \tYes\n3جی \tHSDPA, 14.4 Mbps; HSUPA, 5.8 Mbps\nجی پی اس \tYes, with A-GPS support\nبلوتوث \tYes, v4.0 with A2DP\nمرورگر اینترنت \tHTML (Safari).\nجاوا \tNo\nرزولوشن سنسور دوربین \t8MP\nفوکوس \tAutofocus\nنور دوربین \tLED flash\nظرفیت \tStandard battery, Li-Po 1432 mAh\nزمان مکالمه \tUp to 14 h (2G) / Up to 8 h (3G).\nاستند بای \tUp to 200 h (2G) / Up to 200 h (3G).	01-apple-iphone-4s-16gb-cellphone.jpg	10	12500000	2011-11-22	04:00:00	86400
-29	هارد ۱ ترابایت mozarbi	49	10	هارد ۱ ترابایت\nusb 3	e771_usb_it.jpg	20	210000	2011-11-21	23:00:00	129600
-30	لپ‌تاپ	49	1389			15	14000000	2011-12-09	17:00:00	43200
+54	نوت بوک MacBook Air 11.6	56	20	Processor and memory:\n- 1.6GHz dual-core Intel Core i5 with 3MB shared L3 cache\n- 2GB of 1333MHz DDR3 onboard memory\n\nStorage:\n- 64GB flash storage\n\nDisplay:\n- 11.6-inch (diagonal) high-resolution LED-backlit glossy widescreen display with support for millions of colors\n- Supported resolutions: 1366 by 768 (native), 1344 by 756, and 1280 by 720 pixels at 16:9 aspect ratio; 1152 by 720 and 1024 by 640 pixels at 16:10 aspect ratio; 1024 by 768 and 800 by 600 pixels at 4:3 aspect ratio	pic1.jpg	35	178000000	2011-12-12	06:00:00	129600
+55	تلفن همراه Xperia active	55	2	صفحه کلید: صفحه کلید لمسی\nسیستم عامل: Android\nحافظه داخلی: ‏RAM: 512MB\nInternal phone storage: 1GB (up to 320MB free)‎\nنوع کارت حافظه: microSD, up to 32GB\nدوربین: 5 تا 8 مگاپیکسل 	xperia1.jpg	40	4240000	2011-12-12	00:00:00	86400
 \.
 
 
@@ -334,11 +334,11 @@ COPY products (id, product_name, seller_id, lower_limit, description, image, bas
 --
 
 COPY sellers (id, username, password, first_name, last_name, user_type, email, creation_time, random_string, display_name, address, phone, approved, map_location) FROM stdin;
-49	milad.b	03765deb96723cd8be96e0cd4080e58c	میلاد	بشیری	seller	miladbashiri@yahoo.com	\N	\N	میلاد	تهران	09357289273	t	\N
-51	hessam	3d579595cb191ab55a02e5787d38695e	حسام	محمدیان	seller	hessam.mohammadian@gmail.com	\N	\N	حسام	تهران	09123178234	t	\N
-52	vahid.h	acc1be7b3277ea5930080e54c448c62b	وحید	عظیمی	seller	vahid@yahoo.com	2011-11-22 16:22:44	\N	پلنگ چال پیتزا	پلنگ چال	09125674328	f	\N
-53	mohsen	80393af8b3d99736c8b0d49d9a9da4ff	محسن	عباسی	seller	mohsen@yahoo.com	2011-11-22 16:23:48	\N	محسن کده	uni	09127654182	f	\N
-54	hamid.b	ee75de62e9f99a818b72d2cbb78db06b	حمید	بیدار	seller	bdtirp@yahoo.com	2011-11-22 16:24:56	\N	بیدار فروش	دانشکده کامپیوتر	09124563219	f	\N
+58	seller_4	64c9ac2bb5fe46c3ac32844bb97be6bc	میلاد	بشیری	seller	info@gmail.com	2011-12-12 14:58:42	\N	سینما	تهران، میدان رسالت	09121212121	f	35.73658336551923 51.48810430145261
+59	seller_5	64c9ac2bb5fe46c3ac32844bb97be6bc	میلاد	بشیری	seller	info@gmail.com	2011-12-12 14:58:42	\N	رستوران	تهران، میدان رسالت	09121212121	f	35.73658336551923 51.48810430145261
+57	seller_3	64c9ac2bb5fe46c3ac32844bb97be6bc	میلاد	بشیری	seller	info@gmail.com	2011-12-12 14:58:42	\N	سینما	تهران، میدان رسالت	09121212121	t	35.73658336551923 51.48810430145261
+56	seller_2	64c9ac2bb5fe46c3ac32844bb97be6bc	میلاد	بشیری	seller	info@gmail.com	2011-12-12 14:58:42	\N	محصولات کامپیوتری	تهران، میدان رسالت	09121212121	t	35.73658336551923 51.48810430145261
+55	seller_1	64c9ac2bb5fe46c3ac32844bb97be6bc	میلاد	بشیری	seller	info@gmail.com	2011-12-12 14:58:42	\N	فروشگاه موبایل	تهران، دانشگاه علم و صنعت	09121212121	t	35.74206966492453 51.50685830688474
 \.
 
 
@@ -347,19 +347,16 @@ COPY sellers (id, username, password, first_name, last_name, user_type, email, c
 --
 
 COPY transactions (id, user_id, product_id, count, transaction_time, buying_state, pursuit_code, delivered) FROM stdin;
-155	33	28	1	2011-11-22 16:04:15+03:30	1	0urfh0ytix	f
-156	33	25	1	2011-11-22 16:04:18+03:30	1	7wxsa9za84	f
-157	33	29	1	2011-11-22 16:04:24+03:30	1	bixxdkn3n8	f
-158	32	27	1	2011-11-22 16:04:42+03:30	1	8f85cy07bi	f
-159	32	29	1	2011-11-22 16:04:46+03:30	1	oc2lp3p961	f
-160	51	25	1	2011-11-22 16:05:13+03:30	1	0zh9raoo1i	f
-161	51	28	1	2011-11-22 16:05:16+03:30	1	68j83hcj6b	f
-162	51	26	1	2011-11-22 16:05:19+03:30	1	1df8o8fy2a	f
-163	51	27	1	2011-11-22 16:05:24+03:30	1	ehsfqvg4v1	f
-164	51	29	1	2011-11-22 16:05:28+03:30	1	alsgsbt0yc	f
-165	49	28	1	2011-11-22 16:06:03+03:30	1	tm2ebnic2f	f
-166	49	26	1	2011-11-22 16:06:08+03:30	1	aahbqhsyvo	f
-167	49	29	1	2011-11-22 16:06:12+03:30	1	fhk1bbz47k	f
+168	60	54	1	2011-12-12 15:26:16+03:30	1	z8me3hahn0	t
+169	61	54	1	2011-12-12 15:26:33+03:30	1	ld6y35szn1	t
+170	62	54	1	2011-12-12 13:26:33+03:30	1	ld6y35szn1	t
+171	68	54	1	2011-12-12 13:31:33+03:30	1	ld6y35szn1	t
+172	73	54	1	2011-12-12 13:26:33+03:30	1	ld6y35szn1	t
+173	75	54	1	2011-12-12 13:26:33+03:30	1	ld6y35szn1	t
+175	60	55	1	2011-12-12 15:47:17+03:30	1	t12zf475d0	f
+176	62	55	1	2011-12-12 15:47:42+03:30	1	mv0dgptu4z	f
+174	39	55	1	2011-12-12 15:46:51+03:30	1	1yl46q2ags	t
+177	61	55	1	2011-12-12 15:51:50+03:30	1	rlfdptnp5e	f
 \.
 
 
