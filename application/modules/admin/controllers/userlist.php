@@ -5,55 +5,45 @@ class Userlist extends MY_Controller
 
 	function index ()
 	{
-		if (_is_admin()) {
-			$this->load->model('user_model');
-			$view_data['users'] = $this->user_model->get_users();
-			$this->load->view('userlist_view', $view_data);
-		} else {
-			$this->load->view('access_denied');
-		}
+		$this->load->model('user_model');
+		$view_data['users'] = $this->user_model->get_users();
+		$this->load->view('userlist_view', $view_data);
 	}
 
 	function delete ()
 	{
-		if (_is_admin()) {
-			$id = $this->input->post('id');
-			$this->load->model('user_model');
-			$this->user_model->delete_user($id);
-			redirect('admin/userlist');
-		} else {
-			$this->load->view('access_denied');
-		}
+		$id = $this->input->post('id');
+		$this->load->model('user_model');
+		$this->user_model->delete_user($id);
+		redirect('admin/userlist');
 	}
 
 	function edit ()
 	{
 		$user_id = $this->session->userdata('user_id');
 		$id = $this->input->get('id');
-		if (_is_admin() || $id == $user_id) {
-			if ($id) {
-				$this->load->model('user_model');
-				$user_info = $this->user_model->get_user_info($id);
-				if (isset($user_info['map_location']) && $user_info['map_location'] != '') {
-					list($user_info['map_lat'], $user_info['map_lng']) = explode(' ', $user_info['map_location']);
-				}
-				if ($user_info === FALSE) {
-					redirect('admin/userlist');
-					return;
-				}
-				$this->load->view('edit_info_view', $user_info);
-			} else {
-				redirect('admin/userlist');
+		//access level: admin|self
+		if ($id) {
+			$this->load->model('user_model');
+			$user_info = $this->user_model->get_user_info($id);
+			if (isset($user_info['map_location']) && $user_info['map_location'] != '') {
+				list($user_info['map_lat'], $user_info['map_lng']) = explode(' ', $user_info['map_location']);
 			}
+			if ($user_info === FALSE) {
+				redirect('admin/userlist');
+				return;
+			}
+			$this->load->view('edit_info_view', $user_info);
 		} else {
-			$this->load->view('access_denied');
+			redirect('admin/userlist');
 		}
 	}
 
 	function save_edit ()
 	{
+		
 		$user_id = $this->session->userdata('user_id');
-		if (_is_admin() || $user_id == $this->input->post('id')) {
+			//access level: admin|self:id@post
 			$user = _post_values(array(
 					'id',
 					'username',
@@ -63,6 +53,7 @@ class Userlist extends MY_Controller
 					'user_type',
 					'email'
 			));
+			//FIXME: access('self:id@post)
 			if (!_is_admin()) {
 				$user['user_type'] = $this->session->userdata('user_type');
 			}
@@ -158,9 +149,6 @@ class Userlist extends MY_Controller
 					$this->load->view('edit_success_view');
 				}
 			}
-		} else {
-			$this->load->view('access_denied');
-		}
 	}
 
 }

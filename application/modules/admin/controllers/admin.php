@@ -5,10 +5,6 @@ class Admin extends MY_Controller
 
 	function index ()
 	{
-		if (!_is_admin()) {
-			$this->load->view('access_denied');
-			return;
-		}
 		$this->load->model('product_model');
 		$this->load->model('seller_model');
 		$view_data['products'] = $this->product_model->get_products();
@@ -18,10 +14,6 @@ class Admin extends MY_Controller
 
 	function product_form ()
 	{
-		if (!_is_admin()) {
-			$this->load->view('access_denied');
-			return;
-		}
 		$this->load->model('seller_model');
 		$view_data['sellers'] = $this->seller_model->get_approved_sellers();
 		$this->load->view('add_product_view', $view_data);
@@ -29,10 +21,6 @@ class Admin extends MY_Controller
 
 	function add_product ()
 	{
-		if (!_is_admin()) {
-			$this->load->view('access_denied');
-			return;
-		}
 		$this->load->library('form_validation');
 		$config = array(
 				array(
@@ -100,10 +88,6 @@ class Admin extends MY_Controller
 
 	function save_product ()
 	{
-		if (!_is_admin()) {
-			$this->load->view('access_denied');
-			return;
-		}
 		$this->load->library('form_validation');
 		$config = array(
 				array(
@@ -169,10 +153,6 @@ class Admin extends MY_Controller
 
 	function approving_seller ()
 	{
-		if (!_is_admin()) {
-			$this->load->view('access_denied');
-			return;
-		}
 		$this->load->model('seller_model');
 		$this->seller_model->approve();
 		redirect('admin');
@@ -180,10 +160,6 @@ class Admin extends MY_Controller
 
 	function delete_product ()
 	{
-		if (!_is_admin()) {
-			$this->load->view('access_denied');
-			return;
-		}
 		$id = $this->input->post('id');
 		$this->load->model('product_model');
 		$this->product_model->delete_product($id);
@@ -192,10 +168,6 @@ class Admin extends MY_Controller
 
 	function edit_product ()
 	{
-		if (!_is_admin()) {
-			$this->load->view('access_denied');
-			return;
-		}
 		$id = $this->input->get('id');
 		$this->load->model('product_model');
 		$view_data = $this->product_model->get_product($id);
@@ -203,6 +175,4 @@ class Admin extends MY_Controller
 		$view_data['sellers'] = $this->seller_model->get_seller_names();
 		$this->load->view('edit_product_view', $view_data);
 	}
-
-
 }

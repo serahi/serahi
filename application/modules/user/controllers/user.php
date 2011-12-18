@@ -10,13 +10,15 @@ class User extends MY_Controller {
     }
 
     function login() {
-        if ($this->is_logged_in())
-            redirect('home');
+    	//redirect: home
+    	//access level: unregistered
         $this->load->view('login_form');
     }
 
     function login_check() {
 
+    	//redirect: home
+    	//access level: unregistered
         $this->load->model('membership_model');
         $name = $this->membership_model->validate_user();
         if ($name !== FALSE) {
@@ -49,24 +51,16 @@ class User extends MY_Controller {
         }
     }
 
-    function is_logged_in() {
-        return $this->session->userdata('is_logged_in');
-    }
-
     function signup() {
-        if ($this->is_logged_in()) {
-            redirect('home');
-        } else {
+    	//redirect: home
+    	//access level: unregistered
             $this->load->view('sign_up_form');
-        }
     }
 
     function seller_signup() {
-        if ($this->is_logged_in()) {
-            redirect('home');
-        } else {
+    	//redirect: home
+    	//access level: unregistered
             $this->load->view('seller_sign_up_form');
-        }
     }
 
     function register() {
@@ -165,9 +159,6 @@ class User extends MY_Controller {
     }
 
     function activate() {
-        if ($this->is_logged_in()) {
-            redirect('home');
-        } else {
             $code = $_GET["t"];
             $this->load->model('membership_model');
             $query_result = $this->membership_model->validate_activation_code($code);
@@ -179,7 +170,6 @@ class User extends MY_Controller {
                 );
                 $this->load->view('sign_up_part2', $data);
             }
-        }
     }
 
     function complete_registration() {

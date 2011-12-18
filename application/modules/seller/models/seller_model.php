@@ -45,13 +45,13 @@ class Seller_model extends CI_Model
 			
 			$now_pos = (int)($passed / 1800);
 			$timeline_str = '';
-			for ($i=0; $i < min($now_pos + 1, 48); $i++) {
+			for ($i=0; $i < 48; $i++) {
 				if (!isset($timeline[$i])) {
 					$timeline_str .= '0';
 				} else {
 					$timeline_str .= $timeline[$i];
 				}
-				if ($i != min($now_pos, 47)) $timeline_str .= ',';
+				if ($i != 47) $timeline_str .= ',';
 			}
 			
 			//===================================

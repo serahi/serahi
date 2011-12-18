@@ -16,7 +16,8 @@ class Home extends MY_Controller
 
 	function buy ()
 	{
-		if ($this->is_logged_in()) {
+		//access_level: registered
+		//redirect: user/login
 			$this->load->model('home_model');
 			$pursuit_code = rand_gen(10);
 			$insert_result = $this->home_model->add_transaction($pursuit_code);
@@ -27,26 +28,16 @@ class Home extends MY_Controller
 				$this->email_agent->sell_active($mails_PCs);
 			}
 			redirect('home');
-		} else {
-			redirect('user/login');
-		}
 	}
 
 	function cancel_transaction ()
 	{
-		if ($this->is_logged_in()) {
-			$this->load->model('home_model');
-			$this->home_model->cancel_transaction();
+		//access_level: registered
+		//redirect: user/login
+		$this->load->model('home_model');
+		$this->home_model->cancel_transaction();
 
-			redirect('home');
-		} else {
-			redirect('user/login');
-		}
-	}
-
-	function is_logged_in ()
-	{
-		return $this->session->userdata('is_logged_in');
+		redirect('home');
 	}
         
         function news(){

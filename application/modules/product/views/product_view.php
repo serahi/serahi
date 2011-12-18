@@ -7,7 +7,7 @@
 	      echo "var lat = $map_lat;";
 				echo "var lang = $map_lng;";
 	?>
-	var marker_title = {$seller_display_name|default:'\'\''};
+	var marker_title = '{$seller_display_name|default:''}';
 	{literal}
 	$(document).ready(function(){
 		var myLatlng = new google.maps.LatLng(lat, lang);

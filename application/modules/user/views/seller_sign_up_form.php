@@ -14,7 +14,7 @@
 		  disableDoubleClickZoom: true
 		};
 		var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
-		marker = new google.maps.Marker({map: map, position: myLatLng});
+		marker = new google.maps.Marker({map: map, position: myLatlng});
   	$("#map_location").val(map.getCenter().lat() + ' ' + map.getCenter().lng());
   	google.maps.event.addListener(map, 'dblclick', function(event) {
   		if (marker == undefined){
