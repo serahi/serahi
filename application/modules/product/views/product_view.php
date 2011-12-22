@@ -120,5 +120,14 @@
 			{/if}
 		</div>
 	</div>
+   <!-- <?php// foreach ($comments as $comment): ?>
+        <div class="item">
+            <div class="item_title"> <b> <?php echo $comment['username']; ?> </b> </div>
+            <div class="news_date"> <?php echo $comment['date']; ?> </div>
+            <div class="desc"> <?php echo $comment['content']; ?> </div>
+                 
+        </div>
+    <?php// endforeach; ?>
+   -->
 </div>
 {/block}
