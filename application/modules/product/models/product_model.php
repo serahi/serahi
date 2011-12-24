@@ -44,4 +44,29 @@ class Product_model extends CI_Model {
         return $query->result_array();
     }
 
+    function add_comment() {
+        $this->db->insert('comments', array(
+            'id' => 7,
+            'user_id' => 56,
+            'content' => $this->input->post('comment_content'),
+            'date' => date('r'),
+            'product_id'=> $this->input->post('product_id')
+        ));
+    }
+
+    //not ready yet
+    //led?!
+    function edit_comment() {
+        $this->db->where('id', $this->input->post('comment_id'));
+        $this->db->update('comments', array(
+            'content' => $this->input->post('comment_content')
+        ));
+    }
+
+    //not ready yet
+    function remove_comment() {
+        $this->db->where('id', $this->input->post('comment_id'));
+        $this->db->delete('comments');
+    }
+
 }
