@@ -31,7 +31,7 @@
 <div class="product">
 	<div class="item">
 		<script>
-			var remaining = {$remaining};
+			var remaining = {$product['remaining']};
 			var callback = function () {
 				var txt = $("#remain_hidden").text();
 				var num = parseInt(txt);
@@ -54,80 +54,79 @@
 			};
 			window.setInterval(callback, 1000);
 		</script>
-		<div class = "item_title"><a href = "{$base_url}product/view?id={$id}">{$product_name}</a></div>
+		<div class = "item_title"><a href = "{$base_url}product/view?id={$product['id']}">{$product['product_name']}</a></div>
 		<div class="remaining">
 		    <b>
 		        زمان باقیمانده برای خرید این کالا
 		    </b>
 		    <div id = "remain_hidden" style="display:none">
-		    	{$remaining}
+		    	{$product['remaining']}
 		    </div>
 		    <div id="remain_time">
 		    </div>
 		</div>
 		<div class="item_pic">
-			<img src="{$base_url}images/products/{$image}" />
+			<img src="{$base_url}images/products/{$product['image']}" />
 		</div>
 		<div class="item_name">
-			<b> نام کالا: </b>{$product_name}
+			<b> نام کالا: </b>{$product['product_name']}
 		</div>
 		<div class="item_price">
-			<b>  قیمت کالا: </b>{$price} تومان
+			<b>  قیمت کالا: </b>{$product['price']} تومان
 		</div>
 		<div class="base_discount">
-			<b> تخفیف پایه: </b>{$base_discount} درصد
+			<b> تخفیف پایه: </b>{$product['base_discount']} درصد
 		</div>
 		<div class="lower_limit">
-			<b> حد نصاب: </b>{$lower_limit}
+			<b> حد نصاب: </b>{$product['lower_limit']}
 		</div>
 		<div class="sell_count">
-			<b> تعداد فروخته شده تا الان: </b>{$sell_count}
+			<b> تعداد فروخته شده تا الان: </b>{$product['sell_count']}
 		</div>
     وضعیت فروش
-    <progress value="{$sell_count}" max="{$lower_limit}"></progress>
+    <progress value="{$product['sell_count']}" max="{$product['lower_limit']}"></progress>
     <div class="progress value">
-        {$sell_count}/{$lower_limit}
+        {$product['sell_count']}/{$product['lower_limit']}
     </div>
 		<div class="description">
-			<pre>{$description}</pre>
+			<pre>{$product['description']}</pre>
 		</div>
 		<div style="height:275px;width:275px;">
 			<div id="map_canvas" style="width: 100%; height: 100%"></div>
 		</div>
 		<div class="buy">
-			{if $buying_state eq 0}
+			{if $product['buying_state'] eq 0}
 			<form method="post"   action="{$base_url}home/buy" class="forms">
 				<input type="submit" value="خرید">
-				<input type="hidden" value="{$id}" name="product_id">
+				<input type="hidden" value="{$product['id']}" name="product_id">
 			</form>
-			{elseif $buying_state eq 2}
+			{elseif $product['buying_state'] eq 2}
 			<form method="post" action="{$base_url}home/buy" class="forms buy_form" name="buying_form">
 				<input type="submit" class="bconfirm" value="خرید">
-				<input type="hidden" value="{$id}" name="product_id">
+				<input type="hidden" value="{$product['id']}" name="product_id">
 			</form>
-			{elseif $buying_state eq 1}
+			{elseif $product['buying_state'] eq 1}
 			<div class="not_found_item">
 				این کالا قبلاً توسط شما خریداری شده است!
 			</div>
-			{if $sell_count < $item.lower_limit}
+			{if $product['sell_count'] < $product['item.lower_limit']}
 			<form method="post" action="{$base_url}home/cancel_transaction" class="forms cancel_buying" >
 				<input type="submit" value="لغو خرید">
-				<input type="hidden" value="{$id}" name="product_id">
+				<input type="hidden" value="{$product['id']}" name="product_id">
 			</form>
 			{/if}
-			{elseif $item.buying_state eq 3}
+			{elseif $product['item.buying_state'] eq 3}
 			<div class="not_found_item">این کالا قبلاً توسط شما خریداری شده است!</div> 
 			{/if}
 		</div>
 	</div>
-   <!-- <?php// foreach ($comments as $comment): ?>
+    <?php foreach ($comments as $comment): ?>
         <div class="item">
             <div class="item_title"> <b> <?php echo $comment['username']; ?> </b> </div>
             <div class="news_date"> <?php echo $comment['date']; ?> </div>
             <div class="desc"> <?php echo $comment['content']; ?> </div>
                  
         </div>
-    <?php// endforeach; ?>
-   -->
+    <?php endforeach; ?>
 </div>
 {/block}
