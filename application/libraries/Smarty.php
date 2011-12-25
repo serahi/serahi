@@ -38,7 +38,7 @@ class CI_Smarty extends Smarty
 		$helpers = glob(APPPATH . 'helpers/', GLOB_ONLYDIR | GLOB_MARK);
 		
 		foreach ($helpers as $helper) {
-			$this->plugins_dir[] = $helper;
+			$this->addPluginsDir($helper);
 		}
 		
 		// Should let us access Codeigniter stuff in views
