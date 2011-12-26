@@ -4,3 +4,5 @@ timestamp,unique_id,user_id,level,module_name,action,log_string
 "2011-11-22 01:43:24.860",6nvvymu8,"",ERROR,"",send_mail,"mail send failed."
 "2011-11-22 12:17:06.730",3wn5vyvd,"",ERROR,"",send_mail,"mail send failed."
 "2011-11-22 12:21:16.120",zzdla6ai,"",ERROR,"",send_mail,"mail send failed."
+"2011-12-25 21:30:36.301",j7ml3xez,"",ERROR,"",send_mail,"mail send failed."
+"2011-12-25 21:30:46.766",9qq5kge8,"",ERROR,"",send_mail,"mail send failed."

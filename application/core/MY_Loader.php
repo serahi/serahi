@@ -30,6 +30,7 @@ class MY_Loader extends MX_Loader
 		if ($_ci_path == '') {
 			$_ci_file = strpos($_ci_view, '.') ? $_ci_view : $_ci_view . EXT;
 			$_ci_path = $this->_ci_view_path . $_ci_file;
+
 		} else {
 			$_ci_file = end(explode('/', $_ci_path));
 		}
