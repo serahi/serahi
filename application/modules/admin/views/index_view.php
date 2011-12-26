@@ -29,9 +29,9 @@
 <table>
     <thead>
         <tr>
-            <th>نام فروشنده</th>
-            <th>نام خانوادگی فروشنده</th>
-            <th>شماره تلفن</th>
+            <th><a href="<?php echo base_url();?>admin/?sort_by=fName">نام فروشنده</a></th>
+            <th><a href="<?php echo base_url();?>admin/?sort_by=fLastName">نام خانوادگی فروشنده</a></th>
+            <th><a href="<?php echo base_url();?>admin/?sort_by=fNumber">شماره تلفن</a></th>
         </tr>
     </thead>
     <tbody>
