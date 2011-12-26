@@ -26,12 +26,33 @@
 لیست فروشنده های تایید نشده
 </div>
 <br/>
+
 <table>
     <thead>
         <tr>
-            <th><a href="<?php echo base_url();?>admin/?sort_by=fName">نام فروشنده</a></th>
-            <th><a href="<?php echo base_url();?>admin/?sort_by=fLastName">نام خانوادگی فروشنده</a></th>
-            <th><a href="<?php echo base_url();?>admin/?sort_by=fNumber">شماره تلفن</a></th>
+            <th><a href="<?php echo base_url();
+            if(isset($_GET['sort_by']) && $_GET['sort_by'] == 'fName' && $_GET['type'] == 'asc')
+            {
+                echo "admin/?sort_by=fName&type=desc";
+            }
+            else
+                echo "admin/?sort_by=fName&type=asc";?>">نام فروشنده</a></th>
+            
+            <th><a href="<?php echo base_url();
+            if(isset($_GET['sort_by']) && $_GET['sort_by'] == 'fLastName' && $_GET['type'] == 'asc')
+            {
+                echo "admin/?sort_by=fLastName&type=desc";
+            }
+            else 
+                echo "admin/?sort_by=fLastName&type=asc";?>"<a>نام خانوادگی فروشنده</a></th>
+            
+            <th><a href="<?php echo base_url();
+            if(isset($_GET['sort_by']) && $_GET['sort_by'] == 'fNumber' && $_GET['type'] == 'asc')
+            {
+                echo "admin/?sort_by=fNumber&type=desc";
+            }
+            else 
+                echo "admin/?sort_by=fNumber&type=asc";?>">شماره تلفن</a></th>
         </tr>
     </thead>
     <tbody>
