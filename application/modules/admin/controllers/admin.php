@@ -8,7 +8,20 @@ class Admin extends MY_Controller
 		$this->load->model('product_model');
 		$this->load->model('seller_model');
 		$view_data['products'] = $this->product_model->get_products();
-		$view_data['sellers'] = $this->seller_model->get_unapproved_sellers();
+                if($this->input->get('sort_by') == 'fName')
+                {
+                    $view_data['sellers'] = $this->seller_model->get_unapproved_sellers("first_name",$this->input->get('type'));
+                }
+                elseif($this->input->get('sort_by') == 'fLastName')
+                {
+                    $view_data['sellers'] = $this->seller_model->get_unapproved_sellers("last_name",$this->input->get('type'));
+                }
+                elseif($this->input->get('sort_by') == 'fNumber')
+                {
+                    $view_data['sellers'] = $this->seller_model->get_unapproved_sellers("phone",$this->input->get('type'));
+                }
+                else
+                    $view_data['sellers'] = $this->seller_model->get_unapproved_sellers('nothing','nothing');
 		$this->load->view('index_view', $view_data);
 	}
 

@@ -3,7 +3,7 @@
 class Home_model extends CI_Model
 {
 
-	function get_list ()
+	function get_list ($limit , $page)
 	{
 		$this->db->where('user_id', $this->session->userdata('user_id'));
 		$this->db->select('product_id, buying_state, pursuit_code');
@@ -17,7 +17,7 @@ class Home_model extends CI_Model
 			);
 		}
 
-		$products = $this->db->get('products');
+		$products = $this->db->get('products', $limit , $page);
 
 		$product_array = array();
 		foreach ($products->result_array() as $row) {

@@ -14,8 +14,12 @@ class Seller_model extends CI_Model
 		return $query->result_array();
 	}
 	
-	function get_unapproved_sellers () {
+	function get_unapproved_sellers ($sort,$type) {
 		$this->db->where('approved', 'f');
+                if($sort == "nothing")
+                {}
+                else
+                    $this->db->order_by($sort,$type);
 		$query = $this->db->get('sellers');
 		return $query->result_array();
 	}

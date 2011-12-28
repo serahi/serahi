@@ -10,7 +10,6 @@ class Transactions extends MY_Controller {
         $this->load->model('transactions_model');
         $user_id = $this->session->userdata('user_id');
         $view_data['transactions'] = $this->transactions_model->all_transactions($user_id);
-
         $view_data['total_money'] = 0;
         $view_data['discount'] = 0;
         foreach ($view_data['transactions'] as $row) {

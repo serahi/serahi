@@ -29,6 +29,21 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
+-- Name: comments; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE comments (
+    id bigint NOT NULL,
+    user_id integer NOT NULL,
+    content character varying,
+    date timestamp without time zone,
+    product_id integer NOT NULL
+);
+
+
+ALTER TABLE public.comments OWNER TO postgres;
+
+--
 -- Name: users; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -72,7 +87,7 @@ ALTER SEQUENCE users_id_seq OWNED BY users.id;
 -- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('users_id_seq', 66, true);
+SELECT pg_catalog.setval('users_id_seq', 67, true);
 
 
 --
@@ -130,7 +145,7 @@ ALTER SEQUENCE news_id_seq OWNED BY news.id;
 -- Name: news_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('news_id_seq', 1, false);
+SELECT pg_catalog.setval('news_id_seq', 2, true);
 
 
 --
@@ -288,6 +303,17 @@ ALTER TABLE users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
 
 
 --
+-- Data for Name: comments; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY comments (id, user_id, content, date, product_id) FROM stdin;
+1	65	dasasdjhwudnmzxpkojgrfwhdcakx',clmrufaijvc m	2011-12-12 15:26:16	54
+2	55	dsd,wekjdomc,mxcnkjfoepfoiewhdwoi	2011-12-12 15:26:16	54
+3	65	ekjdoisjckjscnsdhiuefhedbsamcbxhcbsjdreyi8iy8oi90907y	2011-12-12 15:26:16	54
+\.
+
+
+--
 -- Data for Name: customers; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -298,6 +324,7 @@ COPY customers (id, username, password, first_name, last_name, user_type, email,
 63	customer_4	91ec1f9324753048c0096d036a694f86	صادق	کاظمی	customer	mail@gmail.com	2011-12-12 14:58:42	\N	تهران، خانه	9384282818	0	\N	t
 65	customer_5	91ec1f9324753048c0096d036a694f86	صادق	کاظمی	customer	mail@gmail.com	2011-12-12 14:58:42	\N	تهران، خانه	9384282818	0	\N	t
 66	customer_6	91ec1f9324753048c0096d036a694f86	صادق	کاظمی	customer	mail@gmail.com	2011-12-12 14:58:42	\N	تهران، خانه	9384282818	0	\N	t
+67	hamed.gh	0088f5f91b8a5515227bc85a853a6873	حامد	قلی زاده	customer	hamed.gholizadeh.f@gmail.com	2011-12-22 22:23:04	\N	\N	\N	\N	\N	t
 \.
 
 
@@ -314,8 +341,8 @@ COPY news (id, title, content, date) FROM stdin;
 --
 
 COPY posts_rss (id, title, text, date) FROM stdin;
-54	نوت بوک MacBook Air 11.6	Processor and memory:\n- 1.6GHz dual-core Intel Core i5 with 3MB shared L3 cache\n- 2GB of 1333MHz DDR3 onboard memory\n\nStorage:\n- 64GB flash storage\n\nDisplay:\n- 11.6-inch (diagonal) high-resolution LED-backlit glossy widescreen display with support for millions of colors\n- Supported resolutions: 1366 by 768 (native), 1344 by 756, and 1280 by 720 pixels at 16:9 aspect ratio; 1152 by 720 and 1024 by 640 pixels at 16:10 aspect ratio; 1024 by 768 and 800 by 600 pixels at 4:3 aspect ratio	2011-12-12
 55	تلفن همراه Xperia active	صفحه کلید: صفحه کلید لمسی\nسیستم عامل: Android\nحافظه داخلی: ‏RAM: 512MB\nInternal phone storage: 1GB (up to 320MB free)‎\nنوع کارت حافظه: microSD, up to 32GB\nدوربین: 5 تا 8 مگاپیکسل 	2011-12-12
+54	نوت بوک MacBook Air 11.6	Processor and memory:\n- 1.6GHz dual-core Intel Core i5 with 3MB shared L3 cache\n- 2GB of 1333MHz DDR3 onboard memory\n\nStorage:\n- 64GB flash storage\n\nDisplay:\n- 11.6-inch (diagonal) high-resolution LED-backlit glossy widescreen display with support for millions of colors\n- Supported resolutions: 1366 by 768 (native), 1344 by 756, and 1280 by 720 pixels at 16:9 aspect ratio; 1152 by 720 and 1024 by 640 pixels at 16:10 aspect ratio; 1024 by 768 and 800 by 600 pixels at 4:3 aspect ratio	2011-12-22
 \.
 
 
@@ -324,8 +351,8 @@ COPY posts_rss (id, title, text, date) FROM stdin;
 --
 
 COPY products (id, product_name, seller_id, lower_limit, description, image, base_discount, price, start_schedule, start_time, duration) FROM stdin;
-54	نوت بوک MacBook Air 11.6	56	20	Processor and memory:\n- 1.6GHz dual-core Intel Core i5 with 3MB shared L3 cache\n- 2GB of 1333MHz DDR3 onboard memory\n\nStorage:\n- 64GB flash storage\n\nDisplay:\n- 11.6-inch (diagonal) high-resolution LED-backlit glossy widescreen display with support for millions of colors\n- Supported resolutions: 1366 by 768 (native), 1344 by 756, and 1280 by 720 pixels at 16:9 aspect ratio; 1152 by 720 and 1024 by 640 pixels at 16:10 aspect ratio; 1024 by 768 and 800 by 600 pixels at 4:3 aspect ratio	pic1.jpg	35	178000000	2011-12-12	06:00:00	129600
 55	تلفن همراه Xperia active	55	2	صفحه کلید: صفحه کلید لمسی\nسیستم عامل: Android\nحافظه داخلی: ‏RAM: 512MB\nInternal phone storage: 1GB (up to 320MB free)‎\nنوع کارت حافظه: microSD, up to 32GB\nدوربین: 5 تا 8 مگاپیکسل 	xperia1.jpg	40	4240000	2011-12-12	00:00:00	86400
+54	نوت بوک MacBook Air 11.6	56	20	Processor and memory:\n- 1.6GHz dual-core Intel Core i5 with 3MB shared L3 cache\n- 2GB of 1333MHz DDR3 onboard memory\n\nStorage:\n- 64GB flash storage\n\nDisplay:\n- 11.6-inch (diagonal) high-resolution LED-backlit glossy widescreen display with support for millions of colors\n- Supported resolutions: 1366 by 768 (native), 1344 by 756, and 1280 by 720 pixels at 16:9 aspect ratio; 1152 by 720 and 1024 by 640 pixels at 16:10 aspect ratio; 1024 by 768 and 800 by 600 pixels at 4:3 aspect ratio		35	178000000	2011-12-22	06:00:00	129600
 \.
 
 
@@ -367,6 +394,14 @@ COPY transactions (id, user_id, product_id, count, transaction_time, buying_stat
 COPY users (id, username, password, first_name, last_name, user_type, email, creation_time, random_string) FROM stdin;
 39	admin	21232f297a57a5a743894a0e4a801fc3	مدیر	سایت	admin	admin@serahi.ir	2011-03-07 00:00:00	\N
 \.
+
+
+--
+-- Name: comments_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY comments
+    ADD CONSTRAINT comments_pkey PRIMARY KEY (id);
 
 
 --
