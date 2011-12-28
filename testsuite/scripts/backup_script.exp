@@ -1,0 +1,11 @@
+#!/usr/bin/expect
+set dbname [lindex $argv 0]
+set password [lindex $argv 1]
+
+spawn $env(SHELL)
+send "cd scripts\r"
+expect "scripts"
+send "/opt/PostgreSQL/9.1/bin/pg_dump -U postgres $dbname > backup.sql\r"
+expect "Password:"
+send "$password\r"
+expect eof
