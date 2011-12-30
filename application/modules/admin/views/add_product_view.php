@@ -32,28 +32,18 @@ $(document).ready(function (){
 {block name=main_content}
 <div id="add_product_form">
 	<form id = "product_form" class = "submit_form product_form" enctype = "multipart/form-data" method = "post" action = "{$base_url}admin/add_product">
-		<?php  echo validation_errors('<div class="error_msg">', '</div>');?>
-		<label for = "product_name">نام محصول</label>
-		<input name = "product_name" id = "product_name" class = "{$required}" value = "<?php echo set_value('product_name');?>">
-		<label for = "product_price">قیمت واقعی</label>
-		<input name = "product_price" id = "product_price" class = "validate[{$int}]" value = "<?php echo set_value('product_price');?>">
-		<label for = "base_discount">تخفیف پایه</label>
-		<input name = "base_discount" id = "base_discount" class = "validate[{$int},max[100]]" value = "<?php echo set_value('base_discount');?>">
-		<label for = "lower_limit">حد نصاب</label>
-		<input name = "lower_limit" id = "lower_limit" class = "validate[{$int}]" value = "<?php echo set_value('lower_limit');?>">
-		<label for = "file">انتخاب تصویر</label>
+		<?php echo validation_errors('<div class="error_msg">', '</div>');?>
+		<?php t_input('product_name', 'class:{$required}');?>
+		<?php t_input('product_price', 'class:validate[{$int}]');?>
+		<?php t_input('base_discount', 'class:validate[{$int}, max[100]]');?>
+		<?php t_input('lower_limit', 'class:validate[{$int}]');?>
+		<?php t_label('file');?>
 		<input type="file" name="userfile" size="18" />
-		<label for = "seller">فروشنده</label>
-		<select name = "seller" id = "seller" class="{$required}">
-			<option value = ''>انتخاب نمایید</option>
-			{foreach $sellers as $seller}
-				<option value="{$seller.id}">{$seller.display_name}</option>
-			{/foreach}
-		</select>
+		<?php t_select('seller', $sellers, 'class:{$required}|null', 'id', 'display_name');?>
 		<div class = "hrow">
-			<label for = "start_schedule">تاریخ آغاز نمایش</label>
-			<label for = "start_time">ساعت آغاز نمایش</label>
-			<label for = "duration">مدت زمان نمایش</label>
+			<?php t_label('start_schedule');?>
+			<?php t_label('start_time');?>
+			<?php t_label('duration');?>
 		</div>
 		<div class = "hrow">
 			<div class = "dblock">
