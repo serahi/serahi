@@ -21,6 +21,7 @@ class MY_Controller extends UnitTestCase
 
 		/* autoload module items */
 		$this->load->_autoloader($this->autoload);
+		$this->load->language('shared', 'farsi');
 	}
 
 	public function __get ($class)
