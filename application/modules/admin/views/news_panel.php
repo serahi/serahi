@@ -25,9 +25,21 @@
     <table class="news_table">
         <thead>
             <tr>
-                <th>عنوان خبر</th>
-                <th>متن خبر</th>
-                <!--<th><input type="submit" value="حذف"/></th>-->
+                <th><a href="<?php echo base_url();
+                        if(isset($_GET['news_sort_by']) && $_GET['news_sort_by'] == 'nTitle' && $_GET['news_type'] == 'asc')
+                        {
+                            echo "admin/news_management/?news_sort_by=nTitle&news_type=desc";
+                        }
+                        else
+                            echo "admin/news_management/?news_sort_by=nTitle&news_type=asc";?>"/>عنوان خبر</a></th>
+                
+                <th><a href="<?php echo base_url();
+                        if(isset($_GET['news_sort_by']) && $_GET['news_sort_by'] == 'nContent' && $_GET['news_type'] == 'asc')
+                        {
+                            echo "admin/news_management/?news_sort_by=nContent&news_type=desc";
+                        }
+                        else
+                            echo "admin/news_management/?news_sort_by=nContent&news_type=asc";?>"/>متن خبر</a></th>
                 <th><button id="add_news" onclick="add_news();">افزودن خبر</button></th>
             </tr>
         </thead>
@@ -37,7 +49,6 @@
                 <tr>
                     <td><?php echo $new['title']; ?></td>
                     <td><?php echo $new['content']; ?></td>
-                    <!--<td><input type="checkbox" name="<?php echo $new['id']; ?>" /></td>-->
                     <td><a href="<?php echo base_url().'admin/news_management/edit?id=' . $new['id'] ; ?>" > 
                             ویرایش                      
                         </a>

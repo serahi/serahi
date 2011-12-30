@@ -8,7 +8,16 @@ class News_management extends MY_Controller{
     }
     
     function index(){
-        $data['news'] = $this->news_model->news_list();
+        if($this->input->get('news_sort_by') == 'nTitle')
+        {
+            $data['news'] = $this->news_model->news_list("title",$this->input->get('news_type'));
+        }
+        elseif($this->input->get('news_sort_by') == 'nContent')
+        {
+            $data['news'] = $this->news_model->news_list("content",$this->input->get('news_type'));
+        }
+        else
+            $data['news'] = $this->news_model->news_list('nothing','nothing');
         $this->load->view('news_panel', $data );
     }
     

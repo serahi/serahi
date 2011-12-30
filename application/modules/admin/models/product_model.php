@@ -66,10 +66,14 @@ class Product_model extends CI_Model
                 }
 		return $insert_result;
 	}
-	function get_products ()
+	function get_products ($sort,$type)
 	{
 		$this->db->select('products.id, product_name, display_name, price, base_discount, lower_limit, start_schedule, start_time, duration');
 		$this->db->where('sellers.id = products.seller_id');
+                if($sort == "nothing")
+                {}
+                else
+                    $this->db->order_by($sort,$type);
 		$query = $this->db->get('products,sellers');
 		$result = $query->result_array();
 		for ($i = 0; $i < count($result); $i++) {
