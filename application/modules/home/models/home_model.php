@@ -57,7 +57,7 @@ class Home_model extends CI_Model
 					'user_id' => $this->session->userdata('user_id'),
 					'product_id' => $this->input->post('product_id'),
 					'count' => '1',
-					'transaction_time' => date("Y-m-d H:i:s"),
+					'transaction_time' => date(DATE_FORMAT),
 					'buying_state' => 1,
 					'pursuit_code ' => $pursuit_code
 			);

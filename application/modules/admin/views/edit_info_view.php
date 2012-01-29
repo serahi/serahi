@@ -52,65 +52,49 @@
 {assign var=required_5 value='validate[minSize[5]]'}
 {assign var=required_6 value='validate[minSize[6]]'}
 
-<form method = "post" class = "submit_form" action = "{$base_url}admin/userlist/save_edit">
+<form method = "post" class = "submit_form">
     <div class = "row">
         <label>شماره:</label>
         <div id = "user_id">
             {$id}
         </div>
     </div>
-    <?php echo validation_errors('<div class="error_msg">', '</div>'); ?>
-    <input type = "hidden" name = "id" value = "{$id}">
-    <label for = "username">نام کاربری</label>
-    <input name = "username" id = "username" class = "{$required_5}" value = "{$username}">
-    <label for = "password">رمز عبور جدید</label>
-    <input name = "password" id = "password" class = "" value = "" type = "password">
-    <label for = "passconf">تکرار رمز جدید</label>
-    <input name = "passconf" id = "passconf" class = "validate[equals[password]]" value = "" type = "password">
-    <label for = "first_name">نام</label>
-    <input name = "first_name" id = "first_name" class = "{$required_3}" value = "{$first_name}">
-    <label for = "last_name">نام خانوادگی</label>
-    <input name = "last_name" id = "last_name" class = "{$required_3}" value = "{$last_name}">
-    <?php if ($this->session->userdata('user_type') == 'admin') { ?>
-        <label for = "user_type">نوع کاربر</label>
-        <input name = "user_type" value = "{$user_type}">
-    <?php } ?>
-    <?php if ($this->session->userdata('user_type') == 'seller') { ?>
-        <input type="hidden" value="seller" name="user_type">
-    <?php } else if ($this->session->userdata('user_type') == 'customer') { ?> 
-        <input type="hidden" value="customer" name="user_type">
-    <?php } ?> 
-    <label for = "email">پست الکترونیکی</label>
-    <input name = "email" id = "email" class = "validate[custom[email]]" value = "{$email}">
+    <?php
+	    echo validation_errors('<div class="error_msg">', '</div>');
+	    t_input('id', 'hidden');
+	    t_input('username', 'class:{$required_5}');
+	    t_input('password', 't:new_password');
+	    t_input('password_confirm', "class:validate[equals[password]]");
+	    t_input('first_name', "class:{$required_3}");
+	    t_input('last_name', "class:{$required_3}");
+	    if ($this->session->userdata('user_type') == 'admin') {
+	    	t_input('user_type');
+			}
+			t_input('email', 'class:validate[custom[email]]');
+		?>
     {if $user_type eq 'seller'}
-    <label for = "display_name">نام فروشگاه</label>
-    <input name = "display_name" id = "display_name" class = "{$required}" value = "{$display_name}"> 
-    <label for = "address">آدرس</label>
-    <input name = "address" id = "address" value = "{$address}" class = "{$required}">
-    <label for = "phone">تلفن</label>
-    <input name = "phone" id = "phone" class = "validate[custom[phone]]" value = "{$phone}">
-    برای تغییر موقعیت خود روی نقشه دوبار کلیک کنید.
-    <div style="height:275px;width:250px;float:right;">
-			<div id="map_canvas" style="width: 100%; height: 100%"></div>
-		</div>
-    <input id="map_location" type="hidden" name="map_location"/>
-    <?php if ($this->session->userdata('user_type') == 'admin') { ?>
-        <div class = "row">
-            {if $approved eq 'TRUE'}
-            <input type = "checkbox" name = "approved" id = "approved" checked = "checked">
-            {else}
-            <input type = "checkbox" name = "approved" id = "approved">
-            {/if}
-            <label for = "approved">تایید شده</label>
-        </div>
-    <?php } ?>
+	    <?php t_input('display_name', "class:{$required}");?>
+	    <?php t_input('address', "class:{$required}");?>
+	    <?php t_input('phone', 'class:validate[custom[phone]]');?>
+	    برای تغییر موقعیت خود روی نقشه دوبار کلیک کنید.
+	    <div style="height:275px;width:250px;float:right;">
+				<div id="map_canvas" style="width: 100%; height: 100%"></div>
+			</div>
+	    <input id="map_location" type="hidden" name="map_location"/>
+	    <?php if ($this->session->userdata('user_type') == 'admin') { ?>
+	        <div class = "row">
+	            {if $approved eq 'TRUE'}
+	            <input type = "checkbox" name = "approved" id = "approved" checked = "checked">
+	            {else}
+	            <input type = "checkbox" name = "approved" id = "approved">
+	            {/if}
+	            <label for = "approved">تایید شده</label>
+	        </div>
+	    <?php } ?>
     {elseif $user_type eq 'customer'}
-    <label for = "address">آدرس</label>
-    <input name = "address" id = "address" class = "{$required}"value = "{$address}">
-    <label for = "postal_code">کد پستی</label>
-    <input name = "postal_code" id = "postal_code" class = "{$int}" value = "{$postal_code}">
-    <label for = "phone">تلفن</label>
-    <input name = "phone" id = "phone" class = "validate[custom[phone]]" value = "{$phone}">
+	    <?php t_input('address', "class:{$required}");?>
+	    <?php t_input('postal_code', 'class:{$int}');?>
+	    <?php t_input('phone', 'class:validate[custom[phone]]');?>
     {/if}
     <div class = "row">
         <label>زمان ایجاد حساب:</label>

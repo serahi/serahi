@@ -1,7 +1,7 @@
 var inputs = {
 		'username' : 'نام کاربری',
 		'password' : 'رمز عبور',
-		'passconf' : 'تکرار رمز عبور',
+		'password_confirm' : 'تکرار رمز عبور',
 		'email' : 'آدرس پست‌الکترونیکی',
 		'first_name' : 'نام',
 		'last_name' : 'نام خانوادگی',

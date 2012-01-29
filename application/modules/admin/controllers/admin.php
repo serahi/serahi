@@ -83,7 +83,7 @@ class Admin extends MY_Controller
 		$this->load->library('validator');
 		$validated = $this->validator->validate(array(
 			'product_name',
-			'product_price',
+			'price',
 			'base_discount',
 			'lower_limit',
 			'duration'
@@ -101,7 +101,7 @@ class Admin extends MY_Controller
 					'seller',
 					'product_desc',
 					'base_discount',
-					'product_price',
+					'price',
 					'lower_limit',
 					'start_schedule',
 					'start_time',

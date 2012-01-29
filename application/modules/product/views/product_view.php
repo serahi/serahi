@@ -131,7 +131,7 @@
 </div>
 
 <div id="sign_up_form">
-<form id="target" method="post" action="<?php echo base_url() . 'product/product/add_comment'; ?>" class="forms" >
+<form id="target" method="post" action="{$base_url}product/product/add_comment" class="forms" >
     <textarea cols="30" rows="10" type="text" id="comment_content" class="check" name="comment_content" value=""  title=""></textarea>
     <!--<input type="hidden" value="{$user_id}" name="user_id"> -->
     <input type="hidden" value="{$product['id']}" name="product_id">

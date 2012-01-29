@@ -4,6 +4,8 @@
 require APPPATH."third_party/MX/Controller.php";
 require_once(realpath(dirname(__FILE__).'/../../simpletest/autorun.php'));
 
+DEFINE("DATE_FORMAT", "Y-m-d H:i:s");
+
 class MY_Controller extends UnitTestCase
 {
 	public $autoload = array();

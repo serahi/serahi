@@ -74,7 +74,7 @@ class Membership_model extends CI_Model {
             'password' => md5($this->input->post('password')),
             'email' => $this->input->post('email'),
             'random_string' => $random_string,
-            'creation_time' => date("Y-m-d H:i:s")
+            'creation_time' => date(DATE_FORMAT)
         );
         $this->db->where('username', $this->input->post('username'));
         $q = $this->db->get('users');
@@ -119,7 +119,7 @@ class Membership_model extends CI_Model {
             'phone' => $this->input->post('phone'),
             'map_location' => $this->input->post('map_location'),
             'user_type' => $user_type,
-            'creation_time' => date("Y-m-d H:i:s")
+            'creation_time' => date(DATE_FORMAT)
         );
 
         $this->db->where('username', $this->input->post('username'));

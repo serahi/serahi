@@ -29,7 +29,7 @@ class Product_model extends CI_Model
                         'id' => $this->db->insert_id(),
                         'title' => $product_name ,
                         'text' => $product_desc,
-                        'date' => date('r')
+                        'date' => date(DATE_FORMAT)
                     ));
                 }
 		return $insert_result;
@@ -61,7 +61,7 @@ class Product_model extends CI_Model
                     $this->db->update('posts_rss', array(
                         'title' => $product_name ,
                         'text' => $product_desc,
-                        'date' => date('r')
+                        'date' => date(DATE_FORMAT)
                     ));
                 }
 		return $insert_result;

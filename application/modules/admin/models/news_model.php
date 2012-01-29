@@ -19,7 +19,7 @@ class News_model extends CI_Model{
         $this->db->insert('news', array(
             'title' => $this->input->post('news_title'),
             'content' => $this->input->post('news_content'),
-            'date' => date('r')
+            'date' => date(DATE_FORMAT)
         ));
     }
     

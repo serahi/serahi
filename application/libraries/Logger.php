@@ -125,7 +125,7 @@ class Logger
 		$seconds = floor($timestamp);
 		$millis = round(($timestamp - $seconds) * 1000);
 		
-		$timestamp_str = sprintf('%s.%03d', date("Y-m-d H:i:s"), $millis);
+		$timestamp_str = sprintf('%s.%03d', date(DATE_FORMAT), $millis);
 		$escaped_log_string = str_replace('"', '\\"', $log_string);
 		$log_str = sprintf('"%s",%s,%s,%s,%s,%s,"%s"', $timestamp_str,
 		                   $unique_id, $user_id, $level, $module_name,

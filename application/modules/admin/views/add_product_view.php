@@ -15,6 +15,7 @@ function datePickerClosed (dateField) {
 	}
 }
 $(document).ready(function (){
+	$("#start_decoy").val($("start_schedule").val());
 	$("#product_form").submit(function () {
 		if (isNaN($("#start_schedule").val())) {
 			var date_str = $("#start_schedule").val();
@@ -47,27 +48,27 @@ $(document).ready(function (){
 		</div>
 		<div class = "hrow">
 			<div class = "dblock">
-				<input name = "start_schedule" type="hidden" id = "start_schedule">
+				<?php t_input('start_schedule', 'hidden');?>
 				<input name = "start_decoy" id = "start_decoy" class = "date" disabled = "disabled">
 				<button type = "button" onclick = "displayDatePicker('start_schedule', this);" >انتخاب</button>
 			</div>
 			<div class = "dblock">
 				<select name = "start_time">
 					{for $i=0; $i < 24; $i++}
-						<option value = '{$i}:00'>{$i}:00</option>
-						<option value = '{$i}:30'>{$i}:30</option>
+						<option value = '{$i}:00' <?php echo set_select('start_time', '{$i}:00');?>>{$i}:00</option>
+						<option value = '{$i}:30' <?php echo set_select('start_time', '{$i}:30');?>>{$i}:30</option>
 					{/for}
 				</select>
 			</div>
 			<div class = "dblock">
 				<select name = "duration">
 					{for $i=12; $i <= 48; $i = $i + 12}
-						<option value = "{$i*3600}">{$i} ساعت</option>
+						<option value = "{$i*3600}" <?php echo set_select('duration', '{$i*3600}');?>>{$i} ساعت</option>
 					{/for}
 				</select>
 			</div>
 		</div>
-		<label for = "product_desc">شرح محصول</label>
+		<?php t_label('product_desc');?>
 		<textarea name = "product_desc" rows = "9" cols = "70"><?php echo set_value('product_desc');?></textarea>
 		<input type="submit" value="اضافه کردن محصول" name="submit">
 	</form>

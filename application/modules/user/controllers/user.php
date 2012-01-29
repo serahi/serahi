@@ -64,48 +64,15 @@ class User extends MY_Controller {
     }
 
     function register() {
-        $this->load->library('form_validation');
-        $config = array(
-            array(
-                'field' => 'first_name',
-                'label' => 'نام',
-                'rules' => 'required|min_length[3]|max_length[31]'
-            ),
-            array(
-                'field' => 'last_name',
-                'label' => 'نام‌ خانوادگی',
-                'rules' => 'required|min_length[3]|max_length[31]'
-            ),
-            array(
-                'field' => 'username',
-                'label' => 'نام کاربری',
-                'rules' => 'required|min_length[6]|max_length[31]'
-            ),
-            array(
-                'field' => 'password',
-                'label' => 'رمز عبور',
-                'rules' => 'required|min_length[6]|max_length[31]|matches[passconf]'
-            ),
-            array(
-                'field' => 'passconf',
-                'label' => 'تکرار رمز عبور',
-                'rules' => 'required|min_length[6]|max_length[31]'
-            ),
-            array(
-                'field' => 'email',
-                'label' => 'پست الکترونیکی',
-                'rules' => 'trim|valid_email|required|min_length[3]|max_length[31]'
-            )
-        );
-
-        $this->form_validation->set_rules($config);
-        $this->form_validation->set_message('required', '<hr/>وارد کردن %s لازم است.');
-        $this->form_validation->set_message('min_length', '<hr/>%s باید حداقل %d حرفی باشد.');
-        $this->form_validation->set_message('max_length', '<hr/>%s باید حداکثر، %d حرفی باشد');
-        $this->form_validation->set_message('matches', '<hr/> رمز عبور و تکرار آن یکسان نیستند.');
-        $this->form_validation->set_message('valid_email', '<hr/>آدرس پست‌الکترونیک وارد شده معتبر نیست.');
-
-        $this->form_validation->set_error_delimiters('<div class="error_msg">', '</div>');
+    	$this->load->library('validator');
+			$validated = $this->validator->validate(array(
+				'first_name',
+				'last_name',
+				'username',
+				'password',
+				'password_confirm',
+				'email'
+			));
         $random_string;
         $pre_text = 'سلام
             درخواست ثبت نام شما در سایت www.serahi.com دریافت گردید. لطفا جهت فعال سازی حساب کاربری خود روی لینک زیر کلیک کنید.
@@ -114,7 +81,7 @@ class User extends MY_Controller {
             باتشکر
             ';
 
-        if ($this->form_validation->run() == FALSE) {
+        if ($validated == FALSE) {
             if ($this->input->post('ut') === 'c') {
                 $this->signup();
             } elseif ($this->input->post('ut') === 's') {
@@ -193,35 +160,6 @@ class User extends MY_Controller {
 
             redirect('home');
         } else if ($choice == "ارسال") {
-            /* $this->load->library('form_validation');
-              $config = array(
-              array(
-              'field' => 'tel',
-              'label' => 'تلفن',
-              'rules' => 'required|min_length[7]|max_length[20]'
-              ),
-              array(
-              'field' => 'postal_code',
-              'label' => 'کد پستی',
-              'rules' => 'required|min_length[6]|max_length[20]'
-              ),
-              array(
-              'field' => 'address',
-              'label' => 'آدرس',
-              'rules' => 'required|min_length[3]|max_length[511]'
-              ),
-              );
-
-              $this->form_validation->set_rules($config);
-              $this->form_validation->set_message('required', '<hr/>وارد کردن %s لازم است.');
-              $this->form_validation->set_message('min_length', '<hr/>%s باید حداقل ۶ حرفی باشد.');
-              $this->form_validation->set_message('max_length', '<hr/>%s باید حداکثر، ۳۱ حرفی باشد');
-
-              $this->form_validation->set_error_delimiters('<div class="error_msg">', '</div>');
-
-              if ($this->form_validation->run() == FALSE) {
-              $this->activate();
-              } else { */
             $this->membership_model->update_on_activation($user_id);
 
             $name = $this->membership_model->auto_login($user_id);
@@ -237,7 +175,6 @@ class User extends MY_Controller {
             $this->session->set_userdata($user_session_data);
 
             redirect('home');
-            //}
         }
     }
 

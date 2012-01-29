@@ -25,6 +25,7 @@
 }
 textarea {
 	margin-bottom: 8px;
+	width: 97%;
 }
 .submit_form select {
 	display: block;
@@ -59,9 +60,11 @@ textarea {
 	background-color: #818170;
 }
 .submit_form input[type="submit"] {
+	float:left;
+}
+.submit_form input[type="submit"], .submit_form button{
 	cursor: pointer;
 	width: auto;
-	float:left;
 	border: none;
 	padding: 6px;
 	text-decoration: none;
@@ -72,8 +75,11 @@ textarea {
 	box-shadow: 0 1px 0 white;
 	-moz-box-shadow: 0 1px 0 white;
 	-webkit-box-shadow: 0 1px 0 white;
-	margin-right: 2.5em;
+/*margin-right: 2.5em;*/
 	margin-bottom: 1.7em;
+}
+.submit_form button {
+	float:right;
 }
 .submit_form .hrow label{
 	width: 30%;
@@ -95,11 +101,8 @@ textarea {
 	display: block;
 	float: right;
 }
-.submit_form button {
-	float: right;
-}
 .submit_form .hrow input.date {
 	width: 40%;
-        height: 12px;
+	height: 12px;
 }
 

@@ -49,7 +49,7 @@ class Product_model extends CI_Model {
             'id' => 7,
             'user_id' => 56,
             'content' => $this->input->post('comment_content'),
-            'date' => date('r'),
+            'date' => date(DATE_FORMAT),
             'product_id'=> $this->input->post('product_id')
         ));
     }
