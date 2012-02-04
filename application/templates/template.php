@@ -22,7 +22,7 @@
 		<script src="{$base_url}assets/confirm/jquery.confirm/jquery.confirm.js"></script>
 		<script src="{$base_url}assets/confirm/js/script.js"></script>
 		
-		{block name=script}{/block}
+
 	</head>
 	<body>
 		<div class="wrapper">
@@ -69,8 +69,10 @@
 					</span>
 				</span>
 			</div>
-			<div class="clear"></div>
+			<div class="top2">  <p> . <p> </div>
 			{block name=main_content}{/block}
 		</div>
 	</body>
+    
+    		{block name=script}{/block}
 </html>
