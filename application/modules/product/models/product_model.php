@@ -46,7 +46,6 @@ class Product_model extends CI_Model {
 
     function add_comment() {
         $this->db->insert('comments', array(
-            'id' => 7,
             'user_id' => 56,
             'content' => $this->input->post('comment_content'),
             'date' => date('r'),
