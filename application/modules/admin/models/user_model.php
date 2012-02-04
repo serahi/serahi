@@ -1,9 +1,12 @@
 <?php
 class User_model extends CI_Model
 {
-	function get_users ()
+	function get_users ($sort,$type)
 	{
-		$this->db->order_by('creation_time desc');
+                if($sort == "nothing")
+                {}
+                else
+                    $this->db->order_by($sort,$type);
 		$query = $this->db->get('users');
 		$data = array();
 		foreach ($query->result() as $row) {

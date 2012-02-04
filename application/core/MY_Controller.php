@@ -22,11 +22,15 @@ class MY_Controller extends UnitTestCase
 
 		/* autoload module items */
 		$this->load->_autoloader($this->autoload);
+<<<<<<< HEAD
                 global $RTR;
                 echo $module = $RTR->fetch_module() . ' ';
                 echo $class =  $RTR->fetch_class(). ' ';
                 echo $method = $RTR->fetch_method(). ' ';
                 $this->access_check( $module, $class, $method );
+=======
+		$this->load->language('shared', 'farsi');
+>>>>>>> 417c9744a78cfff51a5967a8162b087bce1ba76f
 	}
 
 	public function __get ($class)

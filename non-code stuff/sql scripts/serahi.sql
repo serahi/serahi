@@ -29,21 +29,6 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- Name: comments; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE TABLE comments (
-    id bigint NOT NULL,
-    user_id integer NOT NULL,
-    content character varying,
-    date timestamp without time zone,
-    product_id integer NOT NULL
-);
-
-
-ALTER TABLE public.comments OWNER TO postgres;
-
---
 -- Name: users; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -89,6 +74,21 @@ ALTER SEQUENCE users_id_seq OWNED BY users.id;
 
 SELECT pg_catalog.setval('users_id_seq', 67, true);
 
+
+--
+-- Name: comments; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE comments (
+    id bigint DEFAULT nextval('users_id_seq'::regclass) NOT NULL,
+    user_id integer NOT NULL,
+    content character varying,
+    date timestamp without time zone,
+    product_id integer NOT NULL
+);
+
+
+ALTER TABLE public.comments OWNER TO postgres;
 
 --
 -- Name: customers; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 

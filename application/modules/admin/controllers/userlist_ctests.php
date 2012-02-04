@@ -14,41 +14,6 @@ class Userlist_ctests extends MY_Controller
 	function setUp ()
 	{
 		parent::setUp();
-		$this->db->query('truncate users;');
-		$this->users[0] = array(
-				'username' => 'admin',
-				'password' => md5('admin'),
-				'first_name' => 'مدیر',
-				'last_name' => 'سایت',
-				'user_type' => 'admin',
-				'email' => 'admin@serahi.ir',
-				'creation_time' => date('Y-m-d H:i:s')
-		);
-		$this->user_infos[0] = $this->users[0];
-		$this->users[1] = array(
-				'username' => 'milad',
-				'password' => md5('milad'),
-				'first_name' => 'milad',
-				'last_name' => 'bashiri',
-				'user_type' => 'seller',
-				'email' => 'miladbashiri@comp.iust.ac.ir',
-				'creation_time' => date('Y-m-d H:i:s')
-		);
-		$this->user_infos[1] = array_merge($this->users[1], array(
-				'display_name' => 'میلاد',
-				'address' => 'iran, tehran',
-				'phone' => '0935',
-				'approved' => 'TRUE'
-		));
-		$this->users[2] = array(
-				'username' => 'hamed',
-				'password' => md5('hamed'),
-				'user_type' => 'admin',
-				'email' => 'hamed.gholizadeh.f@gmail.com',
-				'creation_time' => date('Y-m-d H:i:s'),
-				'first_name' => 'hamed',
-				'last_name' => 'gholizadeh'
-		);
 	}
 
 	function testShowUserListPanelOnAdminLoggedIn ()

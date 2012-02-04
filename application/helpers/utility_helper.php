@@ -80,3 +80,193 @@ function rand_gen($len)
 function ends_with( $str, $sub ) {
    return ( substr( $str, strlen( $str ) - strlen( $sub ) ) === $sub );
 }
+
+
+function t($line)
+{
+	echo _t($line);
+}
+
+function _t ($line)
+{
+	$CI =& get_instance();
+	$line = (array) $line;
+	$translate = '';
+	$first = true;
+	foreach ($line as $word) {
+		if ($first) {
+			$first = false;
+		} else {
+			$translate .= ' ';
+		}
+		$translate .= $CI->lang->line($word);
+	}
+	return $translate;
+}
+
+function debug ($str)
+{
+	echo $str;
+}
+
+function _t_input ($field, $options_str = '')
+{
+	$html = '';
+	$id = $field;
+	$class = '';
+	$label_class = '';
+	$default = '';
+	$nofill = FALSE;
+	$pass = FALSE;
+	if (strpos($field, 'password') !== FALSE) {
+		$pass = TRUE;
+		$nofill = TRUE;
+	}
+	$options = explode('|', $options_str);
+	$t = $field;
+	if ($options[0] != '') {
+		foreach ($options as $option) {
+			if ($option == 'no_id') {
+				$id = '';
+			} else {
+				list($type, $value) = explode(":", $option);
+				if ($type == 'id') {
+					$id = $value;
+				} else if ($type == 'class') {
+					$class = $value;
+				} else if ($type == 'label_class') {
+					$label_class = $value;
+				} else if ($type == 'value') {
+					$default = $value;
+				} else if ($type == 'nofill') {
+					$nofill = TRUE;
+				} else if ($type == 'pass') {
+					$pass = TRUE;
+				} else if ($type == 't') {
+					$t = $value;
+				}
+			}
+		}
+	}
+	if ($label_class == '' && $class != '') {
+		$label_class = $class;
+	}
+	$html .= _t_label($t, $id, $label_class);
+	
+	$html .= "<input name = '$field' ";
+	if ($id != '')    $html .= "id = '$id' ";
+	if ($class != '') $html .= "class = '$class' ";
+	if ($pass == TRUE) $html .= "type = 'password' ";
+	if ($nofill == FALSE) $html .= "value = '" . set_value($field, $default) . "' ";
+	if ($nofill == TRUE)  $html .= "value = '$default' ";
+	$html .= '>';
+	return $html;
+}
+function t_input ($field, $options_str = '')
+{
+	echo _t_input($field, $options_str);
+}
+function _t_label ($field, $id = '', $class = '')
+{
+	$search = strpos($class, 'validate[');
+	if ($search >= 0) {
+		$ending = strrpos($class, ']');
+		$class = substr($class, 0, $search) . substr($class, $ending + 1);
+	}
+	
+	$html = "<label ";
+	if ($id != '')    $html .= "for = '$id' ";
+	if ($class != '') $html .= "class = '$class' ";
+	$html .= '>'._t($field)."</label>";
+	
+	return $html;	
+}
+function t_label ($field, $id = '', $class = '') {
+	if ($id == '') $id = $field;
+	echo _t_label($field, $id, $class);
+}
+function _t_select ($field, $data, $options_str = '', $option_key = '', $option_value = '')
+{
+	$html = '';
+	$id = $field;
+	$class = '';
+	$label_class = '';
+	$default = '';
+	$associative = FALSE;
+	$trans_values = FALSE;
+	$null = FALSE;
+	
+	$options = explode('|', $options_str);
+	$t = $field;
+	if ($options[0] != '') {
+		foreach ($options as $option) {
+			if ($option == 'no_id') {
+				$id = '';
+			} else if ($option == 'assoc') {
+				$associative = TRUE;
+			} else if ($option == 'trans_values') {
+				$trans_values = TRUE;
+			} else if ($option == 'null') {
+				$null = TRUE;
+			} else {
+				list($type, $value) = explode(":", $option);
+				if ($type == 'id') {
+					$id = $value;
+				} else if ($type == 'class') {
+					$class = $value;
+				} else if ($type == 'label_class') {
+					$label_class = $value;
+				} else if ($type == 'value') {
+					$default = $value;
+				} else if ($type == 't') {
+					$t = $value;
+				}
+			}
+		}
+	}
+	if ($label_class == '' && $class != '') {
+		$label_class = $class;
+	}
+	$html .= _t_label($t, $id, $class);
+	
+	$html .= "<select name = '$field' ";
+	if ($id != '')    $html .= "id = '$id' ";
+	if ($class != '') $html .= "class = '$class' ";
+	$html .= '>';
+	if ($associative) {
+		foreach ($data as $key => $value) {
+			$html .= "<option value = '" . $key . "'";
+			if ($key == $default) {
+				$html .= set_select($field, $key, TRUE);
+			} else {
+				$html .= set_select($field, $key);
+			}
+			$html .= ">";
+			if ($trans_values) $html .= _t($value);
+			else $html .= $value;
+			$html .= "</option>";
+		}
+	} else {
+		if ($null == TRUE) {
+			$html .= "<option value = ''>" . _t('null_select') . '</option>';
+		}
+		foreach ($data as $row) {
+			$html .= "<option value = '" . $row[$option_key] . "'";
+			if ($row[$option_key] == $default) {
+				$html .= set_select($field, $row[$option_key], TRUE);
+			} else {
+				$html .= set_select($field, $row[$option_key]);
+			}
+			$html .= ">";
+			if ($trans_values) $html .= _t($row[$option_value]);
+			else $html .= $row[$option_value];
+			$html .= "</option>";
+		}
+	}
+	$html .= '</select>';
+	return $html;
+}
+function t_select ($field, $data, $options_str = '', $option_key = '', $option_value = '')
+{
+	echo _t_select($field, $data, $options_str, $option_key, $option_value);
+}
