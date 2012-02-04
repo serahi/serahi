@@ -6,7 +6,33 @@ class Userlist extends MY_Controller
 	function index ()
 	{
 		$this->load->model('user_model');
-		$view_data['users'] = $this->user_model->get_users();
+                if($this->input->get('user_sort_by') == 'uName')
+                {
+                    $view_data['users'] = $this->user_model->get_users("username",$this->input->get('user_type'));
+                }
+                elseif($this->input->get('user_sort_by') == 'uEmail')
+                {
+                    $view_data['users'] = $this->user_model->get_users("email",$this->input->get('user_type'));
+                }
+                elseif($this->input->get('user_sort_by') == 'uFname')
+                {
+                    $view_data['users'] = $this->user_model->get_users("first_name",$this->input->get('user_type'));
+                }
+                elseif($this->input->get('user_sort_by') == 'uLname')
+                {
+                    $view_data['users'] = $this->user_model->get_users("last_name",$this->input->get('user_type'));
+                }
+                elseif($this->input->get('user_sort_by') == 'uType')
+                {
+                    $view_data['users'] = $this->user_model->get_users("user_type",$this->input->get('user_type'));
+                }
+                elseif($this->input->get('user_sort_by') == 'uTime')
+                {
+                    $view_data['users'] = $this->user_model->get_users("creation_time",$this->input->get('user_type'));
+                }
+                else
+                    $view_data['users'] = $this->user_model->get_users('nothing','nothing');
+		
 		$this->load->view('userlist_view', $view_data);
 	}
 

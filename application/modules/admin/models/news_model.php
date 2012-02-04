@@ -2,14 +2,11 @@
 
 class News_model extends CI_Model{
     
-    function news_list( $id = null ){
-        $this->db->order_by('date', 'desc');
-        if($id != null){
-            $this->db->where('id', $id );
-            $query = $this->db->get('news');
-            return $query->result_array();
-            }
-            
+    function news_list($sort,$type){
+        if($sort == "nothing")
+        {}
+        else
+            $this->db->order_by($sort,$type);
         $list = $this->db->get('news');
         return $list->result_array();
         

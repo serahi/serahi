@@ -17,13 +17,55 @@
 <table>
 	<thead>
 		<tr>
-			<th>نام کاربری</th>
-			<th>پست الکترونیکی</th>
-			<th>نام</th>
-			<th>نام خانوادگی</th>
-			<th>نوع کاربر</th>
-			<th>زمان ایجاد حساب</th>
-			<th>عملیات</th>
+			<th><a href="<?php echo base_url();
+                        if(isset($_GET['user_sort_by']) && $_GET['user_sort_by'] == 'uName' && $_GET['user_type'] == 'asc')
+                        {
+                            echo "admin/userlist/?user_sort_by=uName&user_type=desc";
+                        }
+                        else
+                            echo "admin/userlist/?user_sort_by=uName&user_type=asc";?>"/>نام کاربری</a></th>
+			
+                        <th><a href="<?php echo base_url();
+                        if(isset($_GET['user_sort_by']) && $_GET['user_sort_by'] == 'uEmail' && $_GET['user_type'] == 'asc')
+                        {
+                            echo "admin/userlist/?user_sort_by=uEmail&user_type=desc";
+                        }
+                        else
+                            echo "admin/userlist/?user_sort_by=uEmail&user_type=asc";?>"/>پست الکترونیکی</a></th>
+			
+                        <th><a href="<?php echo base_url();
+                        if(isset($_GET['user_sort_by']) && $_GET['user_sort_by'] == 'uFname' && $_GET['user_type'] == 'asc')
+                        {
+                            echo "admin/userlist/?user_sort_by=uFname&user_type=desc";
+                        }
+                        else
+                            echo "admin/userlist/?user_sort_by=uFname&user_type=asc";?>"/>نام</a></th>
+			
+                        <th><a href="<?php echo base_url();
+                        if(isset($_GET['user_sort_by']) && $_GET['user_sort_by'] == 'uLname' && $_GET['user_type'] == 'asc')
+                        {
+                            echo "admin/userlist/?user_sort_by=uLname&user_type=desc";
+                        }
+                        else
+                            echo "admin/userlist/?user_sort_by=uLname&user_type=asc";?>"/>نام خانوادگی</a></th>
+			
+                        <th><a href="<?php echo base_url();
+                        if(isset($_GET['user_sort_by']) && $_GET['user_sort_by'] == 'uType' && $_GET['user_type'] == 'asc')
+                        {
+                            echo "admin/userlist/?user_sort_by=uType&user_type=desc";
+                        }
+                        else
+                            echo "admin/userlist/?user_sort_by=uType&user_type=asc";?>"/>نوع کاربر</a></th>
+			
+                        <th><a href="<?php echo base_url();
+                        if(isset($_GET['user_sort_by']) && $_GET['user_sort_by'] == 'uTime' && $_GET['user_type'] == 'asc')
+                        {
+                            echo "admin/userlist/?user_sort_by=uTime&user_type=desc";
+                        }
+                        else
+                            echo "admin/userlist/?user_sort_by=uTime&user_type=asc";?>"/>زمان ایجاد حساب</a></th>
+			
+                        <th>عملیات</th>
 		</tr>
 	</thead>
 	<tbody>

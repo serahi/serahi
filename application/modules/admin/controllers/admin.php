@@ -7,18 +7,52 @@ class Admin extends MY_Controller
 	{
 		$this->load->model('product_model');
 		$this->load->model('seller_model');
-		$view_data['products'] = $this->product_model->get_products();
-                if($this->input->get('sort_by') == 'fName')
+                
+                if($this->input->get('product_sort_by') == 'pName')
                 {
-                    $view_data['sellers'] = $this->seller_model->get_unapproved_sellers("first_name",$this->input->get('type'));
+                    $view_data['products'] = $this->product_model->get_products("product_name",$this->input->get('product_type'));
                 }
-                elseif($this->input->get('sort_by') == 'fLastName')
+                elseif($this->input->get('product_sort_by') == 'pPrice')
                 {
-                    $view_data['sellers'] = $this->seller_model->get_unapproved_sellers("last_name",$this->input->get('type'));
+                    $view_data['products'] = $this->product_model->get_products("price",$this->input->get('product_type'));
                 }
-                elseif($this->input->get('sort_by') == 'fNumber')
+                elseif($this->input->get('product_sort_by') == 'pDiscount')
                 {
-                    $view_data['sellers'] = $this->seller_model->get_unapproved_sellers("phone",$this->input->get('type'));
+                    $view_data['products'] = $this->product_model->get_products("base_discount",$this->input->get('product_type'));
+                }
+                elseif($this->input->get('product_sort_by') == 'pLimit')
+                {
+                    $view_data['products'] = $this->product_model->get_products("lower_limit",$this->input->get('product_type'));
+                }
+                elseif($this->input->get('product_sort_by') == 'pSname')
+                {
+                    $view_data['products'] = $this->product_model->get_products("display_name",$this->input->get('product_type'));
+                }
+                elseif($this->input->get('product_sort_by') == 'pStime')
+                {
+                    $view_data['products'] = $this->product_model->get_products("start_schedule",$this->input->get('product_type'));
+                }
+                elseif($this->input->get('product_sort_by') == 'pDtime')
+                {
+                    $view_data['products'] = $this->product_model->get_products("duration",$this->input->get('product_type'));
+                }
+                else
+                    $view_data['products'] = $this->product_model->get_products('nothing','nothing');
+                
+                
+                
+                
+                if($this->input->get('seller_sort_by') == 'fName')
+                {
+                    $view_data['sellers'] = $this->seller_model->get_unapproved_sellers("first_name",$this->input->get('seller_type'));
+                }
+                elseif($this->input->get('seller_sort_by') == 'fLastName')
+                {
+                    $view_data['sellers'] = $this->seller_model->get_unapproved_sellers("last_name",$this->input->get('seller_type'));
+                }
+                elseif($this->input->get('seller_sort_by') == 'fNumber')
+                {
+                    $view_data['sellers'] = $this->seller_model->get_unapproved_sellers("phone",$this->input->get('seller_type'));
                 }
                 else
                     $view_data['sellers'] = $this->seller_model->get_unapproved_sellers('nothing','nothing');
