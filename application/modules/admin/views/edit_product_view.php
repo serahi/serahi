@@ -77,9 +77,19 @@ $(document).ready(function (){
 				</select>
 			</div>
 		</div>
-		<label for = "product_desc">شرح محصول</label>
-		<textarea name = "product_desc" rows = "9" cols = "80"><?php echo set_value('product_desc', $description);?></textarea>
-		<input type="submit" value="اضافه کردن محصول" name="submit">
+		<label for="product_desc"> شرح محصول </label>
+                
+                <textarea name="content" id="content" >
+                    <p><?php echo set_value('product_desc', $description);?></p>
+                </textarea>
+                <div style="margin-top: 4.4em">
+                <?php echo display_ckeditor($ck_data['ckeditor']); ?>
+                </div>
+		<input type="submit" value="اعمال تغییرات" name="submit">
 	</form>
 </div>
+
+
+
+
 {/block} 

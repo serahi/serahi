@@ -2,6 +2,8 @@
 
 class Admin extends MY_Controller
 {
+    
+        public $ck_data = array();
 
 	function index ()
 	{
@@ -172,11 +174,59 @@ class Admin extends MY_Controller
 
 	function edit_product ()
 	{
+            	$this->load->helper('url'); //You should autoload this one ;)
+		$this->load->helper('ckeditor');
+ 
+ 
+		//Ckeditor's configuration
+		$this->ck_data['ckeditor'] = array(
+ 
+			//ID of the textarea that will be replaced
+			'id' 	=> 	'content',
+			'path'	=>	'js/ckeditor',
+ 
+			//Optionnal values
+			'config' => array(
+				'toolbar' 	=> 	"Full", 	//Using the Full toolbar
+				'width' 	=> 	"550px",	//Setting a custom width
+				'height' 	=> 	'100px',	//Setting a custom height
+                                
+ 
+			),
+ 
+			//Replacing styles from the "Styles tool"
+			'styles' => array(
+ 
+				//Creating a new style named "style 1"
+				'style 1' => array (
+					'name' 		=> 	'Blue Title',
+					'element' 	=> 	'h2',
+					'styles' => array(
+						'color' 	=> 	'Blue',
+						'font-weight' 	=> 	'bold'
+					)
+				),
+ 
+				//Creating a new style named "style 2"
+				'style 2' => array (
+					'name' 	=> 	'Red Title',
+					'element' 	=> 	'h2',
+					'styles' => array(
+						'color' 		=> 	'Red',
+						'font-weight' 		=> 	'bold',
+						'text-decoration'	=> 	'underline'
+					)
+				)				
+			)
+		);
+            
+                
 		$id = $this->input->get('id');
 		$this->load->model('product_model');
 		$view_data = $this->product_model->get_product($id);
+                $view_data['ck_data'] = $this->ck_data;
 		$this->load->model('seller_model');
 		$view_data['sellers'] = $this->seller_model->get_seller_names();
-		$this->load->view('edit_product_view', $view_data);
+		$this->load->view('edit_product_view', $view_data );
 	}
 }
