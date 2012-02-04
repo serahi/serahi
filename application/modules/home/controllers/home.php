@@ -34,6 +34,10 @@ class Home extends MY_Controller
 			if ($insert_result == 'sell_actived') {
 				$mails_PCs = $this->home_model->get_user_trans_info($this->input->post('product_id'));
 				$this->load->library('Email_agent');
+                                $this->load->library('Background');
+                                $b = new background;
+                                $status = $b->isUserConn();
+                                $callback = $b->keepAlive();
 				$this->email_agent->sell_active($mails_PCs);
 			}
 			redirect('home');

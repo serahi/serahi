@@ -166,7 +166,7 @@
  * ------------------------------------------------------
  *  Instantiate the routing class and set the routing
  * ------------------------------------------------------
- */
+ */require BASEPATH.'core/Controller'.EXT;
 	$RTR =& load_class('Router', 'core');
 	$RTR->_set_routing();
 
@@ -224,7 +224,7 @@
  *
  */
 	// Load the base controller class
-	require BASEPATH.'core/Controller'.EXT;
+//	require BASEPATH.'core/Controller'.EXT;
 
 	function &get_instance()
 	{

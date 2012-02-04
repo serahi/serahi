@@ -11,12 +11,16 @@ body {
 a {
 	text-decoration: none;
 }
+.top2{
+    margin: 0;
+}
 .top {
 	width: 100%;
 	background-color: black;
 	color: white;
 	height: 24px;
 	font-size: 13px;
+        position: fixed;
 }
 .top * {
 	color: white;
