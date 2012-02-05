@@ -12,14 +12,14 @@ class Home extends MY_Controller
                 $this->load->library('pagination');       
                 $config['base_url'] = "http://localhost/serahi/home/index/";
                 $config['total_rows'] = $this->db->get('products')->num_rows();
-                $config['per_page'] = 2;
-                $config['num_links'] = 2;
+                $config['per_page'] = 2 ;
+                $config['num_links'] = 10 ;
                 $config['full_tag_open'] = '<div id="pagination">';
                 $config['full_tag_close'] = '</div>';
                 $this->pagination->initialize($config);
-                
                 $this->load->model('home_model');
-		$array['products'] = $this->home_model->get_list($config['per_page'], $this->uri->segment(3));
+                
+		$array['products'] = $this->home_model->get_list($config['per_page'], $this->uri->segment(3) );
 		$this->load->view('home_view', $array);
 	}
 

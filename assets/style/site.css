@@ -9,7 +9,7 @@ body {
 
 
 a {
-	text-decoration: none;
+	text-decoration: none; 
 }
 .top2{
     margin: 0;
@@ -196,7 +196,7 @@ h1, h2, h3, h4, h5 {
 	float: left;
 }
 .item .item_name{
-	margin-top: 3em;
+	margin-top: 1em; 
 }
 .item .description{
 	margin: 1em auto;
@@ -257,8 +257,13 @@ h1, h2, h3, h4, h5 {
     float:left;
 }
 .item_title{
-    float: right;
+/*    float: right; */
     display: inline-block;
+    font-weight: bold;
+    background: lightgoldenrodyellow;
+}
+.item_title a {
+    color: #B26B8F;
 }
 
 #ck_editor {
@@ -268,3 +273,34 @@ h1, h2, h3, h4, h5 {
 #editor_wrapper {
     margin-top: 3.7em;
 }
+
+#pagination {
+    float: none;
+    margin: 3px auto;
+    text-align: center;
+}
+#pagination a {
+        padding: 5px 8px;
+        background: #666699;
+        color: whitesmoke;
+}
+
+#pagination a:visited {
+    color: white;
+}
+
+
+a:hover {
+    text-decoration: underline;
+}
+
+.top a:hover {
+    text-decoration: overline;
+}
+
+
+
+
+progress::-moz-progress-bar {background-color:#B26B8F}
+
+
