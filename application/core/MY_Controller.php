@@ -26,9 +26,9 @@ class MY_Controller extends UnitTestCase
 		$this->load->_autoloader($this->autoload);
 //<<<<<<< HEAD
                 global $RTR;
-                echo $module = $RTR->fetch_module() . ' ';
-                echo $class =  $RTR->fetch_class(). ' ';
-                echo $method = $RTR->fetch_method(). ' ';
+                 $module = $RTR->fetch_module() . ' ';
+                 $class =  $RTR->fetch_class(). ' ';
+                 $method = $RTR->fetch_method(). ' ';
                 $this->access_check( $module, $class, $method );
 //=======
 		$this->load->language('shared', 'farsi');
