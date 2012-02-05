@@ -8,28 +8,28 @@
 <script type="text/javascript" src="{$base_url}assets/scripts/amin.js"></script>
 <script type="text/javascript" src="{$base_url}assets/scripts/calendar.js"></script>
 <script type = "text/javascript">
-{literal}
-function datePickerClosed (dateField) {
-	if (dateField.name == "start_schedule") {
-		document.getElementById('start_decoy').value = dateField.value;
-	}
-}
-$(document).ready(function (){
-	var str = $('#start_decoy').val();
-	var date = jd_to_persian(parseInt(str));
-	$("#start_decoy").val(date[0] + '/' + date[1] + '/' + date[2]);
-	$("#product_form").submit(function () {
-		if (isNaN($("#start_schedule").val())) {
-			var date_str = $("#start_schedule").val();
-			var vals = date_str.split("/");
-			vals[1] = vals[1].replace(new RegExp("^[0]+", "g"), "");
-			vals[2] = vals[2].replace(new RegExp("^[0]+", "g"), "");
-			var jd = persian_to_jd(parseInt(vals[0]), parseInt(vals[1]), parseInt(vals[2]));
-			$("#start_schedule").attr('value', jd);
-		}
-	});
-});
-{/literal}
+    {literal}
+    function datePickerClosed (dateField) {
+        if (dateField.name == "start_schedule") {
+            document.getElementById('start_decoy').value = dateField.value;
+        }
+    }
+    $(document).ready(function (){
+        var str = $('#start_decoy').val();
+        var date = jd_to_persian(parseInt(str));
+        $("#start_decoy").val(date[0] + '/' + date[1] + '/' + date[2]);
+        $("#product_form").submit(function () {
+            if (isNaN($("#start_schedule").val())) {
+                var date_str = $("#start_schedule").val();
+                var vals = date_str.split("/");
+                vals[1] = vals[1].replace(new RegExp("^[0]+", "g"), "");
+                vals[2] = vals[2].replace(new RegExp("^[0]+", "g"), "");
+                var jd = persian_to_jd(parseInt(vals[0]), parseInt(vals[1]), parseInt(vals[2]));
+                $("#start_schedule").attr('value', jd);
+            }
+        });
+    });
+    {/literal}
 </script>
 {/block}
 {block name=main_content}
@@ -43,7 +43,8 @@ $(document).ready(function (){
 		<?php t_input('lower_limit', 'class:validate[{$int}]');?>
 		<?php t_label('file');?>
 		<input type="file" name="userfile" size="18" />
-		<?php t_select('seller', $sellers, 'class:{$required}|null|default:{$seller_id}', 'id', 'display_name');?>
+		<?php echo $seller_id?>
+		<?php t_select('seller', $sellers, 'class:{$required}|null|value:{$seller_id}', 'id', 'display_name');?>
 		<div class = "hrow">
 			<?php t_label('start_schedule');?>
 			<?php t_label('start_time');?>
@@ -52,7 +53,6 @@ $(document).ready(function (){
 		<div class = "hrow">
 			<div class = "dblock">
 				<?php t_input('start_schedule', 'hidden');?>
-				<input name = "start_schedule" type="hidden" id = "start_schedule" value = "">
 				<input name = "start_decoy" id = "start_decoy" class = "date" disabled = "disabled" value = "{$start_schedule}">
 				<button type = "button" onclick = "displayDatePicker('start_schedule', this);" >انتخاب</button>
 			</div>
@@ -85,10 +85,20 @@ $(document).ready(function (){
 					{/for}
 				</select>
 			</div>
-		</div>
-		<label for = "product_desc">شرح محصول</label>
-		<textarea name = "product_desc" rows = "9" cols = "80"><?php echo set_value('product_desc', $description);?></textarea>
-		<input type="submit" value="اضافه کردن محصول" name="submit">
+		</div>        <div id="editor_wrapper">
+            <label for="blank_text"> شرح محصول </label>
+            <textarea rows="1" style="display: block; visibility: hidden;" name="blank_text"> </textarea>
+            
+        <div id="ck_editor">
+            <textarea name="product_desc" id="content" style="display: block;" >
+            <?php echo set_value('product_desc', $description); ?>
+            </textarea>
+            <?php echo display_ckeditor($ck_config['ckeditor']); ?>
+
+        </div>
+		<input type="submit" value="اعمال تغییرات" name="submit">
 	</form>
 </div>
+
+
 {/block} 

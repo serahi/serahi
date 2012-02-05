@@ -256,3 +256,11 @@ h1, h2, h3, h4, h5 {
     float: right;
     display: inline-block;
 }
+
+#ck_editor {
+    margin-top: -.5em;
+}
+
+#editor_wrapper {
+    margin-top: 3.7em;
+}

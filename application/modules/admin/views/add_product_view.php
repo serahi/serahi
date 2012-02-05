@@ -68,9 +68,22 @@ $(document).ready(function (){
 				</select>
 			</div>
 		</div>
-		<?php t_label('product_desc');?>
-		<textarea name = "product_desc" rows = "9" cols = "70"><?php echo set_value('product_desc');?></textarea>
+<!--		<textarea name = "product_desc" rows = "9" cols = "70"></textarea>
+        -->
+
+        <div id="editor_wrapper">
+        		<?php t_label('product_desc');?>
+            <textarea rows="1" style="display: block; visibility: hidden;" name="blank_text"> </textarea>
+
+            <div id="ck_editor">
+                    <textarea name="product_desc" id="content" >
+                    <p></p>
+                    </textarea>
+                    <?php echo display_ckeditor($ck_config['ckeditor']); ?>
+            </div>
+        </div>
 		<input type="submit" value="اضافه کردن محصول" name="submit">
 	</form>
 </div>
+
 {/block} 

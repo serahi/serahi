@@ -2,7 +2,9 @@
 
 class Admin extends MY_Controller
 {
-
+    
+        public $ck_config = array();
+        
 	function index ()
 	{
 		$this->load->model('product_model');
@@ -63,11 +65,14 @@ class Admin extends MY_Controller
 	{
 		$this->load->model('seller_model');
 		$view_data['sellers'] = $this->seller_model->get_approved_sellers();
+                
+                $this->ck_editor_config();
+                $view_data['ck_config'] = $this->ck_config;
 		$this->load->view('add_product_view', $view_data);
 	}
 
 	function add_product ()
-	{
+	{                
 		$this->load->library('validator');
 		$validated = $this->validator->validate(array(
 			'product_name',
@@ -177,6 +182,56 @@ class Admin extends MY_Controller
 		$view_data = $this->product_model->get_product($id);
 		$this->load->model('seller_model');
 		$view_data['sellers'] = $this->seller_model->get_seller_names();
-		$this->load->view('edit_product_view', $view_data);
+                
+                $this->ck_editor_config();
+                $view_data['ck_config'] = $this->ck_config;
+		$this->load->view('edit_product_view', $view_data );
 	}
+        
+        function  ck_editor_config()
+        {
+                $this->load->helper('url'); //You should autoload this one ;)
+		$this->load->helper('ckeditor');
+		//Ckeditor's configuration
+		$this->ck_config['ckeditor'] = array(
+ 
+			//ID of the textarea that will be replaced
+			'id' 	=> 	'content',
+			'path'	=>	'js/ckeditor',
+ 
+			//Optionnal values
+			'config' => array(
+				'toolbar' 	=> 	"Full", 	//Using the Full toolbar
+				'width' 	=> 	"550px",	//Setting a custom width
+				'height' 	=> 	'100px',	//Setting a custom height
+                                
+ 
+			),
+ 
+			//Replacing styles from the "Styles tool"
+			'styles' => array(
+ 
+				//Creating a new style named "style 1"
+				'style 1' => array (
+					'name' 		=> 	'Blue Title',
+					'element' 	=> 	'h2',
+					'styles' => array(
+						'color' 	=> 	'Blue',
+						'font-weight' 	=> 	'bold'
+					)
+				),
+ 
+				//Creating a new style named "style 2"
+				'style 2' => array (
+					'name' 	=> 	'Red Title',
+					'element' 	=> 	'h2',
+					'styles' => array(
+						'color' 		=> 	'Red',
+						'font-weight' 		=> 	'bold',
+						'text-decoration'	=> 	'underline'
+					)
+				)				
+			)
+		);
+        }
 }
