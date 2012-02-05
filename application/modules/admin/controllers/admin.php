@@ -86,6 +86,9 @@ class Admin extends MY_Controller
 			//invalid input form
 			$this->load->model('seller_model');
 			$view_data['sellers'] = $this->seller_model->get_seller_names();
+                        
+                        $this->ck_editor_config();
+                        $view_data['ck_config'] = $this->ck_config;
 			$this->load->view('add_product_view', $view_data);
 		} else {
 			//valid input form
@@ -131,6 +134,9 @@ class Admin extends MY_Controller
 			//invalid input form
 			$this->load->model('seller_model');
 			$view_data['sellers'] = $this->seller_model->get_seller_names();
+                        
+                        $this->ck_editor_config();
+                        $view_data['ck_config'] = $this->ck_config;                        
 			$this->load->view('add_product_view', $view_data);
 		} else {
 			//valid input form
