@@ -3,8 +3,8 @@
 class Admin extends MY_Controller
 {
     
-        public $ck_data = array();
-
+        public $ck_config = array();
+        
 	function index ()
 	{
 		$this->load->model('product_model');
@@ -65,11 +65,14 @@ class Admin extends MY_Controller
 	{
 		$this->load->model('seller_model');
 		$view_data['sellers'] = $this->seller_model->get_approved_sellers();
+                
+                $this->ck_editor_config();
+                $view_data['ck_config'] = $this->ck_config;
 		$this->load->view('add_product_view', $view_data);
 	}
 
 	function add_product ()
-	{
+	{                
 		$this->load->library('validator');
 		$validated = $this->validator->validate(array(
 			'product_name',
@@ -174,12 +177,23 @@ class Admin extends MY_Controller
 
 	function edit_product ()
 	{
-            	$this->load->helper('url'); //You should autoload this one ;)
+		$id = $this->input->get('id');
+		$this->load->model('product_model');
+		$view_data = $this->product_model->get_product($id);
+		$this->load->model('seller_model');
+		$view_data['sellers'] = $this->seller_model->get_seller_names();
+                
+                $this->ck_editor_config();
+                $view_data['ck_config'] = $this->ck_config;
+		$this->load->view('edit_product_view', $view_data );
+	}
+        
+        function  ck_editor_config()
+        {
+                $this->load->helper('url'); //You should autoload this one ;)
 		$this->load->helper('ckeditor');
- 
- 
 		//Ckeditor's configuration
-		$this->ck_data['ckeditor'] = array(
+		$this->ck_config['ckeditor'] = array(
  
 			//ID of the textarea that will be replaced
 			'id' 	=> 	'content',
@@ -219,14 +233,5 @@ class Admin extends MY_Controller
 				)				
 			)
 		);
-            
-                
-		$id = $this->input->get('id');
-		$this->load->model('product_model');
-		$view_data = $this->product_model->get_product($id);
-                $view_data['ck_data'] = $this->ck_data;
-		$this->load->model('seller_model');
-		$view_data['sellers'] = $this->seller_model->get_seller_names();
-		$this->load->view('edit_product_view', $view_data );
-	}
+        }
 }
