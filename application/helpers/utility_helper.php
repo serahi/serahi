@@ -75,6 +75,9 @@ function rand_gen($len)
 function ends_with( $str, $sub ) {
    return ( substr( $str, strlen( $str ) - strlen( $sub ) ) === $sub );
 }
+function starts_with($str, $sub) {
+	return (substr($str, 0, strlen($sub)) === $sub);
+}
 
 
 function t($line)

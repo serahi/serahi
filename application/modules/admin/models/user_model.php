@@ -3,10 +3,10 @@ class User_model extends CI_Model
 {
 	function get_users ($sort,$type)
 	{
-                if($sort == "nothing")
-                {}
-                else
-                    $this->db->order_by($sort,$type);
+    if($sort == "nothing") {
+    } else {
+    	$this->db->order_by($sort,$type);
+		}
 		$query = $this->db->get('users');
 		$data = array();
 		foreach ($query->result() as $row) {
@@ -54,7 +54,6 @@ class User_model extends CI_Model
 
 	function edit_user_info ($user)
 	{
-		//print_r($user);die;
 		$this->db->where('id', $user['id']);
 		if ($user['user_type'] == '' || !in_array($user['user_type'], array(
 				'admin',

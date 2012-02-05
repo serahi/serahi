@@ -46,17 +46,23 @@ class Userlist extends MY_Controller
 
 	function edit ()
 	{
-		//access level: admin|self
-		
 		$user_id = $this->session->userdata('user_id');
 		$id = $this->input->get('id');
 		
 		if ($this->input->post('id')) {		
 			// A Form has been submitted, save the data.
-			$user_type = $this->input->post('user_type');
-		
-			//FIXME: decide based on access-level, not post value: access('self:id@post)
-			$user_type = $user_type ? $user_type : $this->session->userdata('user_type');
+			$user_type;
+			if (access('admin')) {
+				$user_type = $this->input->post('user_type');
+			} else {
+				if ($this->input->post($user_type)!== FALSE || $this->input->post('approved') !== FALSE) {
+					//someone's been tampering with post data.
+					header('Location:'.base_url().'user/access_denied');
+					exit();
+				}
+				$user_type = $this->session->userdata('user_type');
+			}
+			$user_type = access('self') ?  : $user_type;
 			$fields = array(
 				'id',
 				'username',
@@ -66,7 +72,7 @@ class Userlist extends MY_Controller
 				'email'
 			);
 			
-			if (_is_admin()) {
+			if (access('admin') || $user_type == 'admin') {
 				$fields[] = 'user_type';
 				if ($this->input->post('user_type') == 'seller')
 					$fields[] = 'approved';
@@ -114,12 +120,5 @@ class Userlist extends MY_Controller
 		} else {
 			redirect('admin/userlist');
 		}
-	}
-
-	function save_edit ()
-	{
-		//access level: admin|self:id@post
-		$user_id = $this->session->userdata('user_id');
-
 	}
 }

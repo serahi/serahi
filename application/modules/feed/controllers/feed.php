@@ -13,8 +13,4 @@ class Feed extends MY_Controller{
         $data['posts'] = $this->posts_model->get_posts(10);
         $this->load->view('feed', $data);
     }
-    
-    
-    
-    
 }

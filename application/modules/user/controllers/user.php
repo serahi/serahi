@@ -10,15 +10,13 @@ class User extends MY_Controller {
     }
 
     function login() {
-    	//redirect: home
-    	//access level: unregistered
         $this->load->view('login_form');
     }
-
+		
+		function access_denied() {
+			$this->load->view('access_denied');
+		}
     function login_check() {
-
-    	//redirect: home
-    	//access level: unregistered
         $this->load->model('membership_model');
         $name = $this->membership_model->validate_user();
         if ($name !== FALSE) {
@@ -52,14 +50,10 @@ class User extends MY_Controller {
     }
 
     function signup() {
-    	//redirect: home
-    	//access level: unregistered
             $this->load->view('sign_up_form');
     }
 
     function seller_signup() {
-    	//redirect: home
-    	//access level: unregistered
             $this->load->view('seller_sign_up_form');
     }
 
@@ -126,17 +120,17 @@ class User extends MY_Controller {
     }
 
     function activate() {
-            $code = $_GET["t"];
-            $this->load->model('membership_model');
-            $query_result = $this->membership_model->validate_activation_code($code);
-            if ($query_result === NULL) {
-                $this->load->view('access_denied');
-            } else {
-                $data = array(
-                    'user_id' => $query_result
-                );
-                $this->load->view('sign_up_part2', $data);
-            }
+			$code = $_GET["t"];
+			$this->load->model('membership_model');
+			$query_result = $this->membership_model->validate_activation_code($code);
+			if ($query_result === NULL) {
+			    $this->load->view('access_denied');
+			} else {
+			    $data = array(
+			        'user_id' => $query_result
+			    );
+			    $this->load->view('sign_up_part2', $data);
+			}
     }
 
     function complete_registration() {
