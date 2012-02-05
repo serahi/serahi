@@ -158,9 +158,11 @@ table {
 th,
 td,
 caption {
-  font-weight: normal;
+/* sadegh's changes
+font-weight: normal;
   vertical-align: top;
-  text-align: left;
+*/
+  text-align: center;
 }
 
 q {

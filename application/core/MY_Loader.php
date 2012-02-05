@@ -43,10 +43,12 @@ class MY_Loader extends MX_Loader
 		$_ci_relative = substr($_ci_path, strlen(APPPATH));
 		$CI->load->library('smarty', APPPATH);
 
+		global $val_repo;
 		if (is_array($_ci_vars)) {
 			$this->_ci_cached_vars = array_merge($this->_ci_cached_vars, $_ci_vars);
 			foreach ($_ci_vars as $key => $val) {
 				$CI->smarty->assign($key, $val);
+				$val_repo[$key] = $val;
 			}
 		}
                 if ($_ci_relative !== 'modules/feed/views/feed.php')

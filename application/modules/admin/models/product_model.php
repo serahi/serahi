@@ -6,7 +6,7 @@ class Product_model extends CI_Model
 	function insert_product ($product_name, $seller_id, $product_desc,
 	                         $base_discount, $product_price, $pic_name,
 	                         $lower_limit,$start_schedule, $start_time,
-							 $duration)
+	                         $duration)
 	{
 		$calendar = cal_from_jd($start_schedule + 0.5, CAL_GREGORIAN);
 		$start_schedule = $calendar['date'];
@@ -23,21 +23,21 @@ class Product_model extends CI_Model
 				'duration' => $duration
 		);
 		$insert_result = $this->db->insert('products', $product_data);
-                if($insert_result)
-                {
-                    $this->db->insert('posts_rss', array(
-                        'id' => $this->db->insert_id(),
-                        'title' => $product_name ,
-                        'text' => $product_desc,
-                        'date' => date('r')
-                    ));
-                }
+    if($insert_result)
+    {
+	    $this->db->insert('posts_rss', array(
+	        'id' => $this->db->insert_id(),
+	        'title' => $product_name ,
+	        'text' => $product_desc,
+	        'date' => date(DATE_FORMAT)
+	    ));
+    }
 		return $insert_result;
 	}
 	function update_product ($id, $product_name, $seller_id, $product_desc,
 	                         $base_discount, $product_price, $pic_name,
 	                         $lower_limit,$start_schedule, $start_time,
-							 $duration)
+							             $duration)
 	{
 		$calendar = cal_from_jd($start_schedule + 0.5, CAL_GREGORIAN);
 		$start_schedule = $calendar['date'];
@@ -55,25 +55,25 @@ class Product_model extends CI_Model
 		);
 		$this->db->where('id', $id);
 		$insert_result = $this->db->update('products', $product_data);
-                if($insert_result)
-                {
-                    $this->db->where('id', $id);
-                    $this->db->update('posts_rss', array(
-                        'title' => $product_name ,
-                        'text' => $product_desc,
-                        'date' => date('r')
-                    ));
-                }
+		if($insert_result)
+		{
+		    $this->db->where('id', $id);
+		    $this->db->update('posts_rss', array(
+		        'title' => $product_name ,
+		        'text' => $product_desc,
+		        'date' => date(DATE_FORMAT)
+		    ));
+		}
 		return $insert_result;
 	}
 	function get_products ($sort,$type)
 	{
 		$this->db->select('products.id, product_name, display_name, price, base_discount, lower_limit, start_schedule, start_time, duration');
 		$this->db->where('sellers.id = products.seller_id');
-                if($sort == "nothing")
-                {}
-                else
-                    $this->db->order_by($sort,$type);
+    if($sort == "nothing") {
+    } else {
+    	$this->db->order_by($sort,$type);
+		}
 		$query = $this->db->get('products,sellers');
 		$result = $query->result_array();
 		for ($i = 0; $i < count($result); $i++) {
@@ -86,13 +86,12 @@ class Product_model extends CI_Model
 	function delete_product ($id)
 	{
 		$this->db->where('id', $id);
-		if( $this->db->delete('products') )
-                {
-                    $this->db->where('id', $id);
-                    $this->db->delete('posts_rss');
-                }
-                
+		if( $this->db->delete('products') ) {
+        $this->db->where('id', $id);
+        $this->db->delete('posts_rss');
+    }
 	}
+	
 	function get_product ($id)
 	{
 		$this->db->where('id', $id);
@@ -100,7 +99,6 @@ class Product_model extends CI_Model
 		$result = $query->row_array();
 		list($year, $month, $day) = explode('-', $result['start_schedule']);
 		$result['start_schedule'] = gregoriantojd($month, $day, $year);
-		//$result['start_time'] = ltrim($result['start_time'])
 		return $result;
 	}
 }

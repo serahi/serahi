@@ -1,0 +1,1 @@
+pg_dump -U postgres serahi > ../backup/`date "+%d-%m-%y"`_serahi.sql

@@ -16,8 +16,11 @@ class Home_model extends CI_Model
 					'pursuit_code' => $row->pursuit_code
 			);
 		}
-
+                // just for now uses id for descend sorting!
+                $this->db->order_by("id", "desc");
 		$products = $this->db->get('products', $limit , $page);
+//                $products = $this->db->query("select * from products
+//                    order by start_schedule desc, start_time desc limit $limit offset ".$page * $limit.";");
 
 		$product_array = array();
 		foreach ($products->result_array() as $row) {
@@ -57,7 +60,7 @@ class Home_model extends CI_Model
 					'user_id' => $this->session->userdata('user_id'),
 					'product_id' => $this->input->post('product_id'),
 					'count' => '1',
-					'transaction_time' => date("Y-m-d H:i:s"),
+					'transaction_time' => date(DATE_FORMAT),
 					'buying_state' => 1,
 					'pursuit_code ' => $pursuit_code
 			);
@@ -116,20 +119,26 @@ class Home_model extends CI_Model
 		$result = $this->db->get('transactions');
 		if ($result->num_rows == 1) {
 			$row = $result->row_array();
-			$this->db->where('product_id', $row['id'])->where('pursuit_code != NULL OR "pursuit_code" != \'canceled\' ');
+			$this->db->where('product_id', $row['product_id'])->where('pursuit_code != NULL OR "pursuit_code" != \'canceled\' ');
 			$sell = $this->db->get('transactions');
 			$sell_count = $sell->num_rows;
-			if ($sell_count > $row['lower_limit'])
+			//if ($sell_count > $row['lower_limit'])
+                        $this->db->where('id', $row['product_id'] );
+                        $product_info = $this->db->get('products')->row();
+                        $lower_limit = $product_info->lower_limit;
+                        if ($sell_count >  $lower_limit )
+                        {
 				return FALSE;
+                        }
 			if ($row['buying_state'] == 1) {
 				$this->db->where('id', $row['id']);
 				$this->db->set('buying_state', 2)->set('pursuit_code', 'canceled');
 				$this->db->update('transactions');
 				return 0;
-			} elseif ($row['buying_state'] === 2) {
+			} elseif ($row['buying_state'] === 2) {echo "2";die;
 
 				return 2;
-			} else {
+			} else {echo "3";die;
 				return "buying_state_is_not_valide";
 			}
 		} else {

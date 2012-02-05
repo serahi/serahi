@@ -45,7 +45,7 @@
 	<form action="{$base_url}user/register" class="forms submit_form" method="post">
 		<input id="username" type="text"  class="check validate[required]" name="username" value="<?php echo set_value('username', 'نام کاربری');?>"/>
 		<input id="password" type="text" class="check pass validate[required]" name="password" value="رمز عبور"/>
-		<input id="c_password" type="text" class="check pass validate[required,equals[password]]" name="passconf" value="تکرار رمز عبور"/>
+		<input id="c_password" type="text" class="check pass validate[required,equals[password]]" name="password_confirm" value="تکرار رمز عبور"/>
 		<input id="first_name" type="text" class="check validate[required]" name="first_name" value="<?php echo set_value('first_name', 'نام');?>"/>
 		<input id="last_name" type="text" class="check validate[required]" name="last_name" value="<?php echo set_value('last_name', 'نام خانوادگی');?>"/>
 		<input id="email" type="text" class="check validate[required,custom[email]]" name="email" value="<?php echo set_value('email', 'آدرس پست‌الکترونیکی' );?>"/>

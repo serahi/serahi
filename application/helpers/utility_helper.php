@@ -1,18 +1,13 @@
 <?php
-
+$val_repo;
 function _post_values ($array, $numbered = false)
 {
 	$CI = &get_instance();
 	$values = array();
 	foreach ($array as $field) {
-		$parts = explode(':', $field, 2);
-		if (count($parts) > 1) {
-			$field_name = $parts[0];
-			$field_type = $parts[1];
-			if ($field_type === 'b') {
-				$value = $CI->input->post($field_name) ? 't' : 'f';
-				$values[$field_name] = $value;
-			}
+		if ($field == 'approved') {
+			$value = $CI->input->post($field) ? 't' : 'f';
+			$values[$field_name] = $value;
 		} else {
 			$value = $CI->input->post($field);
 			if ($value !== FALSE) {
@@ -80,6 +75,9 @@ function rand_gen($len)
 function ends_with( $str, $sub ) {
    return ( substr( $str, strlen( $str ) - strlen( $sub ) ) === $sub );
 }
+function starts_with($str, $sub) {
+	return (substr($str, 0, strlen($sub)) === $sub);
+}
 
 
 function t($line)
@@ -112,14 +110,15 @@ function debug ($str)
 function _t_input ($field, $options_str = '')
 {
 	$html = '';
-	$id = $field;
-	$class = '';
+	$input_id = $field;
+	$input_class = '';
 	$label_class = '';
 	$default = '';
 	$nofill = FALSE;
-	$pass = FALSE;
+	$is_password = FALSE;
+	$hidden = FALSE;
 	if (strpos($field, 'password') !== FALSE) {
-		$pass = TRUE;
+		$is_password = TRUE;
 		$nofill = TRUE;
 	}
 	$options = explode('|', $options_str);
@@ -127,36 +126,47 @@ function _t_input ($field, $options_str = '')
 	if ($options[0] != '') {
 		foreach ($options as $option) {
 			if ($option == 'no_id') {
-				$id = '';
+				$input_id = '';
+			} else if ($option == 'hidden'){
+				$hidden = TRUE;
 			} else {
 				list($type, $value) = explode(":", $option);
 				if ($type == 'id') {
-					$id = $value;
+					$input_id = $value;
 				} else if ($type == 'class') {
-					$class = $value;
+					$input_class = $value;
 				} else if ($type == 'label_class') {
 					$label_class = $value;
-				} else if ($type == 'value') {
+				} else if ($type == 'default') {
 					$default = $value;
 				} else if ($type == 'nofill') {
 					$nofill = TRUE;
 				} else if ($type == 'pass') {
-					$pass = TRUE;
+					$is_password = TRUE;
 				} else if ($type == 't') {
 					$t = $value;
 				}
 			}
 		}
 	}
-	if ($label_class == '' && $class != '') {
-		$label_class = $class;
+	if ($default == '') {
+		global $val_repo;
+		if (isset($val_repo[$field])) {
+			$default = $val_repo[$field];
+		}
 	}
-	$html .= _t_label($t, $id, $label_class);
+	if ($label_class == '' && $input_class != '') {
+		$label_class = $input_class;
+	}
+	if ($hidden == FALSE) {
+		$html .= _t_label($t, $input_id, $label_class);
+	}
 	
 	$html .= "<input name = '$field' ";
-	if ($id != '')    $html .= "id = '$id' ";
-	if ($class != '') $html .= "class = '$class' ";
-	if ($pass == TRUE) $html .= "type = 'password' ";
+	if ($input_id != '') $html .= "id = '$input_id' ";
+	if ($input_class != '') $html .= "class = '$input_class' ";
+	if ($hidden == TRUE) $html .= "type = 'hidden' ";
+	else if ($is_password == TRUE) $html .= "type = 'password' ";
 	if ($nofill == FALSE) $html .= "value = '" . set_value($field, $default) . "' ";
 	if ($nofill == TRUE)  $html .= "value = '$default' ";
 	$html .= '>';

@@ -20,3 +20,12 @@ $config['product_price'] = 'required|greater_than[0]';
 $config['base_discount'] = 'required|less_than[100]|greater_than[0]';
 $config['lower_limit'] = 'required|is_natural_no_zero';
 $config['duration'] = 'required|is_natural_no_zero';
+$config['first_name'] = 'required|min_length[3]|max_length[31]';
+$config['last_name'] = 'required|min_length[3]|max_length[31]';
+$config['username'] = 'required|min_length[5]|max_length[31]';
+$config['password'] = 'min_length[6]|max_length[31]';
+$config['password_confirm'] = 'min_length[6]|max_length[31]';
+$config['user_type'] = 'required';
+$config['email'] = 'trim|valid_email|required|min_length[3]|max_length[31]';
+$config['display_name'] = 'required';
+

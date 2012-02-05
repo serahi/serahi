@@ -10,7 +10,11 @@
 |
 */
 
-
+$hook['pre_controller'][] = array(
+                                'function' => 'check_access_level',
+                                'filename' => 'security.php',
+                                'filepath' => 'hooks'
+                                );
 
 /* End of file hooks.php */
 /* Location: ./application/config/hooks.php */

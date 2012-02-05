@@ -32,7 +32,9 @@
 			};
 			window.setInterval(callback_{$count}, 1000);
 		</script>
-		<div class = "item_title"><a href = "{$base_url}product/view?id={$item.id}">{$item.product_name}</a></div>
+		<div class = "item_title">
+                    <a href = "{$base_url}product/view?id={$item.id}">{$item.product_name}</a>
+                </div>
 		<div class="remaining">
 		    <b>
 		        زمان باقیمانده برای خرید این کالا
@@ -40,7 +42,8 @@
 		    <div id = "remain_hidden_{$count}" style="display:none">
 		    	{$item.remaining}
 		    </div>
-		    <div id="remain_time_{$count}">
+		    <div id="remain_time_{$count}" style="display: -moz-inline-block;">
+                        <script>callback_{$count}()</script>
 		    </div>
 		    
 		</div>
@@ -115,9 +118,12 @@
 	  })();
 	{/literal}
 	</script>
-</div>
-<?php echo $this->pagination->create_links(); ?>
+
+        <?php echo $this->pagination->create_links(); ?>
 {elseif $this->session->userdata('is_logged_in')}
 	کالایی یافت نشد
 {/if}
+
+</div>
+
 {/block}

@@ -78,7 +78,7 @@ class Product_model extends CI_Model {
         $this->db->insert('comments', array(
             'user_id' => $user_id,
             'content' => $this->input->post('comment_content'),
-            'date' => date('r'),
+            'date' => date(DATE_FORMAT),
             'product_id'=> $this->input->post('product_id')
         ));
     }
