@@ -38,12 +38,11 @@
 		<?php  echo validation_errors('<div class="error_msg">', '</div>');?>
 		<input name = "id" type = "hidden" value = "{$id}">
 		<?php t_input('product_name', 'class:{$required}');?>
-		<?php t_input('product_price', 'class:validate[{$int}]');?>
+		<?php t_input('price', 'class:validate[{$int}]');?>
 		<?php t_input('base_discount', 'class:validate[{$int}, max[100]]');?>
 		<?php t_input('lower_limit', 'class:validate[{$int}]');?>
 		<?php t_label('file');?>
 		<input type="file" name="userfile" size="18" />
-		<?php echo $seller_id?>
 		<?php t_select('seller', $sellers, 'class:{$required}|null|value:{$seller_id}', 'id', 'display_name');?>
 		<div class = "hrow">
 			<?php t_label('start_schedule');?>

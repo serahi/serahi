@@ -35,7 +35,7 @@ $(document).ready(function (){
 	<form id = "product_form" class = "submit_form product_form" enctype = "multipart/form-data" method = "post" action = "{$base_url}admin/add_product">
 		<?php echo validation_errors('<div class="error_msg">', '</div>');?>
 		<?php t_input('product_name', 'class:{$required}');?>
-		<?php t_input('product_price', 'class:validate[{$int}]');?>
+		<?php t_input('price', 'class:validate[{$int}]');?>
 		<?php t_input('base_discount', 'class:validate[{$int}, max[100]]');?>
 		<?php t_input('lower_limit', 'class:validate[{$int}]');?>
 		<?php t_label('file');?>

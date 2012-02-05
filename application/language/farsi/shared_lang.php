@@ -2,6 +2,7 @@
 
 $lang['product_name'] = 'نام محصول';
 $lang['product_price'] = 'قیمت واقعی';
+$lang['price'] = 'قیمت واقعی';
 $lang['base_discount'] = 'میزان تخفیف';
 $lang['lower_limit'] = 'حد نصاب';
 $lang['duration'] = 'مدت زمان نمایش';
