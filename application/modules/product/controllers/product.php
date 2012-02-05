@@ -6,30 +6,26 @@ class Product extends MY_Controller {
         $id = $this->input->get('id');
         $this->load->model('product_model');
         $view_data['product'] = $this->product_model->get_product($id, $this->session->userdata('user_id'));
-        $view_data['comments'] = $this->product_model->get_comments($id);
-                
-       // echo 'hamed';
-       /* $this->load->library('pagination');
-        $config['base_url'] = "http://localhost/serahi/product/view?id=".$id;
-        $config['total_rows'] = $this->db->get('products')->num_rows();
-        $config['per_page'] = 10;
+
+        $data['comcount'] = $this->product_model->get_comments($id);
+        $this->load->library('pagination');
+        $config['base_url'] = "http://localhost/serahi/product/view?id=" . $id;
+        $config['total_rows'] = count($data['comcount']);
+        $config['per_page'] = 6;
         $config['num_links'] = 20;
+        $config['page_query_string'] = true;
         $config['full_tag_open'] = '<div id="pagination">';
         $config['full_tag_close'] = '</div>';
         $this->pagination->initialize($config);
 
-        $this->load->model('product_model');
-        $array['products'] = $this->product_model->get_list($config['per_page'], $this->uri->segment(3));
-        $this->load->view('home_view', $array);
-        
-
-*/
+        $view_data['comments'] = $this->product_model->get_limited_comments($id, $config['per_page'], $this->input->get('per_page'));
         $this->load->view('product_view', $view_data);
     }
+         
 
     function add_comment() {
         $this->load->model('product_model');
-        $this->product_model->add_comment();
+        $this->product_model->add_comment($this->session->userdata('user_id'));
         redirect('product/view?id='.$this->input->post('product_id'));
     }
 
