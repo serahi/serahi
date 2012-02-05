@@ -88,7 +88,7 @@
     <div class="progress value">
         {$product['sell_count']}/{$product['lower_limit']}
     </div>
-		<div class="description">
+		<div class="description" >
 			<pre>{$product['description']}</pre>
 		</div>
 		<div style="height:275px;width:275px;">

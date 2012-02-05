@@ -203,6 +203,10 @@ h1, h2, h3, h4, h5 {
         clear:both;
 }
 
+.description {
+    direction: ltr;
+}
+
 .item .desc{
     margin: 5em 10px;
     clear:both;

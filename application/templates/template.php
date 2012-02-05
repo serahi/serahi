@@ -5,8 +5,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-		<link rel="stylesheet" type="text/css" href="{$base_url}assets/style/960/reset_rtl.css" />
-		<link rel="stylesheet" type="text/css" href="{$base_url}assets/style/960/text_rtl.css" />
+		<link rel="stylesheet" type="text/css" href="{$base_url}assets/style/960/reset.css" />
+		<link rel="stylesheet" type="text/css" href="{$base_url}assets/style/960/text.css" />
 		<link rel="stylesheet" type="text/css" href="{$base_url}assets/style/validationEngine.jquery.css" />	 
 		<link rel="stylesheet" type="text/css" href="{$base_url}assets/style/site.css" />
 		<link rel="stylesheet" type="text/css" href="{$base_url}assets/confirm/jquery.confirm/jquery.confirm.css" />
