@@ -35,6 +35,7 @@ class Product_model extends CI_Model {
         return $data;
     }
 
+    //no comment?!
     function get_comments($product_id) {
         $this->db->where('product_id', $product_id);
         $this->db->select('*');
@@ -43,11 +44,39 @@ class Product_model extends CI_Model {
         $query = $this->db->get();
         return $query->result_array();
     }
-
-    function add_comment() {
+    
+    function get_limited_comments($product_id,$limit , $page) {
+        $product = $this->db->where('id', $product_id)->get('products');
+        foreach ($product->result() as $row) {
+            $seller=$row->seller_id;
+        }
+        $this->db->where('product_id', $product_id);
+        $this->db->select('*');
+        $this->db->join('users', 'users.id = comments.user_id');
+        $query = $this->db->get('comments',$limit , $page);                
+        foreach ($query->result() as $row) {
+            if ($row->user_id==$seller) {   
+            $comment[] = array(
+                    'username' => $row->username,
+                    'date' => $row->date,
+                    'content' => $row->content,
+                    'seller' => true
+                );
+            } else {
+                $comment[] = array(
+                    'username' => $row->username,
+                    'date' => $row->date,
+                    'content' => $row->content,
+                    'seller' => false
+                );
+            }//end of else
+        }//end of foreach
+        return $comment;
+    }
+    
+    function add_comment($user_id) {
         $this->db->insert('comments', array(
-            'id' => 7,
-            'user_id' => 56,
+            'user_id' => $user_id,
             'content' => $this->input->post('comment_content'),
             'date' => date(DATE_FORMAT),
             'product_id'=> $this->input->post('product_id')
