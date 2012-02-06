@@ -3,7 +3,7 @@
 <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBr6OmZbDrrQqCSxyNGQz8NLxU7XHewT_k&sensor=false">
 </script>
 <script type="text/javascript">
-	<?php list($map_lat, $map_lng) = explode(' ', $map_location);
+	<?php list($map_lat, $map_lng) = explode(' ', $product['map_location']);
 	      echo "var lat = $map_lat;";
 				echo "var lang = $map_lng;";
 	?>
@@ -120,7 +120,7 @@
 			{/if}
 		</div>
 	</div>
-    
+    <?php if (isset($comments) && count($comments)>0):?>
     <?php foreach ($comments as $comment): ?>
     <div class="item">
             <div class="item_title"> <b> <?php echo $comment['username']; ?> </b> </div>
@@ -129,6 +129,7 @@
                  
         </div>
     <?php endforeach; ?>
+    <?php endif;?>
         <?php echo $this->pagination->create_links(); ?>
 </div>
 
