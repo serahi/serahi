@@ -30,6 +30,9 @@ a {
 	padding: 5px;
 	margin: 0px auto 10px 0px;
 }
+.top a:visited {
+    color: white;
+}
 .top a:hover {
 	/*background-color: #414152;*/
 	background-color: #303030;
@@ -154,7 +157,7 @@ h1, h2, h3, h4, h5 {
 	text-align: center;
 	color: green;
 }
-.product {
+.product_wrapper {
 	
 	margin: 3em auto;
 	width: 840px;
@@ -166,6 +169,7 @@ h1, h2, h3, h4, h5 {
 	box-shadow: 4px 2px 13px 5px #CCCCB2; 
 	-moz-border-radius: 8px; 
 }
+
 .item {
 	
 	margin: 0em auto;
@@ -174,9 +178,11 @@ h1, h2, h3, h4, h5 {
 	padding: 2em;
 	border-bottom: 2px solid gray; 
 }
-.item:last-child{
-	border: none;
+.item:last-child  {
+    border-bottom: 1px solid #B26B8F; 
+    
 }
+
 
 .item  > div  {
 	
@@ -262,10 +268,49 @@ h1, h2, h3, h4, h5 {
     display: inline-block;
     font-weight: bold;
     background: lightgoldenrodyellow;
+    background: #44A51C;
+    -moz-border-radius: 3px; 
+    padding: 4px 10px;
 }
 .item_title a {
     color: #B26B8F;
+    color: white;
 }
+.item_title a:visited{
+    color: #B26B8F;
+    color: #CCCCB2;
+    color: #FFFF4D;
+}
+.expired_date{
+    
+}
+.expired_date a{
+    
+}
+.expired_date a:visited{
+    
+}
+
+.in_progress{
+    
+}
+.in_progress a{
+    
+}
+.in_progress a:visited{
+    
+}
+
+.saled{
+    background: #44A51C;
+}
+.saled a{
+    color: #FFFF4D;
+}
+.saled a:visited{
+    color: #FFFF4D;
+}
+
 
 #ck_editor {
     margin-top: -.5em;
@@ -290,12 +335,13 @@ h1, h2, h3, h4, h5 {
     color: white;
 }
 
-a{
+a {
     color: #174F82;
 }
-a:focus {
-    color: #1788DC;
+a:visited {
+    color: #174F82;
 }
+
 a:hover {
     color: #1788DC;
     text-decoration: underline;
