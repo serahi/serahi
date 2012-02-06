@@ -82,7 +82,11 @@ function check_access_level() {
 	exit();
 }
 
-function access() {
+function access($required_level) {
+	global $_level;
+	return $_level === $required_level;
+}
+function get_access() {
 	global $_level;
 	return $_level;
 }
