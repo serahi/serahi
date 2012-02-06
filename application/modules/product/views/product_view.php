@@ -109,7 +109,7 @@
 			<div class="not_found_item">
 				این کالا قبلاً توسط شما خریداری شده است!
 			</div>
-			{if $product['sell_count'] < $product['item.lower_limit']}
+			{if $product['sell_count'] < $product['lower_limit']}
 			<form method="post" action="{$base_url}home/cancel_transaction" class="forms cancel_buying" >
 				<input type="submit" value="لغو خرید">
 				<input type="hidden" value="{$product['id']}" name="product_id">
