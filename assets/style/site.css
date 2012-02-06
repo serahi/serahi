@@ -289,13 +289,19 @@ h1, h2, h3, h4, h5 {
     color: white;
 }
 
-
+a{
+    color: #174F82;
+}
+a:focus {
+    color: #1788DC;
+}
 a:hover {
+    color: #1788DC;
     text-decoration: underline;
 }
 
 .top a:hover {
-    text-decoration: overline;
+    text-decoration: none;
 }
 
 
