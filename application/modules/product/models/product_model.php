@@ -46,6 +46,7 @@ class Product_model extends CI_Model {
     }
     
     function get_limited_comments($product_id,$limit , $page) {
+    	$comment = array();
         $product = $this->db->where('id', $product_id)->get('products');
         foreach ($product->result() as $row) {
             $seller=$row->seller_id;
