@@ -53,11 +53,14 @@ class Product_model extends CI_Model {
         }
         $this->db->where('product_id', $product_id);
         $this->db->select('*');
-        $this->db->join('users', 'users.id = comments.user_id');
-        $query = $this->db->get('comments',$limit , $page);                
+        //$this->db->join('users', 'users.id = comments.user_id');
+        //$query = $this->db->get('comments',$limit , $page);
+        $this->db->join('comments', 'comments.user_id=users.id ');
+        $query = $this->db->get('users',$limit , $page);
         foreach ($query->result() as $row) {
-            if ($row->user_id==$seller) {   
-            $comment[] = array(
+            if ($row->user_id == $seller) {
+                $comment[] = array(
+                    'id' => $row->id,
                     'username' => $row->username,
                     'date' => $row->date,
                     'content' => $row->content,
@@ -65,6 +68,7 @@ class Product_model extends CI_Model {
                 );
             } else {
                 $comment[] = array(
+                    'id' => $row->id,
                     'username' => $row->username,
                     'date' => $row->date,
                     'content' => $row->content,
@@ -95,8 +99,7 @@ class Product_model extends CI_Model {
 
     //not ready yet
     function remove_comment() {
-        //$this->db->where('id', $this->input->post('comment_id'));
-        $this->db->where('id', 75);
+        $this->db->where('id', $this->input->post('comment_id'));
         $this->db->delete('comments');
     }
 

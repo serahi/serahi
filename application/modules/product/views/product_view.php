@@ -122,23 +122,34 @@
 	</div>
     <?php if (isset($comments) && count($comments)>0):?>
     <?php foreach ($comments as $comment): ?>
-    <div class="item">
-            <div class="item_title"> <b> <?php echo $comment['username']; ?> </b> </div>
-            <div class="news_date"> <?php echo $comment['date']; ?> </div>
-            <div class="desc"> <?php echo $comment['content']; ?> </div>
-                 
-        </div>
-    <?php endforeach; ?>
+            <div class="item">
+                
+                <form id="edit" method="post" action="{$base_url}product/product/edit_comment" class="forms" >
+                    <!--<input type="hidden" value="{$comment['id']}" name="comment_id">-->
+                    <input type="hidden" value="{$product['id']}" name="product_id">
+                    <input type="submit" name="e" value="ویرایش" />
+                </form>
+                <form id="delete" method="post" action="{$base_url}product/product/remove_comment" class="forms" >
+                    
+                    <!--<input type="hidden" value="{$comment['id']}" name="comment_id">-->
+                    <input type="hidden" value="{$product['id']}" name="product_id">
+                    <input type="submit" name="d" value="حذف" />
+                </form> 
+                <div class="item_title"> <b> <?php echo $comment['username']; ?> </b> </div>
+                <div class="news_date"> <?php echo $comment['date']; ?> </div>
+                <div class="desc"> <?php echo $comment['content']; ?> </div>
+           
+            </div>
+        <?php endforeach; ?>
     <?php endif;?>
         <?php echo $this->pagination->create_links(); ?>
 </div>
 
 <div id="sign_up_form">
-<form id="target" method="post" action="{$base_url}product/product/add_comment" class="forms" >
+<form id="add" method="post" action="{$base_url}product/product/add_comment" class="forms" >
     <textarea cols="30" rows="10" type="text" id="comment_content" class="check" name="comment_content" value=""  title=""></textarea>
-    <!--<input type="hidden" value="{$user_id}" name="user_id"> -->
     <input type="hidden" value="{$product['id']}" name="product_id">
-    <input type="submit" name="r" value="ثبت نظر" />
+    <input type="submit" name="a" value="ثبت نظر" />
         
 </form>
 </div>
