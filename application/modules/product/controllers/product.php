@@ -40,7 +40,7 @@ class Product extends MY_Controller {
     function remove_comment() {
         $this->load->model('product_model');
         $this->product_model->remove_comment();
-        //redirect('product/view?id='.$this->input->post('product_id'));
+        redirect('product/view?id='.$this->input->post('product_id'));
     }
 
 }

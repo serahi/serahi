@@ -94,7 +94,8 @@ class Product_model extends CI_Model {
 
     //not ready yet
     function remove_comment() {
-        $this->db->where('id', $this->input->post('comment_id'));
+        //$this->db->where('id', $this->input->post('comment_id'));
+        $this->db->where('id', 75);
         $this->db->delete('comments');
     }
 
