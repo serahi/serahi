@@ -91,7 +91,7 @@
 		<div class="description" >
 			<pre>{$product['description']}</pre>
 		</div>
-		<div style="height:275px;width:275px;">
+		<div style="height:275px;width:275px; margin: 0 auto;">
 			<div id="map_canvas" style="width: 100%; height: 100%"></div>
 		</div>
 		<div class="buy">
