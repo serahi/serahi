@@ -23,11 +23,11 @@ class Product_model extends CI_Model {
         $time_str = $data['start_schedule'] . ' ' . $data['start_time'];
         $then = strtotime($data['start_schedule'] . ' ' . $data['start_time']);
         $passed = time() - $then;
-        if (($passed >= 0) && ($passed < $data['duration'])) {
             $sell = $this->db->query('select * from transactions where product_id = ' . $data['id'] .
                     ' and (pursuit_code != NULL OR "pursuit_code" != \'canceled\');');
 
             $data['sell_count'] = $sell->num_rows;
+        if (($passed >= 0) && ($passed < $data['duration'])) {
 
             $data['remaining'] = $data['duration'] - $passed;
         }
@@ -53,11 +53,14 @@ class Product_model extends CI_Model {
         }
         $this->db->where('product_id', $product_id);
         $this->db->select('*');
-        $this->db->join('users', 'users.id = comments.user_id');
-        $query = $this->db->get('comments',$limit , $page);                
+        //$this->db->join('users', 'users.id = comments.user_id');
+        //$query = $this->db->get('comments',$limit , $page);
+        $this->db->join('comments', 'comments.user_id=users.id ');
+        $query = $this->db->get('users',$limit , $page);
         foreach ($query->result() as $row) {
-            if ($row->user_id==$seller) {   
-            $comment[] = array(
+            if ($row->user_id == $seller) {
+                $comment[] = array(
+                    'id' => $row->id,
                     'username' => $row->username,
                     'date' => $row->date,
                     'content' => $row->content,
@@ -65,6 +68,7 @@ class Product_model extends CI_Model {
                 );
             } else {
                 $comment[] = array(
+                    'id' => $row->id,
                     'username' => $row->username,
                     'date' => $row->date,
                     'content' => $row->content,

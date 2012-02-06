@@ -55,24 +55,16 @@ class Userlist extends MY_Controller
 			if (access('admin')) {
 				$user_type = $this->input->post('user_type');
 			} else {
-				if ($this->input->post($user_type)!== FALSE || $this->input->post('approved') !== FALSE) {
+				if ($this->input->post('user_type')!== FALSE || $this->input->post('approved') !== FALSE) {
 					//someone's been tampering with post data.
 					header('Location:'.base_url().'user/access_denied');
 					exit();
 				}
 				$user_type = $this->session->userdata('user_type');
 			}
-			//$user_type = access('self') ?  : $user_type;
-                        
-                        /* if access('admin') fixed the following code can uncommented
-                        if ( access('self') && access('admin') == false )
-                            $user_type = $this->session->userdata('user_type');
-                            */
-                        // 3 following lines just till access('admin') would be fixed
-                        $ut = $this->session->userdata('user_type');
-                        if ( $ut == 'seller' || $ut == 'customer' )
-                            $user_type = $ut;
-                            
+			if ( access('self') && (access('admin') == false)) {
+				$user_type = $this->session->userdata('user_type');
+			}
                             
 			$fields = array(
 				'id',
@@ -84,10 +76,10 @@ class Userlist extends MY_Controller
 			);
 			
 			if (access('admin') || $user_type == 'admin') {
-				
-				if ($this->input->post('user_type') == 'seller')
-                                    $fields[] = 'user_type';
+				$fields[] = 'user_type';
+				if ($this->input->post('user_type') == 'seller') {
 					$fields[] = 'approved';
+				}
 			}
 			if ($user_type == 'seller' || $user_type == 'customer') {
 				$fields[] = 'address';
@@ -100,9 +92,11 @@ class Userlist extends MY_Controller
 					$fields[] = 'birth_date';
 				}
 			}
-//			$user = _post_values($fields);
-
-                        $user = array (
+			$user = _post_values($fields);
+			if (access('self')) {
+				$user['user_type'] = $user_type;
+			}
+                       /* $user = array (
                             'id' => $this->input->post('id'),
                             'username' => $this->input->post('username'),
                             'password' => $this->input->post('password'),
@@ -128,7 +122,7 @@ class Userlist extends MY_Controller
                         $user['user_type'] = $user_type;
                         
                         // must be removed!
-                        $user['birth_date'] = NULL;
+                        $user['birth_date'] = NULL;*/
                         
 			$this->load->library('validator');
 			$validated = $this->validator->validate($fields);
