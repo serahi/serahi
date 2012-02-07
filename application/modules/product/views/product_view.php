@@ -141,12 +141,13 @@ echo "var lang = $map_lng;";
                     <div class="item_title"> <b> <?php echo $comment['username']; ?> </b> </div>
                     <div class="news_date"> <?php echo $comment['date']; ?> </div>
                     <div class="desc"> <?php echo $comment['content']; ?> </div>
-<?php if ($this->session->userdata('user_type') == 'admin') { ?>
+<?php if ($this->session->userdata('user_type') == 'admin') { ?> <?php /*
+	
                     <form id="cm_edit" method="post" action="{$base_url}product/product/edit_comment" class="" >
                         <input type="hidden" value="<?php echo $comment['id']; ?>" name="comment_id">
                         <input type="hidden" value="{$product['id']}" name="product_id">
                         <input type="submit" name="e" value="ویرایش" />
-                    </form>
+                    </form> */ ?>
 
                     <form id="cm_delete" method="post" action="{$base_url}product/product/remove_comment" class="" >
 
