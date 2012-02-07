@@ -140,14 +140,14 @@ echo "var lang = $map_lng;";
                     <div class="desc"> <?php echo $comment['content']; ?> </div>
 
                     <form id="cm_edit" method="post" action="{$base_url}product/product/edit_comment" class="" >
-                        <!--<input type="hidden" value="{$comment['id']}" name="comment_id">-->
+                        <input type="hidden" value="<?php echo $comment['id']; ?>" name="comment_id">
                         <input type="hidden" value="{$product['id']}" name="product_id">
                         <input type="submit" name="e" value="ویرایش" />
                     </form>
 
                     <form id="cm_delete" method="post" action="{$base_url}product/product/remove_comment" class="" >
 
-                <!--<input type="hidden" value="{$comment['id']}" name="comment_id">-->
+                        <input type="hidden" value="<?php echo $comment['id']; ?>" name="comment_id">
                         <input type="hidden" value="{$product['id']}" name="product_id">
                         <input type="submit" name="d" value="حذف" />
                     </form> 
