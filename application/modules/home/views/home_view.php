@@ -34,10 +34,9 @@
 			window.setInterval(callback_{$count}, 1000);
 		</script>
                 
-                { if($item.remaining} < 0 }
-                        { status assign=item.remaining }
                 
-		<div class = "item_title <?php echo $status ?>">
+                
+		<div class = "item_title <?php  ?>">
                     <a href = "{$base_url}product/view?id={$item.id}">{$item.product_name}</a>
                 </div>
 		<div class="remaining">
@@ -70,10 +69,13 @@
 		<div class="sell_count">
 			<b> تعداد فروخته شده تا الان: </b>{$item.sell_count}
 		</div>
-    وضعیت فروش
-    <progress value="{$item.sell_count}" max="{$item.lower_limit}"></progress>
+    
+    <div class="">
+        وضعیت فروش
+        <div class="progressbar">  <progress value="{$item.sell_count}" max="{$item.lower_limit}"></progress> </div>
+    </div>
     <div class="progress value">
-        {$item.sell_count}/{$item.lower_limit}
+        
     </div>
 		<div class="buy">
 			{if $item.buying_state eq 0}
