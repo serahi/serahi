@@ -30,10 +30,11 @@ class Product extends MY_Controller {
         redirect('product/view?id='.$this->input->post('product_id'));
     }
 
+    //if is allowed show this
     function edit_comment() {
-        //$this->load->model('product_model');
-        //$this->product_model->edit_comment();
-        //redirect('product/view?id='.$this->input->post('product_id'));
+        $this->load->model('product_model');
+        $this->product_model->edit_comment();        
+        redirect('product/edit-cm?id='.$this->input->post('comment_id'));
     }
     
     function save_edit_comment() {
