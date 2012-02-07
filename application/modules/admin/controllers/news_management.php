@@ -29,7 +29,7 @@ class News_management extends MY_Controller{
 
 	function edit(){
 		$id = $this->input->get('id');
-		$data['new'] = $this->news_model->news_list($id);
+		$data['new'] = $this->news_model->get_new($id);
 		$this->load->view('edit_news', $data);
 	}
 

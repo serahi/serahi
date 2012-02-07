@@ -37,5 +37,12 @@ class News_model extends CI_Model
 		$this->db->where('id', $this->input->post('news_id'));
 		$this->db->delete('news');
 	}
+        
+        function  get_new($id)
+        {
+                $this->db->where('id', $id);
+                $result = $this->db->get('news');
+                return $result->result_array();
+        }
 
 }
