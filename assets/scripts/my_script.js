@@ -11,7 +11,8 @@ var inputs = {
                 'postal_code' : 'کد پستی',
 		'seller_display_name': 'نام شرکت یا فروشگاه شما',
                 'news_title': 'عنوان خبر',
-                'news_content': 'متن خبر'
+                'news_content': 'متن خبر',
+                'comment_content' : 'نظر دهید ...'
 
 	};
 

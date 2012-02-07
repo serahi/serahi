@@ -4,6 +4,7 @@
 
 {block name=main_content}
 {if isset($products) && count($products) > 0}
+<div class="product_wrapper">
 <div class="product">
 	{foreach from=$products item=item name=props}
 	<div class="item">
@@ -32,7 +33,10 @@
 			};
 			window.setInterval(callback_{$count}, 1000);
 		</script>
-		<div class = "item_title">
+                
+                
+                
+		<div class = "item_title <?php  ?>">
                     <a href = "{$base_url}product/view?id={$item.id}">{$item.product_name}</a>
                 </div>
 		<div class="remaining">
@@ -65,10 +69,13 @@
 		<div class="sell_count">
 			<b> تعداد فروخته شده تا الان: </b>{$item.sell_count}
 		</div>
-    وضعیت فروش
-    <progress value="{$item.sell_count}" max="{$item.lower_limit}"></progress>
+    
+    <div class="">
+        وضعیت فروش
+        <div class="progressbar">  <progress value="{$item.sell_count}" max="{$item.lower_limit}"></progress> </div>
+    </div>
     <div class="progress value">
-        {$item.sell_count}/{$item.lower_limit}
+        
     </div>
 		<div class="buy">
 			{if $item.buying_state eq 0}
@@ -109,6 +116,7 @@
 
 	</div>
 	{/foreach}
+</div>
 	<script type="text/javascript">
 	{literal}
 	  (function() {

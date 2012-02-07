@@ -30,6 +30,9 @@ a {
 	padding: 5px;
 	margin: 0px auto 10px 0px;
 }
+.top a:visited {
+    color: white;
+}
 .top a:hover {
 	/*background-color: #414152;*/
 	background-color: #303030;
@@ -154,9 +157,9 @@ h1, h2, h3, h4, h5 {
 	text-align: center;
 	color: green;
 }
-.product {
+.product_wrapper {
 	
-	margin: 3em auto;
+	margin: 4em auto;
 	width: 840px;
 	min-height: 220px;
 	padding: 0;
@@ -166,6 +169,7 @@ h1, h2, h3, h4, h5 {
 	box-shadow: 4px 2px 13px 5px #CCCCB2; 
 	-moz-border-radius: 8px; 
 }
+
 .item {
 	
 	margin: 0em auto;
@@ -174,9 +178,12 @@ h1, h2, h3, h4, h5 {
 	padding: 2em;
 	border-bottom: 2px solid gray; 
 }
-.item:last-child{
-	border: none;
+.item:last-child  {
+    border-bottom: 1px solid #B26B8F; 
+    border-bottom: 1px solid #a9a9a6; 
+    
 }
+
 
 .item  > div  {
 	
@@ -185,11 +192,12 @@ h1, h2, h3, h4, h5 {
 	height: auto;
 	clear: right;
 	float: right;*/
-	margin: 4px;
+	margin: 6px;
 	width: -moz-fit-content;
 }
 .item .item_pic{
 	float:left;
+        margin-top: -5em;
 }
 .item .item_pic img{
 	max-height: 180 px;
@@ -262,10 +270,62 @@ h1, h2, h3, h4, h5 {
     display: inline-block;
     font-weight: bold;
     background: lightgoldenrodyellow;
+    background: #44A51C;
+    background: #F0efec;
+    background-image: url(./images/2.gif);
+    -moz-border-radius: 3px; 
+    padding: 4px 10px;
+}
+.item_title:hover{
+    background: #46b12f;
+    background: windowframe;
+      background-image: url(./images/1.gif);
 }
 .item_title a {
-    color: #B26B8F;
+    color: #FFFF4D;
+    color: whitesmoke;
+    color: black;
 }
+.item_title a:visited{
+    color: #FFFF4D;
+    color: whitesmoke;
+    color: black;
+}
+.item_title a:hover {
+    color: black;
+    text-decoration: none;
+}
+
+.expired_date{
+    
+}
+.expired_date a{
+    
+}
+.expired_date a:visited{
+    
+}
+
+.in_progress{
+    
+}
+.in_progress a{
+    
+}
+.in_progress a:visited{
+    
+}
+
+.saled{
+    background: #44A51C;
+}
+.saled a{
+    color: #FFFF4D;
+}
+.saled a:visited{
+    color: #FFFF4D;
+}
+
 
 #ck_editor {
     margin-top: -.5em;
@@ -284,18 +344,24 @@ h1, h2, h3, h4, h5 {
         padding: 5px 8px;
         background: #666699;
         color: whitesmoke;
+        background: lightgray;
 }
-
 #pagination a:visited {
+    color: white;
+    color: black;
+}
+#pagination a:hover{
+    background: grey;
     color: white;
 }
 
-a{
+a {
     color: #174F82;
 }
-a:focus {
-    color: #1788DC;
+a:visited {
+    color: #174F82;
 }
+
 a:hover {
     color: #1788DC;
     text-decoration: underline;
@@ -308,6 +374,86 @@ a:hover {
 
 
 
-progress::-moz-progress-bar {background-color:#B26B8F}
+progress::-moz-progress-bar {
+    background-color:#99e810;
+}
+.progressbar{
+    border: 1px solid darkgreen;
+    margin-right: 6px;
+    margin-top : 3px;
+   float: left;   
+}
 
 
+#cm_form {
+	width: 330px;
+	background: #e0e0e0 repeat-x 0 0;
+	border: 1px solid white;
+	margin: 2em;
+	padding: 0;
+	-moz-border-radius: 3px;
+        float: left;
+}
+
+.cm_item {
+        margin: 2em;
+        clear:right;
+	width: 275px;
+	padding: 2em;
+	border-bottom: 1px solid gray;
+        -moz-border-radius: 2px;
+        float:right;
+}
+.cm_item .desc{
+    text-align: right;
+    direction: rtl;
+    margin: 1em auto;
+}
+
+#cm_edit{
+  float: left;
+}
+#cm_edit input[type=submit] {
+    background: windowframe;
+    
+    direction: rtl;
+	border: none;
+	padding: 3px;
+	min-width: 50px;
+	text-decoration: none;
+	font-size: 10px;
+	-moz-border-radius: 2px;
+	background: #53534c;
+	color: white;
+	box-shadow: 0 1px 0 white;
+	-moz-box-shadow: 0 1px 0 white;
+	-webkit-box-shadow: 0 1px 0 white;
+	margin-right: 2.5em;
+	margin-bottom: 1.7em;
+}
+
+#cm_delete{
+    float: left;
+}
+#cm_delete input[type=submit]{
+    background: windowframe;
+    
+    
+    direction: rtl;
+	border: none;
+	padding: 3px;
+	min-width: 50px;
+	text-decoration: none;
+	font-size: 10px;
+	-moz-border-radius: 2px;
+	background: #53534c;
+	color: white;
+	box-shadow: 0 1px 0 white;
+	-moz-box-shadow: 0 1px 0 white;
+	-webkit-box-shadow: 0 1px 0 white;
+	margin-right: 2.5em;
+	margin-bottom: 1.7em;
+}
+#cm_wrapper{
+    display: table;
+}
