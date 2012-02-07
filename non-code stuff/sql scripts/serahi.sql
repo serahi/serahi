@@ -29,49 +29,6 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- Name: comments; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE TABLE comments (
-    id bigint NOT NULL,
-    user_id integer NOT NULL,
-    content character varying,
-    date timestamp without time zone,
-    product_id integer NOT NULL
-);
-
-
-ALTER TABLE public.comments OWNER TO postgres;
-
---
--- Name: comments_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
---
-
-CREATE SEQUENCE comments_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE public.comments_id_seq OWNER TO postgres;
-
---
--- Name: comments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
---
-
-ALTER SEQUENCE comments_id_seq OWNED BY comments.id;
-
-
---
--- Name: comments_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
---
-
-SELECT pg_catalog.setval('comments_id_seq', 1, true);
-
-
---
 -- Name: users; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -115,8 +72,23 @@ ALTER SEQUENCE users_id_seq OWNED BY users.id;
 -- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('users_id_seq', 68, true);
+SELECT pg_catalog.setval('users_id_seq', 78, true);
 
+
+--
+-- Name: comments; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE comments (
+    id bigint DEFAULT nextval('users_id_seq'::regclass) NOT NULL,
+    user_id integer NOT NULL,
+    content character varying,
+    date timestamp without time zone,
+    product_id integer NOT NULL
+);
+
+
+ALTER TABLE public.comments OWNER TO postgres;
 
 --
 -- Name: customers; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
@@ -173,7 +145,7 @@ ALTER SEQUENCE news_id_seq OWNED BY news.id;
 -- Name: news_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('news_id_seq', 3, true);
+SELECT pg_catalog.setval('news_id_seq', 2, true);
 
 
 --
@@ -237,7 +209,7 @@ ALTER SEQUENCE products_id_seq OWNED BY products.id;
 -- Name: products_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('products_id_seq', 57, true);
+SELECT pg_catalog.setval('products_id_seq', 55, true);
 
 
 --
@@ -299,14 +271,7 @@ ALTER SEQUENCE transactions_id_seq OWNED BY transactions.id;
 -- Name: transactions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('transactions_id_seq', 179, true);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
---
-
-ALTER TABLE comments ALTER COLUMN id SET DEFAULT nextval('comments_id_seq'::regclass);
+SELECT pg_catalog.setval('transactions_id_seq', 177, true);
 
 
 --
@@ -342,7 +307,18 @@ ALTER TABLE users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
 --
 
 COPY comments (id, user_id, content, date, product_id) FROM stdin;
-1	39	hi\n	2012-02-06 23:37:43	56
+68	56	4	2012-02-04 12:01:19	54
+69	56	5	2012-02-04 12:01:25	54
+70	56	6	2012-02-04 22:28:26	54
+71	56	7	2012-02-05 12:52:04	54
+73	56	8	2012-02-05 12:52:11	54
+72	56	9	2012-02-05 12:52:07	54
+74	56	10	2012-02-05 12:52:14	54
+65	65	1	2011-12-12 15:26:16	54
+66	55	2	2011-12-12 15:26:16	54
+67	65	3	2011-12-12 15:26:16	54
+77	67	11	2012-02-06 23:32:41	54
+78	67	12	2012-02-06 23:43:34	54
 \.
 
 
@@ -351,13 +327,13 @@ COPY comments (id, user_id, content, date, product_id) FROM stdin;
 --
 
 COPY customers (id, username, password, first_name, last_name, user_type, email, creation_time, random_string, address, postal_code, phone, birth_date, activated) FROM stdin;
+60	customer_1	91ec1f9324753048c0096d036a694f86	صادق	کاظمی	customer	mail@gmail.com	2011-12-12 14:58:42	\N	تهران، خانه	9384282818	0	\N	t
 61	customer_2	91ec1f9324753048c0096d036a694f86	صادق	کاظمی	customer	mail@gmail.com	2011-12-12 14:58:42	\N	تهران، خانه	9384282818	0	\N	t
 62	customer_3	91ec1f9324753048c0096d036a694f86	صادق	کاظمی	customer	mail@gmail.com	2011-12-12 14:58:42	\N	تهران، خانه	9384282818	0	\N	t
 63	customer_4	91ec1f9324753048c0096d036a694f86	صادق	کاظمی	customer	mail@gmail.com	2011-12-12 14:58:42	\N	تهران، خانه	9384282818	0	\N	t
 65	customer_5	91ec1f9324753048c0096d036a694f86	صادق	کاظمی	customer	mail@gmail.com	2011-12-12 14:58:42	\N	تهران، خانه	9384282818	0	\N	t
 66	customer_6	91ec1f9324753048c0096d036a694f86	صادق	کاظمی	customer	mail@gmail.com	2011-12-12 14:58:42	\N	تهران، خانه	9384282818	0	\N	t
 67	hamed.gh	0088f5f91b8a5515227bc85a853a6873	حامد	قلی زاده	customer	hamed.gholizadeh.f@gmail.com	2011-12-22 22:23:04	\N	\N	\N	\N	\N	t
-60	customer_1	91ec1f9324753048c0096d036a694f86	صادق	کاظمی	customer	mail@gmail.com	2011-12-12 14:58:42	\N	تهران، خانه	9384282818	0212	\N	t
 \.
 
 
@@ -366,7 +342,6 @@ COPY customers (id, username, password, first_name, last_name, user_type, email,
 --
 
 COPY news (id, title, content, date) FROM stdin;
-3	new news	hi new news	2012-02-05 16:24:17
 \.
 
 
@@ -375,10 +350,8 @@ COPY news (id, title, content, date) FROM stdin;
 --
 
 COPY posts_rss (id, title, text, date) FROM stdin;
-54	نوت بوک MacBook Air 11.6	Processor and memory:\n- 1.6GHz dual-core Intel Core i5 with 3MB shared L3 cache\n- 2GB of 1333MHz DDR3 onboard memory\n\nStorage:\n- 64GB flash storage\n\nDisplay:\n- 11.6-inch (diagonal) high-resolution LED-backlit glossy widescreen display with support for millions of colors\n- Supported resolutions: 1366 by 768 (native), 1344 by 756, and 1280 by 720 pixels at 16:9 aspect ratio; 1152 by 720 and 1024 by 640 pixels at 16:10 aspect ratio; 1024 by 768 and 800 by 600 pixels at 4:3 aspect ratio	2011-12-22
-56	books	<p>\n\tthis is a new product</p>\n	2012-02-05
-55	تلفن همراه Xperia active	<p>\n\tصفحه کلید: صفحه کلید لمسی سیستم عامل: Android حافظه داخلی: &rlm;RAM: 512MB Internal phone storage: 1GB (up to 320MB free)&lrm; نوع کارت حافظه: microSD, up to 32GB دوربین: 5 تا 8 مگاپیکسل</p>\n	2012-02-05
-57	something	<p>\n\tthis is something</p>\n	2012-02-05
+55	تلفن همراه Xperia active	صفحه کلید: صفحه کلید لمسی\nسیستم عامل: Android\nحافظه داخلی: ‏RAM: 512MB\nInternal phone storage: 1GB (up to 320MB free)‎\nنوع کارت حافظه: microSD, up to 32GB\nدوربین: 5 تا 8 مگاپیکسل 	2011-12-12
+54	نوت بوک MacBook Air 11.6	Processor and memory:\n- 1.6GHz dual-core Intel Core i5 with 3MB shared L3 cache\n- 2GB of 1333MHz DDR3 onboard memory\n\nStorage:\n- 64GB flash storage\n\nDisplay:\n- 11.6-inch (diagonal) high-resolution LED-backlit glossy widescreen display with support for millions of colors\n- Supported resolutions: 1366 by 768 (native), 1344 by 756, and 1280 by 720 pixels at 16:9 aspect ratio; 1152 by 720 and 1024 by 640 pixels at 16:10 aspect ratio; 1024 by 768 and 800 by 600 pixels at 4:3 aspect ratio	2012-02-04
 \.
 
 
@@ -387,10 +360,8 @@ COPY posts_rss (id, title, text, date) FROM stdin;
 --
 
 COPY products (id, product_name, seller_id, lower_limit, description, image, base_discount, price, start_schedule, start_time, duration) FROM stdin;
-54	نوت بوک MacBook Air 11.6	56	20	Processor and memory:\n- 1.6GHz dual-core Intel Core i5 with 3MB shared L3 cache\n- 2GB of 1333MHz DDR3 onboard memory\n\nStorage:\n- 64GB flash storage\n\nDisplay:\n- 11.6-inch (diagonal) high-resolution LED-backlit glossy widescreen display with support for millions of colors\n- Supported resolutions: 1366 by 768 (native), 1344 by 756, and 1280 by 720 pixels at 16:9 aspect ratio; 1152 by 720 and 1024 by 640 pixels at 16:10 aspect ratio; 1024 by 768 and 800 by 600 pixels at 4:3 aspect ratio		35	178000000	2011-12-22	06:00:00	129600
-56	books	57	10	<p>\n\tthis is a new product</p>\n		10	1000	2012-02-05	00:00:00	172800
-55	تلفن همراه Xperia active	55	2	<p>\n\tصفحه کلید: صفحه کلید لمسی سیستم عامل: Android حافظه داخلی: &rlm;RAM: 512MB Internal phone storage: 1GB (up to 320MB free)&lrm; نوع کارت حافظه: microSD, up to 32GB دوربین: 5 تا 8 مگاپیکسل</p>\n		40	4240000	2012-02-05	00:00:00	172800
-57	something	57	10	<p>\n\tthis is something</p>\n		10	100	2012-02-05	00:00:00	172800
+55	تلفن همراه Xperia active	55	2	صفحه کلید: صفحه کلید لمسی\nسیستم عامل: Android\nحافظه داخلی: ‏RAM: 512MB\nInternal phone storage: 1GB (up to 320MB free)‎\nنوع کارت حافظه: microSD, up to 32GB\nدوربین: 5 تا 8 مگاپیکسل 	xperia1.jpg	40	4240000	2011-12-12	00:00:00	86400
+54	نوت بوک MacBook Air 11.6	56	20	Processor and memory:\n- 1.6GHz dual-core Intel Core i5 with 3MB shared L3 cache\n- 2GB of 1333MHz DDR3 onboard memory\n\nStorage:\n- 64GB flash storage\n\nDisplay:\n- 11.6-inch (diagonal) high-resolution LED-backlit glossy widescreen display with support for millions of colors\n- Supported resolutions: 1366 by 768 (native), 1344 by 756, and 1280 by 720 pixels at 16:9 aspect ratio; 1152 by 720 and 1024 by 640 pixels at 16:10 aspect ratio; 1024 by 768 and 800 by 600 pixels at 4:3 aspect ratio		35	178000000	2012-02-06	06:00:00	129600
 \.
 
 
@@ -404,7 +375,6 @@ COPY sellers (id, username, password, first_name, last_name, user_type, email, c
 57	seller_3	64c9ac2bb5fe46c3ac32844bb97be6bc	میلاد	بشیری	seller	info@gmail.com	2011-12-12 14:58:42	\N	سینما	تهران، میدان رسالت	09121212121	t	35.73658336551923 51.48810430145261
 56	seller_2	64c9ac2bb5fe46c3ac32844bb97be6bc	میلاد	بشیری	seller	info@gmail.com	2011-12-12 14:58:42	\N	محصولات کامپیوتری	تهران، میدان رسالت	09121212121	t	35.73658336551923 51.48810430145261
 55	seller_1	64c9ac2bb5fe46c3ac32844bb97be6bc	میلاد	بشیری	seller	info@gmail.com	2011-12-12 14:58:42	\N	فروشگاه موبایل	تهران، دانشگاه علم و صنعت	09121212121	t	35.74206966492453 51.50685830688474
-68	ahmadi	6a204bd89f3c8348afd5c77c717a097a	احمد	کریمی	seller	ahmad@home.rt	2011-12-29 23:36:57	\N		آدرس دقیق	0293472834	f	35.73658336551923 51.48810430145261
 \.
 
 
@@ -423,8 +393,6 @@ COPY transactions (id, user_id, product_id, count, transaction_time, buying_stat
 176	62	55	1	2011-12-12 15:47:42+03:30	1	mv0dgptu4z	f
 174	39	55	1	2011-12-12 15:46:51+03:30	1	1yl46q2ags	t
 177	61	55	1	2011-12-12 15:51:50+03:30	1	rlfdptnp5e	f
-178	0	56	1	2012-02-05 21:43:17+03:30	1	d3psbquoe9	f
-179	39	56	1	2012-02-05 21:44:27+03:30	1	dq1a9px2ke	f
 \.
 
 

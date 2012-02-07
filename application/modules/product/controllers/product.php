@@ -24,23 +24,32 @@ class Product extends MY_Controller {
     }
          
 
+        function edit_view() {
+        $id = $this->input->get('id');
+        $this->load->model('product_model');
+//        $view_data['product'] = $this->product_model->get_product($id, $this->session->userdata('user_id'));
+
+        $view_data[]=1;
+        $this->load->view('edit_view', $view_data);
+    }
+    
     function add_comment() {
         $this->load->model('product_model');
         $this->product_model->add_comment($this->session->userdata('user_id'));
         redirect('product/view?id='.$this->input->post('product_id'));
     }
 
-    //if is allowed show this
+ 
     function edit_comment() {
-        $this->load->model('product_model');
-        $this->product_model->edit_comment();        
-        redirect('product/edit-cm?id='.$this->input->post('comment_id'));
+        //$this->load->model('product_model');
+        //$this->product_model->edit_comment();        
+        redirect('product/edit_view?id='.$this->input->post('comment_id'));
     }
     
     function save_edit_comment() {
         $this->load->model('product_model');
         $this->product_model->edit_comment();
-        //redirect('product/view?id='.$this->input->post('product_id'));
+        redirect('product/view?id='.$this->input->post('product_id'));
     }
 
 

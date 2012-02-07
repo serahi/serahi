@@ -135,13 +135,13 @@ echo "var lang = $map_lng;";
         <?php if (isset($comments) && count($comments) > 0): ?>
             <?php foreach ($comments as $comment): ?>
                 <div class="cm_item">
-                    <?php if ($comment['seller']) {
-                        echo 'فروشنده';
-                    } ?>
+                    <?php if ($comment['seller']) { ?>
+                        <div style="background-color:green">
+                    <?php } ?>
                     <div class="item_title"> <b> <?php echo $comment['username']; ?> </b> </div>
                     <div class="news_date"> <?php echo $comment['date']; ?> </div>
                     <div class="desc"> <?php echo $comment['content']; ?> </div>
-
+<?php if ($this->session->userdata('user_type') == 'admin') { ?>
                     <form id="cm_edit" method="post" action="{$base_url}product/product/edit_comment" class="" >
                         <input type="hidden" value="<?php echo $comment['id']; ?>" name="comment_id">
                         <input type="hidden" value="{$product['id']}" name="product_id">
@@ -154,7 +154,10 @@ echo "var lang = $map_lng;";
                         <input type="hidden" value="{$product['id']}" name="product_id">
                         <input type="submit" name="d" value="حذف" />
                     </form> 
-
+<?php } ?>
+                    <?php if ($comment['seller']) {
+                    ?>    </div>
+                    <?php } ?>
                 </div>
             <?php endforeach; ?>
         <?php endif; ?>

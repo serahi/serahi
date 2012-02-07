@@ -53,6 +53,7 @@ class Product_model extends CI_Model {
         }
         $this->db->where('product_id', $product_id);
         $this->db->select('*');
+        $this->db->order_by('date', 'desc');
         //$this->db->join('users', 'users.id = comments.user_id');
         //$query = $this->db->get('comments',$limit , $page);
         $this->db->join('comments', 'comments.user_id=users.id ');
