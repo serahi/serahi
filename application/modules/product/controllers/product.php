@@ -29,7 +29,7 @@ class Product extends MY_Controller {
         $this->load->model('product_model');
 //        $view_data['product'] = $this->product_model->get_product($id, $this->session->userdata('user_id'));
 
-        $view_data[]=1;
+        $view_data['comment']['id']=$id;
         $this->load->view('edit_view', $view_data);
     }
     
@@ -49,7 +49,7 @@ class Product extends MY_Controller {
     function save_edit_comment() {
         $this->load->model('product_model');
         $this->product_model->edit_comment();
-        redirect('product/view?id='.$this->input->post('product_id'));
+        //redirect('product/view?id='.$this->input->post('product_id'));
     }
 
 
