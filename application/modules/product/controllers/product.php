@@ -19,6 +19,7 @@ class Product extends MY_Controller {
         $this->pagination->initialize($config);
 
         $view_data['comments'] = $this->product_model->get_limited_comments($id, $config['per_page'], $this->input->get('per_page'));
+        
         $this->load->view('product_view', $view_data);
     }
          
@@ -29,14 +30,19 @@ class Product extends MY_Controller {
         redirect('product/view?id='.$this->input->post('product_id'));
     }
 
-    //not ready yet
     function edit_comment() {
+        //$this->load->model('product_model');
+        //$this->product_model->edit_comment();
+        //redirect('product/view?id='.$this->input->post('product_id'));
+    }
+    
+    function save_edit_comment() {
         $this->load->model('product_model');
         $this->product_model->edit_comment();
         //redirect('product/view?id='.$this->input->post('product_id'));
     }
 
-    //not ready yet
+
     function remove_comment() {
         $this->load->model('product_model');
         $this->product_model->remove_comment();

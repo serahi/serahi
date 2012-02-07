@@ -65,7 +65,7 @@ class Product_model extends CI_Model {
                     'date' => $row->date,
                     'content' => $row->content,
                     'seller' => true
-                );
+                );                
             } else {
                 $comment[] = array(
                     'id' => $row->id,
@@ -88,8 +88,7 @@ class Product_model extends CI_Model {
         ));
     }
 
-    //not ready yet
-    //led?!
+
     function edit_comment() {
         $this->db->where('id', $this->input->post('comment_id'));
         $this->db->update('comments', array(
@@ -97,7 +96,7 @@ class Product_model extends CI_Model {
         ));
     }
 
-    //not ready yet
+
     function remove_comment() {
         $this->db->where('id', $this->input->post('comment_id'));
         $this->db->delete('comments');

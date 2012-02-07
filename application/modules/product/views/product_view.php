@@ -130,7 +130,7 @@
                     <input type="submit" name="e" value="ویرایش" />
                 </form>
                 <form id="delete" method="post" action="{$base_url}product/product/remove_comment" class="forms" >
-                    
+                     <!--<input type="hidden" value="{$comment['id']}" name="comment_id">-->
                     <!--<input type="hidden" value="{$comment['id']}" name="comment_id">-->
                     <input type="hidden" value="{$product['id']}" name="product_id">
                     <input type="submit" name="d" value="حذف" />
