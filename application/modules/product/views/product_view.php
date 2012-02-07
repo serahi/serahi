@@ -135,6 +135,9 @@ echo "var lang = $map_lng;";
         <?php if (isset($comments) && count($comments) > 0): ?>
             <?php foreach ($comments as $comment): ?>
                 <div class="cm_item">
+                    <?php if ($comment['seller']) {
+                        echo 'فروشنده';
+                    } ?>
                     <div class="item_title"> <b> <?php echo $comment['username']; ?> </b> </div>
                     <div class="news_date"> <?php echo $comment['date']; ?> </div>
                     <div class="desc"> <?php echo $comment['content']; ?> </div>

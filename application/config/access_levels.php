@@ -14,11 +14,12 @@ $config['actions']['product.product.view'] = 'everyone';
 $config['actions']['product.product.add_comment'] = 'registered';
 $config['actions']['product.product.edit_comment'] = 'admin';
 $config['actions']['product.product.remove_comment'] = 'admin';
+$config['modules']['product'] = 'admin';
 
 $config['modules']['seller'] = 'seller';
 
 $config['modules']['user'] = 'unregistered#home';
 $config['actions']['user.user.access_denied'] = 'everyone';
 $config['actions']['user.user.logout'] = 'everyone';
-
+$config['controllers']['user.transactions'] = 'registered#user/login';
 
