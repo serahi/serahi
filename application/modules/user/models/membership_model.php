@@ -90,7 +90,7 @@ class Membership_model extends CI_Model {
         $data = array(
             'address' => $this->input->post('address'),
             'postal_code' => $this->input->post('postal_code'),
-            'phone' => $this->input->post('tel'),
+            'phone' => $this->input->post('phone'),
             'activated' => 't',
             'random_string' => NULL
         );
